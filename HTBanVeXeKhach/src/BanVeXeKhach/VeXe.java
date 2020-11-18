@@ -46,15 +46,15 @@ public class VeXe {
     /**
      * @return the tenNV
      */
-    public String getTenNV() {
-        return tenNV;
+    public String getMaNV() {
+        return maNV;
     }
 
     /**
      * @param tenNV the tenNV to set
      */
-    public void setTenNV(String tenNV) {
-        this.tenNV = tenNV;
+    public void setMaNV(String MaNV) {
+        this.maNV = MaNV;
     }
 
     /**
@@ -128,18 +128,18 @@ public class VeXe {
     }
     private String maVe;
     private String bienSoXe;
-    private String tenNV;
+    private String maNV;
     private String hoTenKH;
     private String sdtKH;
     private String maGheNgoi;
     private Date thoiGianDatVe;
     private boolean isThanhToan;
     
-    public VeXe(String maVe, String bienSoXe, String tenNV, String hoTenKH, String sdtKH, String maGheNgoi, Date thoiGianDatVe, boolean  isThanhToan)
+    public VeXe(String maVe, String bienSoXe, String maNV, String hoTenKH, String sdtKH, String maGheNgoi, Date thoiGianDatVe, boolean  isThanhToan)
     {
         this.maVe = maVe;
         this.bienSoXe = bienSoXe;
-        this.tenNV = tenNV;
+        this.maNV = maNV;
         this.hoTenKH = hoTenKH;
         this.sdtKH = sdtKH;
         this.maGheNgoi = maGheNgoi;

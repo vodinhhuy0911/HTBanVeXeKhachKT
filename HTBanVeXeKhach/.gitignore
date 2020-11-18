@@ -2,4 +2,5 @@ test
 nbproject
 build.xml
 manifest.mf
-/QuanLyBenXe/target/
+/build/
+/dist/

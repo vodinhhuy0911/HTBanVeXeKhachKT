@@ -46,4 +46,12 @@ public class DangNhap {
         this.taiKhoan = taiKhoan;
         this.matKhau = matKhau;
     }
+
+    @Override
+    public String toString() {
+        StringBuilder db = new StringBuilder();
+        db.append(this.taiKhoan ).append(" ").append(this.matKhau);
+        return db.toString(); //To change body of generated methods, choose Tools | Templates.
+    }
+    
 }
