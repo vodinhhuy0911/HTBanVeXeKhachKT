@@ -1,0 +1,15 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Nov 15, 2020, 3:13:25 PM
+    Author     : PC
+*/
+.apnQLSV{
+    -fx-background-color: bisque;
+}
+#btThem,#btSua,#btXoa{
+    -fx-border-width: 2 2 2 2;
+}

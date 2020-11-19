@@ -1,0 +1,41 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Nov 10, 2020, 9:37:28 PM
+    Author     : PC
+*/
+.root {
+    -fx-background-color: seashell;
+}
+ 
+
+ 
+#lblTitle{
+    -fx-text-fill: darkred;
+  
+}
+ 
+.txtField {
+    -fx-border-radius: 8;
+    -fx-background-radius: 7;
+    -fx-border-color: gray;
+}
+ 
+
+#btnLogin {
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-border-width: 1 1 2 1;
+    -fx-background-color: #16a085;
+    -fx-border-color: darkgreen;
+    -fx-text-fill: #ffffff;
+}
+ 
+
+ 
+#btnLogin:pressed {
+    -fx-border-width: 1 1 1 1;
+}
