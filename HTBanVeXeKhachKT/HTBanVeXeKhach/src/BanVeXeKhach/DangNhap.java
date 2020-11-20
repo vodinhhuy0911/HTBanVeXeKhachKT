@@ -50,7 +50,7 @@ public class DangNhap {
     @Override
     public String toString() {
         StringBuilder db = new StringBuilder();
-        db.append(this.taiKhoan ).append(" ").append(this.matKhau);
+        db.append(this.taiKhoan).append(" ").append(this.matKhau).append("\n");
         return db.toString(); //To change body of generated methods, choose Tools | Templates.
     }
     

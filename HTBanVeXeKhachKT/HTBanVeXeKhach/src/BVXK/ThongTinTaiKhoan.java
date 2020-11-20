@@ -12,7 +12,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import javax.naming.spi.DirStateFactory.Result;
 
 /**
  *
@@ -23,12 +22,12 @@ public class ThongTinTaiKhoan {
     {
         Connection cnt = JDBC.getConn();
         Statement stm = cnt.createStatement();
-        ResultSet rs = stm.executeQuery("SELECT * FROM dangnhap");
+        ResultSet rs = stm.executeQuery("SELECT * FROM taikhoan;");
         List<DangNhap> kq = new ArrayList<>();
         while(rs.next())
         {
-            String taiKhoan = rs.getString("taikhoan");
-            String matKhau = rs.getString("matkhau");
+            String taiKhoan = rs.getString("tenTK");
+            String matKhau = rs.getString("matKhau");
             DangNhap dn = new DangNhap(taiKhoan,matKhau);
             kq.add(dn);
         }

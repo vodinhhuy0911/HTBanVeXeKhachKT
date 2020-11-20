@@ -24,31 +24,32 @@ import javafx.scene.control.TextField;
  * @author PC
  */
 public class BTLController implements Initializable {
-//    @FXML private TextField txtUser;
-//    @FXML private PasswordField pwfPass;
-//    private void handleButtonAction(ActionEvent event){
-//        String username = txtUser.getText();
-//        String password = pwfPass.getText();
-//         
-//        if (username != null || password != null){
-//            Alert alert = new Alert(AlertType.INFORMATION);
-//                    alert.setTitle("Thông tin đăng nhập");
-//                    alert.setHeaderText(null);
-//                    alert.setContentText("Đăng nhập thành công!");
-//                    alert.showAndWait();
-//        }
-//        else
-//        {
-//            Alert alert = new Alert(AlertType.INFORMATION);
-//                    alert.setTitle("Thông tin đăng nhập");
-//                    alert.setHeaderText(null);
-//                    alert.setContentText("Đăng nhập thất bại!");
-//                    alert.showAndWait();
-//        }
-//    }
-//    /**
-//     * Initializes the controller class.
-//     */
+    @FXML private TextField txtUser;
+    @FXML private PasswordField pwfPass;
+    @FXML
+    private void handleButtonAction(ActionEvent event){
+        String username = txtUser.getText();
+        String password = pwfPass.getText();
+         
+        if (username != null || password != null){
+            Alert alert = new Alert(AlertType.INFORMATION);
+                    alert.setTitle("Thông tin đăng nhập");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Đăng nhập thành công!");
+                    alert.showAndWait();
+        }
+        else
+        {
+            Alert alert = new Alert(AlertType.INFORMATION);
+                    alert.setTitle("Thông tin đăng nhập");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Đăng nhập thất bại!");
+                    alert.showAndWait();
+        }
+    }
+    /**
+     * Initializes the controller class.
+     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO

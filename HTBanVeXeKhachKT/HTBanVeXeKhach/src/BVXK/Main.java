@@ -17,11 +17,11 @@ import java.util.List;
 public class Main {
     public static void main(String args[]) throws SQLException
     {
-                List<DangNhap> dn = new ArrayList<>();
-                dn = ThongTinTaiKhoan.getThongTin();
-                for(DangNhap d : dn)
-                {
-                    System.out.print(d);   
-                }
+        List<DangNhap> dn = new ArrayList<>();
+        dn = ThongTinTaiKhoan.getThongTin();
+        for(DangNhap d : dn)
+        {
+            System.out.print(d);   
+        }
     }
 }
