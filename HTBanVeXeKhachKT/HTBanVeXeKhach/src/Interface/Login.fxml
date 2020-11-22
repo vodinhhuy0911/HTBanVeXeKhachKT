@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="banvexe.LoginController">
+   <left>
+      <AnchorPane id="arLeft" prefHeight="200.0" prefWidth="200.0" styleClass="arLeft" stylesheets="@Design.css" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="170.0" fitWidth="150.0" layoutX="25.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../ou-hcmc-logo.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="26.0" layoutY="213.0" text="OU BUS">
+               <font>
+                  <Font name="System Bold" size="40.0" />
+               </font>
+               <textFill>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop color="#9bab0a" />
+                        <Stop color="YELLOW" offset="0.007653061224489797" />
+                        <Stop color="RED" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </textFill>
+            </Label>
+         </children>
+      </AnchorPane>
+   </left>
+   <center>
+      <AnchorPane id="arRight" prefHeight="400.0" prefWidth="400.0" styleClass="arRight" stylesheets="@Design.css" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="150.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../download.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="36.0" layoutY="145.0" text="Username" />
+            <TextField fx:id="txtUsername" layoutX="111.0" layoutY="141.0" prefHeight="26.0" prefWidth="240.0" promptText="Username" />
+            <Label layoutX="36.0" layoutY="203.0" text="Password" />
+            <PasswordField fx:id="pwPassword" layoutX="111.0" layoutY="200.0" prefHeight="26.0" prefWidth="240.0" promptText="Password" />
+            <Button id="btLogin" fx:id="btLogin" layoutX="57.0" layoutY="271.0" mnemonicParsing="false" onAction="#btLoginOnAction" prefHeight="36.0" prefWidth="286.0" style="-fx-font-size: 14; -fx-font-weight: bold;" styleClass="btLogin" stylesheets="@Design.css" text="Login">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
+            <Button id="btCancel" fx:id="btCancel" layoutX="57.0" layoutY="316.0" mnemonicParsing="false" onAction="#btCancelOnAction" prefHeight="32.0" prefWidth="286.0" style="-fx-font-size: 14; -fx-font-weight: bold;" styleClass="btLogin" stylesheets="@Design.css" text="Cancel">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>
