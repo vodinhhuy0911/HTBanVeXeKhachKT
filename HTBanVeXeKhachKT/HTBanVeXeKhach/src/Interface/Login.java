@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package banvexe;
+package fix;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -16,7 +16,7 @@ import javafx.stage.StageStyle;
  *
  * @author PC
  */
-public class SoftwareTesting extends Application {
+public class Login extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
@@ -25,6 +25,7 @@ public class SoftwareTesting extends Application {
         Scene scene = new Scene(root);
         
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.show();
     }
 

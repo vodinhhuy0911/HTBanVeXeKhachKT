@@ -12,16 +12,16 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="banvexe.LoginController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@DesignLogin.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fix.LoginController">
    <left>
       <AnchorPane id="arLeft" prefHeight="200.0" prefWidth="200.0" styleClass="arLeft" stylesheets="@Design.css" BorderPane.alignment="CENTER">
          <children>
             <ImageView fitHeight="170.0" fitWidth="150.0" layoutX="25.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../ou-hcmc-logo.png" />
+                  <Image url="@picture/ou-hcmc-logo.png" />
                </image>
             </ImageView>
-            <Label layoutX="26.0" layoutY="213.0" text="OU BUS">
+            <Label layoutX="26.0" layoutY="239.0" text="OU BUS">
                <font>
                   <Font name="System Bold" size="40.0" />
                </font>
@@ -35,6 +35,11 @@
                   </LinearGradient>
                </textFill>
             </Label>
+            <Label layoutX="19.0" layoutY="213.0" text="CÔNG TY VẬN TẢI TỐC HÀNH" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
    </left>
@@ -43,7 +48,7 @@
          <children>
             <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="150.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../download.png" />
+                  <Image url="@picture/download.png" />
                </image>
             </ImageView>
             <Label layoutX="36.0" layoutY="145.0" text="Username" />

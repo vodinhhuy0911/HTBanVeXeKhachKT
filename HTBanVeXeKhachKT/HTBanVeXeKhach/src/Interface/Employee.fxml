@@ -11,60 +11,96 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="apnQLSV" prefHeight="554.0" prefWidth="1023.0" styleClass="apnQLSV" stylesheets="@style2.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="banvexe2.BanVeXeController">
+<AnchorPane id="apnQLSV" prefHeight="560.0" prefWidth="1200.0" styleClass="apnQLSV" stylesheets="@Employee.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label alignment="CENTER" layoutX="376.0" layoutY="14.0" text="QUẢN LÝ NHÂN VIÊN" textAlignment="CENTER">
+      <Label alignment="CENTER" layoutX="453.0" layoutY="14.0" styleClass="main" stylesheets="@Employee.css" text="QUẢN LÝ NHÂN VIÊN" textAlignment="CENTER" textFill="RED">
          <font>
             <Font name="System Bold" size="22.0" />
          </font></Label>
-      <Pane id="pnNV" layoutX="393.0" layoutY="55.0" prefHeight="489.0" prefWidth="615.0" stylesheets="@style2.css">
+      <Pane id="pnNV" layoutX="472.0" layoutY="52.0" prefHeight="498.0" prefWidth="743.0" stylesheets="@Employee.css">
          <children>
-            <TableView layoutY="-3.0" prefHeight="489.0" prefWidth="615.0" stylesheets="@style2.css">
+            <TableView layoutX="6.0" layoutY="8.0" prefHeight="482.0" prefWidth="705.0" stylesheets="@Employee.css">
               <columns>
-                <TableColumn id="tcID" prefWidth="75.0" text="ID" />
-                <TableColumn id="tcHoTen" prefWidth="75.0" text="Họ tên" />
-                  <TableColumn id="tcNgaySinh" prefWidth="75.0" text="Ngày sinh" />
-                  <TableColumn id="tcDiaChi" prefWidth="75.0" text="Địa chỉ" />
-                  <TableColumn id="tcChucVu" prefWidth="75.0" text="Chức vụ" />
-                  <TableColumn id="tcSDT" prefWidth="75.0" text="SĐT" />
-                  <TableColumn id="tcEmail" prefWidth="75.0" text="Email" />
-                  <TableColumn id="tcTaiKhoan" prefWidth="86.33331298828125" text="Tài khoản NV" />
+                <TableColumn id="tcID" prefWidth="61.600006103515625" text="ID" />
+                <TableColumn id="tcHoTen" prefWidth="109.5999755859375" text="Họ tên" />
+                  <TableColumn id="tcNgaySinh" prefWidth="79.20001220703125" text="Ngày sinh" />
+                  <TableColumn id="tcDiaChi" prefWidth="96.79998779296875" text="Địa chỉ" />
+                  <TableColumn id="tcChucVu" prefWidth="65.5999755859375" text="Chức vụ" />
+                  <TableColumn id="tcSDT" prefWidth="85.5999755859375" text="SĐT" />
+                  <TableColumn id="tcEmail" prefWidth="84.800048828125" text="Email" />
+                  <TableColumn id="tcTaiKhoan" prefWidth="119.9998779296875" text="Tài khoản NV" />
               </columns>
             </TableView>
          </children>
       </Pane>
       <ImageView fitHeight="99.0" fitWidth="141.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../picture/unnamed.png" />
+            <Image url="@picture/unnamed.png" />
          </image></ImageView>
-      <Label layoutX="14.0" layoutY="123.0" text="Mã NV" />
-      <Label layoutX="14.0" layoutY="161.0" text="Họ tên" />
-      <Label layoutX="14.0" layoutY="200.0" text="Ngày sinh" />
-      <Label layoutX="14.0" layoutY="237.0" text="Địa chỉ" />
-      <Label layoutX="14.0" layoutY="278.0" text="Chức vụ" />
-      <Label layoutX="14.0" layoutY="317.0" text="SĐT" />
-      <Label layoutX="14.0" layoutY="354.0" text="Email" />
-      <Label layoutX="14.0" layoutY="393.0" text="Tài khoản NV" />
-      <TextField layoutX="98.0" layoutY="119.0" prefHeight="26.0" prefWidth="278.0" />
-      <TextField layoutX="98.0" layoutY="157.0" prefHeight="26.0" prefWidth="278.0" />
-      <TextField layoutX="98.0" layoutY="196.0" prefHeight="26.0" prefWidth="278.0" />
-      <TextField layoutX="98.0" layoutY="233.0" prefHeight="26.0" prefWidth="278.0" />
-      <TextField layoutX="98.0" layoutY="274.0" prefHeight="26.0" prefWidth="278.0" />
-      <TextField layoutX="98.0" layoutY="313.0" prefHeight="26.0" prefWidth="278.0" />
-      <TextField layoutX="98.0" layoutY="389.0" prefHeight="26.0" prefWidth="278.0" />
-      <TextField layoutX="98.0" layoutY="350.0" prefHeight="26.0" prefWidth="278.0" />
-      <Button id="btThem" layoutX="30.0" layoutY="467.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="64.0" stylesheets="@style2.css" text="Thêm">
+      <Label layoutX="14.0" layoutY="123.0" styleClass="sizeFont" stylesheets="@Employee.css" text="Mã NV">
          <font>
-            <Font name="System Bold" size="15.0" />
-         </font></Button>
-          <Button id="btSua" layoutX="173.0" layoutY="467.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="64.0" stylesheets="@style2.css" text="Sửa">
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <Label layoutX="14.0" layoutY="161.0" styleClass="sizeFont" stylesheets="@Employee.css" text="Họ tên">
          <font>
-            <Font name="System Bold" size="15.0" />
-         </font></Button>
-      <Button id="btXoa" layoutX="312.0" layoutY="467.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="64.0" stylesheets="@style2.css" text="Xóa">
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <Label layoutX="14.0" layoutY="200.0" styleClass="sizeFont" stylesheets="@Employee.css" text="Ngày sinh" />
+      <Label layoutX="14.0" layoutY="237.0" styleClass="sizeFont" stylesheets="@Employee.css" text="Địa chỉ" />
+      <Label layoutX="14.0" layoutY="278.0" styleClass="sizeFont" stylesheets="@Employee.css" text="Chức vụ" />
+      <Label layoutX="14.0" layoutY="317.0" styleClass="sizeFont" stylesheets="@Employee.css" text="SĐT" />
+      <Label layoutX="14.0" layoutY="354.0" styleClass="sizeFont" stylesheets="@Employee.css" text="Email" />
+      <Label layoutX="15.0" layoutY="392.0" styleClass="sizeFont" stylesheets="@Employee.css" text="Tài khoản NV" />
+      <TextField layoutX="112.0" layoutY="120.0" prefHeight="26.0" prefWidth="315.0" AnchorPane.rightAnchor="763.0" />
+      <TextField layoutX="109.0" layoutY="158.0" prefHeight="26.0" prefWidth="315.0" AnchorPane.rightAnchor="763.0" />
+      <TextField layoutX="134.0" layoutY="197.0" prefHeight="26.0" prefWidth="315.0" AnchorPane.rightAnchor="763.0" />
+      <TextField layoutX="112.0" layoutY="234.0" prefHeight="26.0" prefWidth="315.0" AnchorPane.rightAnchor="763.0" />
+      <TextField layoutX="112.0" layoutY="275.0" prefHeight="26.0" prefWidth="315.0" AnchorPane.rightAnchor="763.0" />
+      <TextField layoutX="136.0" layoutY="314.0" prefHeight="26.0" prefWidth="315.0" AnchorPane.rightAnchor="764.0" />
+      <TextField layoutX="112.0" layoutY="390.0" prefHeight="26.0" prefWidth="315.0" AnchorPane.rightAnchor="763.0" />
+      <TextField layoutX="112.0" layoutY="351.0" prefHeight="26.0" prefWidth="315.0" AnchorPane.rightAnchor="763.0" />
+      <Button id="btThem" layoutX="14.0" layoutY="452.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="96.0" styleClass="btQuanLy" stylesheets="@Employee.css" text="Thêm">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
+         <graphic>
+            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@picture/pngtree-vector-add-icon-png-image_1016082.jpg" />
+               </image>
+            </ImageView>
+         </graphic></Button>
+          <Button id="btSua" layoutX="129.0" layoutY="452.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="96.0" styleClass="btQuanLy" stylesheets="@Employee.css" text="Sửa" AnchorPane.leftAnchor="129.0">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@picture/download%20(1).png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
+      <Button id="btXoa" layoutX="243.0" layoutY="452.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="96.0" styleClass="btQuanLy" stylesheets="@Employee.css" text="Xóa">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@picture/images.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button layoutX="357.0" layoutY="452.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="95.0" styleClass="sizeFont" stylesheets="@Employee.css" text="Hủy">
+         <graphic>
+            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@picture/vector-cancel-icon-png_302651.jpg" />
+               </image>
+            </ImageView>
+         </graphic>
       </Button>
       
    </children>
