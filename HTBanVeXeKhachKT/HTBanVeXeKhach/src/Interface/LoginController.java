@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package fix;
+package test;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -40,37 +40,33 @@ public class LoginController implements Initializable {
       
       if(username != null && username.equals(USERNAME)){
           if (password != null && password.equals(PASSWORD)){
-              validationStyle(true, true);
+           
                Alert alert = new Alert(AlertType.INFORMATION);
                     alert.setTitle("Information Login");
                     alert.setHeaderText(null);
                     alert.setContentText("Login success!");
                     alert.showAndWait();
           }
-          else
+           else
           {
-            validationStyle(true, false);
+   
+            Alert notiPass = new Alert(AlertType.ERROR);
+                notiPass.setTitle("Notification!");
+                notiPass.setHeaderText(null);
+                notiPass.setContentText("Wrong password!!!");
+                notiPass.showAndWait();
+            
           }}
       else {
-            validationStyle(false, false);
+               Alert notiAll = new Alert(AlertType.ERROR);
+                notiAll.setTitle("Notification!");
+                notiAll.setHeaderText(null);
+                notiAll.setContentText("Try again please!!!");
+                notiAll.showAndWait();
         }
       }
 
-    public void validationStyle(boolean user, boolean pass){
-        if (user){
-            txtUsername.getStyleClass().removeAll("txtFieldError");
-            txtUsername.getStyleClass().add("txtField");
-        }else{
-            txtUsername.getStyleClass().add("txtFieldError");
-        }
-         
-        if (pass){
-            pwPassword.getStyleClass().removeAll("txtFieldError");
-            pwPassword.getStyleClass().add("txtField");
-        }else{
-            pwPassword.getStyleClass().add("txtFieldError");
-        }
-    }
+   
    public void btCancelOnAction(ActionEvent event){
        Stage stage =(Stage)btCancel.getScene().getWindow();
        stage.close();
