@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="1200.0" styleClass="main" stylesheets="@distanceStyle.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="test.DistanceController">
+<AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="1200.0" styleClass="main" stylesheets="@distanceStyle.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bt.DistanceController">
    <children>
       <Label layoutX="442.0" layoutY="41.0" text="QUẢN LÝ LỘ TRÌNH">
          <font>
@@ -22,7 +22,7 @@
       </Label>
       <ImageView fitHeight="99.0" fitWidth="178.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../GitHub/HTBanVeXeKhach/HTBanVeXeKhachKT/HTBanVeXeKhach/src/Interface/picture/unnamed.png" />
+            <Image url="@picture/unnamed.png" />
          </image>
       </ImageView>
       <Label layoutX="14.0" layoutY="147.0" styleClass="fontsize" stylesheets="@distanceStyle.css" text="Mã lộ trình" />
@@ -41,8 +41,6 @@
       <DatePicker layoutX="690.0" layoutY="313.0" prefHeight="26.0" prefWidth="238.0" />
       <ComboBox layoutX="690.0" layoutY="270.0" prefHeight="26.0" prefWidth="238.0" />
       <ComboBox layoutX="690.0" layoutY="226.0" prefHeight="26.0" prefWidth="238.0" />
-      <ComboBox layoutX="690.0" layoutY="183.0" prefHeight="26.0" prefWidth="238.0" />
-      <ComboBox layoutX="690.0" layoutY="141.0" prefHeight="26.0" prefWidth="238.0" />
       <Button layoutX="959.0" layoutY="138.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="226.0" styleClass="btCTLT" stylesheets="@distanceStyle.css" text="Thêm chi tiết LT" AnchorPane.rightAnchor="16.0">
          <graphic>
             <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" styleClass="btCTLT">
@@ -79,7 +77,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button layoutX="280.0" layoutY="356.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="161.0" styleClass="btEdit" stylesheets="@distanceStyle.css" text="Cập nhật LT">
+      <Button layoutX="246.0" layoutY="356.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="161.0" styleClass="btEdit" stylesheets="@distanceStyle.css" text="Cập nhật LT">
          <graphic>
             <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -88,20 +86,20 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button layoutX="766.0" layoutY="355.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="161.0" styleClass="btCancel" stylesheets="@distanceStyle.css" text="Hủy">
+      <Button layoutX="708.0" layoutY="356.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="161.0" styleClass="btCancel" stylesheets="@distanceStyle.css" text="Hủy">
          <graphic>
             <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@picture/download%20(3).png" />
+                  <Image url="@picture/delete-icon-png-3.jpg" />
                </image>
             </ImageView>
          </graphic>
       </Button>
-      <Button layoutX="531.0" layoutY="355.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="161.0" styleClass="btDelete" stylesheets="@distanceStyle.css" text="Xóa LT">
+      <Button layoutX="471.0" layoutY="356.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="161.0" styleClass="btDelete" stylesheets="@distanceStyle.css" text="Xóa LT">
          <graphic>
             <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@picture/images.png" />
+                  <Image url="@picture/delete-1432400-1211078.png" />
                </image>
             </ImageView>
          </graphic>
@@ -123,5 +121,16 @@
             <TableColumn prefWidth="130.0" text="Ngày khởi hành" />
         </columns>
       </TableView>
+      <Button layoutX="942.0" layoutY="356.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="238.0" styleClass="btFind" stylesheets="@distanceStyle.css" text="Tìm kiếm ds lộ trình">
+         <graphic>
+            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@picture/105498-200.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <TextField layoutX="690.0" layoutY="141.0" prefHeight="26.0" prefWidth="238.0" />
+      <TextField layoutX="690.0" layoutY="183.0" prefHeight="26.0" prefWidth="238.0" />
    </children>
 </AnchorPane>

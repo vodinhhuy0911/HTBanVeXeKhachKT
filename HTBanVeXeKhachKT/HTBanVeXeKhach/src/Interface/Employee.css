@@ -20,3 +20,49 @@ and open the template in the editor.
     -fx-font-weight : bold;
     
 }
+.btAdd{    
+    -fx-font-weight:bold;
+    -fx-font-size:14px;
+    -fx-background-color:#ff471a;
+    -fx-border-width:1 1 1 1;
+    -fx-background-radius: 15 15 15 15;
+}
+.btCancel{    
+    -fx-font-weight:bold;
+    -fx-font-size:14px;
+    -fx-background-color:#8080ff;
+    -fx-border-width:1 1 1 1;
+    -fx-background-radius: 15 15 15 15;
+}
+.btEdit{
+    -fx-font-weight:bold;
+    -fx-font-size:14px;
+    -fx-background-color:#ffffb3;
+    -fx-border-width:1 1 1 1;
+    -fx-background-radius: 15 15 15 15;
+}
+.btDelete{
+    -fx-font-weight:bold;
+    -fx-font-size:14px;
+    -fx-background-color:#4da6ff;
+    -fx-border-width:1 1 1 1;
+    -fx-background-radius: 15 15 15 15;
+    
+}
+.btFind{
+    -fx-font-weight:bold;
+    -fx-font-size:14px;
+    -fx-background-color:#98e698;
+    -fx-border-width:1 1 1 1;
+    -fx-background-radius: 15 15 15 15;
+ 
+}
+
+.btAdd:pressed,.btCancel:pressed,.btEdit:pressed,.btDelete:pressed,.btFind:pressed{
+    -fx-background-color:tomato;
+    -fx-background-radius: 25 25 25 25;
+}
+
+.btAdd:hover,.btCancel:hover,.btEdit:hover,.btDelete:hover,.btFind:hover{
+    -fx-background-color: coral;
+}
