@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="650.0" prefWidth="1200.0" styleClass="main" stylesheets="@styletTicket.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bt.TicketController">
+   <children>
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="445.0" layoutY="14.0" prefHeight="59.0" prefWidth="431.0" styleClass="mainLabel" stylesheets="@styletTicket.css" text="HỆ THỐNG BÁN VÉ" textAlignment="CENTER">
+         <font>
+            <Font name="System Bold" size="36.0" />
+         </font></Label>
+      <VBox layoutX="14.0" layoutY="86.0" prefHeight="546.0" prefWidth="200.0" styleClass="floor" stylesheets="@styletTicket.css">
+         <children>
+            <Label alignment="CENTER" prefHeight="35.0" prefWidth="196.0" styleClass="floorLabel" stylesheets="@styletTicket.css" text="Tầng 1" />
+            <Pane prefHeight="513.0" prefWidth="133.0">
+               <children>
+                  <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="52.0" styleClass="btTick" stylesheets="@styletTicket.css" text="A1" />
+                  <Button layoutX="130.0" layoutY="14.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="52.0" styleClass="btTick" stylesheets="@styletTicket.css" text="B1" />
+                  <Button layoutX="130.0" layoutY="358.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="52.0" styleClass="btTick" stylesheets="@styletTicket.css" text="B5" />
+                  <Button layoutX="14.0" layoutY="444.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="52.0" styleClass="btTick" stylesheets="@styletTicket.css" text="A6" />
+                  <Button layoutX="130.0" layoutY="272.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="52.0" styleClass="btTick" stylesheets="@styletTicket.css" text="B4" />
+                  <Button layoutX="14.0" layoutY="358.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="52.0" styleClass="btTick" stylesheets="@styletTicket.css" text="A5" />
+                  <Button layoutX="130.0" layoutY="186.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="52.0" styleClass="btTick" stylesheets="@styletTicket.css" text="B3" />
+                  <Button layoutX="14.0" layoutY="272.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="52.0" styleClass="btTick" stylesheets="@styletTicket.css" text="A4" />
+                  <Button layoutX="130.0" layoutY="444.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="52.0" styleClass="btTick" stylesheets="@styletTicket.css" text="B6" />
+                  <Button layoutX="14.0" layoutY="186.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="52.0" styleClass="btTick" stylesheets="@styletTicket.css" text="A3" />
+                  <Button layoutX="14.0" layoutY="100.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="52.0" styleClass="btTick" stylesheets="@styletTicket.css" text="A2" />
+                  <Button layoutX="130.0" layoutY="100.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="52.0" styleClass="btTick" stylesheets="@styletTicket.css" text="B2" />
+               </children>
+            </Pane>
+         </children>
+      </VBox>
+      <VBox layoutX="230.0" layoutY="86.0" prefHeight="546.0" prefWidth="200.0" styleClass="floor" stylesheets="@styletTicket.css">
+         <children>
+            <Label alignment="CENTER" prefHeight="35.0" prefWidth="196.0" styleClass="floorLabel" stylesheets="@styletTicket.css" text="Tầng 2" />
+            <Pane prefHeight="520.0" prefWidth="196.0">
+               <children>
+                  <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="52.0" styleClass="btTick" stylesheets="@styletTicket.css" text="A7" />
+                  <Button layoutX="130.0" layoutY="14.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="52.0" styleClass="btTick" stylesheets="@styletTicket.css" text="B7" />
+                  <Button layoutX="14.0" layoutY="100.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="52.0" styleClass="btTick" stylesheets="@styletTicket.css" text="A8" />
+                  <Button layoutX="130.0" layoutY="100.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="52.0" styleClass="btTick" stylesheets="@styletTicket.css" text="B8" />
+                  <Button layoutX="14.0" layoutY="272.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="52.0" styleClass="btTick" stylesheets="@styletTicket.css" text="A10" />
+                  <Button layoutX="130.0" layoutY="186.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="52.0" styleClass="btTick" stylesheets="@styletTicket.css" text="B9" />
+                  <Button layoutX="14.0" layoutY="186.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="52.0" styleClass="btTick" stylesheets="@styletTicket.css" text="A9" />
+                  <Button layoutX="130.0" layoutY="272.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="52.0" styleClass="btTick" stylesheets="@styletTicket.css" text="B10" />
+                  <Button layoutX="14.0" layoutY="358.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="52.0" styleClass="btTick" stylesheets="@styletTicket.css" text="A11" />
+                  <Button layoutX="130.0" layoutY="358.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="52.0" styleClass="btTick" stylesheets="@styletTicket.css" text="B11" />
+                  <Button layoutX="14.0" layoutY="444.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="52.0" styleClass="btTick" stylesheets="@styletTicket.css" text="A12" />
+                  <Button layoutX="130.0" layoutY="444.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="52.0" styleClass="btTick" stylesheets="@styletTicket.css" text="B12" />
+               </children>
+            </Pane>
+         </children>
+      </VBox>
+      <Label layoutX="443.0" layoutY="104.0" styleClass="infoLabel" stylesheets="@styletTicket.css" text="Lựa chọn lộ trình" />
+      <ComboBox layoutX="561.0" layoutY="100.0" prefHeight="25.0" prefWidth="243.0" AnchorPane.leftAnchor="561.0" />
+      <Label layoutX="833.0" layoutY="104.0" styleClass="infoLabel" stylesheets="@styletTicket.css" text="Chọn ngày" />
+      <ComboBox layoutX="561.0" layoutY="160.0" prefHeight="25.0" prefWidth="243.0" />
+      <Label layoutX="443.0" layoutY="164.0" styleClass="infoLabel" stylesheets="@styletTicket.css" text="Chọn xe" />
+      <ImageView fitHeight="80.0" fitWidth="122.0" layoutX="10.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../picture/unnamed.png" />
+         </image></ImageView>
+      <Label layoutX="443.0" layoutY="224.0" styleClass="infoLabel" stylesheets="@styletTicket.css" text="Số ghế trống" />
+      <TextField layoutX="561.0" layoutY="220.0" prefHeight="25.0" prefWidth="243.0" />
+      <Label layoutX="833.0" layoutY="164.0" styleClass="infoLabel" stylesheets="@styletTicket.css" text="Chọn giờ" />
+      <Button layoutX="561.0" layoutY="500.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="120.0" styleClass="btTick" stylesheets="@styletTicket.css" text="Thêm vé">
+         <graphic>
+            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../picture/add--v2.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
+      <DatePicker layoutX="939.0" layoutY="100.0" prefHeight="25.0" prefWidth="243.0" AnchorPane.leftAnchor="939.0" />
+      <ComboBox layoutX="939.0" layoutY="160.0" prefHeight="25.0" prefWidth="243.0" />
+      <Button layoutX="961.0" layoutY="500.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="120.0" styleClass="btTick" stylesheets="@styletTicket.css" text="Hủy">
+         <graphic>
+            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../picture/delete-icon-13.jpg" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button layoutX="761.0" layoutY="500.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="120.0" styleClass="btTick" stylesheets="@styletTicket.css" text="Kiểm tra">
+         <graphic>
+            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../picture/search--v2.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Label alignment="CENTER" layoutX="445.0" layoutY="279.0" styleClass="mainTick" stylesheets="@styletTicket.css" text="Thông tin đặt vé">
+         <font>
+            <Font name="Calibri Bold Italic" size="36.0" />
+         </font></Label>
+      <Label layoutX="443.0" layoutY="350.0" styleClass="infoLabel" stylesheets="@styletTicket.css" text="Tên khách hàng" />
+      <TextField layoutX="561.0" layoutY="350.0" prefHeight="25.0" prefWidth="243.0" />
+      <Label layoutX="443.0" layoutY="410.0" styleClass="infoLabel" stylesheets="@styletTicket.css" text="Số điện thoại" />
+      <TextField layoutX="561.0" layoutY="410.0" prefHeight="25.0" prefWidth="243.0" />
+      <Label layoutX="833.0" layoutY="350.0" styleClass="infoLabel" stylesheets="@styletTicket.css" text="Vị trí ghế" />
+      <TextField layoutX="905.0" layoutY="346.0" prefHeight="25.0" prefWidth="243.0" />
+      <Label layoutX="833.0" layoutY="410.0" styleClass="infoLabel" stylesheets="@styletTicket.css" text="Số lượng" />
+      <Label layoutX="833.0" layoutY="224.0" styleClass="infoLabel" stylesheets="@styletTicket.css" text="TT thanh toán" />
+      <TextField layoutX="905.0" layoutY="406.0" prefHeight="25.0" prefWidth="243.0" />
+      <ComboBox layoutX="939.0" layoutY="220.0" prefHeight="25.0" prefWidth="243.0" />
+   </children>
+</AnchorPane>
