@@ -11,6 +11,8 @@ import java.sql.Date;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -56,6 +58,8 @@ public class EmployeeController implements Initializable {
     @FXML
     private TableColumn<NhanVien,String> colEmail;
     @FXML
+    private TextField txtKey;
+    @FXML
     private TextField txtID;
     @FXML
     private TextField txtHoTen;
@@ -69,8 +73,6 @@ public class EmployeeController implements Initializable {
     private TextField txtSDT;
     @FXML
     private TextField txtEmail;
-    @FXML
-    private TextField txtTK;
     @FXML
     private Button btThem;
     
@@ -147,10 +149,10 @@ public class EmployeeController implements Initializable {
     }
    //timkiem
    public void search (ActionEvent e) throws SQLException{
-        if(!txtID.getText().isEmpty())
+        if(!txtKey.getText().isEmpty())
         {
-            
-            NhanVien nv = QuanLyNhanVien.timKiemNvID(txtID.getText());
+            List<NhanVien> dsnv = new ArrayList<>();
+            dsnv = QuanLyNhanVien.timKiemNv(txtKey.getText());
             colID.setCellValueFactory(new PropertyValueFactory("taiKhoan"));
             colHoTen.setCellValueFactory(new PropertyValueFactory("hoTen"));
             colNgaySinh.setCellValueFactory(new PropertyValueFactory("ngaySinh"));
@@ -158,7 +160,7 @@ public class EmployeeController implements Initializable {
             colChucVu.setCellValueFactory(new PropertyValueFactory("chucVu"));
             colSDT.setCellValueFactory(new PropertyValueFactory("sdt"));
             colEmail.setCellValueFactory(new PropertyValueFactory("email"));
-            this.tvNV.setItems(FXCollections.observableArrayList(nv));
+            this.tvNV.setItems(FXCollections.observableArrayList(dsnv));
         }
         else
         {

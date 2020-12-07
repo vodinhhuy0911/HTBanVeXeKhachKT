@@ -72,11 +72,13 @@ public class QuanLyNhanVien {
         cnt.commit();
     }
     
-    public static NhanVien timKiemNvID(String taiKhoan) throws SQLException
+    public static List<NhanVien> timKiemNv(String key) throws SQLException
     {
         Connection conn = JDBC.getConn();
         Statement stm = conn.createStatement();
-        ResultSet rs = stm.executeQuery("SELECT * FROM nhanvien WHERE idNV = " + taiKhoan);
+        ResultSet rs = stm.executeQuery("SELECT * FROM nhanvien WHERE idNV like " + key + " OR tenNV like " + key
+        + " OR diaChi like " + key+ " OR chucVu like " + key+ " OR sdt like " + key+ " OR email like " + key);
+        List<NhanVien> dsnv = new ArrayList<>();
         while (rs.next()) {
             String tk = rs.getString("idNV");
             String name = rs.getString("tenNV");
@@ -86,9 +88,9 @@ public class QuanLyNhanVien {
             String sdt = rs.getString("sdt");
             String email = rs.getString("email");
             NhanVien nv = new NhanVien(tk,name,ngaySinh,diaChi,chucVu,sdt,email);
-            return nv;
+            dsnv.add(nv);
         }
-        return null;
+        return dsnv;
     }
 
    public static void capNhatNhanVien(NhanVien nv) throws SQLException
