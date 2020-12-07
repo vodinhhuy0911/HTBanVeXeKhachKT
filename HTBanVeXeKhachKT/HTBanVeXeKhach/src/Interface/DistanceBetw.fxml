@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="1200.0" styleClass="main" stylesheets="@styleDis.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bt.DistanceController">
+<AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="1200.0" styleClass="main" stylesheets="@styleDis.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Interface.DistanceController">
    <children>
       <Label layoutX="450.0" layoutY="38.0" styleClass="mainLabel" stylesheets="@styleDis.css" text="QUẢN LÝ LỘ TRÌNH">
          <font>

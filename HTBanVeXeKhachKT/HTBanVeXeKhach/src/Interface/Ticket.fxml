@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="650.0" prefWidth="1200.0" styleClass="main" stylesheets="@styletTicket.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bt.TicketController">
+<AnchorPane prefHeight="650.0" prefWidth="1200.0" styleClass="main" stylesheets="@styletTicket.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Interface.TicketController">
    <children>
       <Label alignment="CENTER" contentDisplay="CENTER" layoutX="445.0" layoutY="14.0" prefHeight="59.0" prefWidth="431.0" styleClass="mainLabel" stylesheets="@styletTicket.css" text="HỆ THỐNG BÁN VÉ" textAlignment="CENTER">
          <font>
