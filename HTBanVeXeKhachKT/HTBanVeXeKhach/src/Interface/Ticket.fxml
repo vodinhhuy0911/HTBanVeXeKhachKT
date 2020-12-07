@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="650.0" prefWidth="1200.0" styleClass="main" stylesheets="@styletTicket.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Interface.TicketController">
+<AnchorPane prefHeight="650.0" prefWidth="1200.0" styleClass="main" stylesheets="@styletTicket.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bt.TicketController">
    <children>
       <Label alignment="CENTER" contentDisplay="CENTER" layoutX="445.0" layoutY="14.0" prefHeight="59.0" prefWidth="431.0" styleClass="mainLabel" stylesheets="@styletTicket.css" text="HỆ THỐNG BÁN VÉ" textAlignment="CENTER">
          <font>
@@ -65,14 +65,14 @@
       <Label layoutX="833.0" layoutY="104.0" styleClass="infoLabel" stylesheets="@styletTicket.css" text="Chọn ngày" />
       <ComboBox layoutX="561.0" layoutY="160.0" prefHeight="25.0" prefWidth="243.0" />
       <Label layoutX="443.0" layoutY="164.0" styleClass="infoLabel" stylesheets="@styletTicket.css" text="Chọn xe" />
-      <ImageView fitHeight="80.0" fitWidth="122.0" layoutX="10.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="80.0" fitWidth="115.0" layoutX="10.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../picture/unnamed.png" />
          </image></ImageView>
       <Label layoutX="443.0" layoutY="224.0" styleClass="infoLabel" stylesheets="@styletTicket.css" text="Số ghế trống" />
       <TextField layoutX="561.0" layoutY="220.0" prefHeight="25.0" prefWidth="243.0" />
       <Label layoutX="833.0" layoutY="164.0" styleClass="infoLabel" stylesheets="@styletTicket.css" text="Chọn giờ" />
-      <Button layoutX="561.0" layoutY="500.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="120.0" styleClass="btTick" stylesheets="@styletTicket.css" text="Thêm vé">
+      <Button layoutX="561.0" layoutY="500.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="120.0" styleClass="btAdd" stylesheets="@styletTicket.css" text="Thêm vé">
          <graphic>
             <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -82,20 +82,20 @@
          </graphic></Button>
       <DatePicker layoutX="939.0" layoutY="100.0" prefHeight="25.0" prefWidth="243.0" AnchorPane.leftAnchor="939.0" />
       <ComboBox layoutX="939.0" layoutY="160.0" prefHeight="25.0" prefWidth="243.0" />
-      <Button layoutX="961.0" layoutY="500.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="120.0" styleClass="btTick" stylesheets="@styletTicket.css" text="Hủy">
+      <Button layoutX="961.0" layoutY="500.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="120.0" styleClass="btCancel" stylesheets="@styletTicket.css" text="Hủy">
          <graphic>
             <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../picture/delete-icon-13.jpg" />
+                  <Image url="@../picture/icon-02-512.png" />
                </image>
             </ImageView>
          </graphic>
       </Button>
-      <Button layoutX="761.0" layoutY="500.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="120.0" styleClass="btTick" stylesheets="@styletTicket.css" text="Kiểm tra">
+      <Button layoutX="761.0" layoutY="500.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="120.0" styleClass="btFind" stylesheets="@styletTicket.css" text="Kiểm tra">
          <graphic>
             <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../picture/search--v2.png" />
+                  <Image url="@../picture/105498-200.png" />
                </image>
             </ImageView>
          </graphic>

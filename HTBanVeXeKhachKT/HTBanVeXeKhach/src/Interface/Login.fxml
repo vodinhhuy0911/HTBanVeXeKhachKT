@@ -7,65 +7,45 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.paint.LinearGradient?>
-<?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@DesignLogin.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Interface.LoginController">
-   <left>
-      <AnchorPane id="arLeft" prefHeight="200.0" prefWidth="200.0" styleClass="arLeft" stylesheets="@Design.css" BorderPane.alignment="CENTER">
-         <children>
-            <ImageView fitHeight="170.0" fitWidth="150.0" layoutX="25.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="main" stylesheets="@styleLogin.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bt.LoginController">
+   <children>
+      <ImageView fitHeight="100.0" fitWidth="115.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../picture/unnamed.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="170.0" layoutY="34.0" styleClass="mainLabel" stylesheets="@styleLogin.css" text="CÔNG TY VẬN TẢI TỐC HÀNH OUBUS">
+         <font>
+            <Font name="System Bold" size="22.0" />
+         </font></Label>
+      <Label layoutX="130.0" layoutY="168.0" styleClass="infoLabel" stylesheets="@styleLogin.css" text="Tài khoản" />
+     
+      <Label layoutX="283.0" layoutY="91.0" prefHeight="32.0" prefWidth="123.0" styleClass="infoLogin" stylesheets="@styleLogin.css" text="ĐĂNG NHẬP">
+         <font>
+            <Font size="1.0" />
+         </font></Label>
+      <Label layoutX="130.0" layoutY="219.0" styleClass="infoLabel" stylesheets="@styleLogin.css" text="Mật khẩu" />
+      <Button fx:id="btLogin" layoutX="161.0" layoutY="276.0" mnemonicParsing="false" onAction="#btLoginOnAction" styleClass="btLogin" stylesheets="@styleLogin.css" text="Đăng nhập">
+         <graphic>
+            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@picture/ou-hcmc-logo.png" />
+                  <Image url="@../picture/login-149-649216.png" />
                </image>
             </ImageView>
-            <Label layoutX="26.0" layoutY="239.0" text="OU BUS">
-               <font>
-                  <Font name="System Bold" size="40.0" />
-               </font>
-               <textFill>
-                  <LinearGradient endX="1.0" endY="1.0">
-                     <stops>
-                        <Stop color="#9bab0a" />
-                        <Stop color="YELLOW" offset="0.007653061224489797" />
-                        <Stop color="RED" offset="1.0" />
-                     </stops>
-                  </LinearGradient>
-               </textFill>
-            </Label>
-            <Label layoutX="19.0" layoutY="213.0" text="CÔNG TY VẬN TẢI TỐC HÀNH" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </Label>
-         </children>
-      </AnchorPane>
-   </left>
-   <center>
-      <AnchorPane id="arRight" prefHeight="400.0" prefWidth="400.0" styleClass="arRight" stylesheets="@Design.css" BorderPane.alignment="CENTER">
-         <children>
-            <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="150.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
+         </graphic>
+      </Button>
+      <Button fx:id="btExit" layoutX="345.0" layoutY="276.0" mnemonicParsing="false" onAction="#btExitOnAction" prefHeight="25.0" prefWidth="130.0" styleClass="btLogin" stylesheets="@styleLogin.css" text="Thoát">
+         <graphic>
+            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@picture/download.png" />
+                  <Image url="@../picture/login-149-649216.png" />
                </image>
             </ImageView>
-            <Label layoutX="36.0" layoutY="145.0" text="Username" />
-            <TextField fx:id="txtUsername" layoutX="111.0" layoutY="141.0" prefHeight="26.0" prefWidth="240.0" promptText="Username" />
-            <Label layoutX="36.0" layoutY="203.0" text="Password" />
-            <PasswordField fx:id="pwPassword" layoutX="111.0" layoutY="200.0" prefHeight="26.0" prefWidth="240.0" promptText="Password" />
-            <Button id="btLogin" fx:id="btLogin" layoutX="57.0" layoutY="271.0" mnemonicParsing="false" onAction="#btLoginOnAction" prefHeight="36.0" prefWidth="286.0" style="-fx-font-size: 14; -fx-font-weight: bold;" styleClass="btLogin" stylesheets="@Design.css" text="Login">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Button>
-            <Button id="btCancel" fx:id="btCancel" layoutX="57.0" layoutY="316.0" mnemonicParsing="false" onAction="#btCancelOnAction" prefHeight="32.0" prefWidth="286.0" style="-fx-font-size: 14; -fx-font-weight: bold;" styleClass="btLogin" stylesheets="@Design.css" text="Cancel">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Button>
-         </children>
-      </AnchorPane>
-   </center>
-</BorderPane>
+         </graphic>
+      </Button>
+      <PasswordField fx:id="pwPassword" layoutX="245.0" layoutY="216.0" prefHeight="25.0" prefWidth="273.0" />
+      <TextField fx:id="txtUsername" layoutX="245.0" layoutY="165.0" prefHeight="25.0" prefWidth="273.0" />
+   </children>
+</AnchorPane>

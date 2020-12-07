@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Interface;
+package bt;
 
 import java.io.IOException;
 import javafx.application.Application;
@@ -16,7 +16,7 @@ import javafx.stage.Stage;
  *
  * @author PC
  */
-public class main extends Application {
+public class TicketSaleMain extends Application {
     
     @Override
     public void start(Stage stage) throws IOException {

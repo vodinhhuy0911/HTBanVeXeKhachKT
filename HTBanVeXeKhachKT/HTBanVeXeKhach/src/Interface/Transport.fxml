@@ -10,8 +10,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="590.0" prefWidth="824.0" styleClass="main" stylesheets="@styleTrans.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="Interface.TransportController">
+<AnchorPane id="AnchorPane" prefHeight="590.0" prefWidth="824.0" styleClass="main" stylesheets="@styleTrans.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bt.TransportController">
    <children>
       <Label alignment="CENTER" layoutX="305.0" layoutY="22.0" prefHeight="59.0" prefWidth="283.0" styleClass="mainLabel" stylesheets="@styleTrans.css" text="QUẢN LÝ XE" textAlignment="CENTER" />
       <Label layoutX="285.0" layoutY="113.0" styleClass="infoLabel" stylesheets="@styleTrans.css" text="Mã xe" />
@@ -24,7 +23,7 @@
          <graphic>
             <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../picture/edit-512.png" />
+                  <Image url="@../picture/edit.png" />
                </image>
             </ImageView>
          </graphic>
@@ -33,7 +32,7 @@
          <graphic>
             <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../picture/delete-1432400-1211078.png" />
+                  <Image url="@../picture/delete-icon-13.jpg" />
                </image>
             </ImageView>
          </graphic>
@@ -42,7 +41,7 @@
          <graphic>
             <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../picture/add-insert-control-point-plus-31700.png" />
+                  <Image url="@../picture/add--v2.png" />
                </image>
             </ImageView>
          </graphic>
@@ -51,7 +50,7 @@
          <graphic>
             <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../picture/_Cancel_delete_dismiss-512.png" />
+                  <Image url="@../picture/icon-02-512.png" />
                </image>
             </ImageView>
          </graphic>
@@ -63,7 +62,7 @@
             <TableColumn prefWidth="240.0" text="Số ghế" />
         </columns>
       </TableView>
-      <ImageView fitHeight="105.0" fitWidth="155.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="105.0" fitWidth="115.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../picture/unnamed.png" />
          </image>
