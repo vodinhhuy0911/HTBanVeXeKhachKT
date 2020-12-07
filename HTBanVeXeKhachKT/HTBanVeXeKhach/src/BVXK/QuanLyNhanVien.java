@@ -76,8 +76,8 @@ public class QuanLyNhanVien {
     {
         Connection conn = JDBC.getConn();
         Statement stm = conn.createStatement();
-        ResultSet rs = stm.executeQuery("SELECT * FROM nhanvien WHERE idNV like " + key + " OR tenNV like " + key
-        + " OR diaChi like " + key+ " OR chucVu like " + key+ " OR sdt like " + key+ " OR email like " + key);
+        ResultSet rs = stm.executeQuery("SELECT * FROM nhanvien WHERE idNV like '" + key + "' OR tenNV like N'" + key
+        + "' OR diaChi like N'" + key+ "' OR chucVu like N'" + key+ "' OR sdt like '" + key+ "' OR email like N'" + key +"'");
         List<NhanVien> dsnv = new ArrayList<>();
         while (rs.next()) {
             String tk = rs.getString("idNV");

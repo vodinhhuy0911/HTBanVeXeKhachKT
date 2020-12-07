@@ -19,8 +19,8 @@
       <Label alignment="CENTER" layoutX="305.0" layoutY="22.0" prefHeight="59.0" prefWidth="283.0" styleClass="mainLabel" stylesheets="@styleTrans.css" text="QUẢN LÝ XE" textAlignment="CENTER" />
       <Label layoutX="285.0" layoutY="113.0" styleClass="infoLabel" stylesheets="@styleTrans.css" text="Mã xe" />
       <Label layoutX="285.0" layoutY="162.0" styleClass="infoLabel" stylesheets="@styleTrans.css" text="Loại xe" />
-      <TextField fx:id="maXe" layoutX="373.0" layoutY="110.0" prefHeight="25.0" prefWidth="231.0" />
-      <Button layoutX="251.0" layoutY="254.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="122.0" styleClass="btEdit" stylesheets="@styleTrans.css" text="Cập nhật">
+      <TextField fx:id="txtMaXe" layoutX="373.0" layoutY="110.0" prefHeight="25.0" prefWidth="231.0" />
+      <Button layoutX="251.0" layoutY="254.0" mnemonicParsing="false" onAction="#capNhatXe" prefHeight="44.0" prefWidth="122.0" styleClass="btEdit" stylesheets="@styleTrans.css" text="Cập nhật">
          <graphic>
             <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -29,7 +29,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button layoutX="451.0" layoutY="254.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="122.0" styleClass="btDelete" stylesheets="@styleTrans.css" text="Xóa xe">
+      <Button layoutX="451.0" layoutY="254.0" mnemonicParsing="false" onAction="#xoaXe" prefHeight="44.0" prefWidth="122.0" styleClass="btDelete" stylesheets="@styleTrans.css" text="Xóa xe">
          <graphic>
             <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -38,7 +38,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button layoutX="51.0" layoutY="254.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="122.0" styleClass="btAdd" stylesheets="@styleTrans.css" text="Thêm xe" AnchorPane.leftAnchor="51.0">
+      <Button layoutX="51.0" layoutY="254.0" mnemonicParsing="false" onAction="#themXe" prefHeight="44.0" prefWidth="122.0" styleClass="btAdd" stylesheets="@styleTrans.css" text="Thêm xe" AnchorPane.leftAnchor="51.0">
          <graphic>
             <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -58,8 +58,8 @@
       </Button>
       <TableView fx:id="tvXe" layoutX="54.0" layoutY="320.0" prefHeight="255.0" prefWidth="720.0" AnchorPane.leftAnchor="51.0">
         <columns>
-          <TableColumn prefWidth="240.0" text="Mã xe" />
-          <TableColumn minWidth="0.0" prefWidth="240.0" text="Loại xe" />
+          <TableColumn fx:id="colMaXe" prefWidth="240.0" text="Mã xe" />
+          <TableColumn fx:id="colLoaiXe" minWidth="0.0" prefWidth="240.0" text="Loại xe" />
         </columns>
       </TableView>
       <ImageView fitHeight="105.0" fitWidth="115.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
@@ -67,6 +67,6 @@
             <Image url="@../picture/unnamed.png" />
          </image>
       </ImageView>
-      <ComboBox fx:id="loaiXe" layoutX="372.0" layoutY="157.0" prefWidth="150.0" />
+      <ComboBox fx:id="cbLoaiXe" layoutX="372.0" layoutY="157.0" prefWidth="150.0" />
    </children>
 </AnchorPane>

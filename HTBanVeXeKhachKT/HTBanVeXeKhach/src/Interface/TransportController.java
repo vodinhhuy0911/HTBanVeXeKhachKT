@@ -5,23 +5,107 @@
  */
 package Interface;
 
+import BVXK.QuanLyXe;
+import BanVeXeKhach.NhanVien;
+import BanVeXeKhach.Xe;
+import java.awt.Desktop;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 
 /**
  * FXML Controller class
  *
  * @author PC
  */
-public class TransportController implements Initializable {
 
+public class TransportController implements Initializable {
+@FXML
+private ComboBox cbLoaiXe;
+
+@FXML
+private TableColumn colMaXe;
+
+@FXML 
+private TableColumn colLoaiXe;
+
+@FXML
+private TableView<Xe> tvXe;
+
+@FXML
+  private TextField txtMaXe;
+
+private String maXeCu;
+
+
+ObservableList<Xe> nvList = FXCollections.observableArrayList ();
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
+                    // TODO
+                    ObservableList <String> list = FXCollections.observableArrayList("Xe giường nằm","Xe 40 chỗ ngồi","Xe limo house");
+                    cbLoaiXe.setItems(list);
+                try {
+                    this.loadData();
+                } catch (SQLException ex) {
+                    Logger.getLogger(TransportController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                 this.tvXe.setRowFactory((TableView<Xe> xe) ->{
+            TableRow row = new TableRow();
+            row.setOnMouseClicked((MouseEvent r) -> {
+                Xe x = tvXe.getSelectionModel().getSelectedItem();
+                this.maXeCu = x.getBienSoXe();
+                this.txtMaXe.setText(x.getBienSoXe());
+               
+            });
+            return row;
+        });
+    }  
     
+    public void loadData() throws SQLException
+    {   
+        
+        colMaXe.setCellValueFactory(new PropertyValueFactory("bienSoXe"));
+        colLoaiXe.setCellValueFactory(new PropertyValueFactory("loaiXe"));
+         this.tvXe.setItems(FXCollections.observableArrayList(QuanLyXe.getXe()));
+ 
+    }
+    public void themXe() throws SQLException
+    {
+        String loaiXe = cbLoaiXe.getSelectionModel().getSelectedItem().toString();
+        Xe xe = new Xe(txtMaXe.getText(),loaiXe);
+        QuanLyXe.themXe(xe);
+        this.loadData();
+    }
+    
+    public void capNhatXe() throws SQLException
+    {
+        String loaiXe = cbLoaiXe.getSelectionModel().getSelectedItem().toString();
+        Xe xe = new Xe(txtMaXe.getText(),loaiXe);
+        QuanLyXe.capNhatXe(xe,maXeCu);
+        this.loadData();
+    }
+    
+    public void xoaXe() throws SQLException
+    {
+        
+        QuanLyXe.xoaXe(txtMaXe.getText());
+        this.loadData();
+    }
 }
