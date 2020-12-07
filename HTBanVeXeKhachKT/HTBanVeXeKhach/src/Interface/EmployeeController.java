@@ -145,6 +145,7 @@ public class EmployeeController implements Initializable {
         this.loadData();
 
     }
+   //timkiem
    public void search (ActionEvent e) throws SQLException{
         if(!txtID.getText().isEmpty())
         {

@@ -119,6 +119,7 @@ public class QuanLyNhanVien {
         PreparedStatement pStm = cnt.prepareStatement(sql);
          pStm.executeUpdate();
          cnt.commit();
+         //ok
    }
 
 }
