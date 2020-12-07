@@ -1,0 +1,80 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Nov 23, 2020, 12:53:12 AM
+    Author     : PC
+*/
+.main{
+    -fx-background-color: azure;
+}
+.fontsize{
+    -fx-font-size : 16px;
+    -fx-font-weight:bold;
+    
+}
+.btCTLT{
+    -fx-font-weight:bold;
+    -fx-font-size:18px;
+    -fx-background-color:#d9d9d9;
+    -fx-border-width:1 1 1 1;
+    -fx-background-radius: 15 15 15 15;
+
+}
+.btCTLT:hover{
+    -fx-background-color: coral;
+
+}
+.btCTLT:pressed{
+    -fx-background-color: tomato;
+    -fx-background-radius: 25 25 25 25;
+}
+.btAdd{    
+    -fx-font-weight:bold;
+    -fx-font-size:14px;
+    -fx-background-color:#ff471a;
+    -fx-border-width:1 1 1 1;
+    -fx-background-radius: 15 15 15 15;
+}
+.btCancel{    
+    -fx-font-weight:bold;
+    -fx-font-size:14px;
+    -fx-background-color:#8080ff;
+    -fx-border-width:1 1 1 1;
+    -fx-background-radius: 15 15 15 15;
+}
+.btEdit{
+    -fx-font-weight:bold;
+    -fx-font-size:14px;
+    -fx-background-color:#ffffb3;
+    -fx-border-width:1 1 1 1;
+    -fx-background-radius: 15 15 15 15;
+}
+.btDelete{
+    -fx-font-weight:bold;
+    -fx-font-size:14px;
+    -fx-background-color:#4da6ff;
+    -fx-border-width:1 1 1 1;
+    -fx-background-radius: 15 15 15 15;
+    
+}
+.btFind{
+    -fx-font-weight:bold;
+    -fx-font-size:14px;
+    -fx-background-color:#98e698;
+    -fx-border-width:1 1 1 1;
+    -fx-background-radius: 15 15 15 15;
+ 
+}
+
+.btAdd:pressed,.btCancel:pressed,.btEdit:pressed,.btDelete:pressed,.btFind:pressed{
+    -fx-background-color:tomato;
+    -fx-background-radius: 25 25 25 25;
+}
+
+.btAdd:hover,.btCancel:hover,.btEdit:hover,.btDelete:hover,.btFind:hover{
+    -fx-background-color: coral;
+}
+
