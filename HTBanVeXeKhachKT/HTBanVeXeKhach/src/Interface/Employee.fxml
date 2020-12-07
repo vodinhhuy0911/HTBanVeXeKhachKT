@@ -72,7 +72,7 @@
                </image>
             </ImageView>
          </graphic></Button>
-          <Button id="btSua" fx:id="btSua" layoutX="141.0" layoutY="502.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="96.0" styleClass="btEdit" stylesheets="@styleEmployee.css" text="Sửa" AnchorPane.leftAnchor="141.0">
+          <Button id="btSua" fx:id="btSua" layoutX="141.0" layoutY="502.0" mnemonicParsing="false" onAction="#update" prefHeight="32.0" prefWidth="96.0" styleClass="btEdit" stylesheets="@styleEmployee.css" text="Sửa" AnchorPane.leftAnchor="141.0">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>

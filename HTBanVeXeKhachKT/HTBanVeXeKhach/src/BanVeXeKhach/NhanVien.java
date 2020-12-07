@@ -136,7 +136,7 @@ public class NhanVien {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("ID: ").append(this.taiKhoan).append("Họ tên: ").append(this.hoTen);
+        sb.append("ID: ").append(this.taiKhoan).append("Ngày sinh ").append(this.ngaySinh).append("\n");
         return sb.toString();
     }
     

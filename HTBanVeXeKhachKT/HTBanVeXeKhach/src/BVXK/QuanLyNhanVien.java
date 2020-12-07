@@ -117,7 +117,9 @@ public class QuanLyNhanVien {
    public static void xoaNhanVien(String taiKhoan) throws SQLException
    {
        String sql = "DELETE FROM nhanvien WHERE idNV = " + taiKhoan;
+      
         Connection cnt = JDBC.getConn();
+        cnt.setAutoCommit(false);
         PreparedStatement pStm = cnt.prepareStatement(sql);
          pStm.executeUpdate();
          cnt.commit();

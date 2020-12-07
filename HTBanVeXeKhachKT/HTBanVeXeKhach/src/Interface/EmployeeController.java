@@ -137,7 +137,11 @@ public class EmployeeController implements Initializable {
      public void update() throws SQLException, ParseException 
      {
           SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-                java.util.Date ngaySinh = formatter.parse(txtNgaySinh.getText());
+          String s = txtNgaySinh.getText();
+          s = s.replace('-', '/');
+//           String str[] = s.split("-");
+//           String ns = str[2] + "/" +  str[1] + "/" + str[0];
+                java.util.Date ngaySinh = formatter.parse(s);
          NhanVien nv = new NhanVien(txtID.getText(), txtHoTen.getText(), ngaySinh, txtDiaChi.getText(), txtChucVu.getText(),txtSDT.getText(), txtEmail.getText());
          QuanLyNhanVien.capNhatNhanVien(nv);
          this.loadData();
