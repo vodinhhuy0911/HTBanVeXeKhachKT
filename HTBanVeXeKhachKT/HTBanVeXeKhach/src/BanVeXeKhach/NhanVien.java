@@ -15,6 +15,7 @@ import java.util.Date;
  */
 public class NhanVien {
 
+
     /**
      * @return the taiKhoan
      */
@@ -131,4 +132,12 @@ public class NhanVien {
         this.email = email;
                 
     }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("ID: ").append(this.taiKhoan).append("Họ tên: ").append(this.hoTen);
+        return sb.toString();
+    }
+    
 }
