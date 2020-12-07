@@ -1,0 +1,52 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Nov 30, 2020, 9:02:25 AM
+    Author     : PC
+*/
+.main{
+  -fx-background-color: azure;
+    
+}
+.mainLabel{
+    -fx-background-color:#ff6666;
+    -fx-background-radius: 15 15 15 15;
+    -fx-border-color: black;
+    -fx-border-radius: 10 10 10 10;
+    -fx-border-width: 3 3 3 3;
+}
+.floor{
+    -fx-background-color:#99ffff;
+    -fx-border-color: black;
+    -fx-border-width: 2 2 2 2;
+    -fx-border-radius: 15px;
+    -fx-background-radius: 20px;
+}
+.floorLabel{
+    -fx-font-size:15px;
+    -fx-font-weight:bold;
+    -fx-background-color:#ff8566;
+    -fx-background-radius: 15 15 0 0;
+}
+.infoLabel{
+    -fx-font-weight:bold;
+    -fx-font-size:14px;
+}
+.btTick{
+    -fx-font-size:14px;
+    -fx-font-weight:bold;
+    -fx-background-color:#e6e6e6;
+    -fx-border-color: black;
+    -fx-border-width: 2 2 2 2;
+    -fx-border-radius: 15 15 15 15;
+    -fx-background-radius: 20 20 20 20;
+    
+}
+.btTick:pressed{
+    -fx-border-radius: 25 25 25 25;
+    -fx-background-radius: 25 25 25 25;
+    -fx-background-color:#ffffe6;
+}

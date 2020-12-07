@@ -1,0 +1,69 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Dec 4, 2020, 12:49:59 AM
+    Author     : PC
+*/
+.main{
+  -fx-background-color: azure;
+    
+}
+.mainLabel{
+    -fx-background-color:#ff6666;
+    -fx-background-radius: 15 15 15 15;
+    -fx-border-color: black;
+    -fx-border-radius: 10 10 10 10;
+    -fx-border-width: 3 3 3 3;
+    -fx-font-size:36px;
+    -fx-font-weight:bold;
+}
+.infoLabel{
+    -fx-font-weight:bold;
+    -fx-font-size:14px;
+}
+
+.btAdd:pressed,.btEdit:pressed,.btCancel:pressed,.btDelete:pressed{
+    -fx-border-radius: 25 25 25 25;
+    -fx-background-radius: 25 25 25 25;
+    -fx-background-color:#ffffe6;
+}
+.btAdd{
+    -fx-background-color:#b3d1ff;
+    -fx-font-size:14px;
+    -fx-font-weight:bold;
+    -fx-border-color: black;
+    -fx-border-width: 2 2 2 2;
+    -fx-border-radius: 15 15 15 15;
+    -fx-background-radius: 20 20 20 20;
+}
+.btEdit{
+    -fx-background-color:#ffffb3;
+    -fx-font-size:14px;
+    -fx-font-weight:bold;
+    -fx-border-color: black;
+    -fx-border-width: 2 2 2 2;
+    -fx-border-radius: 15 15 15 15;
+    -fx-background-radius: 20 20 20 20;
+    
+}
+.btCancel{
+    -fx-background-color:#80ff80;
+    -fx-font-size:14px;
+    -fx-font-weight:bold;
+    -fx-border-color: black;
+    -fx-border-width: 2 2 2 2;
+    -fx-border-radius: 15 15 15 15;
+    -fx-background-radius: 20 20 20 20;
+}
+.btDelete{
+    -fx-background-color:#ff4d4d;
+    -fx-font-size:14px;
+    -fx-font-weight:bold;
+    -fx-border-color: black;
+    -fx-border-width: 2 2 2 2;
+    -fx-border-radius: 15 15 15 15;
+    -fx-background-radius: 20 20 20 20;
+}
