@@ -120,8 +120,8 @@ public class EmployeeController implements Initializable {
     public void add() throws SQLException, ParseException{
         if(!txtID.getText().isEmpty() && !txtHoTen.getText().isEmpty() && !txtNgaySinh.getText().isEmpty() && !txtDiaChi.getText().isEmpty() && !txtChucVu.getText().isEmpty() && !txtSDT.getText().isEmpty() && !txtEmail.getText().isEmpty())
         {
-            SimpleDateFormat f = new SimpleDateFormat("dd/MM/yyyy");
-             Date ngaySinh = (Date) f.parse(txtNgaySinh.getText());
+            SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+                java.util.Date ngaySinh = formatter.parse(txtNgaySinh.getText());
             NhanVien nv = new NhanVien(txtID.getText(), txtHoTen.getText(), ngaySinh, txtDiaChi.getText(), txtChucVu.getText(),txtSDT.getText(), txtEmail.getText());
             QuanLyNhanVien.themNhanVien(nv);
              Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -134,11 +134,11 @@ public class EmployeeController implements Initializable {
     }
      public void update() throws SQLException, ParseException 
      {
-          SimpleDateFormat f = new SimpleDateFormat("dd/MM/yyyy");
-             Date ngaySinh = (Date) f.parse(txtNgaySinh.getText());
+          SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+                java.util.Date ngaySinh = formatter.parse(txtNgaySinh.getText());
          NhanVien nv = new NhanVien(txtID.getText(), txtHoTen.getText(), ngaySinh, txtDiaChi.getText(), txtChucVu.getText(),txtSDT.getText(), txtEmail.getText());
          QuanLyNhanVien.capNhatNhanVien(nv);
-//         this.loadData();
+         this.loadData();
      }  
    public void delete (ActionEvent e) throws SQLException{
         QuanLyNhanVien.xoaNhanVien(txtID.getText());
