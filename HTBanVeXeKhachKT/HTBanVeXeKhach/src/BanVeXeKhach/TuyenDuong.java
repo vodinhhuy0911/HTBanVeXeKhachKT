@@ -13,6 +13,20 @@ package BanVeXeKhach;
 public class TuyenDuong {
 
     /**
+     * @return the maTuyenDuong
+     */
+    public String getMaTuyenDuong() {
+        return maTuyenDuong;
+    }
+
+    /**
+     * @param maTuyenDuong the maTuyenDuong to set
+     */
+    public void setMaTuyenDuong(String maTuyenDuong) {
+        this.maTuyenDuong = maTuyenDuong;
+    }
+
+    /**
      * @return the tuyenDi
      */
     public String getTuyenDi() {
@@ -39,11 +53,13 @@ public class TuyenDuong {
     public void setTuyenDen(String tuyenDen) {
         this.tuyenDen = tuyenDen;
     }
+    private String maTuyenDuong;
     private String tuyenDi;
     private String tuyenDen;
     
-    public TuyenDuong(String tuyenDi, String tuyenDen)
+    public TuyenDuong(String maTuyenDuong, String tuyenDi, String tuyenDen)
     {
+        this.maTuyenDuong = maTuyenDuong;
         this.tuyenDi = tuyenDi;
         this.tuyenDen = tuyenDen;
     }
