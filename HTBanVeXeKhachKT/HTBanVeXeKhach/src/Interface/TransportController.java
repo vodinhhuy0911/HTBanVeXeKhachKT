@@ -72,7 +72,7 @@ ObservableList<Xe> nvList = FXCollections.observableArrayList ();
                 Xe x = tvXe.getSelectionModel().getSelectedItem();
                 this.maXeCu = x.getBienSoXe();
                 this.txtMaXe.setText(x.getBienSoXe());
-               
+               this.cbLoaiXe.getSelectionModel().select(x.getLoaiXe());
             });
             return row;
         });

@@ -13,6 +13,20 @@ package BanVeXeKhach;
 public class TuyenDuong {
 
     /**
+     * @return the maXe
+     */
+    public String getMaXe() {
+        return maXe;
+    }
+
+    /**
+     * @param maXe the maXe to set
+     */
+    public void setMaXe(String maXe) {
+        this.maXe = maXe;
+    }
+
+    /**
      * @return the maTuyenDuong
      */
     public String getMaTuyenDuong() {
@@ -56,11 +70,13 @@ public class TuyenDuong {
     private String maTuyenDuong;
     private String tuyenDi;
     private String tuyenDen;
+    private String maXe;
     
-    public TuyenDuong(String maTuyenDuong, String tuyenDi, String tuyenDen)
+    public TuyenDuong(String maTuyenDuong, String tuyenDi, String tuyenDen, String maXe)
     {
         this.maTuyenDuong = maTuyenDuong;
         this.tuyenDi = tuyenDi;
         this.tuyenDen = tuyenDen;
+        this.maXe = maXe;
     }
 }

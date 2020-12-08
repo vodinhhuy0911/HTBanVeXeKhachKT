@@ -76,4 +76,17 @@ public class QuanLyXe {
          //ok
    }
 
+   public static String getLoaiXe(String id) throws SQLException
+   {
+       Connection conn = JDBC.getConn();
+        Statement stm = conn.createStatement();
+        ResultSet rs = stm.executeQuery("SELECT LoaiXe FROM xe WHERE MaXe = '" + id +"'");
+        String kq;
+        while(rs.next())
+        {
+            return rs.getString("LoaiXe");
+        }
+       return null;
+        
+   }
 }

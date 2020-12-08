@@ -32,7 +32,8 @@ public class QuanLyTuyenDi {
            String maTuyenDuong = rs.getString("MaLoTrinh");
            String tuyenDi = rs.getString("TuyenDi");
            String tuyenDen = rs.getString("TuyenDen");
-           TuyenDuong td = new TuyenDuong(maTuyenDuong,tuyenDi,tuyenDen);
+           String maXe = rs.getString("MaXe");
+           TuyenDuong td = new TuyenDuong(maTuyenDuong,tuyenDi,tuyenDen,maXe);
            kq.add(td);
        }
        return kq;
@@ -40,26 +41,28 @@ public class QuanLyTuyenDi {
    
     public static void themTuyenDuong(TuyenDuong td) throws SQLException 
     {
-         String sql = "INSERT INTO lotrinh (MaLoTrinh, TuyenDi,TuyenDen) VALUES (?,?,?)";
+         String sql = "INSERT INTO lotrinh (MaLoTrinh, TuyenDi,TuyenDen,MaXe) VALUES (?,?,?,?)";
          Connection cnt = JDBC.getConn();
         cnt.setAutoCommit(false);
         PreparedStatement pStm = cnt.prepareStatement(sql);
         pStm.setString(1, td.getMaTuyenDuong());
         pStm.setString(2, td.getTuyenDi());
         pStm.setString(3,td.getTuyenDen());
+        pStm.setString(4,td.getMaXe());
         pStm.executeUpdate();
         
         cnt.commit();
     }
-    public static void capNhatTuyenDuong(String tuyenDi, String tuyenDen,String maLoTrinh) throws SQLException
+    public static void capNhatTuyenDuong(String tuyenDi, String tuyenDen,String maLoTrinh, String maXe) throws SQLException
    {
-       String sql = "UPDATE lotrinh SET TuyenDi = ?, TuyenDen = ? WHERE MaLoTrinh = ?";
+       String sql = "UPDATE lotrinh SET TuyenDi = ?, TuyenDen = ?, MaXe = ? WHERE MaLoTrinh = ?";
         Connection cnt = JDBC.getConn();
         cnt.setAutoCommit(false);
         PreparedStatement pStm = cnt.prepareStatement(sql);
         pStm.setString(1, tuyenDi);
         pStm.setString(2, tuyenDen);
-       pStm.setString(3, maLoTrinh);
+        pStm.setString(3, maXe);
+       pStm.setString(4, maLoTrinh);
         pStm.executeUpdate();
         cnt.commit();
    }
