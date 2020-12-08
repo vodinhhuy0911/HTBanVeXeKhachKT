@@ -14,7 +14,7 @@
 
 <AnchorPane prefHeight="650.0" prefWidth="1200.0" styleClass="main" stylesheets="@styletTicket.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Interface.TicketController">
    <children>
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="445.0" layoutY="14.0" prefHeight="59.0" prefWidth="431.0" styleClass="mainLabel" stylesheets="@styletTicket.css" text="HỆ THỐNG BÁN VÉ" textAlignment="CENTER">
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="385.0" layoutY="13.0" prefHeight="59.0" prefWidth="431.0" styleClass="mainLabel" stylesheets="@styletTicket.css" text="HỆ THỐNG BÁN VÉ" textAlignment="CENTER" AnchorPane.leftAnchor="385.0" AnchorPane.rightAnchor="384.0">
          <font>
             <Font name="System Bold" size="36.0" />
          </font></Label>
@@ -67,52 +67,58 @@
       <Label layoutX="443.0" layoutY="164.0" styleClass="infoLabel" stylesheets="@styletTicket.css" text="Chọn xe" />
       <ImageView fitHeight="80.0" fitWidth="115.0" layoutX="10.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../picture/unnamed.png" />
+            <Image url="@picture/unnamed.png" />
          </image></ImageView>
-      <Label layoutX="443.0" layoutY="224.0" styleClass="infoLabel" stylesheets="@styletTicket.css" text="Số ghế trống" />
-      <TextField layoutX="561.0" layoutY="220.0" prefHeight="25.0" prefWidth="243.0" />
+      <Label layoutX="443.0" layoutY="281.0" styleClass="infoLabel" stylesheets="@styletTicket.css" text="Số ghế trống" />
+      <TextField layoutX="560.0" layoutY="279.0" prefHeight="25.0" prefWidth="243.0" />
       <Label layoutX="833.0" layoutY="164.0" styleClass="infoLabel" stylesheets="@styletTicket.css" text="Chọn giờ" />
-      <Button layoutX="561.0" layoutY="500.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="120.0" styleClass="btAdd" stylesheets="@styletTicket.css" text="Thêm vé">
+      <Button layoutX="500.0" layoutY="523.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="120.0" styleClass="btAdd" stylesheets="@styletTicket.css" text="Thêm vé">
          <graphic>
             <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../picture/add--v2.png" />
+                  <Image url="@picture/add--v2.png" />
                </image>
             </ImageView>
          </graphic></Button>
-      <DatePicker layoutX="939.0" layoutY="100.0" prefHeight="25.0" prefWidth="243.0" AnchorPane.leftAnchor="939.0" />
+      <DatePicker layoutX="939.0" layoutY="102.0" prefHeight="25.0" prefWidth="243.0" AnchorPane.leftAnchor="939.0" />
       <ComboBox layoutX="939.0" layoutY="160.0" prefHeight="25.0" prefWidth="243.0" />
-      <Button layoutX="961.0" layoutY="500.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="120.0" styleClass="btCancel" stylesheets="@styletTicket.css" text="Hủy">
+      <Button layoutX="874.0" layoutY="523.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="120.0" styleClass="btCancel" stylesheets="@styletTicket.css" text="Hủy">
          <graphic>
             <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../picture/icon-02-512.png" />
+                  <Image url="@picture/icon-02-512.png" />
                </image>
             </ImageView>
          </graphic>
       </Button>
-      <Button layoutX="761.0" layoutY="500.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="120.0" styleClass="btFind" stylesheets="@styletTicket.css" text="Kiểm tra">
+      <Button layoutX="690.0" layoutY="523.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="120.0" styleClass="btFind" stylesheets="@styletTicket.css" text="Kiểm tra">
          <graphic>
             <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../picture/105498-200.png" />
+                  <Image url="@picture/105498-200.png" />
                </image>
             </ImageView>
          </graphic>
       </Button>
-      <Label alignment="CENTER" layoutX="445.0" layoutY="279.0" styleClass="mainTick" stylesheets="@styletTicket.css" text="Thông tin đặt vé">
+      <Label alignment="CENTER" layoutX="445.0" layoutY="318.0" styleClass="mainTick" stylesheets="@styletTicket.css" text="Thông tin đặt vé">
          <font>
             <Font name="Calibri Bold Italic" size="36.0" />
          </font></Label>
-      <Label layoutX="443.0" layoutY="350.0" styleClass="infoLabel" stylesheets="@styletTicket.css" text="Tên khách hàng" />
-      <TextField layoutX="561.0" layoutY="350.0" prefHeight="25.0" prefWidth="243.0" />
-      <Label layoutX="443.0" layoutY="410.0" styleClass="infoLabel" stylesheets="@styletTicket.css" text="Số điện thoại" />
-      <TextField layoutX="561.0" layoutY="410.0" prefHeight="25.0" prefWidth="243.0" />
-      <Label layoutX="833.0" layoutY="350.0" styleClass="infoLabel" stylesheets="@styletTicket.css" text="Vị trí ghế" />
-      <TextField layoutX="905.0" layoutY="346.0" prefHeight="25.0" prefWidth="243.0" />
-      <Label layoutX="833.0" layoutY="410.0" styleClass="infoLabel" stylesheets="@styletTicket.css" text="Số lượng" />
-      <Label layoutX="833.0" layoutY="224.0" styleClass="infoLabel" stylesheets="@styletTicket.css" text="TT thanh toán" />
-      <TextField layoutX="905.0" layoutY="406.0" prefHeight="25.0" prefWidth="243.0" />
-      <ComboBox layoutX="939.0" layoutY="220.0" prefHeight="25.0" prefWidth="243.0" />
+      <Label layoutX="443.0" layoutY="375.0" styleClass="infoLabel" stylesheets="@styletTicket.css" text="Tên khách hàng" />
+      <TextField layoutX="560.0" layoutY="373.0" prefHeight="25.0" prefWidth="243.0" />
+      <Label layoutX="443.0" layoutY="435.0" styleClass="infoLabel" stylesheets="@styletTicket.css" text="Số điện thoại" />
+      <TextField layoutX="560.0" layoutY="433.0" prefHeight="25.0" prefWidth="243.0" />
+      <Label layoutX="834.0" layoutY="376.0" styleClass="infoLabel" stylesheets="@styletTicket.css" text="Vị trí ghế" />
+      <TextField layoutX="939.0" layoutY="373.0" prefHeight="25.0" prefWidth="243.0" />
+      <Label layoutX="834.0" layoutY="436.0" styleClass="infoLabel" stylesheets="@styletTicket.css" text="Số lượng" />
+      <Label layoutX="939.0" layoutY="473.0" styleClass="infoLabel" stylesheets="@styletTicket.css" text="TT thanh toán" />
+      <TextField layoutX="939.0" layoutY="433.0" prefHeight="25.0" prefWidth="243.0" />
+      <ComboBox layoutX="1042.0" layoutY="470.0" prefHeight="25.0" prefWidth="140.0" />
+      <Label layoutX="443.0" layoutY="221.0" styleClass="infoLabel" stylesheets="@styletTicket.css" text="Tuyến đi" />
+      <ComboBox layoutX="560.0" layoutY="219.0" prefHeight="25.0" prefWidth="243.0" />
+      <Label layoutX="833.0" layoutY="221.0" styleClass="infoLabel" stylesheets="@styletTicket.css" text="Tuyến đến" />
+      <ComboBox layoutX="939.0" layoutY="219.0" prefHeight="25.0" prefWidth="243.0" />
+      <Label layoutX="833.0" layoutY="281.0" styleClass="infoLabel" stylesheets="@styletTicket.css" text="Gía vé" />
+      <ComboBox layoutX="939.0" layoutY="279.0" prefHeight="25.0" prefWidth="243.0" />
    </children>
 </AnchorPane>

@@ -11,9 +11,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="750.0" prefWidth="1300.0" styleClass="main" stylesheets="@styleTickList.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bt.TicketListController">
+<AnchorPane id="AnchorPane" prefHeight="750.0" prefWidth="1300.0" styleClass="main" stylesheets="@styleTickList.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Interface.TicketListController">
    <children>
-      <Label layoutX="486.0" layoutY="18.0" prefHeight="69.0" prefWidth="229.0" styleClass="mainLabel" stylesheets="@styleTickList.css" text="DANH SÁCH VÉ" textAlignment="CENTER">
+      <Label layoutX="535.0" layoutY="18.0" prefHeight="69.0" prefWidth="229.0" styleClass="mainLabel" stylesheets="@styleTickList.css" text="DANH SÁCH VÉ" textAlignment="CENTER" AnchorPane.leftAnchor="535.0" AnchorPane.rightAnchor="536.0">
          <font>
             <Font name="System Bold" size="30.0" />
          </font></Label>
@@ -45,7 +45,7 @@
          <graphic>
             <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../picture/edit.png" />
+                  <Image url="@picture/edit.png" />
                </image>
             </ImageView>
          </graphic>
@@ -54,7 +54,7 @@
          <graphic>
             <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../picture/delete-icon-13.jpg" />
+                  <Image url="@picture/delete-icon-13.jpg" />
                </image>
             </ImageView>
          </graphic>
@@ -63,7 +63,7 @@
          <graphic>
             <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../picture/save.png" />
+                  <Image url="@picture/save.png" />
                </image>
             </ImageView>
          </graphic>
@@ -72,12 +72,12 @@
          <graphic>
             <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../picture/icon-02-512.png" />
+                  <Image url="@picture/icon-02-512.png" />
                </image>
             </ImageView>
          </graphic>
       </Button>
-      <TableView layoutX="10.0" layoutY="332.0" prefHeight="329.0" prefWidth="1279.0">
+      <TableView layoutX="10.0" layoutY="332.0" prefHeight="329.0" prefWidth="1279.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="11.0">
         <columns>
             <TableColumn prefWidth="106.0" text="Mã vé" />
           <TableColumn prefWidth="106.0" text="Mã NV" />
@@ -95,7 +95,7 @@
       </TableView>
       <ImageView fitHeight="85.0" fitWidth="115.0" layoutX="16.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../picture/unnamed.png" />
+            <Image url="@picture/unnamed.png" />
          </image>
       </ImageView>
       <Button fx:id="btCancel1" layoutX="863.0" layoutY="672.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="125.0" styleClass="btFind" stylesheets="@styleTickList.css" text="Tìm kiếm">

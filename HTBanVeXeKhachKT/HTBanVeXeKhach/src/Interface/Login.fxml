@@ -13,7 +13,7 @@
    <children>
       <ImageView fitHeight="100.0" fitWidth="115.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../picture/unnamed.png" />
+            <Image url="@picture/unnamed.png" />
          </image>
       </ImageView>
       <Label layoutX="170.0" layoutY="34.0" styleClass="mainLabel" stylesheets="@styleLogin.css" text="CÔNG TY VẬN TẢI TỐC HÀNH OUBUS">
@@ -27,11 +27,11 @@
             <Font size="1.0" />
          </font></Label>
       <Label layoutX="130.0" layoutY="219.0" styleClass="infoLabel" stylesheets="@styleLogin.css" text="Mật khẩu" />
-      <Button fx:id="btLogin" layoutX="161.0" layoutY="276.0" mnemonicParsing="false" onAction="#btLoginOnAction" styleClass="btLogin" stylesheets="@styleLogin.css" text="Đăng nhập">
+      <Button fx:id="btLogin" layoutX="149.0" layoutY="276.0" mnemonicParsing="false" onAction="#btLoginOnAction" styleClass="btLogin" stylesheets="@styleLogin.css" text="Đăng nhập">
          <graphic>
             <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../picture/login-149-649216.png" />
+                  <Image url="@picture/login-149-649216.png" />
                </image>
             </ImageView>
          </graphic>
@@ -40,7 +40,7 @@
          <graphic>
             <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../picture/login-149-649216.png" />
+                  <Image url="@picture/login-149-649216.png" />
                </image>
             </ImageView>
          </graphic>
