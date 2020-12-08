@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane fx:id="main" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Interface.MainController">
+   <top>
+      <Pane prefHeight="99.0" prefWidth="1000.0" styleClass="borderTop" stylesheets="@styleMain.css" BorderPane.alignment="CENTER">
+         <children>
+            <Label alignment="CENTER" layoutX="259.0" layoutY="14.0" prefHeight="78.0" prefWidth="383.0" styleClass="mainLabel" stylesheets="@styleMain.css" text="PHẦN MỀM QUẢN LÝ BÁN VÉ XE KHÁCH OUBUS" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="System Bold" size="25.0" />
+               </font></Label>
+            <ImageView fitHeight="150.0" fitWidth="115.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@picture/unnamed.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="763.0" layoutY="14.0" text="Nhân viên ">
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@picture/Profile-ICon.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Label>
+            <TextField fx:id="txtNV" layoutX="731.0" layoutY="50.0" prefHeight="25.0" prefWidth="155.0" />
+         </children>
+      </Pane>
+   </top>
+   <left>
+      <Pane prefHeight="755.0" prefWidth="200.0" styleClass="borderLeft" stylesheets="@styleMain.css" BorderPane.alignment="CENTER">
+         <children>
+            <Label alignment="CENTER" layoutX="2.0" layoutY="2.0" prefHeight="23.0" prefWidth="196.0" styleClass="infoLabelSys" stylesheets="@styleMain.css" text="Hệ thống" />
+            <Button fx:id="btQuanLyTK" layoutX="14.0" layoutY="42.0" mnemonicParsing="false" onAction="#btQuanLyTKOnAction" prefHeight="40.0" prefWidth="173.0" style="-fx-background-color: #ff8080;" styleClass="btTick" stylesheets="@styleMain.css" text="Quản lý tài khoản">
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@picture/Profile-ICon.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="btDangXuat" layoutX="14.0" layoutY="102.0" mnemonicParsing="false" onAction="#btDangXuatOnAction" prefHeight="40.0" prefWidth="173.0" style="-fx-background-color: #cceeff;" styleClass="btTick" stylesheets="@styleMain.css" text="Đăng xuất ">
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@picture/154-1542094_not-available-icons-download-for-free-in-png.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Label alignment="CENTER" layoutX="2.0" layoutY="162.0" prefHeight="25.0" prefWidth="196.0" styleClass="infoLabel" stylesheets="@styleMain.css" text="Quản lý" />
+            <Button fx:id="btQuanLyVe" layoutX="14.0" layoutY="202.0" mnemonicParsing="false" onAction="#btQuanLyVeOnAction" prefHeight="40.0" prefWidth="173.0" style="-fx-background-color: Yellow;" styleClass="btTick" stylesheets="@styleMain.css" text="Quản lý vé">
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@picture/train-tickets-vouchers-travel-departure-512.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="btQuanLyLT" layoutX="14.0" layoutY="282.0" mnemonicParsing="false" onAction="#btQuanLyLTOnAction" prefHeight="40.0" prefWidth="173.0" style="-fx-background-color: #b3ffe0;" styleClass="btTick" stylesheets="@styleMain.css" text="Quản lý lộ trình">
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@picture/bus-stop-icon-bus-stop-icon-11553384345v9glkpwrhg.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="btQuanLyXe" layoutX="14.0" layoutY="362.0" mnemonicParsing="false" onAction="#btQuanLyXeOnAction" prefHeight="40.0" prefWidth="173.0" style="-fx-background-color: #ccffb3;" styleClass="btTick" stylesheets="@styleMain.css" text="Quản lý xe">
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@picture/images.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="btThoat" layoutX="14.0" layoutY="530.0" mnemonicParsing="false" onAction="#btThoatOnAction" prefHeight="40.0" prefWidth="173.0" style="-fx-background-color: #ff3333;" styleClass="btTick" stylesheets="@styleMain.css" text="Thoát hệ thống">
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@picture/images%20(1).png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Label alignment="CENTER" layoutX="2.0" layoutY="422.0" prefHeight="25.0" prefWidth="198.0" styleClass="infoLabel" stylesheets="@styleMain.css" text="Bán vé" />
+            <Button fx:id="btBanVe" layoutX="14.0" layoutY="462.0" mnemonicParsing="false" onAction="#btBanVeOnAction" prefHeight="40.0" prefWidth="173.0" style="-fx-background-color: #99ffff;" styleClass="btTick" stylesheets="@styleMain.css" text="Bán vé">
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@picture/2-512.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+      </Pane>
+   </left>
+   <center>
+      <Pane fx:id="load" prefHeight="200.0" prefWidth="200.0" styleClass="borderRight" stylesheets="@styleMain.css" BorderPane.alignment="CENTER" />
+   </center>
+</BorderPane>
