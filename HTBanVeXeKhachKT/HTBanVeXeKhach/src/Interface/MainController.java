@@ -37,47 +37,47 @@ public class MainController implements Initializable {
     }    
     @FXML
     private void btQuanLyTKOnAction(ActionEvent event) throws IOException {
-        Stage stage = new Stage();
         Parent root = FXMLLoader.load(getClass().getResource("Employee.fxml"));
         Scene scene = new Scene(root);
+        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         stage.setScene(scene);
-        stage.setResizable(false);
         stage.show();
     
     }
     @FXML
     private void btDangXuatOnAction(ActionEvent e) throws IOException, Exception {
-
+        Parent root = FXMLLoader.load(getClass().getResource("Login.fxml"));
+        Scene scene = new Scene(root);
+        Stage stage = (Stage)((Node)e.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
     }
 
 
     @FXML
     private void btQuanLyVeOnAction(ActionEvent event) throws IOException {
-        Stage stage = new Stage();
         Parent root = FXMLLoader.load(getClass().getResource("TicketList.fxml"));
         Scene scene = new Scene(root);
+        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         stage.setScene(scene);
-        stage.setResizable(false);
         stage.show();
     }
 
     @FXML
     private void btQuanLyLTOnAction(ActionEvent event) throws IOException {        
-        Stage stage = new Stage();
         Parent root = FXMLLoader.load(getClass().getResource("DistanceBetw.fxml"));
         Scene scene = new Scene(root);
+        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         stage.setScene(scene);
-        stage.setResizable(false);
         stage.show();
     }
 
     @FXML
     private void btQuanLyXeOnAction(ActionEvent event) throws IOException {
-        Stage stage = new Stage();
         Parent root = FXMLLoader.load(getClass().getResource("Transport.fxml"));
         Scene scene = new Scene(root);
+        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         stage.setScene(scene);
-        stage.setResizable(false);
         stage.show();
     }
 
@@ -88,11 +88,10 @@ public class MainController implements Initializable {
 
     @FXML
     private void btBanVeOnAction(ActionEvent event) throws IOException {
-        Stage stage = new Stage();
         Parent root = FXMLLoader.load(getClass().getResource("Ticket.fxml"));
         Scene scene = new Scene(root);
+        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         stage.setScene(scene);
-        stage.setResizable(false);
         stage.show();
     }
     

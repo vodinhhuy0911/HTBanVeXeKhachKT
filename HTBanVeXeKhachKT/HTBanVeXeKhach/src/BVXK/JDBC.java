@@ -23,7 +23,7 @@ public class JDBC {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             
-            conn = DriverManager.getConnection("jdbc:mysql://localhost/quanlybenxe",  "root", "123456");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost/quanlyvexe",  "root", "123456");
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(JDBC.class.getName()).log(Level.SEVERE, null, ex);
         }
