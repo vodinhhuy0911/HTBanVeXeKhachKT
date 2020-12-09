@@ -16,6 +16,20 @@ import java.util.Date;
 public class VeXe {
 
     /**
+     * @return the giaVe
+     */
+    public double getGiaVe() {
+        return giaVe;
+    }
+
+    /**
+     * @param giaVe the giaVe to set
+     */
+    public void setGiaVe(double giaVe) {
+        this.giaVe = giaVe;
+    }
+
+    /**
      * @return the ngayKhoiHanh
      */
     public Date getNgayKhoiHanh() {
@@ -164,8 +178,9 @@ public class VeXe {
     private boolean isThanhToan;
     private Date ngayKhoiHanh;
     private String gioKhoiHanh;
+    private double giaVe;
     
-    public VeXe(String maVe, String bienSoXe, String maNV, String hoTenKH, String sdtKH, String maGheNgoi, Date thoiGianDatVe, boolean  isThanhToan, Date ngayKhoiHanh, String gioKhoiHanh)
+    public VeXe(String maVe, String bienSoXe, String maNV, String hoTenKH, String sdtKH, String maGheNgoi, Date thoiGianDatVe, boolean  isThanhToan, Date ngayKhoiHanh, String gioKhoiHanh, double giaVe)
     {
         this.maVe = maVe;
         this.bienSoXe = bienSoXe;
@@ -177,5 +192,6 @@ public class VeXe {
         this.isThanhToan = isThanhToan;
         this.ngayKhoiHanh = ngayKhoiHanh;
         this.gioKhoiHanh = gioKhoiHanh;
+        this.giaVe = giaVe;
     }
 }

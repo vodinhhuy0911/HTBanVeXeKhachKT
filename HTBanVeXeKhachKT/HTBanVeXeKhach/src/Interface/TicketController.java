@@ -75,6 +75,8 @@ public class TicketController implements Initializable {
     @FXML
     private ComboBox cbGioKhoiHanh;
     
+    @FXML
+    private TextField txtGiaVe;
     
     
     @Override
@@ -173,11 +175,12 @@ public class TicketController implements Initializable {
        
         Date ngayKhoiHanh = formatter.parse(d);
 
-       
+       String giaVe = txtGiaVe.getText();
+       double gia = Double.parseDouble(giaVe);
        
         VeXe ve = new VeXe(id,cbXe.getSelectionModel().getSelectedItem().toString(),"1",txtTenKH.getText(),txtSdtKH.getText(),
         txtMaGhe.getText(),date,tt,ngayKhoiHanh,
-        cbGioKhoiHanh.getSelectionModel().getSelectedItem().toString());
+        cbGioKhoiHanh.getSelectionModel().getSelectedItem().toString(),gia);
         QuanLyVeXe.themVe(ve);
     }
     
