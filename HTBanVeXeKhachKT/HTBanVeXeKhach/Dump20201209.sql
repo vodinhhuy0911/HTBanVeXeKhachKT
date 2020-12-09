@@ -85,6 +85,8 @@ CREATE TABLE `lotrinh` (
   `TuyenDi` varchar(45) DEFAULT NULL,
   `TuyenDen` varchar(45) DEFAULT NULL,
   `MaXe` varchar(10) DEFAULT NULL,
+  `NgayKhoiHanh` date DEFAULT NULL,
+  `GioKhoiHanh` varchar(6) DEFAULT NULL,
   PRIMARY KEY (`MaLoTrinh`),
   KEY `loTrinh_Xe_idx` (`MaXe`),
   CONSTRAINT `loTrinh_Xe` FOREIGN KEY (`MaXe`) REFERENCES `xe` (`MaXe`)
@@ -97,7 +99,7 @@ CREATE TABLE `lotrinh` (
 
 LOCK TABLES `lotrinh` WRITE;
 /*!40000 ALTER TABLE `lotrinh` DISABLE KEYS */;
-INSERT INTO `lotrinh` VALUES ('1','Đăk Lăk','TP.HCM','36AB-1234'),('2','Đăk Lăk','TP.HCM','36AB-1234'),('3','TP.HCM','NhaTrang','36AB-1234');
+INSERT INTO `lotrinh` VALUES ('1','Đăk Lăk','NhaTrang','47M1-1234','2020-12-31','8:00'),('2','Đăk Lăk','NhaTrang','36AB-1234','2020-12-09','8:00'),('3','Hà Nội','NhaTrang','36AB-1234','2020-12-09','8:00'),('5','Hà Nội','NhaTrang','36AB-1234','2020-06-12','8:00'),('6','Hà Nội','TP.HCM','47M1-1234','2000-06-12','8:00'),('7','Hà Nội','TP.HCM','47M1-1234','2000-06-12','18:00');
 /*!40000 ALTER TABLE `lotrinh` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -126,7 +128,7 @@ CREATE TABLE `nhanvien` (
 
 LOCK TABLES `nhanvien` WRITE;
 /*!40000 ALTER TABLE `nhanvien` DISABLE KEYS */;
-INSERT INTO `nhanvien` VALUES (1,'123','1111-11-01','123','312','123','132@132'),(2,'32131','0015-11-16','s','egfss','asdfaf','adaf'),(3,'123','1212-12-12','qwregf','qwdgf','qwerf','qw'),(4,'egf','1111-11-11','wef','qwregf','qwergf','wqer'),(5,'123','1212-12-12','qwregf','qwdgf','qwerf','qw'),(7,'31','0014-11-15','wegf','qewg','wqf','qwe'),(8,'dfsd','0014-11-15','wre','wdf','wdf','qewf');
+INSERT INTO `nhanvien` VALUES (1,'123','1111-11-01','123','312','123','132@132'),(2,'321312','1111-11-11','s','egfss','asdfaf','adaf'),(3,'123','1212-12-12','qwregf','qwdgf','qwerf','qw'),(4,'egf','1111-11-11','wef','qwregf','qwergf','wqer'),(5,'123','1212-12-12','qwregf','qwdgf','qwerf','qw'),(7,'31','0014-11-15','wegf','qewg','wqf','qwe'),(8,'dfsd','0014-11-15','wre','wdf','wdf','qewf');
 /*!40000 ALTER TABLE `nhanvien` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -170,6 +172,10 @@ CREATE TABLE `vexe` (
   `MaGhe` varchar(4) DEFAULT NULL,
   `ThoiGianDat` datetime DEFAULT NULL,
   `ThanhToan` tinyint DEFAULT NULL,
+  `NgayKhoiHanh` date DEFAULT NULL,
+  `GioKhoiHanh` varchar(6) DEFAULT NULL,
+  `GiaVe` double DEFAULT NULL,
+  `MaLoTrinh` varchar(10) DEFAULT NULL,
   PRIMARY KEY (`MaVe`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -180,6 +186,7 @@ CREATE TABLE `vexe` (
 
 LOCK TABLES `vexe` WRITE;
 /*!40000 ALTER TABLE `vexe` DISABLE KEYS */;
+INSERT INTO `vexe` VALUES ('0e7b7','47M1-1234',1,'VDH','0123456789','B12','2020-12-09 00:00:00',1,NULL,NULL,NULL,'1'),('1','36AB-1234',1,'asd','asd','A1','1111-11-11 00:00:00',1,NULL,NULL,NULL,'2'),('2','47M1-1234',1,'123ewfd','qwedfg132','B9','2020-12-09 00:00:00',0,NULL,NULL,NULL,'3'),('86046','47M1-1234',1,'13245','wergh','B10','2020-12-09 00:00:00',1,'2020-12-31','8:00',NULL,'2'),('936aa','47M1-1234',1,'adsfd','13245t','B7','2020-12-09 00:00:00',1,'2020-12-31','8:00',200,'3'),('a3d84','36AB-1234',1,'123243t4','124325y','B8','2020-12-09 00:00:00',1,'2020-12-09','8:00',NULL,'1'),('b94c5','47M1-1234',1,'zzz','zzz','A11','2020-12-09 00:00:00',1,'2000-06-12','8:00',200,'6'),('bcf2e','36AB-1234',1,'zzz','zzz','A11','2020-12-09 00:00:00',1,'2020-12-09','8:00',200,'3');
 /*!40000 ALTER TABLE `vexe` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -216,4 +223,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-12-09 13:05:30
+-- Dump completed on 2020-12-09 23:19:25

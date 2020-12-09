@@ -41,7 +41,8 @@ public class QuanLyVeXe {
             Date ngayKhoiHanh = rs.getDate("NgayKhoiHanh");
             String gioKhoiHanh = rs.getString("GioKhoiHanh");
             double giaVe = rs.getDouble("GiaVe");
-            VeXe vx = new VeXe(maVe,bienSoXe,maNV, hoTenKh, sdtKh,maGheNgoi, thoiGianDat, isThanhToan,ngayKhoiHanh,gioKhoiHanh,giaVe);
+            String maLoTrinh = rs.getString("MaLoTrinh");
+            VeXe vx = new VeXe(maVe,bienSoXe,maNV, hoTenKh, sdtKh,maGheNgoi, thoiGianDat, isThanhToan,ngayKhoiHanh,gioKhoiHanh,giaVe,maLoTrinh);
             
             kq.add(vx);
         }
@@ -72,7 +73,7 @@ public class QuanLyVeXe {
         
         if(kq == 0)
         {
-                    String sql = "INSERT INTO vexe (MaVe,BienSoXe,MaNV,HoTenKH,SDTKH,MaGhe,ThoiGianDat,ThanhToan,NgayKhoiHanh,GioKhoiHanh,GiaVe) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+                    String sql = "INSERT INTO vexe (MaVe,BienSoXe,MaNV,HoTenKH,SDTKH,MaGhe,ThoiGianDat,ThanhToan,NgayKhoiHanh,GioKhoiHanh,GiaVe,MaLoTrinh) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
         Connection cnt = JDBC.getConn();
         cnt.setAutoCommit(false);
          PreparedStatement pStm = cnt.prepareStatement(sql);
@@ -98,7 +99,7 @@ public class QuanLyVeXe {
          pStm.setDate(9,sqlDate);
          pStm.setString(10,ve.getGioKhoiHanh());
          pStm.setDouble(11, ve.getGiaVe());
-         
+         pStm.setString(12,ve.getMaLoTrinh());
          
          pStm.executeUpdate();
         cnt.commit();

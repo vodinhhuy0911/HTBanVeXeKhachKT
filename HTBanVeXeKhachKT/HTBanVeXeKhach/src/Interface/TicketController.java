@@ -178,9 +178,20 @@ public class TicketController implements Initializable {
        String giaVe = txtGiaVe.getText();
        double gia = Double.parseDouble(giaVe);
        
+      
+       
+       List <String> str = new ArrayList<>();
+        String tuyenDuong = cbLoTrinh.getSelectionModel().getSelectedItem().toString();
+        String td[] = tuyenDuong.split(" - ");
+        String tuyenDi = td[0];
+        String tuyenDen = td[1];
+       
+         String maLT = QuanLyTuyenDi.getMaLoTrinh(tuyenDi, tuyenDen, cbXe.getSelectionModel().getSelectedItem().toString(),
+                 cbNgayKhoiHanh.getSelectionModel().getSelectedItem().toString(), cbGioKhoiHanh.getSelectionModel().getSelectedItem().toString());
+       
         VeXe ve = new VeXe(id,cbXe.getSelectionModel().getSelectedItem().toString(),"1",txtTenKH.getText(),txtSdtKH.getText(),
         txtMaGhe.getText(),date,tt,ngayKhoiHanh,
-        cbGioKhoiHanh.getSelectionModel().getSelectedItem().toString(),gia);
+        cbGioKhoiHanh.getSelectionModel().getSelectedItem().toString(),gia,maLT);
         QuanLyVeXe.themVe(ve);
     }
     

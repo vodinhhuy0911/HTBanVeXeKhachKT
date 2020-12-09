@@ -179,8 +179,9 @@ public class VeXe {
     private Date ngayKhoiHanh;
     private String gioKhoiHanh;
     private double giaVe;
+    private String maLoTrinh;
     
-    public VeXe(String maVe, String bienSoXe, String maNV, String hoTenKH, String sdtKH, String maGheNgoi, Date thoiGianDatVe, boolean  isThanhToan, Date ngayKhoiHanh, String gioKhoiHanh, double giaVe)
+    public VeXe(String maVe, String bienSoXe, String maNV, String hoTenKH, String sdtKH, String maGheNgoi, Date thoiGianDatVe, boolean  isThanhToan, Date ngayKhoiHanh, String gioKhoiHanh, double giaVe,String maLoTrinh)
     {
         this.maVe = maVe;
         this.bienSoXe = bienSoXe;
@@ -193,5 +194,20 @@ public class VeXe {
         this.ngayKhoiHanh = ngayKhoiHanh;
         this.gioKhoiHanh = gioKhoiHanh;
         this.giaVe = giaVe;
+        this.maLoTrinh = maLoTrinh;
+    }
+
+    /**
+     * @return the maLoTrinh
+     */
+    public String getMaLoTrinh() {
+        return maLoTrinh;
+    }
+
+    /**
+     * @param maLoTrinh the maLoTrinh to set
+     */
+    public void setMaLoTrinh(String maLoTrinh) {
+        this.maLoTrinh = maLoTrinh;
     }
 }

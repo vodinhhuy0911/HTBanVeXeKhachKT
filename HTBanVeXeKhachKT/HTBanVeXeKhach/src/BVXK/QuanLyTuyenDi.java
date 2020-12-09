@@ -135,4 +135,17 @@ public class QuanLyTuyenDi {
        }
        return kq;
    }
+   
+   
+   public static String getMaLoTrinh(String tuyenDi, String tuyenDen, String maXe, String ngayKhoiHanh, String gioKhoiHanh) throws SQLException
+   {
+       Connection conn = JDBC.getConn();
+       Statement stm = conn.createStatement();
+       ResultSet rs = stm.executeQuery("SELECT MaLoTrinh FROM lotrinh WHERE TuyenDi like N'"+ tuyenDi + "' AND TuyenDen like N'"+tuyenDen+"' AND NgayKhoiHanh = '" + ngayKhoiHanh + "' AND GioKhoiHanh = '"+ gioKhoiHanh+"'");
+       while(rs.next())
+       {
+           return rs.getString("MaLoTrinh");
+       }
+       return null;
+   }
 }
