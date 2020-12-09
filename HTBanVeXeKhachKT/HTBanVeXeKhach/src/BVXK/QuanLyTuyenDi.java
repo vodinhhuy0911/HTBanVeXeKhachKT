@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /*
@@ -33,7 +34,9 @@ public class QuanLyTuyenDi {
            String tuyenDi = rs.getString("TuyenDi");
            String tuyenDen = rs.getString("TuyenDen");
            String maXe = rs.getString("MaXe");
-           TuyenDuong td = new TuyenDuong(maTuyenDuong,tuyenDi,tuyenDen,maXe);
+           Date thoiGianKhoiHanh = rs.getDate("NgayKhoiHanh");
+           String gioKhoiHanh = rs.getString("GioKhoiHanh");
+           TuyenDuong td = new TuyenDuong(maTuyenDuong,tuyenDi,tuyenDen,maXe,thoiGianKhoiHanh,gioKhoiHanh);
            kq.add(td);
        }
        return kq;
@@ -41,7 +44,7 @@ public class QuanLyTuyenDi {
    
     public static void themTuyenDuong(TuyenDuong td) throws SQLException 
     {
-         String sql = "INSERT INTO lotrinh (MaLoTrinh, TuyenDi,TuyenDen,MaXe) VALUES (?,?,?,?)";
+         String sql = "INSERT INTO lotrinh (MaLoTrinh, TuyenDi,TuyenDen,MaXe,NgayKhoiHanh,GioKhoiHanh) VALUES (?,?,?,?,?,?)";
          Connection cnt = JDBC.getConn();
         cnt.setAutoCommit(false);
         PreparedStatement pStm = cnt.prepareStatement(sql);
@@ -49,20 +52,33 @@ public class QuanLyTuyenDi {
         pStm.setString(2, td.getTuyenDi());
         pStm.setString(3,td.getTuyenDen());
         pStm.setString(4,td.getMaXe());
+
+        java.util.Date date = td.getThoiGianKhoiHanh();
+ 
+       java.sql.Date sqlDate = new java.sql.Date(date.getTime()); 
+       
+        pStm.setDate(5, sqlDate);
+        pStm.setString(6, td.getGioKhoiHanh());
         pStm.executeUpdate();
         
         cnt.commit();
     }
-    public static void capNhatTuyenDuong(String tuyenDi, String tuyenDen,String maLoTrinh, String maXe) throws SQLException
+    public static void capNhatTuyenDuong(String tuyenDi, String tuyenDen,String maLoTrinh, String maXe, Date thoiGianKhoiHanh, String GioKhoiHanh) throws SQLException
    {
-       String sql = "UPDATE lotrinh SET TuyenDi = ?, TuyenDen = ?, MaXe = ? WHERE MaLoTrinh = ?";
+       String sql = "UPDATE lotrinh SET TuyenDi = ?, TuyenDen = ?, MaXe = ?, NgayKhoiHanh = ?, GioKhoiHanh = ? WHERE MaLoTrinh = ?";
         Connection cnt = JDBC.getConn();
         cnt.setAutoCommit(false);
         PreparedStatement pStm = cnt.prepareStatement(sql);
         pStm.setString(1, tuyenDi);
         pStm.setString(2, tuyenDen);
         pStm.setString(3, maXe);
-       pStm.setString(4, maLoTrinh);
+        java.util.Date date = thoiGianKhoiHanh;
+      java.sql.Date sqlDate = new java.sql.Date(date.getTime()); 
+
+        pStm.setDate(4, sqlDate);
+        pStm.setString(5, GioKhoiHanh);
+       pStm.setString(6, maLoTrinh);
+       
         pStm.executeUpdate();
         cnt.commit();
    }

@@ -1,5 +1,7 @@
 package BanVeXeKhach;
 
+import java.util.Date;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -11,6 +13,20 @@ package BanVeXeKhach;
  * @author vohuy
  */
 public class TuyenDuong {
+
+    /**
+     * @return the gioKhoiHanh
+     */
+    public String getGioKhoiHanh() {
+        return gioKhoiHanh;
+    }
+
+    /**
+     * @param gioKhoiHanh the gioKhoiHanh to set
+     */
+    public void setGioKhoiHanh(String gioKhoiHanh) {
+        this.gioKhoiHanh = gioKhoiHanh;
+    }
 
     /**
      * @return the maXe
@@ -71,12 +87,30 @@ public class TuyenDuong {
     private String tuyenDi;
     private String tuyenDen;
     private String maXe;
+    private Date thoiGianKhoiHanh;
+    private String gioKhoiHanh;
     
-    public TuyenDuong(String maTuyenDuong, String tuyenDi, String tuyenDen, String maXe)
+    public TuyenDuong(String maTuyenDuong, String tuyenDi, String tuyenDen, String maXe, Date thoiGianKhoiHanh,String gioKhoiHanh)
     {
         this.maTuyenDuong = maTuyenDuong;
         this.tuyenDi = tuyenDi;
         this.tuyenDen = tuyenDen;
         this.maXe = maXe;
+        this.thoiGianKhoiHanh = thoiGianKhoiHanh;
+        this.gioKhoiHanh = gioKhoiHanh;
+    }
+
+    /**
+     * @return the thoiGianKhoiHanh
+     */
+    public Date getThoiGianKhoiHanh() {
+        return thoiGianKhoiHanh;
+    }
+
+    /**
+     * @param thoiGianKhoiHanh the thoiGianKhoiHanh to set
+     */
+    public void setThoiGianKhoiHanh(Date thoiGianKhoiHanh) {
+        this.thoiGianKhoiHanh = thoiGianKhoiHanh;
     }
 }
