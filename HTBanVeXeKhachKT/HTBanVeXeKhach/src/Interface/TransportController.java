@@ -108,4 +108,6 @@ ObservableList<Xe> nvList = FXCollections.observableArrayList ();
         QuanLyXe.xoaXe(txtMaXe.getText());
         this.loadData();
     }
+    
+    
 }

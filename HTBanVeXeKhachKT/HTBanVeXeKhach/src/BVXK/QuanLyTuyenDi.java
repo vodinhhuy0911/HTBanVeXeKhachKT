@@ -77,4 +77,20 @@ public class QuanLyTuyenDi {
          cnt.commit();
          //ok
    }
+   
+   public static List<String> getMaXe(String tuyenDi, String tuyenDen) throws SQLException
+   {
+       Connection conn = JDBC.getConn();
+       Statement stm = conn.createStatement();
+       ResultSet rs = stm.executeQuery("SELECT MaXe FROM lotrinh WHERE TuyenDi like N'"+ tuyenDi + "' AND TuyenDen like N'"+tuyenDen+"'" );
+       List<String> kq = new ArrayList<>();
+       while(rs.next())
+       {
+           
+           String maXe = rs.getString("MaXe");
+           
+           kq.add(maXe);
+       }
+       return kq;
+   }
 }
