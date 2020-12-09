@@ -7,13 +7,18 @@ package Interface;
 
 import BVXK.ThongTinTaiKhoan;
 import BanVeXeKhach.DangNhap;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
@@ -38,7 +43,7 @@ public class LoginController implements Initializable {
     private  String PASSWORD = "1";
     
     
-    public void btLoginOnAction(ActionEvent event) throws SQLException{
+    public void btLoginOnAction(ActionEvent event) throws SQLException, IOException{
       String username = txtUsername.getText();
       String password = pwPassword.getText();
       List <DangNhap> ds = ThongTinTaiKhoan.getThongTin();
@@ -52,7 +57,7 @@ public class LoginController implements Initializable {
                 flag = true;
                }
 
-        }
+      }
       if(flag)
       {
           Alert alert = new Alert(AlertType.INFORMATION);
@@ -60,6 +65,12 @@ public class LoginController implements Initializable {
                           alert.setHeaderText(null);
                           alert.setContentText("Login success!");
                           alert.showAndWait();
+        //Login xong xuất ra main
+        Parent root = FXMLLoader.load(getClass().getResource("Main.fxml"));
+        Scene scene = new Scene(root);
+        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
       }
       else
       {
@@ -69,6 +80,7 @@ public class LoginController implements Initializable {
                       notiAll.setContentText("Try again please!!!");
                       notiAll.showAndWait();
       }
+
     }
 
 

@@ -5,9 +5,15 @@
  */
 package Interface;
 
+import BVXK.ThongTinTaiKhoan;
+import BanVeXeKhach.DangNhap;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
+import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -22,18 +28,25 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
-/**
- * FXML Controller class
- *
- * @author PC
- */
+
 public class MainController implements Initializable {
-      /**
-     * Initializes the controller class.
-     */
+
+    @FXML
+    private TextField txtNV;
+    
+    private String USERNAME;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-      
+        try {
+            List <DangNhap> ds = ThongTinTaiKhoan.getThongTin();
+            for(DangNhap dn : ds){
+                USERNAME = dn.getTaiKhoan();
+            }
+            txtNV.setText(USERNAME);
+        } catch (SQLException ex) {
+            Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
     }    
     @FXML
     private void btQuanLyTKOnAction(ActionEvent event) throws IOException {
