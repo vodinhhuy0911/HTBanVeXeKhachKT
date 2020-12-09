@@ -28,18 +28,18 @@
             <Label alignment="CENTER" prefHeight="35.0" prefWidth="196.0" styleClass="floorLabel" stylesheets="@styletTicket.css" text="Tầng 1" />
             <Pane prefHeight="513.0" prefWidth="133.0">
                <children>
-                  <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="52.0" styleClass="btTick" stylesheets="@styletTicket.css" text="A1" />
-                  <Button layoutX="130.0" layoutY="14.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="52.0" styleClass="btTick" stylesheets="@styletTicket.css" text="B1" />
-                  <Button layoutX="130.0" layoutY="358.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="52.0" styleClass="btTick" stylesheets="@styletTicket.css" text="B5" />
-                  <Button layoutX="14.0" layoutY="444.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="52.0" styleClass="btTick" stylesheets="@styletTicket.css" text="A6" />
-                  <Button layoutX="130.0" layoutY="272.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="52.0" styleClass="btTick" stylesheets="@styletTicket.css" text="B4" />
-                  <Button layoutX="14.0" layoutY="358.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="52.0" styleClass="btTick" stylesheets="@styletTicket.css" text="A5" />
-                  <Button layoutX="130.0" layoutY="186.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="52.0" styleClass="btTick" stylesheets="@styletTicket.css" text="B3" />
-                  <Button layoutX="14.0" layoutY="272.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="52.0" styleClass="btTick" stylesheets="@styletTicket.css" text="A4" />
-                  <Button layoutX="130.0" layoutY="444.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="52.0" styleClass="btTick" stylesheets="@styletTicket.css" text="B6" />
-                  <Button layoutX="14.0" layoutY="186.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="52.0" styleClass="btTick" stylesheets="@styletTicket.css" text="A3" />
-                  <Button layoutX="14.0" layoutY="100.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="52.0" styleClass="btTick" stylesheets="@styletTicket.css" text="A2" />
-                  <Button layoutX="130.0" layoutY="100.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="52.0" styleClass="btTick" stylesheets="@styletTicket.css" text="B2" />
+                  <Button fx:id="bt" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#chonGhe" prefHeight="42.0" prefWidth="52.0" styleClass="btTick" stylesheets="@styletTicket.css" text="A1" />
+                  <Button layoutX="130.0" layoutY="14.0" mnemonicParsing="false" onAction="#chonGhe" prefHeight="42.0" prefWidth="52.0" styleClass="btTick" stylesheets="@styletTicket.css" text="B1" />
+                  <Button layoutX="130.0" layoutY="358.0" mnemonicParsing="false" onAction="#chonGhe" prefHeight="42.0" prefWidth="52.0" styleClass="btTick" stylesheets="@styletTicket.css" text="B5" />
+                  <Button layoutX="14.0" layoutY="444.0" mnemonicParsing="false" onAction="#chonGhe" prefHeight="42.0" prefWidth="52.0" styleClass="btTick" stylesheets="@styletTicket.css" text="A6" />
+                  <Button layoutX="130.0" layoutY="272.0" mnemonicParsing="false" onAction="#chonGhe" prefHeight="42.0" prefWidth="52.0" styleClass="btTick" stylesheets="@styletTicket.css" text="B4" />
+                  <Button layoutX="14.0" layoutY="358.0" mnemonicParsing="false" onAction="#chonGhe" prefHeight="42.0" prefWidth="52.0" styleClass="btTick" stylesheets="@styletTicket.css" text="A5" />
+                  <Button layoutX="130.0" layoutY="186.0" mnemonicParsing="false" onAction="#chonGhe" prefHeight="42.0" prefWidth="52.0" styleClass="btTick" stylesheets="@styletTicket.css" text="B3" />
+                  <Button layoutX="14.0" layoutY="272.0" mnemonicParsing="false" onAction="#chonGhe" prefHeight="42.0" prefWidth="52.0" styleClass="btTick" stylesheets="@styletTicket.css" text="A4" />
+                  <Button layoutX="130.0" layoutY="444.0" mnemonicParsing="false" onAction="#chonGhe" prefHeight="42.0" prefWidth="52.0" styleClass="btTick" stylesheets="@styletTicket.css" text="B6" />
+                  <Button layoutX="14.0" layoutY="186.0" mnemonicParsing="false" onAction="#chonGhe" prefHeight="42.0" prefWidth="52.0" styleClass="btTick" stylesheets="@styletTicket.css" text="A3" />
+                  <Button layoutX="14.0" layoutY="100.0" mnemonicParsing="false" onAction="#chonGhe" prefHeight="42.0" prefWidth="52.0" styleClass="btTick" stylesheets="@styletTicket.css" text="A2" />
+                  <Button layoutX="130.0" layoutY="100.0" mnemonicParsing="false" onAction="#chonGhe" prefHeight="42.0" prefWidth="52.0" styleClass="btTick" stylesheets="@styletTicket.css" text="B2" />
                </children>
             </Pane>
          </children>
@@ -49,18 +49,18 @@
             <Label alignment="CENTER" prefHeight="35.0" prefWidth="196.0" styleClass="floorLabel" stylesheets="@styletTicket.css" text="Tầng 2" />
             <Pane prefHeight="520.0" prefWidth="196.0">
                <children>
-                  <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="52.0" styleClass="btTick" stylesheets="@styletTicket.css" text="A7" />
-                  <Button layoutX="130.0" layoutY="14.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="52.0" styleClass="btTick" stylesheets="@styletTicket.css" text="B7" />
-                  <Button layoutX="14.0" layoutY="100.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="52.0" styleClass="btTick" stylesheets="@styletTicket.css" text="A8" />
-                  <Button layoutX="130.0" layoutY="100.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="52.0" styleClass="btTick" stylesheets="@styletTicket.css" text="B8" />
-                  <Button layoutX="14.0" layoutY="272.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="52.0" styleClass="btTick" stylesheets="@styletTicket.css" text="A10" />
-                  <Button layoutX="130.0" layoutY="186.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="52.0" styleClass="btTick" stylesheets="@styletTicket.css" text="B9" />
-                  <Button layoutX="14.0" layoutY="186.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="52.0" styleClass="btTick" stylesheets="@styletTicket.css" text="A9" />
-                  <Button layoutX="130.0" layoutY="272.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="52.0" styleClass="btTick" stylesheets="@styletTicket.css" text="B10" />
-                  <Button layoutX="14.0" layoutY="358.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="52.0" styleClass="btTick" stylesheets="@styletTicket.css" text="A11" />
-                  <Button layoutX="130.0" layoutY="358.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="52.0" styleClass="btTick" stylesheets="@styletTicket.css" text="B11" />
-                  <Button layoutX="14.0" layoutY="444.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="52.0" styleClass="btTick" stylesheets="@styletTicket.css" text="A12" />
-                  <Button layoutX="130.0" layoutY="444.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="52.0" styleClass="btTick" stylesheets="@styletTicket.css" text="B12" />
+                  <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#chonGhe" prefHeight="42.0" prefWidth="52.0" styleClass="btTick" stylesheets="@styletTicket.css" text="A7" />
+                  <Button layoutX="130.0" layoutY="14.0" mnemonicParsing="false" onAction="#chonGhe" prefHeight="42.0" prefWidth="52.0" styleClass="btTick" stylesheets="@styletTicket.css" text="B7" />
+                  <Button layoutX="14.0" layoutY="100.0" mnemonicParsing="false" onAction="#chonGhe" prefHeight="42.0" prefWidth="52.0" styleClass="btTick" stylesheets="@styletTicket.css" text="A8" />
+                  <Button layoutX="130.0" layoutY="100.0" mnemonicParsing="false" onAction="#chonGhe" prefHeight="42.0" prefWidth="52.0" styleClass="btTick" stylesheets="@styletTicket.css" text="B8" />
+                  <Button layoutX="14.0" layoutY="272.0" mnemonicParsing="false" onAction="#chonGhe" prefHeight="42.0" prefWidth="52.0" styleClass="btTick" stylesheets="@styletTicket.css" text="A10" />
+                  <Button layoutX="130.0" layoutY="186.0" mnemonicParsing="false" onAction="#chonGhe" prefHeight="42.0" prefWidth="52.0" styleClass="btTick" stylesheets="@styletTicket.css" text="B9" />
+                  <Button layoutX="14.0" layoutY="186.0" mnemonicParsing="false" onAction="#chonGhe" prefHeight="42.0" prefWidth="52.0" styleClass="btTick" stylesheets="@styletTicket.css" text="A9" />
+                  <Button layoutX="130.0" layoutY="272.0" mnemonicParsing="false" onAction="#chonGhe" prefHeight="42.0" prefWidth="52.0" styleClass="btTick" stylesheets="@styletTicket.css" text="B10" />
+                  <Button layoutX="14.0" layoutY="358.0" mnemonicParsing="false" onAction="#chonGhe" prefHeight="42.0" prefWidth="52.0" styleClass="btTick" stylesheets="@styletTicket.css" text="A11" />
+                  <Button layoutX="130.0" layoutY="358.0" mnemonicParsing="false" onAction="#chonGhe" prefHeight="42.0" prefWidth="52.0" styleClass="btTick" stylesheets="@styletTicket.css" text="B11" />
+                  <Button layoutX="14.0" layoutY="444.0" mnemonicParsing="false" onAction="#chonGhe" prefHeight="42.0" prefWidth="52.0" styleClass="btTick" stylesheets="@styletTicket.css" text="A12" />
+                  <Button layoutX="130.0" layoutY="444.0" mnemonicParsing="false" onAction="#chonGhe" prefHeight="42.0" prefWidth="52.0" styleClass="btTick" stylesheets="@styletTicket.css" text="B12" />
                </children>
             </Pane>
          </children>
@@ -75,7 +75,7 @@
             <Image url="@picture/unnamed.png" />
          </image></ImageView>
       <Label layoutX="833.0" layoutY="164.0" onDragDetected="#chonXe" styleClass="infoLabel" stylesheets="@styletTicket.css" text="Chọn giờ" />
-      <Button layoutX="500.0" layoutY="523.0" mnemonicParsing="false" onDragDetected="#chonXe" prefHeight="45.0" prefWidth="120.0" styleClass="btAdd" stylesheets="@styletTicket.css" text="Thêm vé">
+      <Button layoutX="500.0" layoutY="523.0" mnemonicParsing="false" onAction="#themVe" onDragDetected="#chonXe" prefHeight="45.0" prefWidth="120.0" styleClass="btAdd" stylesheets="@styletTicket.css" text="Thêm vé">
          <graphic>
             <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -83,7 +83,6 @@
                </image>
             </ImageView>
          </graphic></Button>
-      <DatePicker layoutX="939.0" layoutY="102.0" onDragDetected="#chonXe" prefHeight="25.0" prefWidth="243.0" AnchorPane.leftAnchor="939.0" />
       <Button layoutX="874.0" layoutY="523.0" mnemonicParsing="false" onDragDetected="#chonXe" prefHeight="45.0" prefWidth="120.0" styleClass="btCancel" stylesheets="@styletTicket.css" text="Hủy">
          <graphic>
             <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
@@ -93,28 +92,20 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button layoutX="690.0" layoutY="523.0" mnemonicParsing="false" onDragDetected="#chonXe" prefHeight="45.0" prefWidth="120.0" styleClass="btFind" stylesheets="@styletTicket.css" text="Kiểm tra">
-         <graphic>
-            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@picture/105498-200.png" />
-               </image>
-            </ImageView>
-         </graphic>
-      </Button>
       <Label alignment="CENTER" layoutX="445.0" layoutY="318.0" onDragDetected="#chonXe" styleClass="mainTick" stylesheets="@styletTicket.css" text="Thông tin đặt vé">
          <font>
             <Font name="Calibri Bold Italic" size="36.0" />
          </font></Label>
       <Label layoutX="443.0" layoutY="375.0" onDragDetected="#chonXe" styleClass="infoLabel" stylesheets="@styletTicket.css" text="Tên khách hàng" />
-      <TextField layoutX="560.0" layoutY="373.0" onDragDetected="#chonXe" prefHeight="25.0" prefWidth="243.0" />
+      <TextField fx:id="txtTenKH" layoutX="560.0" layoutY="373.0" onDragDetected="#chonXe" prefHeight="25.0" prefWidth="243.0" />
       <Label layoutX="443.0" layoutY="435.0" onDragDetected="#chonXe" styleClass="infoLabel" stylesheets="@styletTicket.css" text="Số điện thoại" />
-      <TextField layoutX="560.0" layoutY="433.0" onDragDetected="#chonXe" prefHeight="25.0" prefWidth="243.0" />
+      <TextField fx:id="txtSdtKH" layoutX="560.0" layoutY="433.0" onDragDetected="#chonXe" prefHeight="25.0" prefWidth="243.0" />
       <Label layoutX="834.0" layoutY="376.0" onDragDetected="#chonXe" styleClass="infoLabel" stylesheets="@styletTicket.css" text="Vị trí ghế" />
-      <TextField editable="false" layoutX="939.0" layoutY="373.0" onDragDetected="#chonXe" prefHeight="25.0" prefWidth="243.0" />
+      <TextField fx:id="txtMaGhe" editable="false" layoutX="939.0" layoutY="373.0" onDragDetected="#chonXe" prefHeight="25.0" prefWidth="243.0" />
       <Label layoutX="443.0" layoutY="221.0" onDragDetected="#chonXe" styleClass="infoLabel" stylesheets="@styletTicket.css" text="Loại xe" />
       <TextField fx:id="txtLoaiXe" editable="false" layoutX="561.0" layoutY="216.0" onDragDetected="#chonXe" prefHeight="25.0" prefWidth="243.0" />
-      <TextField layoutX="939.0" layoutY="159.0" onDragDetected="#chonXe" prefHeight="25.0" prefWidth="243.0" />
-      <RadioButton layoutX="1028.0" layoutY="488.0" mnemonicParsing="false" text="TT Thanh Toán" />
+      <RadioButton fx:id="rdTT" layoutX="1028.0" layoutY="488.0" mnemonicParsing="false" text="TT Thanh Toán" />
+      <ComboBox fx:id="cbNgayKhoiHanh" layoutX="922.0" layoutY="100.0" onAction="#chonNgay" onDragDetected="#chonXe" prefHeight="25.0" prefWidth="243.0" />
+      <ComboBox fx:id="cbGioKhoiHanh" layoutX="922.0" layoutY="162.0" onDragDetected="#chonXe" prefHeight="25.0" prefWidth="243.0" />
    </children>
 </AnchorPane>

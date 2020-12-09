@@ -109,4 +109,30 @@ public class QuanLyTuyenDi {
        }
        return kq;
    }
+   
+   public static List<String> getNgayKhoiHanh(String tuyenDi,String tuyenDen, String maXe) throws SQLException
+   {
+       Connection conn = JDBC.getConn();
+       Statement stm = conn.createStatement();
+       ResultSet rs = stm.executeQuery("SELECT NgayKhoiHanh FROM lotrinh WHERE TuyenDi like N'"+ tuyenDi + "' AND TuyenDen like N'"+tuyenDen+"' AND MaXe = '"+maXe+"'");
+       List<String> kq = new ArrayList<>();
+       while(rs.next())
+       {
+           kq.add(rs.getDate("NgayKhoiHanh").toString());
+       }
+       return kq;
+   }
+   
+   public static List<String> getGioKhoiHanh(String tuyenDi,String tuyenDen, String maXe, String ngayKhoiHanh) throws SQLException
+   {
+       Connection conn = JDBC.getConn();
+       Statement stm = conn.createStatement();
+       ResultSet rs = stm.executeQuery("SELECT GioKhoiHanh FROM lotrinh WHERE TuyenDi like N'"+ tuyenDi + "' AND TuyenDen like N'"+tuyenDen+"' AND MaXe = '"+maXe+"' AND NgayKhoiHanh = '"+ngayKhoiHanh+"'");
+       List<String> kq = new ArrayList<>();
+       while(rs.next())
+       {
+           kq.add(rs.getString("GioKhoiHanh").toString());
+       }
+       return kq;
+   }
 }

@@ -38,7 +38,9 @@ public class QuanLyVeXe {
             String maGheNgoi = rs.getString("MaGhe");
             Date thoiGianDat = rs.getDate("ThoiGianDat");
             Boolean isThanhToan = rs.getBoolean("ThanhToan");
-            VeXe vx = new VeXe(maVe,bienSoXe,maNV, hoTenKh, sdtKh,maGheNgoi, thoiGianDat, isThanhToan);
+            Date ngayKhoiHanh = rs.getDate("NgayKhoiHanh");
+            String gioKhoiHanh = rs.getString("GioKhoiHanh");
+            VeXe vx = new VeXe(maVe,bienSoXe,maNV, hoTenKh, sdtKh,maGheNgoi, thoiGianDat, isThanhToan,ngayKhoiHanh,gioKhoiHanh);
             
             kq.add(vx);
         }
@@ -69,7 +71,7 @@ public class QuanLyVeXe {
         
         if(kq == 0)
         {
-                    String sql = "INSERT INTO vexe (MaVe,BienSoXe,MaNV,HoTenKH,SDTKH,MaGhe,ThoiGianDat,ThanhToan) VALUES (?,?,?,?,?,?,?,?)";
+                    String sql = "INSERT INTO vexe (MaVe,BienSoXe,MaNV,HoTenKH,SDTKH,MaGhe,ThoiGianDat,ThanhToan,NgayKhoiHanh,GioKhoiHanh) VALUES (?,?,?,?,?,?,?,?,?,?)";
         Connection cnt = JDBC.getConn();
         cnt.setAutoCommit(false);
          PreparedStatement pStm = cnt.prepareStatement(sql);
@@ -87,6 +89,13 @@ public class QuanLyVeXe {
          pStm.setDate(7, sqlDate);
          pStm.setBoolean(8, ve.isIsThanhToan());
          
+         date = ve.getNgayKhoiHanh();
+ 
+       sqlDate = new java.sql.Date(date.getTime()); 
+       
+         
+         pStm.setDate(9,sqlDate);
+         pStm.setString(10,ve.getGioKhoiHanh());
          
          
          pStm.executeUpdate();

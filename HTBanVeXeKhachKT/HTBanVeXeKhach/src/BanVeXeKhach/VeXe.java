@@ -16,6 +16,34 @@ import java.util.Date;
 public class VeXe {
 
     /**
+     * @return the ngayKhoiHanh
+     */
+    public Date getNgayKhoiHanh() {
+        return ngayKhoiHanh;
+    }
+
+    /**
+     * @param ngayKhoiHanh the ngayKhoiHanh to set
+     */
+    public void setNgayKhoiHanh(Date ngayKhoiHanh) {
+        this.ngayKhoiHanh = ngayKhoiHanh;
+    }
+
+    /**
+     * @return the gioKhoiHanh
+     */
+    public String getGioKhoiHanh() {
+        return gioKhoiHanh;
+    }
+
+    /**
+     * @param gioKhoiHanh the gioKhoiHanh to set
+     */
+    public void setGioKhoiHanh(String gioKhoiHanh) {
+        this.gioKhoiHanh = gioKhoiHanh;
+    }
+
+    /**
      * @return the maVe
      */
     public String getMaVe() {
@@ -134,8 +162,10 @@ public class VeXe {
     private String maGheNgoi;
     private Date thoiGianDatVe;
     private boolean isThanhToan;
+    private Date ngayKhoiHanh;
+    private String gioKhoiHanh;
     
-    public VeXe(String maVe, String bienSoXe, String maNV, String hoTenKH, String sdtKH, String maGheNgoi, Date thoiGianDatVe, boolean  isThanhToan)
+    public VeXe(String maVe, String bienSoXe, String maNV, String hoTenKH, String sdtKH, String maGheNgoi, Date thoiGianDatVe, boolean  isThanhToan, Date ngayKhoiHanh, String gioKhoiHanh)
     {
         this.maVe = maVe;
         this.bienSoXe = bienSoXe;
@@ -145,5 +175,7 @@ public class VeXe {
         this.maGheNgoi = maGheNgoi;
         this.thoiGianDatVe = thoiGianDatVe;
         this.isThanhToan = isThanhToan;
+        this.ngayKhoiHanh = ngayKhoiHanh;
+        this.gioKhoiHanh = gioKhoiHanh;
     }
 }
