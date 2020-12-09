@@ -1,10 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
@@ -17,7 +12,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="750.0" prefWidth="980.0" styleClass="main" stylesheets="@styleDis.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Interface.DistanceController">
+<AnchorPane id="AnchorPane" prefHeight="750.0" prefWidth="980.0" styleClass="main" stylesheets="@styleDis.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Interface.DistanceController">
    <children>
       <Label layoutX="347.0" layoutY="40.0" styleClass="mainLabel" stylesheets="@styleDis.css" text="QUẢN LÝ LỘ TRÌNH" AnchorPane.leftAnchor="347.0" AnchorPane.rightAnchor="347.0">
          <font>
@@ -33,21 +28,21 @@
       <Label layoutX="19.0" layoutY="206.0" styleClass="infoLabel" stylesheets="@styleDis.css" text="Tuyến đi" />
       <TextField fx:id="txtMaLoTrinh" layoutX="98.0" layoutY="144.0" prefHeight="26.0" prefWidth="306.0" />
       <TextField fx:id="txtTuyenDi" layoutX="98.0" layoutY="201.0" prefHeight="26.0" prefWidth="306.0" />
-      <TableView fx:id="tvNoiDung" layoutX="109.0" layoutY="400.0" prefHeight="336.0" prefWidth="762.0" AnchorPane.leftAnchor="109.0" AnchorPane.rightAnchor="109.0">
+      <TableView fx:id="tvNoiDung" layoutX="11.0" layoutY="400.0" prefHeight="336.0" prefWidth="958.0" AnchorPane.leftAnchor="11.0" AnchorPane.rightAnchor="11.0">
         <columns>
-          <TableColumn fx:id="tcMaLoTrinh" prefWidth="127.0" text="Mã lộ trình" />
-            <TableColumn minWidth="0.0" prefWidth="257.0" text="Lộ trình">
+          <TableColumn fx:id="tcMaLoTrinh" prefWidth="191.0" text="Mã lộ trình" />
+            <TableColumn minWidth="0.0" prefWidth="212.0" text="Lộ trình">
                <columns>
                   <TableColumn fx:id="tcTuyenDi" prefWidth="106.0" text="Tuyến Đi" />
-                  <TableColumn fx:id="tcTuyenDen" minWidth="0.0" prefWidth="96.0" text="Tuyến đến" />
+                  <TableColumn fx:id="tcTuyenDen" minWidth="0.0" prefWidth="106.0" text="Tuyến đến" />
                </columns>
             </TableColumn>
-            <TableColumn fx:id="tcXe" prefWidth="106.0" text="Biển số xe" />
-            <TableColumn fx:id="tcNgayKhoiHanh" prefWidth="127.0" text="Ngày Khởi Hành" />
-            <TableColumn fx:id="tcGioKhoiHanh" prefWidth="133.0" text="Giờ Khỏi Hành" />
+            <TableColumn fx:id="tcXe" prefWidth="191.0" text="Biển số xe" />
+            <TableColumn fx:id="tcNgayKhoiHanh" prefWidth="181.0" text="Ngày Khởi Hành" />
+            <TableColumn fx:id="tcGioKhoiHanh" prefWidth="181.0" text="Giờ Khởi Hành" />
         </columns>
       </TableView>
-      <Button layoutX="83.0" layoutY="312.0" mnemonicParsing="false" onAction="#themLoTring" prefHeight="44.0" prefWidth="150.0" styleClass="btAdd" stylesheets="@styleDis.css" text="Thêm LT">
+      <Button layoutX="48.0" layoutY="312.0" mnemonicParsing="false" onAction="#themLoTring" prefHeight="44.0" prefWidth="134.0" styleClass="btAdd" stylesheets="@styleDis.css" text="Thêm LT">
          <graphic>
             <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -56,7 +51,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button layoutX="301.0" layoutY="312.0" mnemonicParsing="false" onAction="#capNhatTuyenDuong" prefHeight="44.0" prefWidth="150.0" styleClass="btEdit" stylesheets="@styleDis.css" text="Cập nhật LT">
+      <Button layoutX="213.0" layoutY="312.0" mnemonicParsing="false" onAction="#capNhatTuyenDuong" prefHeight="44.0" prefWidth="134.0" styleClass="btEdit" stylesheets="@styleDis.css" text="Cập nhật LT">
          <graphic>
             <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -65,7 +60,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button layoutX="530.0" layoutY="312.0" mnemonicParsing="false" onAction="#xoaTuyenDuong" prefHeight="44.0" prefWidth="150.0" styleClass="btDelete" stylesheets="@styleDis.css" text="Xóa LT">
+      <Button layoutX="388.0" layoutY="312.0" mnemonicParsing="false" onAction="#xoaTuyenDuong" prefHeight="44.0" prefWidth="134.0" styleClass="btDelete" stylesheets="@styleDis.css" text="Xóa LT">
          <graphic>
             <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -74,7 +69,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button layoutX="747.0" layoutY="312.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="147.0" styleClass="btCancel" stylesheets="@styleDis.css" text="Hủy">
+      <Button layoutX="566.0" layoutY="312.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="134.0" styleClass="btCancel" stylesheets="@styleDis.css" text="Hủy">
          <graphic>
             <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -85,11 +80,20 @@
       </Button>
       <Label layoutX="21.0" layoutY="253.0" styleClass="infoLabel" stylesheets="@styleDis.css" text="Tuyến đến" />
       <TextField fx:id="txtTuyenDen" layoutX="98.0" layoutY="247.0" prefHeight="26.0" prefWidth="306.0" />
-      <ComboBox fx:id="cbXe" layoutX="633.0" layoutY="144.0" prefWidth="150.0" />
+      <ComboBox fx:id="cbXe" layoutX="633.0" layoutY="144.0" prefHeight="25.0" prefWidth="218.0" />
       <Label layoutX="522.0" layoutY="149.0" styleClass="infoLabel" stylesheets="@styleDis.css" text="Xe" />
-      <DatePicker fx:id="dpNgayKhoiHanh" layoutX="633.0" layoutY="191.0" />
+      <DatePicker fx:id="dpNgayKhoiHanh" layoutX="633.0" layoutY="191.0" prefHeight="25.0" prefWidth="218.0" />
       <Label layoutX="517.0" layoutY="197.0" styleClass="infoLabel" stylesheets="@styleDis.css" text="Ngày khởi hành" />
       <Label layoutX="517.0" layoutY="253.0" styleClass="infoLabel" stylesheets="@styleDis.css" text="Giờ khởi hành" />
       <TextField fx:id="txtGioKhoiHanh" layoutX="633.0" layoutY="248.0" prefHeight="31.0" prefWidth="218.0" />
+      <Button fx:id="btExit" layoutX="742.0" layoutY="312.0" mnemonicParsing="false" onAction="#btExitOnAction" prefHeight="44.0" prefWidth="134.0" style="-fx-background-color: #cb52de;" styleClass="btCancel" stylesheets="@styleDis.css" text="Trở về">
+         <graphic>
+            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@picture/icon-1(1).png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
    </children>
 </AnchorPane>

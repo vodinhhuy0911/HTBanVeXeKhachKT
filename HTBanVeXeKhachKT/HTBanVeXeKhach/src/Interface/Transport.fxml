@@ -16,7 +16,7 @@
       <Label layoutX="265.0" layoutY="113.0" styleClass="infoLabel" stylesheets="@styleTrans.css" text="Mã xe" />
       <Label layoutX="265.0" layoutY="173.0" styleClass="infoLabel" stylesheets="@styleTrans.css" text="Loại xe" />
       <TextField fx:id="txtMaXe" layoutX="323.0" layoutY="111.0" prefHeight="25.0" prefWidth="231.0" />
-      <Button layoutX="251.0" layoutY="254.0" mnemonicParsing="false" onAction="#capNhatXe" prefHeight="44.0" prefWidth="122.0" styleClass="btEdit" stylesheets="@styleTrans.css" text="Cập nhật">
+      <Button layoutX="202.0" layoutY="254.0" mnemonicParsing="false" onAction="#capNhatXe" prefHeight="44.0" prefWidth="122.0" style="-fx-background-color: #f2f229;" styleClass="btEdit" stylesheets="@styleTrans.css" text="Cập nhật">
          <graphic>
             <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -25,7 +25,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button layoutX="451.0" layoutY="254.0" mnemonicParsing="false" onAction="#xoaXe" prefHeight="44.0" prefWidth="122.0" styleClass="btDelete" stylesheets="@styleTrans.css" text="Xóa xe">
+      <Button layoutX="352.0" layoutY="254.0" mnemonicParsing="false" onAction="#xoaXe" prefHeight="44.0" prefWidth="122.0" styleClass="btDelete" stylesheets="@styleTrans.css" text="Xóa xe">
          <graphic>
             <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -34,7 +34,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button layoutX="51.0" layoutY="254.0" mnemonicParsing="false" onAction="#themXe" prefHeight="44.0" prefWidth="122.0" styleClass="btAdd" stylesheets="@styleTrans.css" text="Thêm xe" AnchorPane.leftAnchor="51.0">
+      <Button layoutX="52.0" layoutY="254.0" mnemonicParsing="false" onAction="#themXe" prefHeight="44.0" prefWidth="122.0" styleClass="btAdd" stylesheets="@styleTrans.css" text="Thêm xe" AnchorPane.leftAnchor="52.0">
          <graphic>
             <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -43,7 +43,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button layoutX="651.0" layoutY="254.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="122.0" styleClass="btCancel" stylesheets="@styleTrans.css" text="Hủy" AnchorPane.rightAnchor="51.0">
+      <Button layoutX="503.0" layoutY="254.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="122.0" styleClass="btCancel" stylesheets="@styleTrans.css" text="Hủy" AnchorPane.rightAnchor="199.0">
          <graphic>
             <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -64,5 +64,14 @@
          </image>
       </ImageView>
       <ComboBox fx:id="cbLoaiXe" layoutX="323.0" layoutY="171.0" prefHeight="25.0" prefWidth="231.0" />
+      <Button fx:id="btExit" layoutX="650.0" layoutY="254.0" mnemonicParsing="false" onAction="#btExitOnAction" prefHeight="44.0" prefWidth="122.0" style="-fx-background-color: #29f2c0;" styleClass="btCancel" stylesheets="@styleTrans.css" text="Trở về" AnchorPane.rightAnchor="52.0">
+         <graphic>
+            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@picture/icon-1(1).png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
    </children>
 </AnchorPane>

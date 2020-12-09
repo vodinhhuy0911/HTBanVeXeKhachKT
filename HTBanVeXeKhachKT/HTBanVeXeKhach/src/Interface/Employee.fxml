@@ -67,7 +67,7 @@
                </image>
             </ImageView>
          </graphic></Button>
-          <Button id="btSua" fx:id="btSua" layoutX="141.0" layoutY="462.0" mnemonicParsing="false" onAction="#update" prefHeight="32.0" prefWidth="96.0" styleClass="btEdit" stylesheets="@styleEmployee.css" text="Sửa" AnchorPane.leftAnchor="141.0">
+          <Button id="btSua" fx:id="btSua" layoutX="189.0" layoutY="462.0" mnemonicParsing="false" onAction="#update" prefHeight="32.0" prefWidth="96.0" styleClass="btEdit" stylesheets="@styleEmployee.css" text="Sửa" AnchorPane.leftAnchor="189.0">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
@@ -78,7 +78,7 @@
                </image>
             </ImageView>
          </graphic></Button>
-      <Button id="btXoa" fx:id="btXoa" layoutX="270.0" layoutY="462.0" mnemonicParsing="false" onAction="#delete" prefHeight="32.0" prefWidth="96.0" styleClass="btDelete" stylesheets="@styleEmployee.css" text="Xóa">
+      <Button id="btXoa" fx:id="btXoa" layoutX="381.0" layoutY="462.0" mnemonicParsing="false" onAction="#delete" prefHeight="32.0" prefWidth="96.0" styleClass="btDelete" stylesheets="@styleEmployee.css" text="Xóa">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
@@ -90,7 +90,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button fx:id="btHuy" layoutX="398.0" layoutY="462.0" mnemonicParsing="false" onAction="#huy" prefHeight="40.0" prefWidth="96.0" styleClass="btCancel" stylesheets="@styleEmployee.css" text="Hủy">
+      <Button fx:id="btHuy" layoutX="93.0" layoutY="530.0" mnemonicParsing="false" onAction="#huy" prefHeight="40.0" prefWidth="96.0" styleClass="btCancel" stylesheets="@styleEmployee.css" text="Hủy">
          <graphic>
             <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -99,7 +99,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button fx:id="btTimKiem" layoutX="871.0" layoutY="550.0" mnemonicParsing="false" onAction="#search" styleClass="btFind" stylesheets="@Employee.css" text="Tìm danh sách NV">
+      <Button fx:id="btTimKiem" layoutX="857.0" layoutY="550.0" mnemonicParsing="false" onAction="#search" styleClass="btFind" stylesheets="@Employee.css" text="Tìm danh sách NV">
          <graphic>
             <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -108,7 +108,16 @@
             </ImageView>
          </graphic>
       </Button>
-      <TextField fx:id="txtKey" layoutX="1054.0" layoutY="557.0" prefHeight="26.0" prefWidth="166.0" />
+      <TextField fx:id="txtKey" layoutX="1046.0" layoutY="557.0" prefHeight="26.0" prefWidth="166.0" />
+      <Button fx:id="btExit" layoutX="285.0" layoutY="537.0" mnemonicParsing="false" onAction="#btExitOnAction" prefHeight="40.0" prefWidth="96.0" style="-fx-background-color: #8f8ae3;" styleClass="btCancel" stylesheets="@styleEmployee.css" text="Trở về">
+         <graphic>
+            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@picture/icon-1(1).png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
       
    </children>
 </AnchorPane>
