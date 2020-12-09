@@ -11,7 +11,13 @@ import BanVeXeKhach.TuyenDuong;
 import BanVeXeKhach.Xe;
 import java.net.URL;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -21,6 +27,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
@@ -64,6 +71,18 @@ public class DistanceController implements Initializable {
     
     @FXML
     private TableColumn tcXe;
+    
+    @FXML
+    private DatePicker dpNgayKhoiHanh;
+    
+    @FXML
+    private TextField txtGioKhoiHanh;
+    
+    @FXML
+    private TableColumn tcNgayKhoiHanh;
+    
+    @FXML
+    private TableColumn tcGioKhoiHanh;
     /**
      * Initializes the controller class.
      */
@@ -84,6 +103,19 @@ public class DistanceController implements Initializable {
                 this.txtTuyenDi.setText(t.getTuyenDi());
                this.txtTuyenDen.setText(t.getTuyenDen());
                this.cbXe.getSelectionModel().select(t.getMaXe());
+               
+               DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+  //convert String to LocalDate
+  String date = String.valueOf(t.getThoiGianKhoiHanh());
+  String s[] = date.split("-");
+  
+  //mdy
+  date = s[2] + "/" + s[1] + "/" + s[0];
+  LocalDate localDate = LocalDate.parse(date, formatter);
+               
+               this.dpNgayKhoiHanh.setValue(localDate);
+               this.txtGioKhoiHanh.setText(t.getGioKhoiHanh());
             });
             return row;
         });
@@ -110,18 +142,37 @@ public class DistanceController implements Initializable {
         
         tcTuyenDen.setCellValueFactory(new PropertyValueFactory("tuyenDen"));
         tcXe.setCellValueFactory(new PropertyValueFactory("maXe"));
+        tcNgayKhoiHanh.setCellValueFactory(new PropertyValueFactory("thoiGianKhoiHanh"));
+         tcGioKhoiHanh.setCellValueFactory(new PropertyValueFactory("gioKhoiHanh"));
          this.tvNoiDung.setItems(FXCollections.observableArrayList(QuanLyTuyenDi.getDsTuyenDuong()));
     }
     
-    public void themLoTring() throws SQLException
+    public void themLoTring() throws SQLException, ParseException
     {
-        TuyenDuong td = new TuyenDuong(txtMaLoTrinh.getText(), txtTuyenDi.getText(), txtTuyenDen.getText(),cbXe.getSelectionModel().getSelectedItem().toString());
+        
+        LocalDate ngayKhoiHanh = dpNgayKhoiHanh.getValue();
+        String date = String.valueOf(ngayKhoiHanh);
+  String s[] = date.split("-");
+  date = s[2] + "/" + s[1] + "/" + s[0];
+        DateFormat sfm = new SimpleDateFormat("dd/MM/yyyy");
+        Date d = sfm.parse(date);
+        
+        TuyenDuong td = new TuyenDuong(txtMaLoTrinh.getText(), txtTuyenDi.getText(), txtTuyenDen.getText(),cbXe.getSelectionModel().getSelectedItem().toString(),d,txtGioKhoiHanh.getText());
         QuanLyTuyenDi.themTuyenDuong(td);
         this.loadData();
     }
-    public void capNhatTuyenDuong() throws SQLException
+    public void capNhatTuyenDuong() throws SQLException, ParseException
     {
-        QuanLyTuyenDi.capNhatTuyenDuong(txtTuyenDi.getText(), txtTuyenDen.getText(),txtMaLoTrinh.getText(),cbXe.getSelectionModel().getSelectedItem().toString());
+        LocalDate ngayKhoiHanh = dpNgayKhoiHanh.getValue();
+        String date = String.valueOf(ngayKhoiHanh);
+  String s[] = date.split("-");
+  date = s[2] + "/" + s[1] + "/" + s[0];
+        DateFormat sfm = new SimpleDateFormat("dd/MM/yyyy");
+        Date d = sfm.parse(date);
+        
+        
+        QuanLyTuyenDi.capNhatTuyenDuong(txtTuyenDi.getText(), txtTuyenDen.getText(),txtMaLoTrinh.getText(),cbXe.getSelectionModel().getSelectedItem().toString(),
+                d,txtGioKhoiHanh.getText());
         this.loadData();
     }
     
