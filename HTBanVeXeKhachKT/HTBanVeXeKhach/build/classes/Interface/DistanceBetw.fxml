@@ -29,9 +29,9 @@
             <Image url="@picture/unnamed.png" />
          </image>
       </ImageView>
-      <Label layoutX="251.0" layoutY="149.0" styleClass="infoLabel" stylesheets="@styleDis.css" text="Mã lộ trình" />
+      <Label layoutX="19.0" layoutY="149.0" styleClass="infoLabel" stylesheets="@styleDis.css" text="Mã lộ trình" />
       <Label layoutX="19.0" layoutY="206.0" styleClass="infoLabel" stylesheets="@styleDis.css" text="Tuyến đi" />
-      <TextField fx:id="txtMaLoTrinh" layoutX="347.0" layoutY="143.0" prefHeight="26.0" prefWidth="306.0" />
+      <TextField fx:id="txtMaLoTrinh" layoutX="98.0" layoutY="144.0" prefHeight="26.0" prefWidth="306.0" />
       <TextField fx:id="txtTuyenDi" layoutX="98.0" layoutY="204.0" prefHeight="26.0" prefWidth="306.0" />
       <TableView fx:id="tvNoiDung" layoutX="109.0" layoutY="400.0" prefHeight="336.0" prefWidth="762.0" AnchorPane.leftAnchor="109.0" AnchorPane.rightAnchor="109.0">
         <columns>
@@ -42,6 +42,7 @@
                   <TableColumn fx:id="tcTuyenDen" minWidth="0.0" prefWidth="96.0" text="Tuyến đến" />
                </columns>
             </TableColumn>
+            <TableColumn fx:id="tcXe" prefWidth="106.0" text="Biển số xe" />
         </columns>
       </TableView>
       <Button layoutX="83.0" layoutY="312.0" mnemonicParsing="false" onAction="#themLoTring" prefHeight="44.0" prefWidth="150.0" styleClass="btAdd" stylesheets="@styleDis.css" text="Thêm LT">
@@ -82,5 +83,7 @@
       </Button>
       <Label layoutX="552.0" layoutY="209.0" styleClass="infoLabel" stylesheets="@styleDis.css" text="Tuyến đến" />
       <TextField fx:id="txtTuyenDen" layoutX="633.0" layoutY="201.0" prefHeight="26.0" prefWidth="306.0" />
+      <ComboBox fx:id="cbXe" layoutX="633.0" layoutY="144.0" prefWidth="150.0" />
+      <Label layoutX="552.0" layoutY="149.0" styleClass="infoLabel" stylesheets="@styleDis.css" text="Xe" />
    </children>
 </AnchorPane>
