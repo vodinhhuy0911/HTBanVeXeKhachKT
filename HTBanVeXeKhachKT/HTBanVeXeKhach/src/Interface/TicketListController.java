@@ -7,9 +7,11 @@ package Interface;
 
 import BVXK.QuanLyTuyenDi;
 import BVXK.QuanLyVeXe;
+import BVXK.QuanLyXe;
 import BanVeXeKhach.TuyenDuong;
 import BanVeXeKhach.VeXe;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -51,7 +53,7 @@ public class TicketListController implements Initializable {
     private TableView<VeXe> tvThongTin;
 
     @FXML
-    private TextField txtIDXe;
+    private ComboBox cbIDXe;
 
     @FXML
     private TextField txtIDVe;
@@ -140,9 +142,12 @@ public class TicketListController implements Initializable {
             row.setOnMouseClicked((MouseEvent r) -> {
                 VeXe x = tvThongTin.getSelectionModel().getSelectedItem();
                 
+                ObservableList <String> list;
                 this.txtIDVe.setText(x.getMaVe());
                 this.txtIDNV.setText(x.getMaNV());
-                this.txtIDXe.setText(x.getBienSoXe());
+               
+                list = FXCollections.observableArrayList(String.valueOf(x.getBienSoXe()));
+                cbIDXe.setItems(list);
                 this.txtKH.setText(x.getHoTenKH());
                 this.txtSDT.setText(x.getSdtKH());
                 this.txtNgayBook.setText(String.valueOf(x.getThoiGianDatVe()));
@@ -152,12 +157,13 @@ public class TicketListController implements Initializable {
                     this.rdTT.setSelected(true);
                 else
                     this.rdTT.setSelected(false);
-                ObservableList <String> list;
+            
                 list = FXCollections.observableArrayList(String.valueOf(x.getNgayKhoiHanh()));
                 cbNgayKH.setItems(list);
+                cbNgayKH.getSelectionModel().select(x.getNgayKhoiHanh());
                 list = FXCollections.observableArrayList(x.getGioKhoiHanh());
                 cbGioKH.setItems(list);
-              
+              cbGioKH.getSelectionModel().select(x.getGioKhoiHanh());
                 //thêm vào combobox mã lộ trình
                 
                 List<String> str = new ArrayList<>();
@@ -184,6 +190,7 @@ public class TicketListController implements Initializable {
             return row;
         });
         
+        //themcombobox maxe
         
         
         try {
@@ -220,4 +227,55 @@ public class TicketListController implements Initializable {
         clTT.setCellValueFactory(new PropertyValueFactory("isThanhToan"));
              this.tvThongTin.setItems(FXCollections.observableArrayList(QuanLyVeXe.getDsVexe()));
      }
+     public void chonLoTrinh() throws SQLException
+    {
+        try{
+        List <String> s = new ArrayList<>();
+        String tuyenDuong = cbIDLT.getSelectionModel().getSelectedItem().toString();
+        String td[] = tuyenDuong.split(" - ");
+        String tuyenDi = td[0];
+        String tuyenDen = td[1];
+        VeXe x = tvThongTin.getSelectionModel().getSelectedItem();
+        s = QuanLyTuyenDi.getMaXe(tuyenDi, tuyenDen);
+        ObservableList <String> list = FXCollections.observableArrayList(s);
+        cbIDXe.setItems(list);
+        cbIDXe.getSelectionModel().select(x.getBienSoXe());
+//        cbNgayKH.setItems(null);
+//        cbGioKH.setItems(null);
+        } catch(Exception ex)
+        {
+            
+        }
+    }
+     
+     public void chonXe()
+    {
+        try {
+            if(cbIDXe.getSelectionModel().getSelectedItem().toString() != null)
+            {
+                
+                
+                ///////////Them ngày khởi hành vào combobox
+                List<String> ngayKhoiHanh = new ArrayList<>();
+                   String tuyenDuong = cbIDLT.getSelectionModel().getSelectedItem().toString();
+                String td[] = tuyenDuong.split(" - ");
+              String tuyenDi = td[0];
+                String tuyenDen = td[1];
+                /////////////
+                
+                ngayKhoiHanh = QuanLyTuyenDi.getNgayKhoiHanh(tuyenDi, tuyenDen, 
+                        cbIDXe.getSelectionModel().getSelectedItem().toString());
+                ObservableList <String> list = FXCollections.observableArrayList(ngayKhoiHanh);
+                    cbNgayKH.setItems(list);
+//                    cbGioKH.setItems(null);
+                
+            }   
+        } catch (SQLException ex ) {
+            Logger.getLogger(TicketController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        catch(NullPointerException ex)
+        {
+            
+        }
+    }
 }
