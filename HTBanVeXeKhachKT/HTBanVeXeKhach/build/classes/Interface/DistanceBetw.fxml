@@ -95,7 +95,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button fx:id="btFind" layoutX="610.0" layoutY="693.0" mnemonicParsing="false" onAction="#btExitOnAction" prefHeight="44.0" prefWidth="134.0" style="-fx-background-color: green;" styleClass="btCancel" stylesheets="@styleDis.css" text="Tìm kiếm">
+      <Button fx:id="btFind" layoutX="610.0" layoutY="693.0" mnemonicParsing="false" onAction="#search" prefHeight="44.0" prefWidth="134.0" style="-fx-background-color: green;" styleClass="btCancel" stylesheets="@styleDis.css" text="Tìm kiếm">
          <graphic>
             <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                <image>
