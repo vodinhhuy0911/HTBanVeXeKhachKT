@@ -55,6 +55,7 @@ public class MainController implements Initializable {
         Scene scene = new Scene(root);
         Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         stage.setScene(scene);
+        stage.centerOnScreen();
         stage.show();
     
     }
@@ -64,6 +65,7 @@ public class MainController implements Initializable {
         Scene scene = new Scene(root);
         Stage stage = (Stage)((Node)e.getSource()).getScene().getWindow();
         stage.setScene(scene);
+        stage.centerOnScreen();
         stage.show();
     }
 
@@ -74,6 +76,7 @@ public class MainController implements Initializable {
         Scene scene = new Scene(root);
         Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         stage.setScene(scene);
+         stage.centerOnScreen();
         stage.show();
     }
 
@@ -83,6 +86,7 @@ public class MainController implements Initializable {
         Scene scene = new Scene(root);
         Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         stage.setScene(scene);
+         stage.centerOnScreen();
         stage.show();
     }
 
@@ -92,6 +96,7 @@ public class MainController implements Initializable {
         Scene scene = new Scene(root);
         Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         stage.setScene(scene);
+         stage.centerOnScreen();
         stage.show();
     }
 
@@ -106,6 +111,7 @@ public class MainController implements Initializable {
         Scene scene = new Scene(root);
         Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         stage.setScene(scene);
+         stage.centerOnScreen();
         stage.show();
     }
     

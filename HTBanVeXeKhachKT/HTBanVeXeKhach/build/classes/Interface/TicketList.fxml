@@ -1,13 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
@@ -16,7 +12,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="750.0" prefWidth="1300.0" styleClass="main" stylesheets="@styleTickList.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Interface.TicketListController">
+<AnchorPane id="AnchorPane" prefHeight="750.0" prefWidth="1300.0" styleClass="main" stylesheets="@styleTickList.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Interface.TicketListController">
    <children>
       <Label layoutX="535.0" layoutY="18.0" prefHeight="69.0" prefWidth="229.0" styleClass="mainLabel" stylesheets="@styleTickList.css" text="DANH SÁCH VÉ" textAlignment="CENTER" AnchorPane.leftAnchor="535.0" AnchorPane.rightAnchor="536.0">
          <font>
@@ -24,11 +20,11 @@
          </font></Label>
       <Label layoutX="16.0" layoutY="125.0" styleClass="infoLabel" stylesheets="@styleTickList.css" text="Mã vé" />
       <Label layoutX="16.0" layoutY="175.0" styleClass="infoLabel" stylesheets="@styleTickList.css" text="Mã NV" />
-      <Label layoutX="275.0" layoutY="171.0" prefHeight="25.0" prefWidth="50.0" styleClass="infoLabel" stylesheets="@styleTickList.css" text="Lộ trình" />
-      <TextField fx:id="txtIDNV" layoutX="109.0" layoutY="171.0" prefHeight="25.0" prefWidth="133.0" />
+      <Label layoutX="275.0" layoutY="171.0" prefHeight="25.0" prefWidth="55.0" styleClass="infoLabel" stylesheets="@styleTickList.css" text="Lộ trình" />
+      <TextField fx:id="txtIDNV" layoutX="109.0" layoutY="171.0" prefHeight="25.0" prefWidth="149.0" />
       <ComboBox fx:id="cbIDLT" layoutX="347.0" layoutY="171.0" onAction="#chonLoTrinh" prefHeight="31.0" prefWidth="202.0" />
       <Label layoutX="275.0" layoutY="125.0" styleClass="infoLabel" stylesheets="@styleTickList.css" text="Mã xe" />
-      <TextField fx:id="txtIDVe" layoutX="109.0" layoutY="121.0" prefHeight="25.0" prefWidth="133.0" />
+      <TextField fx:id="txtIDVe" layoutX="109.0" layoutY="121.0" prefHeight="25.0" prefWidth="149.0" />
       <Label layoutX="580.0" layoutY="125.0" styleClass="infoLabel" stylesheets="@styleTickList.css" text="Tên khách hàng" />
       <TextField fx:id="txtKH" layoutX="697.0" layoutY="121.0" prefHeight="25.0" prefWidth="300.0" />
       <Label layoutX="579.0" layoutY="175.0" styleClass="infoLabel" stylesheets="@styleTickList.css" text="SĐT" />
@@ -59,7 +55,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button fx:id="btCancel" layoutX="807.0" layoutY="269.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="98.0" styleClass="btCancel" stylesheets="@styleTickList.css" text="Hủy" AnchorPane.rightAnchor="395.0">
+      <Button fx:id="btCancel" layoutX="611.0" layoutY="269.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="98.0" styleClass="btCancel" stylesheets="@styleTickList.css" text="Hủy" AnchorPane.rightAnchor="591.0">
          <graphic>
             <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -89,7 +85,7 @@
             <Image url="@picture/unnamed.png" />
          </image>
       </ImageView>
-      <Button fx:id="btCancel1" layoutX="863.0" layoutY="672.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="125.0" styleClass="btFind" stylesheets="@styleTickList.css" text="Tìm kiếm">
+      <Button fx:id="btCancel1" layoutX="885.0" layoutY="673.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="125.0" styleClass="btFind" stylesheets="@styleTickList.css" text="Tìm kiếm">
          <graphic>
             <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -98,8 +94,8 @@
             </ImageView>
          </graphic>
       </Button>
-      <TextField layoutX="1010.0" layoutY="679.0" prefHeight="25.0" prefWidth="250.0" />
-      <Button fx:id="btExit" layoutX="1005.0" layoutY="269.0" mnemonicParsing="false" onAction="#btExitOnAction" prefHeight="38.0" prefWidth="98.0" style="-fx-background-color: #8ae3e1;" styleClass="btCancel" stylesheets="@styleTickList.css" text="Trở về">
+      <TextField layoutX="1031.0" layoutY="680.0" prefHeight="25.0" prefWidth="250.0" />
+      <Button fx:id="btExit" layoutX="814.0" layoutY="269.0" mnemonicParsing="false" onAction="#btExitOnAction" prefHeight="38.0" prefWidth="98.0" style="-fx-background-color: #8ae3e1;" styleClass="btCancel" stylesheets="@styleTickList.css" text="Trở về">
          <graphic>
             <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -108,9 +104,18 @@
             </ImageView>
          </graphic>
       </Button>
-      <RadioButton fx:id="rdTT" layoutX="1048.0" layoutY="226.0" mnemonicParsing="false" text="Trạng thái thanh toán" />
+      <RadioButton fx:id="rdTT" layoutX="1094.0" layoutY="219.0" mnemonicParsing="false" styleClass="infoLabel" stylesheets="@styleTickList.css" text="Trạng thái thanh toán" />
       <ComboBox fx:id="cbNgayKH" layoutX="109.0" layoutY="221.0" prefHeight="31.0" prefWidth="149.0" />
       <ComboBox fx:id="cbGioKH" layoutX="347.0" layoutY="224.0" prefHeight="31.0" prefWidth="149.0" />
-      <ComboBox fx:id="cbIDXe" layoutX="338.0" layoutY="121.0" onAction="#chonXe" prefHeight="31.0" prefWidth="202.0" />
+      <ComboBox fx:id="cbIDXe" layoutX="347.0" layoutY="120.0" onAction="#chonXe" prefHeight="31.0" prefWidth="202.0" />
+      <Button fx:id="btXuatVe" layoutX="1009.0" layoutY="269.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="125.0" style="-fx-background-color: lightgreen;" styleClass="btFind" stylesheets="@styleTickList.css" text="Xuất vé">
+         <graphic>
+            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@picture/ticket-icon.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
    </children>
 </AnchorPane>
