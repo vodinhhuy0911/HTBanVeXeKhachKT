@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -72,6 +73,9 @@ public class TicketListController implements Initializable {
 
     @FXML
     private RadioButton rdTT;
+    
+    @FXML
+    private TextField txtKey;
 
     @FXML
     private ComboBox cbIDLT;
@@ -150,7 +154,8 @@ public class TicketListController implements Initializable {
                 cbIDXe.setItems(list);
                 this.txtKH.setText(x.getHoTenKH());
                 this.txtSDT.setText(x.getSdtKH());
-                this.txtNgayBook.setText(String.valueOf(x.getThoiGianDatVe()));
+                SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+                this.txtNgayBook.setText(String.valueOf(formatter.format(x.getThoiGianDatVe())));
                 this.txtViTriGhe.setText(x.getMaGheNgoi());
                 this.txtGiaVe.setText(String.valueOf(x.getGiaVe()));
                 if(x.isIsThanhToan())
@@ -278,4 +283,108 @@ public class TicketListController implements Initializable {
             
         }
     }
+     
+     public void chonNgay()
+    {
+         try {
+            if(cbNgayKH.getSelectionModel().getSelectedItem().toString() != null)
+            {
+               
+                
+                ///////////Them Giờ khởi hành vào combobox
+                List<String> gioKhoiHanh = new ArrayList<>();
+                   String tuyenDuong = cbIDLT.getSelectionModel().getSelectedItem().toString();
+                String td[] = tuyenDuong.split(" - ");
+              String tuyenDi = td[0];
+                String tuyenDen = td[1];
+                /////////////
+                //tuyenDi, tuyenden,maxe,ngaykhoihanh
+                gioKhoiHanh = QuanLyTuyenDi.getGioKhoiHanh(tuyenDi, tuyenDen,
+                        cbIDXe.getSelectionModel().getSelectedItem().toString(),
+                        cbNgayKH.getSelectionModel().getSelectedItem().toString());
+                ObservableList <String> list = FXCollections.observableArrayList(gioKhoiHanh);
+                    cbGioKH.setItems(list);
+                
+            }   
+        } catch (SQLException ex ) {
+            Logger.getLogger(TicketController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        catch(NullPointerException ex)
+        {
+            
+        }
+    }
+     
+      public void capNhat() throws SQLException
+      {
+          boolean flag = false;
+          if(rdTT.isSelected())
+              flag = true;
+           List<String> gioKhoiHanh = new ArrayList<>();
+                   String tuyenDuong = cbIDLT.getSelectionModel().getSelectedItem().toString();
+                String td[] = tuyenDuong.split(" - ");
+              String tuyenDi = td[0];
+                String tuyenDen = td[1];
+          QuanLyVeXe.capNhatVeXe(cbIDXe.getSelectionModel().getSelectedItem().toString(), 
+                 txtIDNV.getText(),txtKH.getText(), txtSDT.getText(),
+                 txtViTriGhe.getText(), txtNgayBook.getText(), true,
+                 cbNgayKH.getSelectionModel().getSelectedItem().toString(),
+                 cbGioKH.getSelectionModel().getSelectedItem().toString(), 
+                 Double.parseDouble(txtGiaVe.getText()),
+                 QuanLyTuyenDi.getMaLoTrinh(tuyenDi, tuyenDen, 
+                         cbIDXe.getSelectionModel().getSelectedItem().toString(), cbNgayKH.getSelectionModel().getSelectedItem().toString(),
+                 cbGioKH.getSelectionModel().getSelectedItem().toString())
+                 , txtIDVe.getText());
+          
+          this.loadData();
+      }
+      
+      public void xoaVe() throws SQLException
+      {
+          QuanLyVeXe.xoaVeXe(txtIDVe.getText());
+          this.loadData();
+      }
+      
+      public void huy() throws SQLException
+      {
+          txtGiaVe.setText(null);
+          txtIDVe.setText(null);
+          txtIDNV.setText(null);
+          txtKH.setText(null);
+          txtSDT.setText(null);
+          txtNgayBook.setText(null);
+          txtViTriGhe.setText(null);
+          rdTT.setSelected(false);
+          cbNgayKH.setItems(null);
+          cbNgayKH.getSelectionModel().select(null);
+          cbIDXe.setItems(null);
+          cbIDXe.getSelectionModel().select(null);
+          cbIDLT.setItems(null);
+          cbIDLT.getSelectionModel().select(null);
+          cbGioKH.setItems(null);
+          cbGioKH.getSelectionModel().select(null);
+          this.loadData();
+        }
+      
+      public void timKiem() throws SQLException
+      {
+          if(txtKey.getText() != null ||txtKey.getText() != "" )
+          {
+           clMaVe.setCellValueFactory(new PropertyValueFactory("maVe"));
+        clMaNV.setCellValueFactory(new PropertyValueFactory("maNV"));
+        clMaLT.setCellValueFactory(new PropertyValueFactory("maLoTrinh"));
+        clMaXe.setCellValueFactory(new PropertyValueFactory("bienSoXe"));
+        clTKH.setCellValueFactory(new PropertyValueFactory("hoTenKH"));
+        clSDT.setCellValueFactory(new PropertyValueFactory("sdtKH"));
+        clViTriGhe.setCellValueFactory(new PropertyValueFactory("maGheNgoi"));
+        clGiaVe.setCellValueFactory(new PropertyValueFactory("giaVe"));
+        clNgayDat.setCellValueFactory(new PropertyValueFactory("thoiGianDatVe"));
+        clGioKH.setCellValueFactory(new PropertyValueFactory("gioKhoiHanh"));
+        clNgayKH.setCellValueFactory(new PropertyValueFactory("ngayKhoiHanh"));
+        clTT.setCellValueFactory(new PropertyValueFactory("isThanhToan"));
+             this.tvThongTin.setItems(FXCollections.observableArrayList(QuanLyVeXe.timKiemLoTrinh(txtKey.getText())));
+          }
+          else
+              this.loadData();
+      }
 }

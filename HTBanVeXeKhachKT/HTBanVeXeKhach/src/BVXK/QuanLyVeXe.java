@@ -2,15 +2,20 @@ package BVXK;
 
 
 import BanVeXeKhach.NhanVien;
+import BanVeXeKhach.TuyenDuong;
 import BanVeXeKhach.VeXe;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List; 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -36,15 +41,44 @@ public class QuanLyVeXe {
             String hoTenKh = rs.getString("HoTenKH");
             String sdtKh = rs.getString("SDTKH");
             String maGheNgoi = rs.getString("MaGhe");
-            Date thoiGianDat = rs.getDate("ThoiGianDat");
-            Boolean isThanhToan = rs.getBoolean("ThanhToan");
-            Date ngayKhoiHanh = rs.getDate("NgayKhoiHanh");
-            String gioKhoiHanh = rs.getString("GioKhoiHanh");
-            double giaVe = rs.getDouble("GiaVe");
-            String maLoTrinh = rs.getString("MaLoTrinh");
-            VeXe vx = new VeXe(maVe,bienSoXe,maNV, hoTenKh, sdtKh,maGheNgoi, thoiGianDat, isThanhToan,ngayKhoiHanh,gioKhoiHanh,giaVe,maLoTrinh);
             
-            kq.add(vx);
+            SimpleDateFormat ft = new SimpleDateFormat ("yyyy-MM-dd hh:mm:ss ");
+            
+//            java.util.Date date = rs.getDate("ThoiGianDat");
+//      java.sql.Date sqlDate = new java.sql.Date(date.getTime()); 
+//            System.out.println(rs.getDate("ThoiGianDat") + " " + rs.getTime("ThoiGianDat"));
+//            Date thoiGianDat = sqlDate;
+            
+//             SimpleDateFormat ft = new SimpleDateFormat ("yyyy/MM/dd hh:mm:ss ");
+
+SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+//        String dateInString = "2017-06-07 22:22:22";
+String ngay = String.valueOf(rs.getDate("ThoiGianDat"));
+String gio = String.valueOf(rs.getTime("ThoiGianDat"));
+String dateInString = ngay + " " + gio;
+        try {
+            Date date = formatter.parse(dateInString);
+//            System.out.println(date);
+//            System.out.println(formatter.format(date));
+             Date thoiGianDat;
+             thoiGianDat = date; // System.out.println(formatter.format(date));
+             Boolean isThanhToan = rs.getBoolean("ThanhToan");
+             Date ngayKhoiHanh = rs.getDate("NgayKhoiHanh");
+             String gioKhoiHanh = rs.getString("GioKhoiHanh");
+             double giaVe = rs.getDouble("GiaVe");
+             String maLoTrinh = rs.getString("MaLoTrinh");
+             VeXe vx = new VeXe(maVe,bienSoXe,maNV, hoTenKh, sdtKh,maGheNgoi, thoiGianDat, isThanhToan,ngayKhoiHanh,gioKhoiHanh,giaVe,maLoTrinh);
+             kq.add(vx);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+//            String ngay = rs.getDate("ThoiGianDat").toString();
+//            String gio = rs.getTime("ThoiGianDat").toString();
+//            String date = ngay + " " + gio;
+           
+            
+            
         }
         rs.close();
         return kq;
@@ -73,7 +107,7 @@ public class QuanLyVeXe {
         
         if(kq == 0)
         {
-                    String sql = "INSERT INTO vexe (MaVe,BienSoXe,MaNV,HoTenKH,SDTKH,MaGhe,ThoiGianDat,ThanhToan,NgayKhoiHanh,GioKhoiHanh,GiaVe,MaLoTrinh) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
+                    String sql = "INSERT INTO vexe (MaVe,BienSoXe,MaNV,HoTenKH,SDTKH,MaGhe,ThoiGianDat,ThanhToan,NgayKhoiHanh,GioKhoiHanh,GiaVe,MaLoTrinh) VALUES (?,?,?,?,?,?,now(),?,?,?,?,?)";
         Connection cnt = JDBC.getConn();
         cnt.setAutoCommit(false);
          PreparedStatement pStm = cnt.prepareStatement(sql);
@@ -86,20 +120,20 @@ public class QuanLyVeXe {
          
          java.util.Date date = ve.getThoiGianDatVe();
       java.sql.Date sqlDate = new java.sql.Date(date.getTime()); 
-
-         
-         pStm.setDate(7, sqlDate);
-         pStm.setBoolean(8, ve.isIsThanhToan());
+//
+//         
+//         pStm.setDate(7, sqlDate);
+         pStm.setBoolean(7, ve.isIsThanhToan());
          
          date = ve.getNgayKhoiHanh();
  
        sqlDate = new java.sql.Date(date.getTime()); 
        
          
-         pStm.setDate(9,sqlDate);
-         pStm.setString(10,ve.getGioKhoiHanh());
-         pStm.setDouble(11, ve.getGiaVe());
-         pStm.setString(12,ve.getMaLoTrinh());
+         pStm.setDate(8,sqlDate);
+         pStm.setString(9,ve.getGioKhoiHanh());
+         pStm.setDouble(10, ve.getGiaVe());
+         pStm.setString(11,ve.getMaLoTrinh());
          
          pStm.executeUpdate();
         cnt.commit();
@@ -107,5 +141,91 @@ public class QuanLyVeXe {
         }
         
         return false;
+    }
+    
+    public static void capNhatVeXe(String bienSoXe, String maNV, String hoTenKH, String sdtKH, String maGhe,String thoiGianDat,boolean isThanhToan,String ngayKhoiHanh,String gioKhoiHanh,double giaVe, String maLoTrinh,String maVe) throws SQLException
+    {
+        String sql = "UPDATE vexe SET BienSoXe = ?, MaNV = ?, HoTenKH = ?, SDTKH = ?, MaGhe = ?, ThoiGianDat = now(), ThanhToan = ?, NgayKhoiHanh = ?, GioKhoiHanh = ?, GiaVe = ?, MaLoTrinh = ? WHERE MaVe = ?";
+        Connection cnt = JDBC.getConn();
+        cnt.setAutoCommit(false);
+        PreparedStatement pStm = cnt.prepareStatement(sql);
+        pStm.setString(1, bienSoXe);
+        pStm.setString(2, maNV);
+        pStm.setString(3, hoTenKH);
+        pStm.setString(4, sdtKH);
+        pStm.setString(5, maGhe);
+//        pStm.setString(6, thoiGianDat);
+        pStm.setBoolean(6, isThanhToan);
+        pStm.setString(7, ngayKhoiHanh);
+        pStm.setString(8, gioKhoiHanh);
+        pStm.setDouble(9, giaVe);
+        pStm.setString(10, maLoTrinh);
+        pStm.setString(11, maVe);
+        pStm.executeUpdate();
+        cnt.commit();
+    }
+    
+    public static void xoaVeXe(String maVe) throws SQLException
+    {
+        String sql = "DELETE FROM vexe WHERE MaLoTrinh = '" + maVe+"'";
+      
+        Connection cnt = JDBC.getConn();
+        cnt.setAutoCommit(false);
+        PreparedStatement pStm = cnt.prepareStatement(sql);
+         pStm.executeUpdate();
+         cnt.commit();
+    }
+    
+    public static List<VeXe> timKiemLoTrinh(String key) throws SQLException
+    {
+        Connection conn = JDBC.getConn();
+       Statement stm = conn.createStatement();
+       ResultSet rs = stm.executeQuery("SELECT v.MaVe, v.BienSoXe, v.MaNV, v.HoTenKH, v.SDTKH, v.MaGhe, v.ThoiGianDat, v.ThanhToan, v.NgayKhoiHanh, v.GioKhoiHanh, v.GiaVe, v.MaLoTrinh FROM lotrinh l join vexe v on l.MaLoTrinh = v.MaLoTrinh WHERE TuyenDi like N'%"+key+"%' OR TuyenDen LIKE N'%" +key+"%'");
+       List<VeXe> kq = new ArrayList<>();
+       while(rs.next())
+       {
+           String maVe = rs.getString("MaVe");
+            String bienSoXe = rs.getString("BienSoXe");
+            String maNV = rs.getString("MaNV");
+            String hoTenKh = rs.getString("HoTenKH");
+            String sdtKh = rs.getString("SDTKH");
+            String maGheNgoi = rs.getString("MaGhe");
+            
+            SimpleDateFormat ft = new SimpleDateFormat ("yyyy-MM-dd hh:mm:ss ");
+            
+//            java.util.Date date = rs.getDate("ThoiGianDat");
+//      java.sql.Date sqlDate = new java.sql.Date(date.getTime()); 
+//            System.out.println(rs.getDate("ThoiGianDat") + " " + rs.getTime("ThoiGianDat"));
+//            Date thoiGianDat = sqlDate;
+            
+//             SimpleDateFormat ft = new SimpleDateFormat ("yyyy/MM/dd hh:mm:ss ");
+
+SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+//        String dateInString = "2017-06-07 22:22:22";
+String ngay = String.valueOf(rs.getDate("ThoiGianDat"));
+String gio = String.valueOf(rs.getTime("ThoiGianDat"));
+String dateInString = ngay + " " + gio;
+        try {
+            Date date = formatter.parse(dateInString);
+//            System.out.println(date);
+//            System.out.println(formatter.format(date));
+             Date thoiGianDat;
+             thoiGianDat = date; // System.out.println(formatter.format(date));
+             Boolean isThanhToan = rs.getBoolean("ThanhToan");
+             Date ngayKhoiHanh = rs.getDate("NgayKhoiHanh");
+             String gioKhoiHanh = rs.getString("GioKhoiHanh");
+             double giaVe = rs.getDouble("GiaVe");
+             String maLoTrinh = rs.getString("MaLoTrinh");
+             VeXe vx = new VeXe(maVe,bienSoXe,maNV, hoTenKh, sdtKh,maGheNgoi, thoiGianDat, isThanhToan,ngayKhoiHanh,gioKhoiHanh,giaVe,maLoTrinh);
+             kq.add(vx);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+//            String ngay = rs.getDate("ThoiGianDat").toString();
+//            String gio = rs.getTime("ThoiGianDat").toString();
+//            String date = ngay + " " + gio;
+       }
+       return kq;
     }
 }

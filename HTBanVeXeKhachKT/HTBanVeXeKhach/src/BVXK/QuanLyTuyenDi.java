@@ -178,5 +178,17 @@ public class QuanLyTuyenDi {
         }
         return dsTuyenDuong;
     }
-   
+   public List<String> getMaLoTrinh(String key) throws SQLException
+   {
+       Connection conn = JDBC.getConn();
+       Statement stm = conn.createStatement();
+       ResultSet rs = stm.executeQuery("SELECT MaLoTrinh FROM lotrinh WHERE TuyenDi like'"+key+"' OR TuyenVe like '"+key+"'");
+       
+       List<String> kq = new ArrayList<>();
+       while(rs.next())
+       {
+           kq.add(rs.getString("MaLoTrinh"));
+       }
+       return kq;
+   }
 }
