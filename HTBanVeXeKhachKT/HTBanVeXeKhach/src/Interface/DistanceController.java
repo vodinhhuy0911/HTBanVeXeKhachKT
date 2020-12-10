@@ -32,6 +32,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
@@ -64,8 +65,6 @@ public class DistanceController implements Initializable {
     @FXML
     private TableColumn tcMaLoTrinh;
     
-    @FXML
-    private TableColumn tcLoTrinh;
     
     @FXML
     private TableColumn tcTuyenDi;
@@ -90,6 +89,8 @@ public class DistanceController implements Initializable {
     
     @FXML
     private TableColumn tcGioKhoiHanh;
+    @FXML
+    private TextField txtFind;
     /**
      * Initializes the controller class.
      */
@@ -154,6 +155,7 @@ public class DistanceController implements Initializable {
          this.tvNoiDung.setItems(FXCollections.observableArrayList(QuanLyTuyenDi.getDsTuyenDuong()));
     }
     
+    @FXML
     public void themLoTring() throws SQLException, ParseException
     {
         
@@ -168,6 +170,7 @@ public class DistanceController implements Initializable {
         QuanLyTuyenDi.themTuyenDuong(td);
         this.loadData();
     }
+    @FXML
     public void capNhatTuyenDuong() throws SQLException, ParseException
     {
         LocalDate ngayKhoiHanh = dpNgayKhoiHanh.getValue();
@@ -183,16 +186,36 @@ public class DistanceController implements Initializable {
         this.loadData();
     }
     
+    @FXML
     public void xoaTuyenDuong() throws SQLException
     {
         QuanLyTuyenDi.xoaTuyenDuong(txtMaLoTrinh.getText());
         this.loadData();
     }
+    @FXML
     public void btExitOnAction(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("Main.fxml"));
         Scene scene = new Scene(root);
         Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         stage.setScene(scene);
         stage.show();
+    }
+     //Tim kiem
+    @FXML
+    public void search(ActionEvent event) throws SQLException{
+        if(!txtFind.getText().isEmpty()){
+            List<TuyenDuong>dsTuyenDuong = new ArrayList<>();
+            dsTuyenDuong = QuanLyTuyenDi.timKiemTuyenDuong(txtFind.getText());
+            tcMaLoTrinh.setCellValueFactory(new PropertyValueFactory("maTuyenDuong"));
+            tcTuyenDi.setCellValueFactory(new PropertyValueFactory("tuyenDi"));
+            tcTuyenDen.setCellValueFactory(new PropertyValueFactory("tuyenDen"));
+            tcXe.setCellValueFactory(new PropertyValueFactory("maXe"));
+            tcNgayKhoiHanh.setCellValueFactory(new PropertyValueFactory("thoiGianKhoiHanh"));
+            tcGioKhoiHanh.setCellValueFactory(new PropertyValueFactory("gioKhoiHanh"));
+            this.tvNoiDung.setItems(FXCollections.observableArrayList(dsTuyenDuong));
+        }
+        else{
+            this.loadData();
+        }
     }
 }

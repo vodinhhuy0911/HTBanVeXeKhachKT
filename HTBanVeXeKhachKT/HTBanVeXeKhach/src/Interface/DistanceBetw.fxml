@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="750.0" prefWidth="980.0" styleClass="main" stylesheets="@styleDis.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Interface.DistanceController">
+<AnchorPane id="AnchorPane" prefHeight="755.0" prefWidth="980.0" styleClass="main" stylesheets="@styleDis.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Interface.DistanceController">
    <children>
       <Label layoutX="347.0" layoutY="40.0" styleClass="mainLabel" stylesheets="@styleDis.css" text="QUẢN LÝ LỘ TRÌNH" AnchorPane.leftAnchor="347.0" AnchorPane.rightAnchor="347.0">
          <font>
@@ -28,7 +28,7 @@
       <Label layoutX="19.0" layoutY="206.0" styleClass="infoLabel" stylesheets="@styleDis.css" text="Tuyến đi" />
       <TextField fx:id="txtMaLoTrinh" layoutX="98.0" layoutY="144.0" prefHeight="26.0" prefWidth="306.0" />
       <TextField fx:id="txtTuyenDi" layoutX="98.0" layoutY="201.0" prefHeight="26.0" prefWidth="306.0" />
-      <TableView fx:id="tvNoiDung" layoutX="11.0" layoutY="400.0" prefHeight="336.0" prefWidth="958.0" AnchorPane.leftAnchor="11.0" AnchorPane.rightAnchor="11.0">
+      <TableView fx:id="tvNoiDung" layoutX="11.0" layoutY="375.0" prefHeight="310.0" prefWidth="958.0" AnchorPane.leftAnchor="11.0" AnchorPane.rightAnchor="11.0">
         <columns>
           <TableColumn fx:id="tcMaLoTrinh" prefWidth="191.0" text="Mã lộ trình" />
             <TableColumn minWidth="0.0" prefWidth="212.0" text="Lộ trình">
@@ -95,5 +95,15 @@
             </ImageView>
          </graphic>
       </Button>
+      <Button fx:id="btFind" layoutX="610.0" layoutY="693.0" mnemonicParsing="false" onAction="#btExitOnAction" prefHeight="44.0" prefWidth="134.0" style="-fx-background-color: green;" styleClass="btCancel" stylesheets="@styleDis.css" text="Tìm kiếm">
+         <graphic>
+            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@picture/105498-200.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <TextField fx:id="txtFind" layoutX="751.0" layoutY="700.0" onAction="#search" prefHeight="31.0" prefWidth="218.0" />
    </children>
 </AnchorPane>

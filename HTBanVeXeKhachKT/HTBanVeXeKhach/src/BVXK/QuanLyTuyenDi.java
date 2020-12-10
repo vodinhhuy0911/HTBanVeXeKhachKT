@@ -159,5 +159,24 @@ public class QuanLyTuyenDi {
        }
        return null;
    }
+       public static List<TuyenDuong> timKiemTuyenDuong(String key) throws SQLException
+    {
+        Connection conn = JDBC.getConn();
+        Statement stm = conn.createStatement();
+        ResultSet rs = stm.executeQuery("SELECT * FROM lotrinh WHERE MaLoTrinh like '" + key + "' OR TuyenDi like N'" + key
+        + "' OR TuyenDen like N'" + key+ "' OR MaXe like N'" + key+ "' OR NgayKhoiHanh like '" + key+ "' OR GioKhoiHanh like N'" + key +"'");
+        List<TuyenDuong> dsTuyenDuong = new ArrayList<>();
+        while (rs.next()) {
+            String maTuyenDuong = rs.getString("MaLoTrinh");
+            String tuyenDi = rs.getString("TuyenDi");
+            String tuyenDen = rs.getString("TuyenDen");
+            String maXe = rs.getString("MaXe");
+            Date thoiGianKhoiHanh = rs.getDate("NgayKhoiHanh");
+            String gioKhoiHanh = rs.getString("GioKhoiHanh");
+            TuyenDuong tuyenDuong = new TuyenDuong(maTuyenDuong,tuyenDi,tuyenDen,maXe,thoiGianKhoiHanh,gioKhoiHanh);
+            dsTuyenDuong.add(tuyenDuong);
+        }
+        return dsTuyenDuong;
+    }
    
 }
