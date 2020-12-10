@@ -5,15 +5,20 @@
  */
 package Interface;
 
+import BVXK.QuanLyTuyenDi;
 import BVXK.QuanLyVeXe;
+import BanVeXeKhach.TuyenDuong;
 import BanVeXeKhach.VeXe;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -22,6 +27,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
@@ -63,7 +69,7 @@ public class TicketListController implements Initializable {
     private TextField txtSDT;
 
     @FXML
-    private ComboBox cbTT;
+    private RadioButton rdTT;
 
     @FXML
     private ComboBox cbIDLT;
@@ -142,7 +148,38 @@ public class TicketListController implements Initializable {
                 this.txtNgayBook.setText(String.valueOf(x.getThoiGianDatVe()));
                 this.txtViTriGhe.setText(x.getMaGheNgoi());
                 this.txtGiaVe.setText(String.valueOf(x.getGiaVe()));
-//               this.cbLoaiXe.getSelectionModel().select(x.getLoaiXe());
+                if(x.isIsThanhToan())
+                    this.rdTT.setSelected(true);
+                else
+                    this.rdTT.setSelected(false);
+                ObservableList <String> list;
+                list = FXCollections.observableArrayList(String.valueOf(x.getNgayKhoiHanh()));
+                cbNgayKH.setItems(list);
+                list = FXCollections.observableArrayList(x.getGioKhoiHanh());
+                cbGioKH.setItems(list);
+              
+                //thêm vào combobox mã lộ trình
+                
+                List<String> str = new ArrayList<>();
+                try {
+                    List <TuyenDuong> td = QuanLyTuyenDi.getDsTuyenDuong();
+            int i = 0;
+            for(TuyenDuong t : td)
+            {
+               str.add(t.getTuyenDi() + " - " + t.getTuyenDen());
+            }
+                    list = FXCollections.observableArrayList(str);
+                    cbIDLT.setItems(list);
+                } catch (SQLException ex) {
+                    Logger.getLogger(TicketListController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                    String sss = null;
+                try {
+                    sss = QuanLyTuyenDi.getTuyenDuong(x.getMaLoTrinh());
+                } catch (SQLException ex) {
+                    Logger.getLogger(TicketListController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+               this.cbIDLT.getSelectionModel().select(sss);
             });
             return row;
         });

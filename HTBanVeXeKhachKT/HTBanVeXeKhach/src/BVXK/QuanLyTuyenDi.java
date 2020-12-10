@@ -148,4 +148,16 @@ public class QuanLyTuyenDi {
        }
        return null;
    }
+   public static String getTuyenDuong(String maLoTrinh) throws SQLException
+   {
+       Connection conn = JDBC.getConn();
+       Statement stm = conn.createStatement();
+       ResultSet rs = stm.executeQuery("SELECT TuyenDi, TuyenDen FROM lotrinh WHERE MaLoTrinh = '" +maLoTrinh+"'" );
+       while(rs.next())
+       {
+           return rs.getString("TuyenDi") + " - " + rs.getString("TuyenDen");
+       }
+       return null;
+   }
+   
 }

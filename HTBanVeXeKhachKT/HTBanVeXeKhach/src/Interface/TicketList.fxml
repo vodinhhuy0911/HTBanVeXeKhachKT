@@ -24,27 +24,23 @@
          </font></Label>
       <Label layoutX="16.0" layoutY="125.0" styleClass="infoLabel" stylesheets="@styleTickList.css" text="Mã vé" />
       <Label layoutX="16.0" layoutY="175.0" styleClass="infoLabel" stylesheets="@styleTickList.css" text="Mã NV" />
-      <Label layoutX="275.0" layoutY="171.0" prefHeight="25.0" prefWidth="50.0" styleClass="infoLabel" stylesheets="@styleTickList.css" text="Mã LT" />
-      <TextField fx:id="txtIDXe" layoutX="347.0" layoutY="121.0" prefHeight="25.0" prefWidth="149.0" />
+      <Label layoutX="275.0" layoutY="171.0" prefHeight="25.0" prefWidth="50.0" styleClass="infoLabel" stylesheets="@styleTickList.css" text="Lộ trình" />
+      <TextField fx:id="txtIDXe" layoutX="347.0" layoutY="121.0" prefHeight="31.0" prefWidth="202.0" />
       <TextField fx:id="txtIDNV" layoutX="109.0" layoutY="171.0" prefHeight="25.0" prefWidth="133.0" />
-      <ComboBox fx:id="cbIDLT" layoutX="347.0" layoutY="171.0" prefHeight="25.0" prefWidth="149.0" />
+      <ComboBox fx:id="cbIDLT" layoutX="347.0" layoutY="171.0" prefHeight="31.0" prefWidth="202.0" />
       <Label layoutX="275.0" layoutY="125.0" styleClass="infoLabel" stylesheets="@styleTickList.css" text="Mã xe" />
       <TextField fx:id="txtIDVe" layoutX="109.0" layoutY="121.0" prefHeight="25.0" prefWidth="133.0" />
-      <Label layoutX="1010.0" layoutY="225.0" styleClass="infoLabel" stylesheets="@styleTickList.css" text="Trạng thái TT" />
-      <ComboBox fx:id="cbTT" layoutX="1115.0" layoutY="221.0" prefHeight="25.0" prefWidth="149.0" />
-      <Label layoutX="540.0" layoutY="125.0" styleClass="infoLabel" stylesheets="@styleTickList.css" text="Tên khách hàng" />
-      <TextField fx:id="txtKH" layoutX="657.0" layoutY="121.0" prefHeight="25.0" prefWidth="300.0" />
-      <Label layoutX="540.0" layoutY="175.0" styleClass="infoLabel" stylesheets="@styleTickList.css" text="SĐT" />
-      <TextField fx:id="txtSDT" layoutX="657.0" layoutY="171.0" prefHeight="25.0" prefWidth="300.0" />
+      <Label layoutX="580.0" layoutY="125.0" styleClass="infoLabel" stylesheets="@styleTickList.css" text="Tên khách hàng" />
+      <TextField fx:id="txtKH" layoutX="697.0" layoutY="121.0" prefHeight="25.0" prefWidth="300.0" />
+      <Label layoutX="579.0" layoutY="175.0" styleClass="infoLabel" stylesheets="@styleTickList.css" text="SĐT" />
+      <TextField fx:id="txtSDT" layoutX="697.0" layoutY="171.0" prefHeight="25.0" prefWidth="300.0" />
       <Label layoutX="1010.0" layoutY="125.0" styleClass="infoLabel" stylesheets="@styleTickList.css" text="Vị trí ghế" />
       <TextField fx:id="txtViTriGhe" layoutX="1114.0" layoutY="121.0" prefHeight="25.0" prefWidth="149.0" />
       <Label layoutX="1010.0" layoutY="175.0" styleClass="infoLabel" stylesheets="@styleTickList.css" text="Giá vé" />
       <TextField fx:id="txtGiaVe" layoutX="1114.0" layoutY="171.0" prefHeight="25.0" prefWidth="149.0" />
-      <Label layoutX="540.0" layoutY="229.0" styleClass="infoLabel" stylesheets="@styleTickList.css" text="Ngày đặt" />
-      <TextField fx:id="txtNgayBook" layoutX="657.0" layoutY="221.0" prefHeight="25.0" prefWidth="300.0" />
+      <Label layoutX="580.0" layoutY="229.0" styleClass="infoLabel" stylesheets="@styleTickList.css" text="Ngày đặt" />
+      <TextField fx:id="txtNgayBook" layoutX="697.0" layoutY="221.0" prefHeight="25.0" prefWidth="300.0" />
       <Label layoutX="275.0" layoutY="229.0" styleClass="infoLabel" stylesheets="@styleTickList.css" text="Giờ KH" />
-      <ComboBox fx:id="cbGioKH" layoutX="347.0" layoutY="225.0" prefHeight="25.0" prefWidth="149.0" />
-      <ComboBox fx:id="cbNgayKH" layoutX="109.0" layoutY="225.0" prefHeight="25.0" prefWidth="133.0" />
       <Label layoutX="16.0" layoutY="225.0" prefHeight="25.0" prefWidth="64.0" styleClass="infoLabel" stylesheets="@styleTickList.css" text="Ngày KH" />
       <Button fx:id="btEdit" layoutX="160.0" layoutY="269.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="115.0" styleClass="btEdit" stylesheets="@styleTickList.css" text="Cập nhật" AnchorPane.leftAnchor="160.0">
          <graphic>
@@ -113,5 +109,8 @@
             </ImageView>
          </graphic>
       </Button>
+      <RadioButton fx:id="rdTT" layoutX="1048.0" layoutY="226.0" mnemonicParsing="false" text="Trạng thái thanh toán" />
+      <ComboBox fx:id="cbNgayKH" layoutX="109.0" layoutY="221.0" prefHeight="31.0" prefWidth="149.0" />
+      <ComboBox fx:id="cbGioKH" layoutX="347.0" layoutY="224.0" prefHeight="31.0" prefWidth="149.0" />
    </children>
 </AnchorPane>
