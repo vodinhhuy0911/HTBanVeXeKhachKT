@@ -1,0 +1,13 @@
+10/12: Yêu cầu đề và cần bổ sung
+1.Thêm tra cứu chuyến đi cho lộ trình
+2.Thêm xuất vé danh sách vé -> click xuất vé sẽ hiện ra file excel
+3.Thêm điều kiện thêm vé trước 60p sau đó thêm điều kiện đặt vé trước 5p -> khi chuyến đi khởi hành
+Ví dụ : lộ trình HCM -> Hà Nội bắt đầu 7h (mặc định) -> được cập nhật thông tin vé(cập nhật,xóa,...) trước 5p,
+được thêm vé trước 30p.
+4.Mục danh sách vé sau khi cập nhật trạng thái thanh toán = true(RadioButton được click) -> chức năng xóa vé không được thực hiện
+5.Thêm điều kiện 30p trước khi chuyến đi khởi hành và trạng thái thanh toán = false(chưa click RadioButton hay cập nhật trạng thái thanh toán ở danh sách vé) 
+-> được xóa vé
+6.Thêm chức năng cập nhật cho bán vé
+-Khi thay đổi chỗ ngồi thì chỗ cũ được trở về trống
+-Khi đổi lộ trình, vị trí ghế được reset về trống -> Mỗi lộ trình có vị trí ghế khác nhau
+7.Trước thời gian khởi hành 5p, cập nhật hoặc xóa vé bị vô hiệu hóa
