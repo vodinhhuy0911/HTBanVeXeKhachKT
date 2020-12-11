@@ -12,6 +12,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.shape.SVGPath;
@@ -48,28 +50,33 @@ public class QuanLyNhanVien {
         return kq;
     }
 
-    public static void themNhanVien(NhanVien nv) throws SQLException, ParseException
+    public static boolean themNhanVien(NhanVien nv) throws ParseException
     {
-        String sql = "INSERT INTO nhanvien (idNV, tenNV, ngaySinh, diaChi, chucVu, sdt, email) VALUES (?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO nhanvien (tenNV, ngaySinh, diaChi, chucVu, sdt, email) VALUES (?,?,?,?,?,?)";
         Connection cnt = JDBC.getConn();
-        cnt.setAutoCommit(false);
-        PreparedStatement pStm = cnt.prepareStatement(sql);
-        pStm.setString(1, nv.getTaiKhoan());
-        pStm.setString(2, nv.getHoTen());
+        try {
+            cnt.setAutoCommit(false);
+            PreparedStatement pStm = cnt.prepareStatement(sql);
+        pStm.setString(1, nv.getHoTen());
 
         
       java.util.Date date = nv.getNgaySinh();
       java.sql.Date sqlDate = new java.sql.Date(date.getTime()); 
 
-        pStm.setDate(3, sqlDate);
+        pStm.setDate(2, sqlDate);
         
-        pStm.setString(4, nv.getDiaChi());
-        pStm.setString(5, nv.getChucVu());
-        pStm.setString(6, nv.getSdt());
-        pStm.setString(7, nv.getEmail());
+        pStm.setString(3, nv.getDiaChi());
+        pStm.setString(4, nv.getChucVu());
+        pStm.setString(5, nv.getSdt());
+        pStm.setString(6, nv.getEmail());
         pStm.executeUpdate();
         
         cnt.commit();
+        return true;
+        } catch (SQLException ex) {
+            return false;
+        }
+        
     }
     
     public static List<NhanVien> timKiemNv(String key) throws SQLException
