@@ -5,6 +5,7 @@
  */
 package Interface;
 import BVXK.QuanLyNhanVien;
+
 import BanVeXeKhach.NhanVien;
 import java.io.IOException;
 import java.net.URL;
@@ -63,6 +64,11 @@ public class EmployeeController implements Initializable {
     private TableColumn<NhanVien,String> colSDT;
     @FXML
     private TableColumn<NhanVien,String> colEmail;
+    
+    @FXML
+    private TableColumn clMatKhau;
+    @FXML
+    private TextField txtMatKhau;
     @FXML
     private TextField txtKey;
     @FXML
@@ -103,6 +109,7 @@ public class EmployeeController implements Initializable {
                 this.txtChucVu.setText(n.getChucVu());
                 this.txtSDT.setText(n.getSdt());
                 this.txtEmail.setText(n.getEmail());
+                this.txtMatKhau.setText(n.getMatKhau());
             });
             return row;
         });
@@ -118,6 +125,7 @@ public class EmployeeController implements Initializable {
         colChucVu.setCellValueFactory(new PropertyValueFactory("chucVu"));
         colSDT.setCellValueFactory(new PropertyValueFactory("sdt"));
         colEmail.setCellValueFactory(new PropertyValueFactory("email"));
+        clMatKhau.setCellValueFactory(new PropertyValueFactory("matKhau"));
 //        tvNV.getColumns().addAll(colID,colHoTen,colNgaySinh,colDiaChi,colChucVu,colSDT,colEmail);
         try {       
             this.tvNV.setItems(FXCollections.observableArrayList(QuanLyNhanVien.getDsNhanVien()));
@@ -125,32 +133,148 @@ public class EmployeeController implements Initializable {
             Logger.getLogger(EmployeeController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    public void add() throws SQLException, ParseException{
-        if(!txtID.getText().isEmpty() && !txtHoTen.getText().isEmpty() && !txtNgaySinh.getText().isEmpty() && !txtDiaChi.getText().isEmpty() && !txtChucVu.getText().isEmpty() && !txtSDT.getText().isEmpty() && !txtEmail.getText().isEmpty())
+    public void add() throws SQLException{
+        if(!txtID.getText().isEmpty() && !txtHoTen.getText().isEmpty() && !txtNgaySinh.getText().isEmpty() && !txtDiaChi.getText().isEmpty() && !txtChucVu.getText().isEmpty() && !txtSDT.getText().isEmpty() && !txtEmail.getText().isEmpty() && !txtMatKhau.getText().isEmpty())
         {
-            SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-                java.util.Date ngaySinh = formatter.parse(txtNgaySinh.getText());
-            NhanVien nv = new NhanVien(txtID.getText(), txtHoTen.getText(), ngaySinh, txtDiaChi.getText(), txtChucVu.getText(),txtSDT.getText(), txtEmail.getText());
-            QuanLyNhanVien.themNhanVien(nv);
-             Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
+            
+            String d = txtNgaySinh.getText();
+           
+            for(int i = 0; i < d.length(); i++)
+                if(Character.isLetter(d.charAt(i)))
+                {
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                                  alert.setTitle("Information Login");
+                                  alert.setHeaderText(null);
+                                  alert.setContentText("Lỗi nhập ngày tháng. Vui lòng kiểm tra lại!");
+                                  alert.showAndWait();
+                                  return;
+                }
+            try {
+                String str[] = d.split("-");
+                 if(str[0].length() == 4)
+                d = d.replace('-', '/');
+            else
+                d = str[2] + "/" + str[1] + "/" + str[0];
+            
+                java.util.Date ngaySinh;
+                ngaySinh = formatter.parse(d);
+                for(int i = 0; i < txtSDT.getText().length(); i++)
+                    if((!Character.isDigit(txtSDT.getText().charAt(i))) || (txtSDT.getText().length() < 10 || txtSDT.getText().length() > 11))
+                    {
+                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                                      alert.setTitle("Information Login");
+                                      alert.setHeaderText(null);
+                                      alert.setContentText("Nhập số điện thoại không hợp lệ. Vui lòng kiểm tra lại!");
+                                      alert.showAndWait();
+                                      return;
+                    }
+                
+                NhanVien nv = new NhanVien(txtID.getText(), txtHoTen.getText(), ngaySinh, txtDiaChi.getText(), txtChucVu.getText(),txtSDT.getText(), txtEmail.getText(),txtMatKhau.getText());
+                    if(QuanLyNhanVien.themNhanVien(nv))
+                    {
+                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                                  alert.setTitle("Information Login");
+                                  alert.setHeaderText(null);
+                                  alert.setContentText("Thêm thành công.");
+                                  alert.showAndWait();
+                    }
+                        else
+                       {
+                           Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                                     alert.setTitle("Information Login");
+                                     alert.setHeaderText(null);
+                                     alert.setContentText("Thêm thất bại. Vui lòng kiểm tra lại thông tin!");
+                                     alert.showAndWait();
+                       }
+            } catch (ParseException ex) {
+                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                           alert.setTitle("Information Login");
                           alert.setHeaderText(null);
-                          alert.setContentText("Thêm thành công.");
+                          alert.setContentText("Vui lòng nhập thông tin ngày tháng hợp lệ.");
                           alert.showAndWait();
+            }
+            catch(ArrayIndexOutOfBoundsException a)
+            {
+                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                          alert.setTitle("Information Login");
+                          alert.setHeaderText(null);
+                          alert.setContentText("Vui lòng nhập thông tin ngày tháng hợp lệ.");
+                          alert.showAndWait();
+            }
               this.loadData();
         }
+        else{
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                          alert.setTitle("Information Login");
+                          alert.setHeaderText(null);
+                          alert.setContentText("Vui lòng điền đầy đủ thông tin!");
+                          alert.showAndWait();
+        }
     }
-     public void update() throws SQLException, ParseException 
+     public void update() throws SQLException
      {
-          SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-          String s = txtNgaySinh.getText();
-          s = s.replace('-', '/');
-//           String str[] = s.split("-");
-//           String ns = str[2] + "/" +  str[1] + "/" + str[0];
-                java.util.Date ngaySinh = formatter.parse(s);
-         NhanVien nv = new NhanVien(txtID.getText(), txtHoTen.getText(), ngaySinh, txtDiaChi.getText(), txtChucVu.getText(),txtSDT.getText(), txtEmail.getText());
+          if(!txtID.getText().isEmpty() && !txtHoTen.getText().isEmpty() && !txtNgaySinh.getText().isEmpty() && !txtDiaChi.getText().isEmpty() && !txtChucVu.getText().isEmpty() && !txtSDT.getText().isEmpty() && !txtEmail.getText().isEmpty()&& !txtMatKhau.getText().isEmpty())
+          {
+          SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
+          String d = txtNgaySinh.getText();
+          for(int i = 0; i < d.length(); i++)
+                if(Character.isLetter(d.charAt(i)))
+                {
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                                  alert.setTitle("Information Login");
+                                  alert.setHeaderText(null);
+                                  alert.setContentText("Lỗi nhập ngày tháng. Vui lòng kiểm tra lại!");
+                                  alert.showAndWait();
+                                  return;
+                }
+            String str[] = d.split("-");
+            
+              try {
+                  if(str[0].length() == 4)
+                d = d.replace('-', '/');
+            else
+                d = str[2] + "/" + str[1] + "/" + str[0];
+            
+                java.util.Date ngaySinh;
+                  ngaySinh = formatter.parse(d);
+                   for(int i = 0; i < txtSDT.getText().length(); i++)
+                    if(Character.isLetter(txtSDT.getText().charAt(i)))
+                    {
+                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                                      alert.setTitle("Information Login");
+                                      alert.setHeaderText(null);
+                                      alert.setContentText("Nhập số điện thoại không hợp lệ. Vui lòng kiểm tra lại!");
+                                      alert.showAndWait();
+                                      return;
+                    }
+                  NhanVien nv = new NhanVien(txtID.getText(), txtHoTen.getText(), ngaySinh, txtDiaChi.getText(), txtChucVu.getText(),txtSDT.getText(), txtEmail.getText(),txtMatKhau.getText());
          QuanLyNhanVien.capNhatNhanVien(nv);
          this.loadData();
+              } catch (ParseException ex) {
+                  Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                          alert.setTitle("Information Login");
+                          alert.setHeaderText(null);
+                          alert.setContentText("Vui lòng nhập thông tin ngày tháng hợp lệ.");
+                          alert.showAndWait();
+              }
+              catch(ArrayIndexOutOfBoundsException a)
+            {
+                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                          alert.setTitle("Information Login");
+                          alert.setHeaderText(null);
+                          alert.setContentText("Vui lòng nhập thông tin ngày tháng hợp lệ.");
+                          alert.showAndWait();
+            }
+         
+          }
+          else{
+               Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                          alert.setTitle("Information Login");
+                          alert.setHeaderText(null);
+                          alert.setContentText("Vui lòng điền đầy đủ thông tin!");
+                          alert.showAndWait();
+          }
      }  
    public void delete (ActionEvent e) throws SQLException{
         QuanLyNhanVien.xoaNhanVien(txtID.getText());
@@ -188,6 +312,7 @@ public class EmployeeController implements Initializable {
            txtHoTen.setText("");
            txtNgaySinh.setText("");
            txtSDT.setText("");
+           txtMatKhau.setText("");
            
     }
     public void btExitOnAction(ActionEvent event) throws IOException {

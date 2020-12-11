@@ -5,8 +5,9 @@
  */
 package Interface;
 
-import BVXK.ThongTinTaiKhoan;
+import BVXK.QuanLyNhanVien;
 import BanVeXeKhach.DangNhap;
+import BanVeXeKhach.NhanVien;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -35,18 +36,11 @@ public class MainController implements Initializable {
     @FXML
     private TextField txtNV;
     
-    private String USERNAME;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        try {
-            List <DangNhap> ds = ThongTinTaiKhoan.getThongTin();
-            for(DangNhap dn : ds){
-                USERNAME = dn.getTaiKhoan();
-            }
-            txtNV.setText(USERNAME);
-        } catch (SQLException ex) {
-            Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        
+            txtNV.setText(LoginController.USERNAME);
+        
        
     }    
     @FXML

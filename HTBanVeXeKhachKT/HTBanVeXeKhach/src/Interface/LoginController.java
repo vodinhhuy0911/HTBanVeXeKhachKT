@@ -5,8 +5,10 @@
  */
 package Interface;
 
-import BVXK.ThongTinTaiKhoan;
+import BVXK.QuanLyNhanVien;
+
 import BanVeXeKhach.DangNhap;
+import BanVeXeKhach.NhanVien;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -31,6 +33,10 @@ import javafx.stage.Stage;
  * @author PC
  */
 public class LoginController implements Initializable {
+
+    static String USERNAME() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
     @FXML
     private Button btCancel;
@@ -39,16 +45,16 @@ public class LoginController implements Initializable {
     @FXML
     private PasswordField pwPassword;
 
-    private  String USERNAME = "dk";
+    public static  String USERNAME = "dk";
     private  String PASSWORD = "1";
     
     
     public void btLoginOnAction(ActionEvent event) throws SQLException, IOException{
       String username = txtUsername.getText();
       String password = pwPassword.getText();
-      List <DangNhap> ds = ThongTinTaiKhoan.getThongTin();
+      List <NhanVien> ds = QuanLyNhanVien.getDsNhanVien();
       boolean flag = false;
-      for(DangNhap dn : ds)
+      for(NhanVien dn : ds)
       {
           USERNAME = dn.getTaiKhoan();
           PASSWORD = dn.getMatKhau();

@@ -13,6 +13,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -36,17 +38,23 @@ public class QuanLyXe {
         return kq;
     }
     
-    public static void themXe(Xe xe) throws SQLException 
+    public static boolean themXe(Xe xe) 
     {
          String sql = "INSERT INTO xe (MaXe, LoaiXe) VALUES (?,?)";
          Connection cnt = JDBC.getConn();
-        cnt.setAutoCommit(false);
-        PreparedStatement pStm = cnt.prepareStatement(sql);
+        try {
+            cnt.setAutoCommit(false);
+            PreparedStatement pStm = cnt.prepareStatement(sql);
         pStm.setString(1, xe.getBienSoXe());
         pStm.setString(2, xe.getLoaiXe());
         pStm.executeUpdate();
         
         cnt.commit();
+        return true;
+        } catch (SQLException ex) {
+            return false;
+        }
+        
     }
     public static void capNhatXe(Xe xe, String maXeCu) throws SQLException
    {

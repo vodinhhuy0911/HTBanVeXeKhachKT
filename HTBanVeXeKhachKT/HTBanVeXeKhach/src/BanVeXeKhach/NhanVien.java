@@ -120,8 +120,9 @@ public class NhanVien {
     private String chucVu;
     private String sdt;
     private String email;
+    private String matKhau;
     
-    public NhanVien(String taiKhoan, String hoTen, Date ngaySinh, String diaChi, String chucVu, String sdt, String email)
+    public NhanVien(String taiKhoan, String hoTen, Date ngaySinh, String diaChi, String chucVu, String sdt, String email,String matKhau)
     {
         this.taiKhoan = taiKhoan;
         this.hoTen = hoTen;
@@ -130,6 +131,7 @@ public class NhanVien {
         this.chucVu = chucVu;
         this.sdt = sdt;
         this.email = email;
+        this.matKhau = matKhau;
                 
     }
 
@@ -138,6 +140,20 @@ public class NhanVien {
         StringBuilder sb = new StringBuilder();
         sb.append("ID: ").append(this.taiKhoan).append("Ngày sinh ").append(this.ngaySinh).append("\n");
         return sb.toString();
+    }
+
+    /**
+     * @return the matKhau
+     */
+    public String getMatKhau() {
+        return matKhau;
+    }
+
+    /**
+     * @param matKhau the matKhau to set
+     */
+    public void setMatKhau(String matKhau) {
+        this.matKhau = matKhau;
     }
     
 }
