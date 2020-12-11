@@ -5,6 +5,7 @@
  */
 package Interface;
 import BVXK.QuanLyNhanVien;
+
 import BanVeXeKhach.NhanVien;
 import java.io.IOException;
 import java.net.URL;
@@ -63,6 +64,11 @@ public class EmployeeController implements Initializable {
     private TableColumn<NhanVien,String> colSDT;
     @FXML
     private TableColumn<NhanVien,String> colEmail;
+    
+    @FXML
+    private TableColumn clMatKhau;
+    @FXML
+    private TextField txtMatKhau;
     @FXML
     private TextField txtKey;
     @FXML
@@ -103,6 +109,7 @@ public class EmployeeController implements Initializable {
                 this.txtChucVu.setText(n.getChucVu());
                 this.txtSDT.setText(n.getSdt());
                 this.txtEmail.setText(n.getEmail());
+                this.txtMatKhau.setText(n.getMatKhau());
             });
             return row;
         });
@@ -118,6 +125,7 @@ public class EmployeeController implements Initializable {
         colChucVu.setCellValueFactory(new PropertyValueFactory("chucVu"));
         colSDT.setCellValueFactory(new PropertyValueFactory("sdt"));
         colEmail.setCellValueFactory(new PropertyValueFactory("email"));
+        clMatKhau.setCellValueFactory(new PropertyValueFactory("matKhau"));
 //        tvNV.getColumns().addAll(colID,colHoTen,colNgaySinh,colDiaChi,colChucVu,colSDT,colEmail);
         try {       
             this.tvNV.setItems(FXCollections.observableArrayList(QuanLyNhanVien.getDsNhanVien()));
@@ -126,7 +134,7 @@ public class EmployeeController implements Initializable {
         }
     }
     public void add() throws SQLException{
-        if(!txtID.getText().isEmpty() && !txtHoTen.getText().isEmpty() && !txtNgaySinh.getText().isEmpty() && !txtDiaChi.getText().isEmpty() && !txtChucVu.getText().isEmpty() && !txtSDT.getText().isEmpty() && !txtEmail.getText().isEmpty())
+        if(!txtID.getText().isEmpty() && !txtHoTen.getText().isEmpty() && !txtNgaySinh.getText().isEmpty() && !txtDiaChi.getText().isEmpty() && !txtChucVu.getText().isEmpty() && !txtSDT.getText().isEmpty() && !txtEmail.getText().isEmpty() && !txtMatKhau.getText().isEmpty())
         {
             SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
             
@@ -152,7 +160,7 @@ public class EmployeeController implements Initializable {
                 java.util.Date ngaySinh;
                 ngaySinh = formatter.parse(d);
                 for(int i = 0; i < txtSDT.getText().length(); i++)
-                    if(Character.isLetter(txtSDT.getText().charAt(i)))
+                    if((!Character.isDigit(txtSDT.getText().charAt(i))) || (txtSDT.getText().length() < 10 || txtSDT.getText().length() > 11))
                     {
                         Alert alert = new Alert(Alert.AlertType.INFORMATION);
                                       alert.setTitle("Information Login");
@@ -162,7 +170,7 @@ public class EmployeeController implements Initializable {
                                       return;
                     }
                 
-                NhanVien nv = new NhanVien(txtID.getText(), txtHoTen.getText(), ngaySinh, txtDiaChi.getText(), txtChucVu.getText(),txtSDT.getText(), txtEmail.getText());
+                NhanVien nv = new NhanVien(txtID.getText(), txtHoTen.getText(), ngaySinh, txtDiaChi.getText(), txtChucVu.getText(),txtSDT.getText(), txtEmail.getText(),txtMatKhau.getText());
                     if(QuanLyNhanVien.themNhanVien(nv))
                     {
                      Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -206,7 +214,7 @@ public class EmployeeController implements Initializable {
     }
      public void update() throws SQLException
      {
-          if(!txtID.getText().isEmpty() && !txtHoTen.getText().isEmpty() && !txtNgaySinh.getText().isEmpty() && !txtDiaChi.getText().isEmpty() && !txtChucVu.getText().isEmpty() && !txtSDT.getText().isEmpty() && !txtEmail.getText().isEmpty())
+          if(!txtID.getText().isEmpty() && !txtHoTen.getText().isEmpty() && !txtNgaySinh.getText().isEmpty() && !txtDiaChi.getText().isEmpty() && !txtChucVu.getText().isEmpty() && !txtSDT.getText().isEmpty() && !txtEmail.getText().isEmpty()&& !txtMatKhau.getText().isEmpty())
           {
           SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
           String d = txtNgaySinh.getText();
@@ -240,7 +248,7 @@ public class EmployeeController implements Initializable {
                                       alert.showAndWait();
                                       return;
                     }
-                  NhanVien nv = new NhanVien(txtID.getText(), txtHoTen.getText(), ngaySinh, txtDiaChi.getText(), txtChucVu.getText(),txtSDT.getText(), txtEmail.getText());
+                  NhanVien nv = new NhanVien(txtID.getText(), txtHoTen.getText(), ngaySinh, txtDiaChi.getText(), txtChucVu.getText(),txtSDT.getText(), txtEmail.getText(),txtMatKhau.getText());
          QuanLyNhanVien.capNhatNhanVien(nv);
          this.loadData();
               } catch (ParseException ex) {
@@ -304,6 +312,7 @@ public class EmployeeController implements Initializable {
            txtHoTen.setText("");
            txtNgaySinh.setText("");
            txtSDT.setText("");
+           txtMatKhau.setText("");
            
     }
     public void btExitOnAction(ActionEvent event) throws IOException {

@@ -95,7 +95,7 @@ ObservableList<Xe> nvList = FXCollections.observableArrayList ();
     }
     public void themXe() throws SQLException
     {
-        if(cbLoaiXe.getSelectionModel().getSelectedItem().toString() != null &&txtMaXe.getText() != null)
+        if(cbLoaiXe.getSelectionModel().getSelectedItem().toString() != "" &&txtMaXe.getText() != "")
         {
                 String loaiXe = cbLoaiXe.getSelectionModel().getSelectedItem().toString();
                 Xe xe = new Xe(txtMaXe.getText(),loaiXe);
@@ -135,7 +135,7 @@ ObservableList<Xe> nvList = FXCollections.observableArrayList ();
     
     public void capNhatXe() throws SQLException
     {
-         if(cbLoaiXe.getSelectionModel().getSelectedItem().toString() != null &&txtMaXe.getText() != null)
+         if(cbLoaiXe.getSelectionModel().getSelectedItem().toString() != "" &&txtMaXe.getText() != "")
          {
             String loaiXe = cbLoaiXe.getSelectionModel().getSelectedItem().toString();
             Xe xe = new Xe(txtMaXe.getText(),loaiXe);

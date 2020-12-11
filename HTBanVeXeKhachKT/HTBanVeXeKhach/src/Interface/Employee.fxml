@@ -26,13 +26,14 @@
          <children>
             <TableView id="NV" fx:id="tvNV" layoutX="11.0" layoutY="8.0" prefHeight="482.0" prefWidth="693.0" stylesheets="@Employee.css">
               <columns>
-                <TableColumn id="tcID" fx:id="colID" prefWidth="79.0" text="ID" />
-                <TableColumn id="tcHoTen" fx:id="colHoTen" prefWidth="119.0" text="Họ tên" />
-                  <TableColumn id="tcNgaySinh" fx:id="colNgaySinh" prefWidth="99.0" text="Ngày sinh" />
+                <TableColumn id="tcID" fx:id="colID" prefWidth="67.0" text="ID" />
+                <TableColumn id="tcHoTen" fx:id="colHoTen" prefWidth="120.0" text="Họ tên" />
+                  <TableColumn id="tcNgaySinh" fx:id="colNgaySinh" prefWidth="110.0" text="Ngày sinh" />
                   <TableColumn id="tcDiaChi" fx:id="colDiaChi" prefWidth="99.0" text="Địa chỉ" />
                   <TableColumn id="tcChucVu" fx:id="colChucVu" prefWidth="99.0" text="Chức vụ" />
-                  <TableColumn id="tcSDT" fx:id="colSDT" prefWidth="99.0" text="SĐT" />
-                  <TableColumn id="tcEmail" fx:id="colEmail" prefWidth="99.0" text="Email" />
+                  <TableColumn id="tcSDT" fx:id="colSDT" prefWidth="46.0" text="SĐT" />
+                  <TableColumn id="tcEmail" fx:id="colEmail" prefWidth="88.0" text="Email" />
+                  <TableColumn fx:id="clMatKhau" prefWidth="104.0" text="Mật khẩu" />
               </columns>
             </TableView>
          </children>
@@ -49,18 +50,18 @@
          <font>
             <Font name="System Bold" size="12.0" />
          </font></Label>
-      <Label layoutX="17.0" layoutY="189.0" styleClass="infoLabel" stylesheets="@styleEmployee.css" text="Ngày sinh" AnchorPane.leftAnchor="16.0" />
-      <Label layoutX="20.0" layoutY="237.0" styleClass="infoLabel" stylesheets="@styleEmployee.css" text="Địa chỉ" AnchorPane.leftAnchor="16.0" />
-      <Label layoutX="16.0" layoutY="290.0" styleClass="infoLabel" stylesheets="@styleEmployee.css" text="Chức vụ" AnchorPane.leftAnchor="16.0" />
-      <Label layoutX="16.0" layoutY="342.0" styleClass="infoLabel" stylesheets="@styleEmployee.css" text="SĐT" AnchorPane.leftAnchor="16.0" />
-      <Label layoutX="14.0" layoutY="396.0" styleClass="infoLabel" stylesheets="@styleEmployee.css" text="Email" AnchorPane.leftAnchor="16.0" />
-      <TextField id="txtID" fx:id="txtID" editable="false" layoutX="141.0" layoutY="86.0" prefHeight="26.0" prefWidth="354.0" />
+      <Label layoutX="16.0" layoutY="175.0" styleClass="infoLabel" stylesheets="@styleEmployee.css" text="Ngày sinh" AnchorPane.leftAnchor="16.0" />
+      <Label layoutX="16.0" layoutY="223.0" styleClass="infoLabel" stylesheets="@styleEmployee.css" text="Địa chỉ" AnchorPane.leftAnchor="16.0" />
+      <Label layoutX="16.0" layoutY="276.0" styleClass="infoLabel" stylesheets="@styleEmployee.css" text="Chức vụ" AnchorPane.leftAnchor="16.0" />
+      <Label layoutX="16.0" layoutY="328.0" styleClass="infoLabel" stylesheets="@styleEmployee.css" text="SĐT" AnchorPane.leftAnchor="16.0" />
+      <Label layoutX="16.0" layoutY="382.0" styleClass="infoLabel" stylesheets="@styleEmployee.css" text="Email" AnchorPane.leftAnchor="16.0" />
+      <TextField id="txtID" fx:id="txtID" layoutX="141.0" layoutY="86.0" prefHeight="26.0" prefWidth="354.0" />
       <TextField fx:id="txtHoTen" layoutX="140.0" layoutY="133.0" prefHeight="26.0" prefWidth="354.0" />
-      <TextField fx:id="txtNgaySinh" layoutX="140.0" layoutY="187.0" prefHeight="26.0" prefWidth="354.0" />
-      <TextField fx:id="txtDiaChi" layoutX="140.0" layoutY="235.0" prefHeight="26.0" prefWidth="354.0" />
-      <TextField fx:id="txtChucVu" layoutX="141.0" layoutY="288.0" prefHeight="26.0" prefWidth="354.0" />
-      <TextField fx:id="txtSDT" layoutX="140.0" layoutY="340.0" prefHeight="26.0" prefWidth="354.0" />
-      <TextField fx:id="txtEmail" layoutX="140.0" layoutY="394.0" prefHeight="26.0" prefWidth="354.0" />
+      <TextField fx:id="txtNgaySinh" layoutX="140.0" layoutY="173.0" prefHeight="26.0" prefWidth="354.0" />
+      <TextField fx:id="txtDiaChi" layoutX="140.0" layoutY="221.0" prefHeight="26.0" prefWidth="354.0" />
+      <TextField fx:id="txtChucVu" layoutX="141.0" layoutY="274.0" prefHeight="26.0" prefWidth="354.0" />
+      <TextField fx:id="txtSDT" layoutX="140.0" layoutY="326.0" prefHeight="26.0" prefWidth="354.0" />
+      <TextField fx:id="txtEmail" layoutX="140.0" layoutY="380.0" prefHeight="26.0" prefWidth="354.0" />
       <Button id="btThem" fx:id="btThem" layoutX="13.0" layoutY="462.0" mnemonicParsing="false" onAction="#add" prefHeight="32.0" prefWidth="96.0" styleClass="btAdd" stylesheets="@styleEmployee.css" text="Thêm">
          <font>
             <Font name="System Bold" size="15.0" />
@@ -123,6 +124,8 @@
             </ImageView>
          </graphic>
       </Button>
+      <Label layoutX="18.0" layoutY="422.0" styleClass="infoLabel" stylesheets="@styleEmployee.css" text="Mật khẩu" />
+      <TextField fx:id="txtMatKhau" layoutX="141.0" layoutY="417.0" prefHeight="26.0" prefWidth="354.0" />
       
    </children>
 </AnchorPane>
