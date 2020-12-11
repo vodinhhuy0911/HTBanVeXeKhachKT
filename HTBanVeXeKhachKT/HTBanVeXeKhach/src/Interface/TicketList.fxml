@@ -82,7 +82,8 @@
             <TableColumn fx:id="clNgayDat" prefWidth="106.0" text="Ngày đặt" />
             <TableColumn fx:id="clGioKH" prefWidth="106.0" text="Giờ KH" />
             <TableColumn fx:id="clNgayKH" prefWidth="106.0" text="Ngày KH" />
-            <TableColumn fx:id="clTT" prefWidth="106.0" text="Trạng thái TT" />
+            <TableColumn fx:id="clTT" prefWidth="58.0" text="Trạng thái TT" />
+            <TableColumn fx:id="clLayVe" prefWidth="75.0" text="Lấy vé" />
         </columns>
       </TableView>
       <ImageView fitHeight="85.0" fitWidth="115.0" layoutX="16.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
@@ -109,7 +110,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <RadioButton fx:id="rdTT" layoutX="1094.0" layoutY="219.0" mnemonicParsing="false" styleClass="infoLabel" stylesheets="@styleTickList.css" text="Trạng thái thanh toán" />
+      <RadioButton fx:id="rdTT" layoutX="1087.0" layoutY="211.0" mnemonicParsing="false" styleClass="infoLabel" stylesheets="@styleTickList.css" text="Trạng thái thanh toán" />
       <ComboBox fx:id="cbNgayKH" layoutX="109.0" layoutY="221.0" onAction="#chonNgay" prefHeight="31.0" prefWidth="149.0" />
       <ComboBox fx:id="cbGioKH" layoutX="347.0" layoutY="224.0" prefHeight="31.0" prefWidth="149.0" />
       <ComboBox fx:id="cbIDXe" layoutX="347.0" layoutY="120.0" onAction="#chonXe" prefHeight="31.0" prefWidth="202.0" />
@@ -122,5 +123,6 @@
             </ImageView>
          </graphic>
       </Button>
+      <RadioButton fx:id="rdLayVe" layoutX="1087.0" layoutY="240.0" mnemonicParsing="false" styleClass="infoLabel" stylesheets="@styleTickList.css" text="Lấy vé" />
    </children>
 </AnchorPane>

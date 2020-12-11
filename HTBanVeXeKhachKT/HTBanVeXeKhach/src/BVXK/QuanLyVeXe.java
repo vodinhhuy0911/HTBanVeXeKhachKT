@@ -67,7 +67,8 @@ String dateInString = ngay + " " + gio;
              String gioKhoiHanh = rs.getString("GioKhoiHanh");
              double giaVe = rs.getDouble("GiaVe");
              String maLoTrinh = rs.getString("MaLoTrinh");
-             VeXe vx = new VeXe(maVe,bienSoXe,maNV, hoTenKh, sdtKh,maGheNgoi, thoiGianDat, isThanhToan,ngayKhoiHanh,gioKhoiHanh,giaVe,maLoTrinh);
+             Boolean isLayVe = rs.getBoolean("LayVe");
+             VeXe vx = new VeXe(maVe,bienSoXe,maNV, hoTenKh, sdtKh,maGheNgoi, thoiGianDat, isThanhToan,ngayKhoiHanh,gioKhoiHanh,giaVe,maLoTrinh,isLayVe);
              kq.add(vx);
         } catch (ParseException e) {
             e.printStackTrace();
@@ -83,22 +84,15 @@ String dateInString = ngay + " " + gio;
         rs.close();
         return kq;
     }
-    public static boolean themVe(VeXe ve) throws SQLException
+    public static boolean themVe(VeXe ve)
     {
-//        String sql = "INSERT INTO xe (MaXe, LoaiXe) VALUES (?,?)";
-//         Connection cnt = JDBC.getConn();
-//        cnt.setAutoCommit(false);
-       
-//        pStm.setString(1, xe.getBienSoXe());
-//        pStm.setString(2, xe.getLoaiXe());
-        
-        
-
-//        
-        Connection conn = JDBC.getConn();
+     Connection conn = JDBC.getConn();
+        try {
+            
         Statement stm = conn.createStatement();
-        ResultSet rs = stm.executeQuery("SELECT count(*) FROM vexe WHERE MaVe = '" + ve.getMaVe() + "'");
-        int kq = 0;
+        ResultSet rs;
+            rs = stm.executeQuery("SELECT count(*) FROM vexe WHERE MaVe = '" + ve.getMaVe() + "'");
+            int kq = 0;
         while(rs.next())
         {
             kq = rs.getInt(1);
@@ -107,45 +101,48 @@ String dateInString = ngay + " " + gio;
         
         if(kq == 0)
         {
-                    String sql = "INSERT INTO vexe (MaVe,BienSoXe,MaNV,HoTenKH,SDTKH,MaGhe,ThoiGianDat,ThanhToan,NgayKhoiHanh,GioKhoiHanh,GiaVe,MaLoTrinh) VALUES (?,?,?,?,?,?,now(),?,?,?,?,?)";
-        Connection cnt = JDBC.getConn();
-        cnt.setAutoCommit(false);
-         PreparedStatement pStm = cnt.prepareStatement(sql);
-         pStm.setString(1, ve.getMaVe());
-         pStm.setString(2, ve.getBienSoXe());
-         pStm.setString(3, ve.getMaNV());
-         pStm.setString(4, ve.getHoTenKH());
-         pStm.setString(5, ve.getSdtKH());
-         pStm.setString(6, ve.getMaGheNgoi());
-         
-         java.util.Date date = ve.getThoiGianDatVe();
-      java.sql.Date sqlDate = new java.sql.Date(date.getTime()); 
-//
-//         
-//         pStm.setDate(7, sqlDate);
-         pStm.setBoolean(7, ve.isIsThanhToan());
-         
-         date = ve.getNgayKhoiHanh();
- 
-       sqlDate = new java.sql.Date(date.getTime()); 
-       
-         
-         pStm.setDate(8,sqlDate);
-         pStm.setString(9,ve.getGioKhoiHanh());
-         pStm.setDouble(10, ve.getGiaVe());
-         pStm.setString(11,ve.getMaLoTrinh());
-         
-         pStm.executeUpdate();
-        cnt.commit();
-        return true;
+                    String sql = "INSERT INTO vexe (MaVe,BienSoXe,MaNV,HoTenKH,SDTKH,MaGhe,ThoiGianDat,ThanhToan,NgayKhoiHanh,GioKhoiHanh,GiaVe,MaLoTrinh,LayVe) VALUES (?,?,?,?,?,?,now(),?,?,?,?,?,?)";
+            Connection cnt = JDBC.getConn();
+            cnt.setAutoCommit(false);
+             PreparedStatement pStm = cnt.prepareStatement(sql);
+             pStm.setString(1, ve.getMaVe());
+             pStm.setString(2, ve.getBienSoXe());
+             pStm.setString(3, ve.getMaNV());
+             pStm.setString(4, ve.getHoTenKH());
+             pStm.setString(5, ve.getSdtKH());
+             pStm.setString(6, ve.getMaGheNgoi());
+
+             java.util.Date date = ve.getThoiGianDatVe();
+          java.sql.Date sqlDate = new java.sql.Date(date.getTime()); 
+    //
+    //         
+    //         pStm.setDate(7, sqlDate);
+             pStm.setBoolean(7, ve.isIsThanhToan());
+
+             date = ve.getNgayKhoiHanh();
+
+           sqlDate = new java.sql.Date(date.getTime()); 
+
+
+             pStm.setDate(8,sqlDate);
+             pStm.setString(9,ve.getGioKhoiHanh());
+             pStm.setDouble(10, ve.getGiaVe());
+             pStm.setString(11,ve.getMaLoTrinh());
+             pStm.setBoolean(12, ve.isIsLayVe());
+             pStm.executeUpdate();
+            cnt.commit();
+           
+        }
+         return true;
+        } catch (SQLException ex) {
+           return false;
         }
         
-        return false;
     }
     
-    public static void capNhatVeXe(String bienSoXe, String maNV, String hoTenKH, String sdtKH, String maGhe,String thoiGianDat,boolean isThanhToan,String ngayKhoiHanh,String gioKhoiHanh,double giaVe, String maLoTrinh,String maVe) throws SQLException
+    public static void capNhatVeXe(String bienSoXe, String maNV, String hoTenKH, String sdtKH, String maGhe,String thoiGianDat,boolean isThanhToan,String ngayKhoiHanh,String gioKhoiHanh,double giaVe, String maLoTrinh,String maVe, boolean isLayVe) throws SQLException
     {
-        String sql = "UPDATE vexe SET BienSoXe = ?, MaNV = ?, HoTenKH = ?, SDTKH = ?, MaGhe = ?, ThoiGianDat = now(), ThanhToan = ?, NgayKhoiHanh = ?, GioKhoiHanh = ?, GiaVe = ?, MaLoTrinh = ? WHERE MaVe = ?";
+        String sql = "UPDATE vexe SET BienSoXe = ?, MaNV = ?, HoTenKH = ?, SDTKH = ?, MaGhe = ?, ThoiGianDat = now(), ThanhToan = ?, NgayKhoiHanh = ?, GioKhoiHanh = ?, GiaVe = ?, MaLoTrinh = ?, LayVe = ? WHERE MaVe = ?";
         Connection cnt = JDBC.getConn();
         cnt.setAutoCommit(false);
         PreparedStatement pStm = cnt.prepareStatement(sql);
@@ -160,7 +157,8 @@ String dateInString = ngay + " " + gio;
         pStm.setString(8, gioKhoiHanh);
         pStm.setDouble(9, giaVe);
         pStm.setString(10, maLoTrinh);
-        pStm.setString(11, maVe);
+        pStm.setBoolean(11, isLayVe);
+        pStm.setString(12, maVe);
         pStm.executeUpdate();
         cnt.commit();
     }
@@ -180,7 +178,7 @@ String dateInString = ngay + " " + gio;
     {
         Connection conn = JDBC.getConn();
        Statement stm = conn.createStatement();
-       ResultSet rs = stm.executeQuery("SELECT v.MaVe, v.BienSoXe, v.MaNV, v.HoTenKH, v.SDTKH, v.MaGhe, v.ThoiGianDat, v.ThanhToan, v.NgayKhoiHanh, v.GioKhoiHanh, v.GiaVe, v.MaLoTrinh FROM lotrinh l join vexe v on l.MaLoTrinh = v.MaLoTrinh WHERE TuyenDi like N'%"+key+"%' OR TuyenDen LIKE N'%" +key+"%'");
+       ResultSet rs = stm.executeQuery("SELECT v.MaVe, v.BienSoXe, v.MaNV, v.HoTenKH, v.SDTKH, v.MaGhe, v.ThoiGianDat, v.ThanhToan, v.NgayKhoiHanh, v.GioKhoiHanh, v.GiaVe, v.MaLoTrinh, v.LayVe FROM lotrinh l join vexe v on l.MaLoTrinh = v.MaLoTrinh WHERE TuyenDi like N'%"+key+"%' OR TuyenDen LIKE N'%" +key+"%'");
        List<VeXe> kq = new ArrayList<>();
        while(rs.next())
        {
@@ -216,7 +214,8 @@ String dateInString = ngay + " " + gio;
              String gioKhoiHanh = rs.getString("GioKhoiHanh");
              double giaVe = rs.getDouble("GiaVe");
              String maLoTrinh = rs.getString("MaLoTrinh");
-             VeXe vx = new VeXe(maVe,bienSoXe,maNV, hoTenKh, sdtKh,maGheNgoi, thoiGianDat, isThanhToan,ngayKhoiHanh,gioKhoiHanh,giaVe,maLoTrinh);
+             boolean isLayVe = rs.getBoolean("LayVe");
+             VeXe vx = new VeXe(maVe,bienSoXe,maNV, hoTenKh, sdtKh,maGheNgoi, thoiGianDat, isThanhToan,ngayKhoiHanh,gioKhoiHanh,giaVe,maLoTrinh,isLayVe);
              kq.add(vx);
         } catch (ParseException e) {
             e.printStackTrace();
@@ -227,5 +226,18 @@ String dateInString = ngay + " " + gio;
 //            String date = ngay + " " + gio;
        }
        return kq;
+    }
+    
+    public static List<String> getMaGhe(String bienSoXe,String ngayKhoiHanh,String gioKhoiHanh, String maLoTrinh) throws SQLException
+    {
+         Connection conn = JDBC.getConn();
+        Statement stm = conn.createStatement();
+        ResultSet rs = stm.executeQuery("SELECT MaGhe FROM vexe WHERE BienSoXe = '" + bienSoXe + "' AND NgayKhoiHanh = '" +ngayKhoiHanh + "' AND GioKhoiHanh = '" + gioKhoiHanh + "' AND MaLoTrinh = '" +maLoTrinh+"'");
+        List<String> kq = new ArrayList<>();
+        while(rs.next())
+        {
+            kq.add(rs.getString("MaGhe"));
+        }
+        return kq;
     }
 }

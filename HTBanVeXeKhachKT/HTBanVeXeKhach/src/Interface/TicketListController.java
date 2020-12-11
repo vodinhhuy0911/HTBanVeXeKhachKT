@@ -61,6 +61,7 @@ public class TicketListController implements Initializable {
 
     @FXML
     private ComboBox cbNgayKH;
+    
 
     @FXML
     private TextField txtIDNV;
@@ -103,7 +104,10 @@ public class TicketListController implements Initializable {
     
     @FXML
     private TableColumn clTKH;
-    
+    @FXML
+    private RadioButton rdLayVe;
+    @FXML
+    private TableColumn clLayVe;
     @FXML
     private TableColumn clSDT;
     
@@ -134,13 +138,6 @@ public class TicketListController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
-//        ObservableList <String> list = FXCollections.observableArrayList("Xe giường nằm","Xe 40 chỗ ngồi","Xe limo house");
-//                    cbLoaiXe.setItems(list);
-//                try {
-//                    this.loadData();
-//                } catch (SQLException ex) {
-//                    Logger.getLogger(TransportController.class.getName()).log(Level.SEVERE, null, ex);
-//                }
                  this.tvThongTin.setRowFactory((TableView<VeXe> vx) ->{
             TableRow row = new TableRow();
             row.setOnMouseClicked((MouseEvent r) -> {
@@ -162,7 +159,10 @@ public class TicketListController implements Initializable {
                     this.rdTT.setSelected(true);
                 else
                     this.rdTT.setSelected(false);
-            
+                if(x.isIsLayVe())
+                    this.rdLayVe.setSelected(true);
+                else
+                    this.rdLayVe.setSelected(false);
                 list = FXCollections.observableArrayList(String.valueOf(x.getNgayKhoiHanh()));
                 cbNgayKH.setItems(list);
                 cbNgayKH.getSelectionModel().select(x.getNgayKhoiHanh());
@@ -231,6 +231,7 @@ public class TicketListController implements Initializable {
         clGioKH.setCellValueFactory(new PropertyValueFactory("gioKhoiHanh"));
         clNgayKH.setCellValueFactory(new PropertyValueFactory("ngayKhoiHanh"));
         clTT.setCellValueFactory(new PropertyValueFactory("isThanhToan"));
+        clLayVe.setCellValueFactory(new PropertyValueFactory("isLayVe"));
              this.tvThongTin.setItems(FXCollections.observableArrayList(QuanLyVeXe.getDsVexe()));
      }
      public void chonLoTrinh() throws SQLException
@@ -319,8 +320,12 @@ public class TicketListController implements Initializable {
       public void capNhat() throws SQLException
       {
           boolean flag = false;
+          boolean flag1 = false;
           if(rdTT.isSelected())
               flag = true;
+     
+          if(rdLayVe.isSelected())
+              flag1 = true;
            List<String> gioKhoiHanh = new ArrayList<>();
                    String tuyenDuong = cbIDLT.getSelectionModel().getSelectedItem().toString();
                 String td[] = tuyenDuong.split(" - ");
@@ -328,14 +333,14 @@ public class TicketListController implements Initializable {
                 String tuyenDen = td[1];
           QuanLyVeXe.capNhatVeXe(cbIDXe.getSelectionModel().getSelectedItem().toString(), 
                  txtIDNV.getText(),txtKH.getText(), txtSDT.getText(),
-                 txtViTriGhe.getText(), txtNgayBook.getText(), true,
+                 txtViTriGhe.getText(), txtNgayBook.getText(), flag,
                  cbNgayKH.getSelectionModel().getSelectedItem().toString(),
                  cbGioKH.getSelectionModel().getSelectedItem().toString(), 
                  Double.parseDouble(txtGiaVe.getText()),
                  QuanLyTuyenDi.getMaLoTrinh(tuyenDi, tuyenDen, 
                          cbIDXe.getSelectionModel().getSelectedItem().toString(), cbNgayKH.getSelectionModel().getSelectedItem().toString(),
                  cbGioKH.getSelectionModel().getSelectedItem().toString())
-                 , txtIDVe.getText());
+                 , txtIDVe.getText(),flag1);
           
           this.loadData();
       }
@@ -364,6 +369,7 @@ public class TicketListController implements Initializable {
           cbIDLT.getSelectionModel().select(null);
           cbGioKH.setItems(null);
           cbGioKH.getSelectionModel().select(null);
+          rdLayVe.setSelected(false);
           this.loadData();
         }
       
@@ -383,6 +389,7 @@ public class TicketListController implements Initializable {
         clGioKH.setCellValueFactory(new PropertyValueFactory("gioKhoiHanh"));
         clNgayKH.setCellValueFactory(new PropertyValueFactory("ngayKhoiHanh"));
         clTT.setCellValueFactory(new PropertyValueFactory("isThanhToan"));
+        clLayVe.setCellValueFactory(new PropertyValueFactory("isLayVe"));
              this.tvThongTin.setItems(FXCollections.observableArrayList(QuanLyVeXe.timKiemLoTrinh(txtKey.getText())));
           }
           else

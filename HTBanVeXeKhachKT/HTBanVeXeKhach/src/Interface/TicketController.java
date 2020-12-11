@@ -17,6 +17,8 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -33,6 +35,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.RadioButton;
@@ -61,16 +64,20 @@ public class TicketController implements Initializable {
     private ComboBox cbXe;
     
     @FXML
+    private ComboBox cbGheNgoi;
+    
+    @FXML
     private TextField txtLoaiXe;
     
+    @FXML
+    private Button btThem;
     @FXML 
     private TextField txtTenKH;
-    
+    @FXML
+    private RadioButton rdLayVe;
     @FXML
     private TextField txtSdtKH;
     
-    @FXML
-    private TextField txtMaGhe;
     
     @FXML
     private RadioButton rdTT;
@@ -160,14 +167,28 @@ public class TicketController implements Initializable {
         }
     }
     
-    public void themVe() throws SQLException, ParseException
+    public void themVe() throws ParseException
     {
+        if(!txtTenKH.getText().isEmpty()|| !txtSdtKH.getText().isEmpty() || !txtGiaVe.getText().isEmpty())
+        {
+         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");  
+           LocalDateTime now = LocalDateTime.now();  
+          String ngay = cbNgayKhoiHanh.getSelectionModel().getSelectedItem().toString();
+          String gio = cbGioKhoiHanh.getSelectionModel().getSelectedItem().toString();
+          String s1 = now.getYear() + "-" + now.getMonthValue()+ "-" + now.getDayOfMonth() +" ";
+        s1 += (now.getHour() +1)+ ":" + now.getMinute() + ":" + now.getSecond();
+          String ngayGio = ngay + " " + gio;    
+          if(ngayGio.compareTo(s1) >= 0)
+          {
+        
         long millis=System.currentTimeMillis();  
         java.util.Date date=new java.util.Date(millis);  
         boolean tt = false;
+        boolean layVe = false;
         if(rdTT.isSelected())
             tt = true;
-        
+        if(rdLayVe.isSelected())
+            layVe = true;
         UUID uuid = UUID.randomUUID();
        String id = uuid.toString().substring(0, 5);
        String d = cbNgayKhoiHanh.getSelectionModel().getSelectedItem().toString();
@@ -192,13 +213,86 @@ public class TicketController implements Initializable {
         String tuyenDi = td[0];
         String tuyenDen = td[1];
        
-         String maLT = QuanLyTuyenDi.getMaLoTrinh(tuyenDi, tuyenDen, cbXe.getSelectionModel().getSelectedItem().toString(),
-                 cbNgayKhoiHanh.getSelectionModel().getSelectedItem().toString(), cbGioKhoiHanh.getSelectionModel().getSelectedItem().toString());
-       
+         String maLT;
+             try {
+                 maLT = QuanLyTuyenDi.getMaLoTrinh(tuyenDi, tuyenDen, cbXe.getSelectionModel().getSelectedItem().toString(),
+                         cbNgayKhoiHanh.getSelectionModel().getSelectedItem().toString(), cbGioKhoiHanh.getSelectionModel().getSelectedItem().toString());
+                  for(int i = 0; i < txtSdtKH.getText().length(); i++)
+                    if((!Character.isDigit(txtSdtKH.getText().charAt(i))) || (txtSdtKH.getText().length() < 10 || txtSdtKH.getText().length() > 11))
+                    {
+                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                                      alert.setTitle("Information Login");
+                                      alert.setHeaderText(null);
+                                      alert.setContentText("Nhập số điện thoại không hợp lệ. Vui lòng kiểm tra lại!");
+                                      alert.showAndWait();
+                                      return;
+                    }
+                  for(int i = 0; i < txtGiaVe.getText().length(); i++)
+                    if((!Character.isDigit(txtGiaVe.getText().charAt(i))))
+                    {
+                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                                      alert.setTitle("Information Login");
+                                      alert.setHeaderText(null);
+                                      alert.setContentText("Nhập giá vé không hợp lệ. Vui lòng kiểm tra lại!");
+                                      alert.showAndWait();
+                                      return;
+                    }
         VeXe ve = new VeXe(id,cbXe.getSelectionModel().getSelectedItem().toString(),"1",txtTenKH.getText(),txtSdtKH.getText(),
-        txtMaGhe.getText(),date,tt,ngayKhoiHanh,
-        cbGioKhoiHanh.getSelectionModel().getSelectedItem().toString(),gia,maLT);
-        QuanLyVeXe.themVe(ve);
+        cbGheNgoi.getSelectionModel().getSelectedItem().toString(),date,tt,ngayKhoiHanh,
+        cbGioKhoiHanh.getSelectionModel().getSelectedItem().toString(),gia,maLT,layVe);
+        if(QuanLyVeXe.themVe(ve))
+        {
+                                       Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                                      alert.setTitle("Information Login");
+                                      alert.setHeaderText(null);
+                                      alert.setContentText("Thêm vé thành công");
+                                      alert.showAndWait();
+        }
+        else
+        {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                                      alert.setTitle("Information Login");
+                                      alert.setHeaderText(null);
+                                      alert.setContentText("Thêm vé không thành công. Vui lòng kiểm tra lại thông tin.");
+                                      alert.showAndWait();
+        }
+             } catch (SQLException ex) {
+                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                                      alert.setTitle("Information Login");
+                                      alert.setHeaderText(null);
+                                      alert.setContentText("Thêm vé không thành công. Vui lòng kiểm tra lại thông tin.");
+                                      alert.showAndWait();
+             }
+             catch(NullPointerException npe)
+             {
+                  Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                                      alert.setTitle("Information Login");
+                                      alert.setHeaderText(null);
+                                      alert.setContentText("Thêm vé không thành công. Vui lòng kiểm tra lại thông tin.");
+                                      alert.showAndWait();
+             }
+       
+         
+        
+          }
+          else
+          {
+              Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                                      alert.setTitle("Information Login");
+                                      alert.setHeaderText(null);
+                                      alert.setContentText("Xe sắp khởi hành không thể thêm vé.");
+                                      alert.showAndWait();
+                                      return;
+          }
+        }
+        else
+        {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                          alert.setTitle("Information Login");
+                          alert.setHeaderText(null);
+                          alert.setContentText("Vui lòng điền đầy đủ thông tin!");
+                          alert.showAndWait();
+        }
     }
     
     public void chonNgay()
@@ -230,12 +324,61 @@ public class TicketController implements Initializable {
         {
             
         }
+         
+         
     }
     
-    public void chonGhe(ActionEvent ae)
+    public void chonGhe(ActionEvent ae) throws SQLException
     {
+        String tuyenDuong = cbLoTrinh.getSelectionModel().getSelectedItem().toString();
+        String td[] = tuyenDuong.split(" - ");
+        String tuyenDi = td[0];
+        String tuyenDen = td[1];
        
-        txtMaGhe.setText(((Button)ae.getSource()).getText());
+         String maLT = QuanLyTuyenDi.getMaLoTrinh(tuyenDi, tuyenDen, cbXe.getSelectionModel().getSelectedItem().toString(),
+                         cbNgayKhoiHanh.getSelectionModel().getSelectedItem().toString(), cbGioKhoiHanh.getSelectionModel().getSelectedItem().toString());
+          
+
+        List<String> dsMaGhe = QuanLyVeXe.getMaGhe(cbXe.getSelectionModel().getSelectedItem().toString(),
+                        cbNgayKhoiHanh.getSelectionModel().getSelectedItem().toString(),
+                        cbGioKhoiHanh.getSelectionModel().getSelectedItem().toString(),maLT);
+          
+          List<String> initMaGhe = new ArrayList<>();
+          initMaGhe.add("A1");
+          initMaGhe.add("A2");
+          initMaGhe.add("A3");
+          initMaGhe.add("A4");
+          initMaGhe.add("A5");
+          initMaGhe.add("A6");
+          initMaGhe.add("A7");
+          initMaGhe.add("A8");
+          initMaGhe.add("A9");
+          initMaGhe.add("A10");
+          initMaGhe.add("A11");
+          initMaGhe.add("A12");
+          initMaGhe.add("B1");
+          initMaGhe.add("B2");
+          initMaGhe.add("B3");
+          initMaGhe.add("B4");
+          initMaGhe.add("B5");
+          initMaGhe.add("B6");
+          initMaGhe.add("B7");
+          initMaGhe.add("B8");
+          initMaGhe.add("B9");
+          initMaGhe.add("B10");
+          initMaGhe.add("B11");
+          initMaGhe.add("B12");
+           for(String s : dsMaGhe)
+          {
+              initMaGhe.remove(s);
+          }
+          for(String str : initMaGhe)
+              if(str.compareTo((((Button)ae.getSource()).getText())) == 0)
+              {
+                  cbGheNgoi.getSelectionModel().select((((Button)ae.getSource()).getText()));
+                  break;
+              }
+       
     }
       public void btExitOnAction(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("Main.fxml"));
@@ -244,5 +387,57 @@ public class TicketController implements Initializable {
         stage.setScene(scene);
         stage.centerOnScreen();
         stage.show();
+
     }
+      public void chonGio() throws SQLException
+      {
+String tuyenDuong = cbLoTrinh.getSelectionModel().getSelectedItem().toString();
+        String td[] = tuyenDuong.split(" - ");
+        String tuyenDi = td[0];
+        String tuyenDen = td[1];
+       
+         String maLT = QuanLyTuyenDi.getMaLoTrinh(tuyenDi, tuyenDen, cbXe.getSelectionModel().getSelectedItem().toString(),
+                         cbNgayKhoiHanh.getSelectionModel().getSelectedItem().toString(), cbGioKhoiHanh.getSelectionModel().getSelectedItem().toString());
+          
+          
+          
+          
+          List<String> dsMaGhe = QuanLyVeXe.getMaGhe(cbXe.getSelectionModel().getSelectedItem().toString(),
+                        cbNgayKhoiHanh.getSelectionModel().getSelectedItem().toString(),
+                        cbGioKhoiHanh.getSelectionModel().getSelectedItem().toString(),maLT);
+          
+          List<String> initMaGhe = new ArrayList<>();
+          initMaGhe.add("A1");
+          initMaGhe.add("A2");
+          initMaGhe.add("A3");
+          initMaGhe.add("A4");
+          initMaGhe.add("A5");
+          initMaGhe.add("A6");
+          initMaGhe.add("A7");
+          initMaGhe.add("A8");
+          initMaGhe.add("A9");
+          initMaGhe.add("A10");
+          initMaGhe.add("A11");
+          initMaGhe.add("A12");
+          initMaGhe.add("B1");
+          initMaGhe.add("B2");
+          initMaGhe.add("B3");
+          initMaGhe.add("B4");
+          initMaGhe.add("B5");
+          initMaGhe.add("B6");
+          initMaGhe.add("B7");
+          initMaGhe.add("B8");
+          initMaGhe.add("B9");
+          initMaGhe.add("B10");
+          initMaGhe.add("B11");
+          initMaGhe.add("B12");
+          for(String s : dsMaGhe)
+          {
+              initMaGhe.remove(s);
+          }
+          
+           ObservableList <String> list = FXCollections.observableArrayList(initMaGhe);
+                    cbGheNgoi.setItems(list);
+                    
+      }
 }
