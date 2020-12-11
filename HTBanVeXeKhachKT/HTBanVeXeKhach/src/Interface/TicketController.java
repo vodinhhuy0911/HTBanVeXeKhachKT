@@ -124,6 +124,8 @@ public class TicketController implements Initializable {
     
     public void chonLoTrinh() throws SQLException
     {
+        if(!cbLoTrinh.getSelectionModel().isEmpty())
+        {
         List <String> s = new ArrayList<>();
         String tuyenDuong = cbLoTrinh.getSelectionModel().getSelectedItem().toString();
         String td[] = tuyenDuong.split(" - ");
@@ -134,12 +136,12 @@ public class TicketController implements Initializable {
         ObservableList <String> list = FXCollections.observableArrayList(s);
                     cbXe.setItems(list);
                     cbXe.getSelectionModel().select(0);
-    
+        }
     }
     public void chonXe()
     {
         try {
-            if(cbXe.getSelectionModel().getSelectedItem().toString() != null)
+            if(!cbXe.getSelectionModel().isEmpty())
             {
                 txtLoaiXe.setText(QuanLyXe.getLoaiXe(cbXe.getSelectionModel().getSelectedItem().toString()));
                 
@@ -298,7 +300,7 @@ public class TicketController implements Initializable {
     public void chonNgay()
     {
          try {
-            if(cbNgayKhoiHanh.getSelectionModel().getSelectedItem().toString() != null)
+            if(!cbNgayKhoiHanh.getSelectionModel().isEmpty())
             {
                
                 
@@ -330,6 +332,8 @@ public class TicketController implements Initializable {
     
     public void chonGhe(ActionEvent ae) throws SQLException
     {
+        if(!cbGioKhoiHanh.getSelectionModel().isEmpty())
+        {
         String tuyenDuong = cbLoTrinh.getSelectionModel().getSelectedItem().toString();
         String td[] = tuyenDuong.split(" - ");
         String tuyenDi = td[0];
@@ -378,7 +382,7 @@ public class TicketController implements Initializable {
                   cbGheNgoi.getSelectionModel().select((((Button)ae.getSource()).getText()));
                   break;
               }
-       
+        }
     }
       public void btExitOnAction(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("Main.fxml"));
@@ -391,7 +395,9 @@ public class TicketController implements Initializable {
     }
       public void chonGio() throws SQLException
       {
-String tuyenDuong = cbLoTrinh.getSelectionModel().getSelectedItem().toString();
+          if(!cbGioKhoiHanh.getSelectionModel().isEmpty())
+          {
+        String tuyenDuong = cbLoTrinh.getSelectionModel().getSelectedItem().toString();
         String td[] = tuyenDuong.split(" - ");
         String tuyenDi = td[0];
         String tuyenDen = td[1];
@@ -438,6 +444,30 @@ String tuyenDuong = cbLoTrinh.getSelectionModel().getSelectedItem().toString();
           
            ObservableList <String> list = FXCollections.observableArrayList(initMaGhe);
                     cbGheNgoi.setItems(list);
-                    
+          }
+      }
+      public void huy()
+      {
+          try{
+          cbGheNgoi.setItems(null);
+          cbGheNgoi.getSelectionModel().select(null);
+          cbGioKhoiHanh.setItems(null);
+          cbGioKhoiHanh.getSelectionModel().select(null);
+          cbLoTrinh.getSelectionModel().select(null);
+          cbNgayKhoiHanh.setItems(null);
+          cbNgayKhoiHanh.getSelectionModel().select(null);
+          cbXe.setItems(null);
+          cbXe.getSelectionModel().select(null);
+          txtLoaiXe.setText(null);
+          txtGiaVe.setText(null);
+          txtSdtKH.setText(null);
+          txtTenKH.setText(null);
+          rdLayVe.setSelected(false);
+          rdTT.setSelected(false);
+          }
+          catch(Exception ex)
+          {
+              
+          }
       }
 }

@@ -83,7 +83,7 @@
                </image>
             </ImageView>
          </graphic></Button>
-      <Button fx:id="btHuy" layoutX="743.0" layoutY="523.0" mnemonicParsing="false" onDragDetected="#chonXe" prefHeight="45.0" prefWidth="120.0" styleClass="btCancel" stylesheets="@styletTicket.css" text="Hủy">
+      <Button fx:id="btHuy" layoutX="743.0" layoutY="523.0" mnemonicParsing="false" onAction="#huy" onDragDetected="#chonXe" prefHeight="45.0" prefWidth="120.0" styleClass="btCancel" stylesheets="@styletTicket.css" text="Hủy">
          <graphic>
             <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                <image>
