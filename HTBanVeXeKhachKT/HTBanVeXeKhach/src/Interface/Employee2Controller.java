@@ -5,7 +5,6 @@
  */
 package Interface;
 import BVXK.QuanLyNhanVien;
-import BVXK.ThongTinTaiKhoan;
 import BanVeXeKhach.DangNhap;
 import BanVeXeKhach.NhanVien;
 import java.io.IOException;
@@ -99,15 +98,7 @@ public class Employee2Controller implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         //Load ten nhan vien tren form
-         try {
-            List <DangNhap> ds = ThongTinTaiKhoan.getThongTin();
-            for(DangNhap dn : ds){
-                USERNAME = dn.getTaiKhoan();
-            }
-            txtTenNV.setText(USERNAME);
-        } catch (SQLException ex) {
-            Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+            txtTenNV.setText(LoginController.USERNAME);
          
          
          
@@ -160,7 +151,7 @@ public class Employee2Controller implements Initializable {
 //           String str[] = s.split("-");
 //           String ns = str[2] + "/" +  str[1] + "/" + str[0];
                 java.util.Date ngaySinh = formatter.parse(s);
-         NhanVien nv = new NhanVien(txtID.getText(), txtHoTen.getText(), ngaySinh, txtDiaChi.getText(), txtChucVu.getText(),txtSDT.getText(), txtEmail.getText());
+         NhanVien nv = new NhanVien(txtID.getText(), txtHoTen.getText(), ngaySinh, txtDiaChi.getText(), txtChucVu.getText(),txtSDT.getText(), txtEmail.getText(),txtMatKhau.getText());
          QuanLyNhanVien.capNhatNhanVien(nv);
          this.loadData();
      }  

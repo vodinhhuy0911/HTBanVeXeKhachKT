@@ -151,10 +151,9 @@ public class EmployeeController implements Initializable {
                                   return;
                 }
             try {
-                String str[] = d.split("-");
-                 if(str[0].length() == 4)
                 d = d.replace('-', '/');
-            else
+                String str[] = d.split("/");
+             if(str[0].length() == 2)
                 d = str[2] + "/" + str[1] + "/" + str[0];
             
                 java.util.Date ngaySinh;
@@ -228,13 +227,12 @@ public class EmployeeController implements Initializable {
                                   alert.showAndWait();
                                   return;
                 }
-            String str[] = d.split("-");
+            d = d.replace('-', '/');
+                String str[] = d.split("/");
+             if(str[0].length() == 2)
+                d = str[2] + "/" + str[1] + "/" + str[0];
             
               try {
-                  if(str[0].length() == 4)
-                d = d.replace('-', '/');
-            else
-                d = str[2] + "/" + str[1] + "/" + str[0];
             
                 java.util.Date ngaySinh;
                   ngaySinh = formatter.parse(d);
