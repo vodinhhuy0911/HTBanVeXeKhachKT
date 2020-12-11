@@ -76,7 +76,7 @@ public class TicketController implements Initializable {
     private RadioButton rdTT;
     
     @FXML 
-       private ComboBox cbNgayKhoiHanh;
+    private ComboBox cbNgayKhoiHanh;
     
     @FXML
     private ComboBox cbGioKhoiHanh;
@@ -242,6 +242,7 @@ public class TicketController implements Initializable {
         Scene scene = new Scene(root);
         Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         stage.setScene(scene);
+        stage.centerOnScreen();
         stage.show();
     }
 }

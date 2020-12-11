@@ -1,0 +1,83 @@
+.infoLabel{
+    -fx-font-weight:bold;
+    -fx-font-size:14px;
+}
+.main{
+  -fx-background-color: azure;
+}
+.mainLabel{
+    -fx-background-color:#ff6666;
+    -fx-background-radius: 15 15 15 15;
+    -fx-border-color: black;
+    -fx-border-radius: 10 10 10 10;
+    -fx-border-width: 3 3 3 3;
+}
+.btAdd{
+    -fx-font-size:14px;
+    -fx-font-weight:bold;
+    -fx-background-color:#b3ffb3;
+    -fx-background-radius: 15 15 15 15;
+    
+}
+.btAdd:pressed
+{
+    -fx-font-size:14px;
+    -fx-font-weight:bold;
+    -fx-background-radius: 20 20 20 20;
+    -fx-background-color:#ffffe6;
+}
+.btEdit{
+    -fx-background-color:#ffff00;
+    -fx-background-radius: 15 15 15 15;
+     -fx-font-size:14px;
+    -fx-font-weight:bold;
+}
+.btEdit:pressed
+{
+    -fx-font-size:14px;
+    -fx-font-weight:bold;
+    -fx-background-radius: 20 20 20 20;
+    -fx-background-color:#ffffe6;
+}
+.btCancel{
+   -fx-font-size:14px;
+   -fx-font-weight:bold;
+   -fx-background-color:#ff8080;
+   -fx-background-radius: 15 15 15 15;
+    
+}
+.btCancel:pressed
+{
+    -fx-font-size:14px;
+    -fx-font-weight:bold;
+    -fx-background-radius: 20 20 20 20;
+    -fx-background-color:#ffffe6;
+}
+.btDelete{
+   -fx-font-size:14px;
+   -fx-font-weight:bold;
+   -fx-background-color:#ffd9b3;
+   -fx-background-radius: 15 15 15 15;
+    
+}
+.btDelete:pressed
+{
+    -fx-font-size:14px;
+    -fx-font-weight:bold;
+    -fx-background-radius: 20 20 20 20;
+    -fx-background-color:#ffffe6;
+}
+.btFind{
+   -fx-font-size:14px;
+   -fx-font-weight:bold;
+   -fx-background-color:#ccccff;
+   -fx-background-radius: 15 15 15 15;
+    
+}
+.btFind:pressed
+{
+    -fx-font-size:14px;
+    -fx-font-weight:bold;
+    -fx-background-radius: 20 20 20 20;
+    -fx-background-color:#ffffe6;
+}

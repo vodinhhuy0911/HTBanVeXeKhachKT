@@ -212,6 +212,7 @@ public class TicketListController implements Initializable {
         Scene scene = new Scene(root);
         Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         stage.setScene(scene);
+        stage.centerOnScreen();
         stage.show();
     }
     
@@ -387,4 +388,6 @@ public class TicketListController implements Initializable {
           else
               this.loadData();
       }
+      //Xuat ra report
+      public void xuatVe(){}
 }
