@@ -24,6 +24,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
@@ -94,18 +95,63 @@ ObservableList<Xe> nvList = FXCollections.observableArrayList ();
     }
     public void themXe() throws SQLException
     {
-        String loaiXe = cbLoaiXe.getSelectionModel().getSelectedItem().toString();
-        Xe xe = new Xe(txtMaXe.getText(),loaiXe);
-        QuanLyXe.themXe(xe);
-        this.loadData();
+        if(cbLoaiXe.getSelectionModel().getSelectedItem().toString() != null &&txtMaXe.getText() != null)
+        {
+                String loaiXe = cbLoaiXe.getSelectionModel().getSelectedItem().toString();
+                Xe xe = new Xe(txtMaXe.getText(),loaiXe);
+                if(QuanLyXe.themXe(xe))
+                {
+                    this.loadData();
+                    {
+                         Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                                      alert.setTitle("Information Login");
+                                      alert.setHeaderText(null);
+                                      alert.setContentText("Thêm thành công.");
+                                      alert.showAndWait();
+                        }
+                }
+                else
+                {
+                    {
+                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                                  alert.setTitle("Information Login");
+                                  alert.setHeaderText(null);
+                                  alert.setContentText("Thêm không thành công. Vui lòng kiểm tra lại thông tin");
+                                  alert.showAndWait();
+                    }
+                }
+        }
+        else
+        {
+            {
+                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                                  alert.setTitle("Information Login");
+                                  alert.setHeaderText(null);
+                                  alert.setContentText("Vui lòng nhập đầy đủ thông tin!");
+                                  alert.showAndWait();
+                    }
+        }
     }
     
     public void capNhatXe() throws SQLException
     {
-        String loaiXe = cbLoaiXe.getSelectionModel().getSelectedItem().toString();
-        Xe xe = new Xe(txtMaXe.getText(),loaiXe);
-        QuanLyXe.capNhatXe(xe,maXeCu);
-        this.loadData();
+         if(cbLoaiXe.getSelectionModel().getSelectedItem().toString() != null &&txtMaXe.getText() != null)
+         {
+            String loaiXe = cbLoaiXe.getSelectionModel().getSelectedItem().toString();
+            Xe xe = new Xe(txtMaXe.getText(),loaiXe);
+            QuanLyXe.capNhatXe(xe,maXeCu);
+            this.loadData();
+         }
+         else
+             {
+            {
+                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                                  alert.setTitle("Information Login");
+                                  alert.setHeaderText(null);
+                                  alert.setContentText("Vui lòng nhập đầy đủ thông tin!");
+                                  alert.showAndWait();
+                    }
+        }
     }
     
     public void xoaXe() throws SQLException
