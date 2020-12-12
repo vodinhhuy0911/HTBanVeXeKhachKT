@@ -32,6 +32,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
@@ -158,7 +159,8 @@ public class DistanceController implements Initializable {
     @FXML
     public void themLoTring() throws SQLException, ParseException
     {
-        
+        if(!txtMaLoTrinh.getText().isEmpty() && !txtTuyenDi.getText().isEmpty() && !txtTuyenDen.getText().isEmpty() && !txtGioKhoiHanh.getText().isEmpty() && !cbXe.getSelectionModel().isEmpty() && dpNgayKhoiHanh.getValue()!=null)
+        {
         LocalDate ngayKhoiHanh = dpNgayKhoiHanh.getValue();
         String date = String.valueOf(ngayKhoiHanh);
   String s[] = date.split("-");
@@ -167,12 +169,38 @@ public class DistanceController implements Initializable {
         Date d = sfm.parse(date);
         
         TuyenDuong td = new TuyenDuong(txtMaLoTrinh.getText(), txtTuyenDi.getText(), txtTuyenDen.getText(),cbXe.getSelectionModel().getSelectedItem().toString(),d,txtGioKhoiHanh.getText());
-        QuanLyTuyenDi.themTuyenDuong(td);
+        if(QuanLyTuyenDi.themTuyenDuong(td))
+        {
         this.loadData();
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                                  alert.setTitle("Information Login");
+                                  alert.setHeaderText(null);
+                                  alert.setContentText("Thêm thành công");
+                                  alert.showAndWait();
+        }
+        else
+        {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                                  alert.setTitle("Information Login");
+                                  alert.setHeaderText(null);
+                                  alert.setContentText("Thêm thất bại. Vui lòng kiểm tra lại thông tin.");
+                                  alert.showAndWait();
+        }
+        }
+        else
+        {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                                  alert.setTitle("Information Login");
+                                  alert.setHeaderText(null);
+                                  alert.setContentText("Vui lòng nhập đầy đủ thông tin!");
+                                  alert.showAndWait();
+        }
     }
     @FXML
     public void capNhatTuyenDuong() throws SQLException, ParseException
     {
+         if(!txtMaLoTrinh.getText().isEmpty() && !txtTuyenDi.getText().isEmpty() && !txtTuyenDen.getText().isEmpty() && !txtGioKhoiHanh.getText().isEmpty() && !cbXe.getSelectionModel().isEmpty() && dpNgayKhoiHanh.getValue()!=null)
+         {
         LocalDate ngayKhoiHanh = dpNgayKhoiHanh.getValue();
         String date = String.valueOf(ngayKhoiHanh);
   String s[] = date.split("-");
@@ -181,16 +209,66 @@ public class DistanceController implements Initializable {
         Date d = sfm.parse(date);
         
         
-        QuanLyTuyenDi.capNhatTuyenDuong(txtTuyenDi.getText(), txtTuyenDen.getText(),txtMaLoTrinh.getText(),cbXe.getSelectionModel().getSelectedItem().toString(),
-                d,txtGioKhoiHanh.getText());
-        this.loadData();
+        if(QuanLyTuyenDi.capNhatTuyenDuong(txtTuyenDi.getText(), txtTuyenDen.getText(),txtMaLoTrinh.getText(),cbXe.getSelectionModel().getSelectedItem().toString(),
+                d,txtGioKhoiHanh.getText()))
+        {
+             this.loadData();
+             Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                                  alert.setTitle("Information Login");
+                                  alert.setHeaderText(null);
+                                  alert.setContentText("Cập nhật thành công.");
+                                  alert.showAndWait();
+        }
+        else
+        {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                                  alert.setTitle("Information Login");
+                                  alert.setHeaderText(null);
+                                  alert.setContentText("Cập nhật thất bại. Vui lòng kiểm tra lại thông tin");
+                                  alert.showAndWait();
+        }
+         }
+         else
+         {
+             Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                                  alert.setTitle("Information Login");
+                                  alert.setHeaderText(null);
+                                  alert.setContentText("Vui lòng nhập đầy đủ thông tin!");
+                                  alert.showAndWait();
+         }
     }
     
     @FXML
     public void xoaTuyenDuong() throws SQLException
     {
-        QuanLyTuyenDi.xoaTuyenDuong(txtMaLoTrinh.getText());
-        this.loadData();
+        if(!txtMaLoTrinh.getText().isEmpty())
+        {
+            if(QuanLyTuyenDi.xoaTuyenDuong(txtMaLoTrinh.getText()))
+            {
+                this.loadData();
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                                  alert.setTitle("Information Login");
+                                  alert.setHeaderText(null);
+                                  alert.setContentText("Xóa thành công.");
+                                  alert.showAndWait();
+            }
+            else 
+            {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                                  alert.setTitle("Information Login");
+                                  alert.setHeaderText(null);
+                                  alert.setContentText("Vui lòng nhập đầy đủ thông tin!");
+                                  alert.showAndWait();
+            }
+        }
+        else
+        {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                                  alert.setTitle("Information Login");
+                                  alert.setHeaderText(null);
+                                  alert.setContentText("Xóa không thành công");
+                                  alert.showAndWait();
+        }
     }
     @FXML
     public void btExitOnAction(ActionEvent event) throws IOException {
@@ -218,5 +296,14 @@ public class DistanceController implements Initializable {
         else{
             this.loadData();
         }
+    }
+    public void huy()
+    {
+        txtMaLoTrinh.setText(null);
+        txtTuyenDen.setText(null);
+        txtTuyenDi.setText(null);
+        txtGioKhoiHanh.setText(null);
+        cbXe.getSelectionModel().select(null);
+        dpNgayKhoiHanh.setValue(null);
     }
 }

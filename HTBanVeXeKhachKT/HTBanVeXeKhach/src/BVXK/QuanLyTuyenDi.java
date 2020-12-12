@@ -10,6 +10,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -42,12 +44,13 @@ public class QuanLyTuyenDi {
        return kq;
    }
    
-    public static void themTuyenDuong(TuyenDuong td) throws SQLException 
+    public static boolean themTuyenDuong(TuyenDuong td)
     {
          String sql = "INSERT INTO lotrinh (MaLoTrinh, TuyenDi,TuyenDen,MaXe,NgayKhoiHanh,GioKhoiHanh) VALUES (?,?,?,?,?,?)";
          Connection cnt = JDBC.getConn();
-        cnt.setAutoCommit(false);
-        PreparedStatement pStm = cnt.prepareStatement(sql);
+       try {
+           cnt.setAutoCommit(false);
+           PreparedStatement pStm = cnt.prepareStatement(sql);
         pStm.setString(1, td.getMaTuyenDuong());
         pStm.setString(2, td.getTuyenDi());
         pStm.setString(3,td.getTuyenDen());
@@ -62,36 +65,73 @@ public class QuanLyTuyenDi {
         pStm.executeUpdate();
         
         cnt.commit();
+        return true;
+       } catch (SQLException ex) {
+           return false;
+       }
+        
     }
-    public static void capNhatTuyenDuong(String tuyenDi, String tuyenDen,String maLoTrinh, String maXe, Date thoiGianKhoiHanh, String GioKhoiHanh) throws SQLException
+    public static boolean capNhatTuyenDuong(String tuyenDi, String tuyenDen,String maLoTrinh, String maXe, Date thoiGianKhoiHanh, String GioKhoiHanh)
    {
-       String sql = "UPDATE lotrinh SET TuyenDi = ?, TuyenDen = ?, MaXe = ?, NgayKhoiHanh = ?, GioKhoiHanh = ? WHERE MaLoTrinh = ?";
+       //cap nhat bang vexe
+       String sql = "UPDATE lotrinh SET MaXe = ?, NgayKhoiHanh = ?, GioKhoiHanh = ? WHERE MaLoTrinh = ?";
         Connection cnt = JDBC.getConn();
-        cnt.setAutoCommit(false);
-        PreparedStatement pStm = cnt.prepareStatement(sql);
-        pStm.setString(1, tuyenDi);
-        pStm.setString(2, tuyenDen);
-        pStm.setString(3, maXe);
+       try {
+           cnt.setAutoCommit(false);
+           PreparedStatement pStm = cnt.prepareStatement(sql);
+       pStm.setString(1, maXe);
         java.util.Date date = thoiGianKhoiHanh;
       java.sql.Date sqlDate = new java.sql.Date(date.getTime()); 
 
+        pStm.setDate(2, sqlDate);
+        pStm.setString(3, GioKhoiHanh);
+       pStm.setString(4, maLoTrinh);
+             pStm.executeUpdate();
+        cnt.commit();
+        pStm.close();
+       //cap nhat bang lo trinh
+       sql = "UPDATE lotrinh SET TuyenDi = ?, TuyenDen = ?, MaXe = ?, NgayKhoiHanh = ?, GioKhoiHanh = ? WHERE MaLoTrinh = ?";
+        
+        cnt.setAutoCommit(false);
+        pStm = cnt.prepareStatement(sql);
+        pStm.setString(1, tuyenDi);
+        pStm.setString(2, tuyenDen);
+        pStm.setString(3, maXe);
         pStm.setDate(4, sqlDate);
         pStm.setString(5, GioKhoiHanh);
        pStm.setString(6, maLoTrinh);
-       
         pStm.executeUpdate();
         cnt.commit();
+        return true;
+       } catch (SQLException ex) {
+           return false;
+       }
+        
    }
-   public static void xoaTuyenDuong(String maTuyenDuong) throws SQLException
+   public static boolean xoaTuyenDuong(String maTuyenDuong)
    {
-       String sql = "DELETE FROM lotrinh WHERE MaLoTrinh = '" + maTuyenDuong+"'";
-      
+       //xoa tren bang vexe
+       String sql = "DELETE FROM vexe WHERE MaLoTrinh = '" + maTuyenDuong+"'";
         Connection cnt = JDBC.getConn();
+       try {
+           cnt.setAutoCommit(false);
+           PreparedStatement pStm = cnt.prepareStatement(sql);
+         pStm.executeUpdate();
+         cnt.commit();
+       
+       //xoa tren bang tuyenduong
+       sql = "DELETE FROM lotrinh WHERE MaLoTrinh = '" + maTuyenDuong+"'";
+        
         cnt.setAutoCommit(false);
-        PreparedStatement pStm = cnt.prepareStatement(sql);
+       pStm = cnt.prepareStatement(sql);
          pStm.executeUpdate();
          cnt.commit();
          //ok
+         return true;
+       } catch (SQLException ex) {
+           return false;
+       }
+        
    }
    
    public static List<String> getMaXe(String tuyenDi, String tuyenDen) throws SQLException

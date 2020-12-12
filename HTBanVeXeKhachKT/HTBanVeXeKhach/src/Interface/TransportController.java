@@ -171,9 +171,33 @@ ObservableList<Xe> nvList = FXCollections.observableArrayList ();
     
     public void xoaXe() throws SQLException
     {
-        
-        QuanLyXe.xoaXe(txtMaXe.getText());
-        this.loadData();
+        if(!txtMaXe.getText().isEmpty())
+        {
+        if(QuanLyXe.xoaXe(txtMaXe.getText()))
+        {
+            this.loadData();
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                                  alert.setTitle("Information Login");
+                                  alert.setHeaderText(null);
+                                  alert.setContentText("Xóa xe thành công!");
+                                  alert.showAndWait();
+        }
+        else{
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                                  alert.setTitle("Information Login");
+                                  alert.setHeaderText(null);
+                                  alert.setContentText("Xóa xe không thành công");
+                                  alert.showAndWait();
+        }
+        }
+        else
+        {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                                  alert.setTitle("Information Login");
+                                  alert.setHeaderText(null);
+                                  alert.setContentText("Vui lòng nhập đầy đủ thông tin!");
+                                  alert.showAndWait();
+        }
     }
       public void btExitOnAction(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("Main.fxml"));

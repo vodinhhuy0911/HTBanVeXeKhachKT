@@ -94,16 +94,41 @@ public class QuanLyXe {
         }
         
    }
-   public static void xoaXe(String bienSoXe) throws SQLException
+   public static boolean xoaXe(String bienSoXe)
    {
-       String sql = "DELETE FROM xe WHERE MaXe = '" + bienSoXe+"'";
+       //xoa tren bang vexe
+       String sql = "DELETE FROM vexe WHERE BienSoXe = '" + bienSoXe+"'";
       
         Connection cnt = JDBC.getConn();
+        try {
+            cnt.setAutoCommit(false);
+            PreparedStatement pStm = cnt.prepareStatement(sql);
+         pStm.executeUpdate();
+         cnt.commit();
+         pStm.close();
+       //xoa tren bang lotrinh
+       sql = "DELETE FROM lotrinh WHERE MaXe = '" + bienSoXe+"'";
+      
+       
         cnt.setAutoCommit(false);
-        PreparedStatement pStm = cnt.prepareStatement(sql);
+        pStm = cnt.prepareStatement(sql);
+         pStm.executeUpdate();
+         cnt.commit();
+         pStm.close();
+       //xoa tren bang xe
+       sql = "DELETE FROM xe WHERE MaXe = '" + bienSoXe+"'";
+      
+       
+        cnt.setAutoCommit(false);
+        pStm = cnt.prepareStatement(sql);
          pStm.executeUpdate();
          cnt.commit();
          //ok
+         return true;
+        } catch (SQLException ex) {
+            return false;
+        }
+        
    }
 
    public static String getLoaiXe(String id) throws SQLException
