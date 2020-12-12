@@ -59,7 +59,6 @@
       <TextField fx:id="txtHoTen" layoutX="140.0" layoutY="133.0" prefHeight="26.0" prefWidth="354.0" />
       <TextField fx:id="txtNgaySinh" layoutX="140.0" layoutY="173.0" prefHeight="26.0" prefWidth="354.0" />
       <TextField fx:id="txtDiaChi" layoutX="140.0" layoutY="221.0" prefHeight="26.0" prefWidth="354.0" />
-      <TextField fx:id="txtChucVu" layoutX="141.0" layoutY="274.0" prefHeight="26.0" prefWidth="354.0" />
       <TextField fx:id="txtSDT" layoutX="140.0" layoutY="326.0" prefHeight="26.0" prefWidth="354.0" />
       <TextField fx:id="txtEmail" layoutX="140.0" layoutY="380.0" prefHeight="26.0" prefWidth="354.0" />
       <Button id="btThem" fx:id="btThem" layoutX="13.0" layoutY="462.0" mnemonicParsing="false" onAction="#add" prefHeight="32.0" prefWidth="96.0" styleClass="btAdd" stylesheets="@styleEmployee.css" text="Thêm">
@@ -126,6 +125,7 @@
       </Button>
       <Label layoutX="18.0" layoutY="422.0" styleClass="infoLabel" stylesheets="@styleEmployee.css" text="Mật khẩu" />
       <TextField fx:id="txtMatKhau" layoutX="141.0" layoutY="417.0" prefHeight="26.0" prefWidth="354.0" />
+      <ComboBox fx:id="cbChucVu" layoutX="140.0" layoutY="271.0" prefHeight="31.0" prefWidth="354.0" />
       
    </children>
 </AnchorPane>

@@ -8,6 +8,7 @@ package Interface;
 import BVXK.QuanLyNhanVien;
 
 import BanVeXeKhach.DangNhap;
+import BVXK.Login;
 import BanVeXeKhach.NhanVien;
 import java.io.IOException;
 import java.net.URL;
@@ -45,42 +46,46 @@ public class LoginController implements Initializable {
     @FXML
     private PasswordField pwPassword;
 
-    public static  String USERNAME;
-    private String user;
+    public static  String maNV;
+    public static String chucVu;
+    public static String user;
     private  String PASSWORD;
     
     
     public void btLoginOnAction(ActionEvent event) throws SQLException, IOException{
-      String username = txtUsername.getText();
-      String password = pwPassword.getText();
-      List <NhanVien> ds = QuanLyNhanVien.getDsNhanVien();
-      boolean flag = false;
-      for(NhanVien dn : ds)
+        user = Login.login(txtUsername.getText(), pwPassword.getText());
+      if(user != null)
       {
-          user = dn.getTaiKhoan();
-          PASSWORD = dn.getMatKhau();
-          if(password != "" && username != "")
-            if(password.equals(PASSWORD) && username.equals(user)){
-                USERNAME = dn.getHoTen();
-                flag = true;
-               }
-
-      }
-      if(flag)
-      {
+          NhanVien nv = QuanLyNhanVien.getNV(txtUsername.getText());
+          chucVu = nv.getChucVu();
+          maNV = txtUsername.getText();
           Alert alert = new Alert(AlertType.INFORMATION);
                           alert.setTitle("Information Login");
                           alert.setHeaderText(null);
                           alert.setContentText("Login success!");
                           alert.showAndWait();
         //Login xong xuất ra main
-        Parent root = FXMLLoader.load(getClass().getResource("Main.fxml"));
+        
+        if(chucVu.compareTo("Quản Trị Viên") == 0)
+        {
+            Parent root = FXMLLoader.load(getClass().getResource("Main.fxml"));
         Scene scene = new Scene(root);
         Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         stage.setResizable(false);
         stage.setScene(scene);
         stage.centerOnScreen();
         stage.show();
+        }
+        else
+        {
+            Parent root = FXMLLoader.load(getClass().getResource("Employee2.fxml"));
+        Scene scene = new Scene(root);
+        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage.setResizable(false);
+        stage.setScene(scene);
+        stage.centerOnScreen();
+        stage.show();
+        }
       }
       else
       {

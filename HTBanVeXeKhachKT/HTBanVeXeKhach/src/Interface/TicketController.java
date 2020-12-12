@@ -11,6 +11,7 @@ import BVXK.QuanLyXe;
 import BanVeXeKhach.TuyenDuong;
 import BanVeXeKhach.VeXe;
 import BanVeXeKhach.Xe;
+import static Interface.LoginController.chucVu;
 import java.awt.Desktop;
 import java.io.IOException;
 import java.net.URL;
@@ -394,12 +395,26 @@ public class TicketController implements Initializable {
         }
     }
       public void btExitOnAction(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("Main.fxml"));
+         if(chucVu.compareTo("Quản Trị Viên") == 0)
+        {
+            Parent root = FXMLLoader.load(getClass().getResource("Main.fxml"));
         Scene scene = new Scene(root);
         Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage.setResizable(false);
         stage.setScene(scene);
         stage.centerOnScreen();
         stage.show();
+        }
+        else
+        {
+            Parent root = FXMLLoader.load(getClass().getResource("Employee2.fxml"));
+        Scene scene = new Scene(root);
+        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage.setResizable(false);
+        stage.setScene(scene);
+        stage.centerOnScreen();
+        stage.show();
+        }
 
     }
       public void chonGio() throws SQLException

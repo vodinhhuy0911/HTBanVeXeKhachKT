@@ -6,8 +6,6 @@
 package BVXK;
 
 import BanVeXeKhach.NhanVien;
-import static Interface.LoginController.USERNAME;
-import static Interface.LoginController.maNV;
 import java.sql.SQLException;
 import java.util.List;
 

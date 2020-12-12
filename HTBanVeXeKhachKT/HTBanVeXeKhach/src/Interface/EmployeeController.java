@@ -7,6 +7,7 @@ package Interface;
 import BVXK.QuanLyNhanVien;
 
 import BanVeXeKhach.NhanVien;
+import static Interface.LoginController.chucVu;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
@@ -33,6 +34,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
@@ -82,7 +84,7 @@ public class EmployeeController implements Initializable {
     @FXML
     private TextField txtDiaChi;
     @FXML
-    private TextField txtChucVu;
+    private ComboBox cbChucVu;
     @FXML
     private TextField txtSDT;
     @FXML
@@ -94,6 +96,8 @@ public class EmployeeController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        ObservableList <String> list = FXCollections.observableArrayList("Quản Trị Viên","Nhân Viên");
+                    cbChucVu.setItems(list);
         try {
             this.loadData();
         } catch (SQLException ex) {
@@ -108,7 +112,7 @@ public class EmployeeController implements Initializable {
                 this.txtHoTen.setText(n.getHoTen());
                 this.txtNgaySinh.setText(n.getNgaySinh().toString());
                 this.txtDiaChi.setText(n.getDiaChi());
-                this.txtChucVu.setText(n.getChucVu());
+                this.cbChucVu.getSelectionModel().select(n.getChucVu());
                 this.txtSDT.setText(n.getSdt());
                 this.txtEmail.setText(n.getEmail());
                 this.txtMatKhau.setText(n.getMatKhau());
@@ -136,7 +140,7 @@ public class EmployeeController implements Initializable {
         }
     }
     public void add() throws SQLException{
-        if(!txtID.getText().isEmpty() && !txtHoTen.getText().isEmpty() && !txtNgaySinh.getText().isEmpty() && !txtDiaChi.getText().isEmpty() && !txtChucVu.getText().isEmpty() && !txtSDT.getText().isEmpty() && !txtEmail.getText().isEmpty() && !txtMatKhau.getText().isEmpty())
+        if(!txtID.getText().isEmpty() && !txtHoTen.getText().isEmpty() && !txtNgaySinh.getText().isEmpty() && !txtDiaChi.getText().isEmpty() && !cbChucVu.getSelectionModel().isEmpty() && !txtSDT.getText().isEmpty() && !txtEmail.getText().isEmpty() && !txtMatKhau.getText().isEmpty())
         {
             SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
             
@@ -171,7 +175,7 @@ public class EmployeeController implements Initializable {
                                       return;
                     }
                 
-                NhanVien nv = new NhanVien(txtID.getText(), txtHoTen.getText(), ngaySinh, txtDiaChi.getText(), txtChucVu.getText(),txtSDT.getText(), txtEmail.getText(),txtMatKhau.getText());
+                NhanVien nv = new NhanVien(txtID.getText(), txtHoTen.getText(), ngaySinh, txtDiaChi.getText(), cbChucVu.getSelectionModel().getSelectedItem().toString(),txtSDT.getText(), txtEmail.getText(),txtMatKhau.getText());
                     if(QuanLyNhanVien.themNhanVien(nv))
                     {
                      Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -215,7 +219,7 @@ public class EmployeeController implements Initializable {
     }
      public void update() throws SQLException
      {
-          if(!txtID.getText().isEmpty() && !txtHoTen.getText().isEmpty() && !txtNgaySinh.getText().isEmpty() && !txtDiaChi.getText().isEmpty() && !txtChucVu.getText().isEmpty() && !txtSDT.getText().isEmpty() && !txtEmail.getText().isEmpty()&& !txtMatKhau.getText().isEmpty())
+          if(!txtID.getText().isEmpty() && !txtHoTen.getText().isEmpty() && !txtNgaySinh.getText().isEmpty() && !txtDiaChi.getText().isEmpty() && !cbChucVu.getSelectionModel().isEmpty() && !txtSDT.getText().isEmpty() && !txtEmail.getText().isEmpty()&& !txtMatKhau.getText().isEmpty())
           {
           SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
           String d = txtNgaySinh.getText();
@@ -248,7 +252,7 @@ public class EmployeeController implements Initializable {
                                       alert.showAndWait();
                                       return;
                     }
-                  NhanVien nv = new NhanVien(txtID.getText(), txtHoTen.getText(), ngaySinh, txtDiaChi.getText(), txtChucVu.getText(),txtSDT.getText(), txtEmail.getText(),txtMatKhau.getText());
+                  NhanVien nv = new NhanVien(txtID.getText(), txtHoTen.getText(), ngaySinh, txtDiaChi.getText(), cbChucVu.getSelectionModel().getSelectedItem().toString(),txtSDT.getText(), txtEmail.getText(),txtMatKhau.getText());
          QuanLyNhanVien.capNhatNhanVien(nv);
          this.loadData();
               } catch (ParseException ex) {
@@ -342,7 +346,7 @@ public class EmployeeController implements Initializable {
    public void huy(ActionEvent e)
     {
            txtID.setText("");
-           txtChucVu.setText("");
+          cbChucVu.getSelectionModel().select(null);
            txtDiaChi.setText("");
            txtEmail.setText("");
            txtHoTen.setText("");
@@ -352,11 +356,16 @@ public class EmployeeController implements Initializable {
            
     }
     public void btExitOnAction(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("Main.fxml"));
+         
+            Parent root = FXMLLoader.load(getClass().getResource("Main.fxml"));
         Scene scene = new Scene(root);
         Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage.setResizable(false);
         stage.setScene(scene);
+        stage.centerOnScreen();
         stage.show();
+        
+       
     }
 
       

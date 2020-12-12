@@ -144,5 +144,24 @@ public class QuanLyNhanVien {
        
          //ok
    }
-
+   public static NhanVien getNV(String maNV) throws SQLException
+   {
+       Connection conn = JDBC.getConn();
+        Statement stm = conn.createStatement();
+        ResultSet rs = stm.executeQuery("SELECT * FROM nhanvien WHERE idNV = '" +maNV+ "'");
+        while (rs.next()) {
+            String tk = rs.getString("idNV");
+            String name = rs.getString("tenNV");
+            Date ngaySinh = rs.getDate("ngaySinh");
+            String diaChi = rs.getString("diaChi");
+            String chucVu = rs.getString("chucVu");
+            String sdt = rs.getString("sdt");
+            String email = rs.getString("email");
+            String matKhau = rs.getString("matKhau");
+            NhanVien nv = new NhanVien(tk,name,ngaySinh,diaChi,chucVu,sdt,email,matKhau);
+            
+            return nv;
+        }
+        return null;
+   }
 }

@@ -48,22 +48,7 @@ import javafx.stage.Stage;
 
 public class Employee2Controller implements Initializable {
 
-    @FXML
-    private TableView<NhanVien> tvNV;
-    @FXML
-    private TableColumn<NhanVien,String> colID;
-    @FXML
-    private TableColumn<NhanVien, String> colHoTen;
-    @FXML
-    private TableColumn<NhanVien, String> colNgaySinh;
-    @FXML
-    private TableColumn<NhanVien,String> colDiaChi;
-    @FXML
-    private TableColumn<NhanVien,String> colChucVu;
-    @FXML
-    private TableColumn<NhanVien,String> colSDT;
-    @FXML
-    private TableColumn<NhanVien,String> colEmail;
+    
     @FXML
     private TextField txtKey;
     @FXML
@@ -82,120 +67,117 @@ public class Employee2Controller implements Initializable {
     private TextField txtEmail;
 
     
-    ObservableList<NhanVien> nvList = FXCollections.observableArrayList ();
+    
         
     private String USERNAME;
     @FXML
     private TextField txttaiKhoan;
     @FXML
     private TextField txtMatKhau;
-    @FXML
-    private TableColumn<DangNhap,String> colTaiKhoan;
-    @FXML
-    private TableColumn<DangNhap,String> colMatKhau;
-    @FXML
-    private TextField txtTenNV;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        //Load ten nhan vien tren form
-            txtTenNV.setText(LoginController.USERNAME);
-         
-         
-         
         try {
+            //Load ten nhan vien tren form
             this.loadData();
         } catch (SQLException ex) {
-            Logger.getLogger(EmployeeController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Employee2Controller.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        this.tvNV.setRowFactory((TableView<NhanVien> nv) ->{
-            TableRow row = new TableRow();
-            row.setOnMouseClicked((MouseEvent r) -> {
-                NhanVien n = tvNV.getSelectionModel().getSelectedItem();
-                this.txtID.setText(n.getTaiKhoan());
-                this.txtHoTen.setText(n.getHoTen());
-                this.txtNgaySinh.setText(n.getNgaySinh().toString());
-                this.txtDiaChi.setText(n.getDiaChi());
-                this.txtChucVu.setText(n.getChucVu());
-                txtChucVu.setEditable(false);
-                this.txtSDT.setText(n.getSdt());
-                this.txtEmail.setText(n.getEmail());
-            });
-            return row;
-        });
+         
+         
+         
        
     }
     
     public void loadData() throws SQLException
     {
-        colID.setCellValueFactory(new PropertyValueFactory("taiKhoan"));
-        colHoTen.setCellValueFactory(new PropertyValueFactory("hoTen"));
-        colNgaySinh.setCellValueFactory(new PropertyValueFactory("ngaySinh"));
-        colDiaChi.setCellValueFactory(new PropertyValueFactory("diaChi"));
-        colChucVu.setCellValueFactory(new PropertyValueFactory("chucVu"));
-        colSDT.setCellValueFactory(new PropertyValueFactory("sdt"));
-        colEmail.setCellValueFactory(new PropertyValueFactory("email"));
-//        tvNV.getColumns().addAll(colID,colHoTen,colNgaySinh,colDiaChi,colChucVu,colSDT,colEmail);
-        try {       
-            this.tvNV.setItems(FXCollections.observableArrayList(QuanLyNhanVien.getDsNhanVien()));
-        } catch (SQLException ex) {
-            Logger.getLogger(EmployeeController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        NhanVien nv = QuanLyNhanVien.getNV(LoginController.maNV);
+//        NhanVien nv = QuanLyNhanVien.getNV("1");
+        txtID.setText(nv.getTaiKhoan());
+        txtHoTen.setText(nv.getHoTen());
+        txtChucVu.setText(nv.getChucVu());
+        txtDiaChi.setText(nv.getDiaChi());
+        txtEmail.setText(nv.getEmail());
+        txtMatKhau.setText(nv.getMatKhau());
+        txtNgaySinh.setText(nv.getNgaySinh().toString());
+        txtSDT.setText(nv.getSdt());
     }
     @FXML
      public void update() throws SQLException, ParseException 
      {
-          SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-          String s = txtNgaySinh.getText();
-          s = s.replace('-', '/');
-//           String str[] = s.split("-");
-//           String ns = str[2] + "/" +  str[1] + "/" + str[0];
-                java.util.Date ngaySinh = formatter.parse(s);
-         NhanVien nv = new NhanVien(txtID.getText(), txtHoTen.getText(), ngaySinh, txtDiaChi.getText(), txtChucVu.getText(),txtSDT.getText(), txtEmail.getText(),txtMatKhau.getText());
+            if(!txtID.getText().isEmpty() && !txtHoTen.getText().isEmpty() && !txtNgaySinh.getText().isEmpty() && !txtDiaChi.getText().isEmpty() && !txtChucVu.getText().isEmpty() && !txtSDT.getText().isEmpty() && !txtEmail.getText().isEmpty()&& !txtMatKhau.getText().isEmpty())
+          {
+          SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
+          String d = txtNgaySinh.getText();
+          for(int i = 0; i < d.length(); i++)
+                if(Character.isLetter(d.charAt(i)))
+                {
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                                  alert.setTitle("Information Login");
+                                  alert.setHeaderText(null);
+                                  alert.setContentText("Lỗi nhập ngày tháng. Vui lòng kiểm tra lại!");
+                                  alert.showAndWait();
+                                  return;
+                }
+            d = d.replace('-', '/');
+                String str[] = d.split("/");
+             if(str[0].length() == 2)
+                d = str[2] + "/" + str[1] + "/" + str[0];
+            
+              try {
+            
+                java.util.Date ngaySinh;
+                  ngaySinh = formatter.parse(d);
+                   for(int i = 0; i < txtSDT.getText().length(); i++)
+                    if((!Character.isDigit(txtSDT.getText().charAt(i))) || (txtSDT.getText().length() < 10 || txtSDT.getText().length() > 11))
+                    {
+                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                                      alert.setTitle("Information Login");
+                                      alert.setHeaderText(null);
+                                      alert.setContentText("Nhập số điện thoại không hợp lệ. Vui lòng kiểm tra lại!");
+                                      alert.showAndWait();
+                                      return;
+                    }
+                  NhanVien nv = new NhanVien(txtID.getText(), txtHoTen.getText(), ngaySinh, txtDiaChi.getText(), txtChucVu.getText(),txtSDT.getText(), txtEmail.getText(),txtMatKhau.getText());
          QuanLyNhanVien.capNhatNhanVien(nv);
          this.loadData();
+              } catch (ParseException ex) {
+                  Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                          alert.setTitle("Information Login");
+                          alert.setHeaderText(null);
+                          alert.setContentText("Vui lòng nhập thông tin ngày tháng hợp lệ.");
+                          alert.showAndWait();
+              }
+              catch(ArrayIndexOutOfBoundsException a)
+            {
+                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                          alert.setTitle("Information Login");
+                          alert.setHeaderText(null);
+                          alert.setContentText("Vui lòng nhập thông tin ngày tháng hợp lệ.");
+                          alert.showAndWait();
+            }
+         
+          }
+          else{
+               Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                          alert.setTitle("Information Login");
+                          alert.setHeaderText(null);
+                          alert.setContentText("Vui lòng điền đầy đủ thông tin!");
+                          alert.showAndWait();
+          }
      }  
     @FXML
    public void delete (ActionEvent e) throws SQLException{
-        QuanLyNhanVien.xoaNhanVien(txtID.getText());
-        this.loadData();
+       
 
     }
    //timkiem
     @FXML
    public void search (ActionEvent e) throws SQLException{
-        if(!txtKey.getText().isEmpty())
-        {
-            List<NhanVien> dsnv = new ArrayList<>();
-            dsnv = QuanLyNhanVien.timKiemNv(txtKey.getText());
-            colID.setCellValueFactory(new PropertyValueFactory("taiKhoan"));
-            colHoTen.setCellValueFactory(new PropertyValueFactory("hoTen"));
-            colNgaySinh.setCellValueFactory(new PropertyValueFactory("ngaySinh"));
-            colDiaChi.setCellValueFactory(new PropertyValueFactory("diaChi"));
-            colChucVu.setCellValueFactory(new PropertyValueFactory("chucVu"));
-            colSDT.setCellValueFactory(new PropertyValueFactory("sdt"));
-            colEmail.setCellValueFactory(new PropertyValueFactory("email"));
-            this.tvNV.setItems(FXCollections.observableArrayList(dsnv));
-        }
-        else
-        {
-            this.loadData();
-        }
+        
         
 
    }
-    @FXML
-   public void huy(ActionEvent e)
-    {
-           txtID.setText("");
-           txtChucVu.setText("");
-           txtDiaChi.setText("");
-           txtEmail.setText("");
-           txtHoTen.setText("");
-           txtNgaySinh.setText("");
-           txtSDT.setText("");
-           
-    }
     @FXML
     public void btExit(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("Login.fxml"));

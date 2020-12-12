@@ -66,7 +66,7 @@ ObservableList<Xe> nvList = FXCollections.observableArrayList ();
     @Override
     public void initialize(URL url, ResourceBundle rb) {
                     // TODO
-                    ObservableList <String> list = FXCollections.observableArrayList("Xe giường nằm","Xe 40 chỗ ngồi","Xe limo house");
+                    ObservableList <String> list = FXCollections.observableArrayList("Xe giường nằm","Xe chỗ ngồi","Xe limo house");
                     cbLoaiXe.setItems(list);
                 try {
                     this.loadData();

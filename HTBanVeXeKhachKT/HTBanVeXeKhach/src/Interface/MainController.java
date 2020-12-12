@@ -39,7 +39,7 @@ public class MainController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
-            txtNV.setText(LoginController.USERNAME);
+            txtNV.setText(LoginController.user);
         
        
     }    
