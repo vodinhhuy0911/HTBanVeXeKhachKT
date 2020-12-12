@@ -15,6 +15,8 @@ import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -29,6 +31,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
@@ -131,6 +135,12 @@ public class TicketListController implements Initializable {
     
     @FXML
     private TableColumn clMaLT;
+    @FXML
+    private Button btCapNhat;
+    @FXML
+    private Button btXoa;
+    @FXML
+    private Button btHuy;
 
     /**
      * Initializes the controller class.
@@ -191,7 +201,72 @@ public class TicketListController implements Initializable {
                     Logger.getLogger(TicketListController.class.getName()).log(Level.SEVERE, null, ex);
                 }
                this.cbIDLT.getSelectionModel().select(sss);
+//                   if(!cbNgayKH.getSelectionModel().isEmpty()&&!cbGioKH.getSelectionModel().isEmpty())
+        {
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");  
+           LocalDateTime now = LocalDateTime.now();  
+          String ngay = cbNgayKH.getSelectionModel().getSelectedItem().toString();
+          String gio = cbGioKH.getSelectionModel().getSelectedItem().toString();
+          String ngayGio = ngay + " " + gio;   
+          String s1 = now.getYear() + "-" + now.getMonthValue()+ "-" + now.getDayOfMonth() +" " + (now.getHour() +1)+ ":" + (now.getMinute()) + ":" + now.getSecond();
+          String s2 = now.getYear() + "-" + now.getMonthValue()+ "-" + now.getDayOfMonth() +" " + (now.getHour())+ ":" + (now.getMinute()+5) + ":" + now.getSecond();
+          if(ngayGio.compareTo(s2) < 0)// nhỏ hơn 5p và mua vé
+          {
+              
+              txtGiaVe.setDisable(true);
+              txtIDNV.setDisable(true);
+              txtIDVe.setDisable(true);
+              txtKH.setDisable(true);
+              txtNgayBook.setDisable(true);
+              txtSDT.setDisable(true);
+              txtViTriGhe.setDisable(true);
+              cbGioKH.setDisable(true);
+              cbIDLT.setDisable(true);
+              cbIDXe.setDisable(true);
+              cbNgayKH.setDisable(true);
+              btHuy.setDisable(true);
+              btXoa.setDisable(true);
+          }
+          else if(ngayGio.compareTo(s1) < 0)//nho hon 60p
+          {
+               txtGiaVe.setDisable(true);
+              txtIDNV.setDisable(true);
+              txtIDVe.setDisable(true);
+              txtKH.setDisable(true);
+              txtNgayBook.setDisable(true);
+              txtSDT.setDisable(true);
+              txtViTriGhe.setDisable(true);
+              cbGioKH.setDisable(true);
+              cbIDLT.setDisable(true);
+              cbIDXe.setDisable(true);
+              cbNgayKH.setDisable(true);
+              rdLayVe.setDisable(true);
+              rdTT.setDisable(true);
+              btCapNhat.setDisable(true);
+              btXoa.setDisable(true);
+          }
+          else
+          {
+              
+            txtGiaVe.setDisable(false);
+              txtIDNV.setDisable(false);
+              txtIDVe.setDisable(false);
+              txtKH.setDisable(false);
+              txtNgayBook.setDisable(false);
+              txtSDT.setDisable(false);
+              txtViTriGhe.setDisable(false);
+              cbGioKH.setDisable(false);
+              cbIDLT.setDisable(false);
+              cbIDXe.setDisable(false);
+              cbNgayKH.setDisable(false);
+              rdLayVe.setDisable(false);
+              rdTT.setDisable(false);
+              btCapNhat.setDisable(false);
+              btHuy.setDisable(false);
+              btXoa.setDisable(false);
+          }}
             });
+        
             return row;
         });
         
@@ -205,6 +280,7 @@ public class TicketListController implements Initializable {
         } catch (SQLException ex) {
             Logger.getLogger(TicketListController.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
         
     } 
      public void btExitOnAction(ActionEvent event) throws IOException {
@@ -319,6 +395,8 @@ public class TicketListController implements Initializable {
      
       public void capNhat() throws SQLException
       {
+          
+          {
           boolean flag = false;
           boolean flag1 = false;
           if(rdTT.isSelected())
@@ -343,12 +421,25 @@ public class TicketListController implements Initializable {
                  , txtIDVe.getText(),flag1);
           
           this.loadData();
+                  }
       }
       
       public void xoaVe() throws SQLException
       {
-          QuanLyVeXe.xoaVeXe(txtIDVe.getText());
-          this.loadData();
+          if(!rdTT.isSelected())// Chú ý các vé đã bán thì không được hoàn lại.
+          {   
+                QuanLyVeXe.xoaVeXe(txtIDVe.getText());
+                this.loadData();
+          }
+          else
+          {
+               Alert alert = new Alert(Alert.AlertType.INFORMATION);
+              alert.setTitle("Information Login");
+              alert.setHeaderText(null);
+              alert.setContentText("Vé đã mua không thể trả lại.");
+              alert.showAndWait();
+              return;
+          }
       }
       
       public void huy() throws SQLException
@@ -397,4 +488,6 @@ public class TicketListController implements Initializable {
       }
       //Xuat ra report
       public void xuatVe(){}
+      
+
 }

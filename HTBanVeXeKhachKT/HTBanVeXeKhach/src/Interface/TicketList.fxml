@@ -42,7 +42,7 @@
       <TextField fx:id="txtNgayBook" layoutX="697.0" layoutY="221.0" prefHeight="25.0" prefWidth="300.0" />
       <Label layoutX="275.0" layoutY="229.0" styleClass="infoLabel" stylesheets="@styleTickList.css" text="Giờ KH" />
       <Label layoutX="16.0" layoutY="225.0" prefHeight="25.0" prefWidth="64.0" styleClass="infoLabel" stylesheets="@styleTickList.css" text="Ngày KH" />
-      <Button fx:id="btEdit" layoutX="160.0" layoutY="269.0" mnemonicParsing="false" onAction="#capNhat" prefHeight="40.0" prefWidth="115.0" styleClass="btEdit" stylesheets="@styleTickList.css" text="Cập nhật" AnchorPane.leftAnchor="160.0">
+      <Button fx:id="btCapNhat" layoutX="160.0" layoutY="269.0" mnemonicParsing="false" onAction="#capNhat" prefHeight="40.0" prefWidth="115.0" styleClass="btEdit" stylesheets="@styleTickList.css" text="Cập nhật" AnchorPane.leftAnchor="160.0">
          <graphic>
             <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -51,7 +51,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button fx:id="btDelete" layoutX="381.0" layoutY="269.0" mnemonicParsing="false" onAction="#xoaVe" prefHeight="40.0" prefWidth="115.0" styleClass="btDelete" stylesheets="@styleTickList.css" text="Xóa vé">
+      <Button fx:id="btXoa" layoutX="381.0" layoutY="269.0" mnemonicParsing="false" onAction="#xoaVe" prefHeight="40.0" prefWidth="115.0" styleClass="btDelete" stylesheets="@styleTickList.css" text="Xóa vé">
          <graphic>
             <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -60,7 +60,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button fx:id="btCancel" layoutX="611.0" layoutY="269.0" mnemonicParsing="false" onAction="#huy" prefHeight="38.0" prefWidth="98.0" styleClass="btCancel" stylesheets="@styleTickList.css" text="Hủy" AnchorPane.rightAnchor="591.0">
+      <Button fx:id="btHuy" layoutX="611.0" layoutY="269.0" mnemonicParsing="false" onAction="#huy" prefHeight="38.0" prefWidth="98.0" styleClass="btCancel" stylesheets="@styleTickList.css" text="Hủy" AnchorPane.rightAnchor="591.0">
          <graphic>
             <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                <image>

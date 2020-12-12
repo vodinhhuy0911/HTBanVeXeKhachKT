@@ -179,113 +179,123 @@ public class TicketController implements Initializable {
           String gio = cbGioKhoiHanh.getSelectionModel().getSelectedItem().toString();
           String s1 = now.getYear() + "-" + now.getMonthValue()+ "-" + now.getDayOfMonth() +" ";
         s1 += (now.getHour() +1)+ ":" + now.getMinute() + ":" + now.getSecond();
-          String ngayGio = ngay + " " + gio;    
-          if(ngayGio.compareTo(s1) >= 0)
-          {
-        
-        long millis=System.currentTimeMillis();  
-        java.util.Date date=new java.util.Date(millis);  
-        boolean tt = false;
-        boolean layVe = false;
-        if(rdTT.isSelected())
-            tt = true;
-        if(rdLayVe.isSelected())
-            layVe = true;
-        UUID uuid = UUID.randomUUID();
-       String id = uuid.toString().substring(0, 5);
-       String d = cbNgayKhoiHanh.getSelectionModel().getSelectedItem().toString();
-       
-       SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-       
-       String s[] = d.split("-");
-  
-  //mdy
-             d = s[2] + "/" + s[1] + "/" + s[0];
-       
-        Date ngayKhoiHanh = formatter.parse(d);
-
-       String giaVe = txtGiaVe.getText();
-       double gia = Double.parseDouble(giaVe);
-       
-      
-       
-       List <String> str = new ArrayList<>();
-        String tuyenDuong = cbLoTrinh.getSelectionModel().getSelectedItem().toString();
-        String td[] = tuyenDuong.split(" - ");
-        String tuyenDi = td[0];
-        String tuyenDen = td[1];
-       
-         String maLT;
-             try {
-                 maLT = QuanLyTuyenDi.getMaLoTrinh(tuyenDi, tuyenDen, cbXe.getSelectionModel().getSelectedItem().toString(),
-                         cbNgayKhoiHanh.getSelectionModel().getSelectedItem().toString(), cbGioKhoiHanh.getSelectionModel().getSelectedItem().toString());
-                  for(int i = 0; i < txtSdtKH.getText().length(); i++)
-                    if((!Character.isDigit(txtSdtKH.getText().charAt(i))) || (txtSdtKH.getText().length() < 10 || txtSdtKH.getText().length() > 11))
-                    {
-                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                                      alert.setTitle("Information Login");
-                                      alert.setHeaderText(null);
-                                      alert.setContentText("Nhập số điện thoại không hợp lệ. Vui lòng kiểm tra lại!");
-                                      alert.showAndWait();
-                                      return;
-                    }
-                  for(int i = 0; i < txtGiaVe.getText().length(); i++)
-                    if((!Character.isDigit(txtGiaVe.getText().charAt(i))))
-                    {
-                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                                      alert.setTitle("Information Login");
-                                      alert.setHeaderText(null);
-                                      alert.setContentText("Nhập giá vé không hợp lệ. Vui lòng kiểm tra lại!");
-                                      alert.showAndWait();
-                                      return;
-                    }
-        VeXe ve = new VeXe(id,cbXe.getSelectionModel().getSelectedItem().toString(),"1",txtTenKH.getText(),txtSdtKH.getText(),
-        cbGheNgoi.getSelectionModel().getSelectedItem().toString(),date,tt,ngayKhoiHanh,
-        cbGioKhoiHanh.getSelectionModel().getSelectedItem().toString(),gia,maLT,layVe);
-        if(QuanLyVeXe.themVe(ve))
-        {
-                                       Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                                      alert.setTitle("Information Login");
-                                      alert.setHeaderText(null);
-                                      alert.setContentText("Thêm vé thành công");
-                                      alert.showAndWait();
-        }
-        else
-        {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                                      alert.setTitle("Information Login");
-                                      alert.setHeaderText(null);
-                                      alert.setContentText("Thêm vé không thành công. Vui lòng kiểm tra lại thông tin.");
-                                      alert.showAndWait();
-        }
-             } catch (SQLException ex) {
-                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                                      alert.setTitle("Information Login");
-                                      alert.setHeaderText(null);
-                                      alert.setContentText("Thêm vé không thành công. Vui lòng kiểm tra lại thông tin.");
-                                      alert.showAndWait();
-             }
-             catch(NullPointerException npe)
-             {
-                  Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                                      alert.setTitle("Information Login");
-                                      alert.setHeaderText(null);
-                                      alert.setContentText("Thêm vé không thành công. Vui lòng kiểm tra lại thông tin.");
-                                      alert.showAndWait();
-             }
-       
-         
-        
-          }
-          else
+          String ngayGio = ngay + " " + gio;   
+          String s2 = now.getYear() + "-" + now.getMonthValue()+ "-" + now.getDayOfMonth() +" " + (now.getHour())+ ":" + (now.getMinute()+5) + ":" + now.getSecond();
+          if(ngayGio.compareTo(s2) < 0 && rdTT.isSelected())// nhỏ hơn 5p và mua vé
           {
               Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                                      alert.setTitle("Information Login");
-                                      alert.setHeaderText(null);
-                                      alert.setContentText("Xe sắp khởi hành không thể thêm vé.");
-                                      alert.showAndWait();
-                                      return;
+              alert.setTitle("Information Login");
+              alert.setHeaderText(null);
+              alert.setContentText("Xe sắp khởi hành không thể mua vé.");
+              alert.showAndWait();
+              return;
           }
+          else if(ngayGio.compareTo(s1) < 0 && !rdLayVe.isSelected() && !rdTT.isSelected())// nhỏ hơn 60p và chưa lấy vé(đặt)
+          {
+              Alert alert = new Alert(Alert.AlertType.INFORMATION);
+              alert.setTitle("Information Login");
+              alert.setHeaderText(null);
+              alert.setContentText("Xe sắp khởi hành không thể đặt vé.");
+              alert.showAndWait();
+              return;
+          }
+          else//lớn hơn 60p
+          {
+        
+                long millis=System.currentTimeMillis();  
+                java.util.Date date=new java.util.Date(millis);  
+                boolean tt = false;
+                boolean layVe = false;
+                if(rdTT.isSelected())
+                    tt = true;
+                if(rdLayVe.isSelected())
+                    layVe = true;
+                UUID uuid = UUID.randomUUID();
+               String id = uuid.toString().substring(0, 5);
+               String d = cbNgayKhoiHanh.getSelectionModel().getSelectedItem().toString();
+
+               SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+
+               String s[] = d.split("-");
+
+          //mdy
+                     d = s[2] + "/" + s[1] + "/" + s[0];
+
+                Date ngayKhoiHanh = formatter.parse(d);
+
+               String giaVe = txtGiaVe.getText();
+               double gia = Double.parseDouble(giaVe);
+
+
+
+               List <String> str = new ArrayList<>();
+                String tuyenDuong = cbLoTrinh.getSelectionModel().getSelectedItem().toString();
+                String td[] = tuyenDuong.split(" - ");
+                String tuyenDi = td[0];
+                String tuyenDen = td[1];
+
+                 String maLT;
+                     try {
+                         maLT = QuanLyTuyenDi.getMaLoTrinh(tuyenDi, tuyenDen, cbXe.getSelectionModel().getSelectedItem().toString(),
+                                 cbNgayKhoiHanh.getSelectionModel().getSelectedItem().toString(), cbGioKhoiHanh.getSelectionModel().getSelectedItem().toString());
+                          for(int i = 0; i < txtSdtKH.getText().length(); i++)
+                            if((!Character.isDigit(txtSdtKH.getText().charAt(i))) || (txtSdtKH.getText().length() < 10 || txtSdtKH.getText().length() > 11))
+                            {
+                                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                                              alert.setTitle("Information Login");
+                                              alert.setHeaderText(null);
+                                              alert.setContentText("Nhập số điện thoại không hợp lệ. Vui lòng kiểm tra lại!");
+                                              alert.showAndWait();
+                                              return;
+                            }
+                          for(int i = 0; i < txtGiaVe.getText().length(); i++)
+                            if((!Character.isDigit(txtGiaVe.getText().charAt(i))))
+                            {
+                                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                                              alert.setTitle("Information Login");
+                                              alert.setHeaderText(null);
+                                              alert.setContentText("Nhập giá vé không hợp lệ. Vui lòng kiểm tra lại!");
+                                              alert.showAndWait();
+                                              return;
+                            }
+                VeXe ve = new VeXe(id,cbXe.getSelectionModel().getSelectedItem().toString(),"1",txtTenKH.getText(),txtSdtKH.getText(),
+                cbGheNgoi.getSelectionModel().getSelectedItem().toString(),date,tt,ngayKhoiHanh,
+                cbGioKhoiHanh.getSelectionModel().getSelectedItem().toString(),gia,maLT,layVe);
+                if(QuanLyVeXe.themVe(ve))
+                {
+                                               Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                                              alert.setTitle("Information Login");
+                                              alert.setHeaderText(null);
+                                              alert.setContentText("Thêm vé thành công");
+                                              alert.showAndWait();
+                }
+                else
+                {
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Information Login");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Thêm vé không thành công. Vui lòng kiểm tra lại thông tin.");
+                    alert.showAndWait();
+                }
+                     } catch (SQLException ex) {
+                         Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                                              alert.setTitle("Information Login");
+                                              alert.setHeaderText(null);
+                                              alert.setContentText("Thêm vé không thành công. Vui lòng kiểm tra lại thông tin.");
+                                              alert.showAndWait();
+                     }
+                     catch(NullPointerException npe)
+                     {
+                          Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                                              alert.setTitle("Information Login");
+                                              alert.setHeaderText(null);
+                                              alert.setContentText("Thêm vé không thành công. Vui lòng kiểm tra lại thông tin.");
+                                              alert.showAndWait();
+                     }
+
+
+
+                  }
         }
         else
         {
