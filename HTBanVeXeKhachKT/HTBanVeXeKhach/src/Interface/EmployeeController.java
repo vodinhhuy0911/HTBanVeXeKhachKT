@@ -237,7 +237,7 @@ public class EmployeeController implements Initializable {
                 java.util.Date ngaySinh;
                   ngaySinh = formatter.parse(d);
                    for(int i = 0; i < txtSDT.getText().length(); i++)
-                    if(Character.isLetter(txtSDT.getText().charAt(i)))
+                    if((!Character.isDigit(txtSDT.getText().charAt(i))) || (txtSDT.getText().length() < 10 || txtSDT.getText().length() > 11))
                     {
                         Alert alert = new Alert(Alert.AlertType.INFORMATION);
                                       alert.setTitle("Information Login");
