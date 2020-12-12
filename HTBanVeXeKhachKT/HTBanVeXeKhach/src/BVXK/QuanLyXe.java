@@ -56,21 +56,43 @@ public class QuanLyXe {
         }
         
     }
-    public static void capNhatXe(Xe xe, String maXeCu) throws SQLException
+    public static boolean capNhatXe(Xe xe, String maXeCu)
    {
-       String sql = "UPDATE xe SET MaXe = ?, LoaiXe = ? WHERE MaXe = ?";
-        Connection cnt = JDBC.getConn();
-        cnt.setAutoCommit(false);
-        PreparedStatement pStm = cnt.prepareStatement(sql);
+       //capnhat lotrinh
+       String sql = "UPDATE lotrinh SET MaXe = ? WHERE MaXe = ?";
+       Connection cnt = JDBC.getConn();
+        try {
+            cnt.setAutoCommit(false);
+            PreparedStatement pStm = cnt.prepareStatement(sql);
         pStm.setString(1, xe.getBienSoXe());
+         pStm.setString(2, xe.getBienSoXe());
+         pStm.executeUpdate();
+        cnt.commit();
+        pStm.close();
+        //capnhatvexe
+        sql = "UPDATE vexe SET BienSoXe = ? WHERE BienSoXe = ?";
+       
         
-        
-        
+        pStm = cnt.prepareStatement(sql);
+        pStm.setString(1, xe.getBienSoXe());
+         pStm.setString(2, xe.getBienSoXe());
+         pStm.executeUpdate();
+        cnt.commit();
+        pStm.close();
+       // 
+       sql = "UPDATE xe SET MaXe = ?, LoaiXe = ? WHERE MaXe = ?";
+          pStm = cnt.prepareStatement(sql);
+       
+        pStm.setString(1, xe.getBienSoXe());
         pStm.setString(2, xe.getLoaiXe());
         pStm.setString(3, maXeCu);
-       
         pStm.executeUpdate();
         cnt.commit();
+        return true;
+        } catch (SQLException ex) {
+            return false;
+        }
+        
    }
    public static void xoaXe(String bienSoXe) throws SQLException
    {

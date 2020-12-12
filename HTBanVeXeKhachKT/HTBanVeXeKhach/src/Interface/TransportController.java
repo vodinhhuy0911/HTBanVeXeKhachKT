@@ -95,7 +95,7 @@ ObservableList<Xe> nvList = FXCollections.observableArrayList ();
     }
     public void themXe() throws SQLException
     {
-        if(cbLoaiXe.getSelectionModel().getSelectedItem().toString() != "" &&txtMaXe.getText() != "")
+        if(!cbLoaiXe.getSelectionModel().isEmpty() &&txtMaXe.getText() != "")
         {
                 String loaiXe = cbLoaiXe.getSelectionModel().getSelectedItem().toString();
                 Xe xe = new Xe(txtMaXe.getText(),loaiXe);
@@ -135,17 +135,32 @@ ObservableList<Xe> nvList = FXCollections.observableArrayList ();
     
     public void capNhatXe() throws SQLException
     {
-         if(cbLoaiXe.getSelectionModel().getSelectedItem().toString() != "" &&txtMaXe.getText() != "")
+         if(!cbLoaiXe.getSelectionModel().isEmpty() &&txtMaXe.getText() != "")
          {
             String loaiXe = cbLoaiXe.getSelectionModel().getSelectedItem().toString();
             Xe xe = new Xe(txtMaXe.getText(),loaiXe);
-            QuanLyXe.capNhatXe(xe,maXeCu);
-            this.loadData();
+            if(QuanLyXe.capNhatXe(xe,maXeCu))
+            {
+                     this.loadData();
+                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                                  alert.setTitle("Information Login");
+                                  alert.setHeaderText(null);
+                                  alert.setContentText("Cập nhật thành công");
+                                  alert.showAndWait();
+            }
+            else
+            {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                                  alert.setTitle("Information Login");
+                                  alert.setHeaderText(null);
+                                  alert.setContentText("Cập nhật thất bại. Vui lòng kiểm tra lại thông tin!");
+                                  alert.showAndWait();
+            }
          }
          else
              {
             {
-                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                                  Alert alert = new Alert(Alert.AlertType.INFORMATION);
                                   alert.setTitle("Information Login");
                                   alert.setHeaderText(null);
                                   alert.setContentText("Vui lòng nhập đầy đủ thông tin!");
@@ -167,6 +182,10 @@ ObservableList<Xe> nvList = FXCollections.observableArrayList ();
         stage.setScene(scene);
         stage.show();
     }
-    
+    public void huy()
+    {
+        txtMaXe.setText(null);
+        cbLoaiXe.getSelectionModel().select(null);
+    }
     
 }
