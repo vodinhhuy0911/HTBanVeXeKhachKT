@@ -15,6 +15,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -31,6 +32,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
@@ -275,9 +277,45 @@ public class EmployeeController implements Initializable {
           }
      }  
    public void delete (ActionEvent e) throws SQLException{
-        QuanLyNhanVien.xoaNhanVien(txtID.getText());
-        this.loadData();
-
+       if(!txtID.getText().isEmpty())
+       {
+       Alert alertt = new Alert(Alert.AlertType.CONFIRMATION);
+                                  alertt.setTitle("Information Login");
+                                  alertt.setHeaderText(null);
+                                  alertt.setContentText("Bạn có muốn xóa hay không");
+                                  Optional<ButtonType> result =  alertt.showAndWait();
+        if(result.get() == ButtonType.OK)
+        {
+                if(QuanLyNhanVien.xoaNhanVien(txtID.getText()))
+                {
+                        this.loadData();
+                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                                          alert.setTitle("Information Login");
+                                          alert.setHeaderText(null);
+                                          alert.setContentText("Xóa thành công");
+                                          alert.showAndWait();
+                                          return;
+                }
+                else
+                {
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                                          alert.setTitle("Information Login");
+                                          alert.setHeaderText(null);
+                                          alert.setContentText("Xóa không thành công. Vui lòng kiểm tra lại!");
+                                          alert.showAndWait();
+                                          return;
+                }
+        }
+       }
+       else
+       {
+           Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                                          alert.setTitle("Information Login");
+                                          alert.setHeaderText(null);
+                                          alert.setContentText("Vui lòng nhập id cần xóa");
+                                          alert.showAndWait();
+                                          return;
+       }
     }
    //timkiem
    public void search (ActionEvent e) throws SQLException{

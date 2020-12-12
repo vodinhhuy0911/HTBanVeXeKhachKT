@@ -171,7 +171,7 @@ public class TicketController implements Initializable {
     
     public void themVe() throws ParseException
     {
-        if(!txtTenKH.getText().isEmpty()|| !txtSdtKH.getText().isEmpty() || !txtGiaVe.getText().isEmpty())
+        if(!txtTenKH.getText().isEmpty()&& !txtSdtKH.getText().isEmpty() && !txtGiaVe.getText().isEmpty())
         {
          DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");  
            LocalDateTime now = LocalDateTime.now();  
@@ -215,12 +215,9 @@ public class TicketController implements Initializable {
                String d = cbNgayKhoiHanh.getSelectionModel().getSelectedItem().toString();
 
                SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-
                String s[] = d.split("-");
-
           //mdy
                      d = s[2] + "/" + s[1] + "/" + s[0];
-
                 Date ngayKhoiHanh = formatter.parse(d);
 
                String giaVe = txtGiaVe.getText();

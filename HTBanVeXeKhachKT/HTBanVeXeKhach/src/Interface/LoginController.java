@@ -45,8 +45,9 @@ public class LoginController implements Initializable {
     @FXML
     private PasswordField pwPassword;
 
-    public static  String USERNAME = "dk";
-    private  String PASSWORD = "1";
+    public static  String USERNAME;
+    private String user;
+    private  String PASSWORD;
     
     
     public void btLoginOnAction(ActionEvent event) throws SQLException, IOException{
@@ -56,10 +57,11 @@ public class LoginController implements Initializable {
       boolean flag = false;
       for(NhanVien dn : ds)
       {
-          USERNAME = dn.getTaiKhoan();
+          user = dn.getTaiKhoan();
           PASSWORD = dn.getMatKhau();
           if(password != "" && username != "")
-            if(password.equals(PASSWORD) && username.equals(USERNAME)){
+            if(password.equals(PASSWORD) && username.equals(user)){
+                USERNAME = dn.getHoTen();
                 flag = true;
                }
 

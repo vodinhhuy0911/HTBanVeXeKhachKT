@@ -87,7 +87,7 @@ public class QuanLyNhanVien {
         Connection conn = JDBC.getConn();
         Statement stm = conn.createStatement();
         ResultSet rs = stm.executeQuery("SELECT * FROM nhanvien WHERE idNV like '" + key + "' OR tenNV like N'" + key
-        + "' OR diaChi like N'" + key+ "' OR chucVu like N'" + key+ "' OR sdt like '" + key+ "' OR email like N'" + key +"'");
+        + "' OR diaChi like N'" + key+ "' OR chucVu like N'" + key+ "' OR sdt like '" + key+ "' OR email like N'" + key +"' OR NgaySinh = '"+ key +"'");
         List<NhanVien> dsnv = new ArrayList<>();
         while (rs.next()) {
             String tk = rs.getString("idNV");
@@ -127,15 +127,21 @@ public class QuanLyNhanVien {
         pStm.executeUpdate();
         cnt.commit();
    }
-   public static void xoaNhanVien(String taiKhoan) throws SQLException
+   public static boolean xoaNhanVien(String taiKhoan) 
    {
        String sql = "DELETE FROM nhanvien WHERE idNV = N'" + taiKhoan +"'";
       
         Connection cnt = JDBC.getConn();
-        cnt.setAutoCommit(false);
-        PreparedStatement pStm = cnt.prepareStatement(sql);
+        try {
+            cnt.setAutoCommit(false);
+             PreparedStatement pStm = cnt.prepareStatement(sql);
          pStm.executeUpdate();
          cnt.commit();
+         return true;
+        } catch (SQLException ex) {
+            return false;
+        }
+       
          //ok
    }
 
