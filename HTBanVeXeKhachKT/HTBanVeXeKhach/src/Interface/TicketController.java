@@ -265,6 +265,8 @@ public class TicketController implements Initializable {
                                               alert.setHeaderText(null);
                                               alert.setContentText("Thêm vé thành công");
                                               alert.showAndWait();
+                                              chonGio();
+                                              cbGheNgoi.getSelectionModel().select(null);
                 }
                 else
                 {
