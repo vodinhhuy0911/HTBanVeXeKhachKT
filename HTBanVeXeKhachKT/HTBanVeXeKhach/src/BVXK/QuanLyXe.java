@@ -97,6 +97,8 @@ public class QuanLyXe {
    public static boolean xoaXe(String bienSoXe)
    {
        //xoa tren bang vexe
+       if(bienSoXe != null)
+       {
        String sql = "DELETE FROM vexe WHERE BienSoXe = '" + bienSoXe+"'";
       
         Connection cnt = JDBC.getConn();
@@ -117,8 +119,6 @@ public class QuanLyXe {
          pStm.close();
        //xoa tren bang xe
        sql = "DELETE FROM xe WHERE MaXe = '" + bienSoXe+"'";
-      
-       
         cnt.setAutoCommit(false);
         pStm = cnt.prepareStatement(sql);
          pStm.executeUpdate();
@@ -128,7 +128,9 @@ public class QuanLyXe {
         } catch (SQLException ex) {
             return false;
         }
-        
+       }
+       else
+           return false;
    }
 
    public static String getLoaiXe(String id) throws SQLException

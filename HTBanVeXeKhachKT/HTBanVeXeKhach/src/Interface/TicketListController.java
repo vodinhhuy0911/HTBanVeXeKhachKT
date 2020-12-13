@@ -54,15 +54,15 @@ public class TicketListController implements Initializable {
     
     @FXML
     private TextField txtGiaVe;
-
+    @FXML
+    private TextField txtIDVe;
     @FXML
     private TableView<VeXe> tvThongTin;
 
     @FXML
     private ComboBox cbIDXe;
 
-    @FXML
-    private TextField txtIDVe;
+    
 
     @FXML
     private ComboBox cbNgayKH;
@@ -203,7 +203,7 @@ public class TicketListController implements Initializable {
                 }
                this.cbIDLT.getSelectionModel().select(sss);
 //                   if(!cbNgayKH.getSelectionModel().isEmpty()&&!cbGioKH.getSelectionModel().isEmpty())
-        {
+        
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");  
            LocalDateTime now = LocalDateTime.now();  
           String ngay = cbNgayKH.getSelectionModel().getSelectedItem().toString();
@@ -211,9 +211,27 @@ public class TicketListController implements Initializable {
           String ngayGio = ngay + " " + gio;   
           String s1 = now.getYear() + "-" + now.getMonthValue()+ "-" + now.getDayOfMonth() +" " + (now.getHour() +1)+ ":" + (now.getMinute()) + ":" + now.getSecond();
           String s2 = now.getYear() + "-" + now.getMonthValue()+ "-" + now.getDayOfMonth() +" " + (now.getHour())+ ":" + (now.getMinute()+5) + ":" + now.getSecond();
+          if(rdLayVe.isSelected() && rdTT.isSelected())
+          {
+            txtGiaVe.setDisable(true);
+              txtIDNV.setDisable(true);
+              txtIDVe.setDisable(true);
+              txtKH.setDisable(true);
+              txtNgayBook.setDisable(true);
+              txtSDT.setDisable(true);
+              txtViTriGhe.setDisable(true);
+              cbGioKH.setDisable(true);
+              cbIDLT.setDisable(true);
+              cbIDXe.setDisable(true);
+              cbNgayKH.setDisable(true);
+              btHuy.setDisable(true);
+              btXoa.setDisable(true);  
+          }
+          else
+          {
           if(ngayGio.compareTo(s2) < 0)// nhỏ hơn 5p và mua vé
           {
-              
+              //&&((!rdLayVe.isSelected() &&!rdTT.isSelected()) ||(rdLayVe.isSelected() &&!rdTT.isSelected()) || (!rdLayVe.isSelected() &&rdTT.isSelected()) )
               txtGiaVe.setDisable(true);
               txtIDNV.setDisable(true);
               txtIDVe.setDisable(true);
@@ -266,6 +284,7 @@ public class TicketListController implements Initializable {
               btHuy.setDisable(false);
               btXoa.setDisable(false);
           }}
+      
             });
         
             return row;
@@ -410,41 +429,85 @@ public class TicketListController implements Initializable {
      
       public void capNhat() throws SQLException
       {
-          
+        
+          if(!txtIDVe.getText().isEmpty() &&!txtIDNV.getText().isEmpty() &&!txtGiaVe.getText().isEmpty() &&!txtKH.getText().isEmpty() &&!txtNgayBook.getText().isEmpty() &&!txtSDT.getText().isEmpty() &&!txtViTriGhe.getText().isEmpty()&&!cbGioKH.getSelectionModel().isEmpty()&&!cbIDLT.getSelectionModel().isEmpty()&&!cbIDXe.getSelectionModel().isEmpty())
           {
-          boolean flag = false;
-          boolean flag1 = false;
-          if(rdTT.isSelected())
-              flag = true;
-     
-          if(rdLayVe.isSelected())
-              flag1 = true;
-           List<String> gioKhoiHanh = new ArrayList<>();
-                   String tuyenDuong = cbIDLT.getSelectionModel().getSelectedItem().toString();
-                String td[] = tuyenDuong.split(" - ");
-              String tuyenDi = td[0];
-                String tuyenDen = td[1];
-          QuanLyVeXe.capNhatVeXe(cbIDXe.getSelectionModel().getSelectedItem().toString(), 
-                 txtIDNV.getText(),txtKH.getText(), txtSDT.getText(),
-                 txtViTriGhe.getText(), txtNgayBook.getText(), flag,
-                 cbNgayKH.getSelectionModel().getSelectedItem().toString(),
-                 cbGioKH.getSelectionModel().getSelectedItem().toString(), 
-                 Double.parseDouble(txtGiaVe.getText()),
-                 QuanLyTuyenDi.getMaLoTrinh(tuyenDi, tuyenDen, 
-                         cbIDXe.getSelectionModel().getSelectedItem().toString(), cbNgayKH.getSelectionModel().getSelectedItem().toString(),
-                 cbGioKH.getSelectionModel().getSelectedItem().toString())
-                 , txtIDVe.getText(),flag1);
-          
-          this.loadData();
+                    boolean flag = false;
+                    boolean flag1 = false;
+                    if(rdTT.isSelected())
+                        flag = true;
+
+                    if(rdLayVe.isSelected())
+                        flag1 = true;
+                     List<String> gioKhoiHanh = new ArrayList<>();
+                             String tuyenDuong = cbIDLT.getSelectionModel().getSelectedItem().toString();
+                          String td[] = tuyenDuong.split(" - ");
+                        String tuyenDi = td[0];
+                          String tuyenDen = td[1];
+                    if(QuanLyVeXe.capNhatVeXe(cbIDXe.getSelectionModel().getSelectedItem().toString(), 
+                           txtIDNV.getText(),txtKH.getText(), txtSDT.getText(),
+                           txtViTriGhe.getText(), txtNgayBook.getText(), flag,
+                           cbNgayKH.getSelectionModel().getSelectedItem().toString(),
+                           cbGioKH.getSelectionModel().getSelectedItem().toString(), 
+                           Double.parseDouble(txtGiaVe.getText()),
+                           QuanLyTuyenDi.getMaLoTrinh(tuyenDi, tuyenDen, 
+                                   cbIDXe.getSelectionModel().getSelectedItem().toString(), cbNgayKH.getSelectionModel().getSelectedItem().toString(),
+                           cbGioKH.getSelectionModel().getSelectedItem().toString())
+                           , txtIDVe.getText(),flag1))
+                    {
+                         this.loadData();
+                         Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                        alert.setTitle("Information Login");
+                        alert.setHeaderText(null);
+                        alert.setContentText("Cập nhật thành công");
+                        alert.showAndWait();
+                        return;
+                    }
+                    else
+                    {
+                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                        alert.setTitle("Information Login");
+                        alert.setHeaderText(null);
+                        alert.setContentText("Cập nhật không thành công. Vui lòng kiểm tra lại thông tin");
+                        alert.showAndWait();
+                        return;
+                    }
                   }
+          else
+          {
+              Alert alert = new Alert(Alert.AlertType.INFORMATION);
+              alert.setTitle("Information Login");
+              alert.setHeaderText(null);
+              alert.setContentText("Vui lòng điền đầy đủ thông tin");
+              alert.showAndWait();
+              return;
+          }
       }
       
       public void xoaVe() throws SQLException
       {
           if(!rdTT.isSelected())// Chú ý các vé đã bán thì không được hoàn lại.
           {   
-                QuanLyVeXe.xoaVeXe(txtIDVe.getText());
-                this.loadData();
+                if(QuanLyVeXe.xoaVeXe(txtIDVe.getText()))
+                {
+                    this.loadData();
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+              alert.setTitle("Information Login");
+              alert.setHeaderText(null);
+              alert.setContentText("Hủy vé thành công.");
+              alert.showAndWait();
+              return;
+                
+                }
+                else
+                {
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+              alert.setTitle("Information Login");
+              alert.setHeaderText(null);
+              alert.setContentText("Hủy vé không thành công.");
+              alert.showAndWait();
+              return;
+                }
           }
           else
           {
@@ -459,13 +522,13 @@ public class TicketListController implements Initializable {
       
       public void huy() throws SQLException
       {
-          txtGiaVe.setText(null);
-          txtIDVe.setText(null);
-          txtIDNV.setText(null);
-          txtKH.setText(null);
-          txtSDT.setText(null);
-          txtNgayBook.setText(null);
-          txtViTriGhe.setText(null);
+          txtGiaVe.setText("");
+          txtIDVe.setText("");
+          txtIDNV.setText("");
+          txtKH.setText("");
+          txtSDT.setText("");
+          txtNgayBook.setText("");
+          txtViTriGhe.setText("");
           rdTT.setSelected(false);
           cbNgayKH.setItems(null);
           cbNgayKH.getSelectionModel().select(null);

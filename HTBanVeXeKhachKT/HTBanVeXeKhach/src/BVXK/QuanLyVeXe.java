@@ -140,12 +140,13 @@ String dateInString = ngay + " " + gio;
         
     }
     
-    public static void capNhatVeXe(String bienSoXe, String maNV, String hoTenKH, String sdtKH, String maGhe,String thoiGianDat,boolean isThanhToan,String ngayKhoiHanh,String gioKhoiHanh,double giaVe, String maLoTrinh,String maVe, boolean isLayVe) throws SQLException
+    public static boolean capNhatVeXe(String bienSoXe, String maNV, String hoTenKH, String sdtKH, String maGhe,String thoiGianDat,boolean isThanhToan,String ngayKhoiHanh,String gioKhoiHanh,double giaVe, String maLoTrinh,String maVe, boolean isLayVe)
     {
         String sql = "UPDATE vexe SET BienSoXe = ?, MaNV = ?, HoTenKH = ?, SDTKH = ?, MaGhe = ?, ThoiGianDat = now(), ThanhToan = ?, NgayKhoiHanh = ?, GioKhoiHanh = ?, GiaVe = ?, MaLoTrinh = ?, LayVe = ? WHERE MaVe = ?";
         Connection cnt = JDBC.getConn();
-        cnt.setAutoCommit(false);
-        PreparedStatement pStm = cnt.prepareStatement(sql);
+        try {
+            cnt.setAutoCommit(false);
+             PreparedStatement pStm = cnt.prepareStatement(sql);
         pStm.setString(1, bienSoXe);
         pStm.setString(2, maNV);
         pStm.setString(3, hoTenKH);
@@ -161,17 +162,32 @@ String dateInString = ngay + " " + gio;
         pStm.setString(12, maVe);
         pStm.executeUpdate();
         cnt.commit();
+        return true;
+        } catch (SQLException ex) {
+            return false;
+        }
+       
     }
     
-    public static void xoaVeXe(String maVe) throws SQLException
+    public static boolean xoaVeXe(String maVe)
     {
+        if(maVe != null)
+        {
         String sql = "DELETE FROM vexe WHERE MaLoTrinh = '" + maVe+"'";
       
         Connection cnt = JDBC.getConn();
-        cnt.setAutoCommit(false);
-        PreparedStatement pStm = cnt.prepareStatement(sql);
-         pStm.executeUpdate();
-         cnt.commit();
+            try {
+                cnt.setAutoCommit(false);
+                PreparedStatement pStm = cnt.prepareStatement(sql);
+                pStm.executeUpdate();
+                cnt.commit();
+                return true;
+            } catch (SQLException ex) {
+                return false;
+            }
+        
+        }
+        return false;
     }
     
     public static List<VeXe> timKiemLoTrinh(String key) throws SQLException

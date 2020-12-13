@@ -472,7 +472,7 @@ public class TicketController implements Initializable {
       }
       public void huy()
       {
-          try{
+         
           cbGheNgoi.setItems(null);
           cbGheNgoi.getSelectionModel().select(null);
           cbGioKhoiHanh.setItems(null);
@@ -482,16 +482,11 @@ public class TicketController implements Initializable {
           cbNgayKhoiHanh.getSelectionModel().select(null);
           cbXe.setItems(null);
           cbXe.getSelectionModel().select(null);
-          txtLoaiXe.setText(null);
-          txtGiaVe.setText(null);
-          txtSdtKH.setText(null);
-          txtTenKH.setText(null);
+          txtLoaiXe.setText("");
+          txtGiaVe.setText("");
+          txtSdtKH.setText("");
+          txtTenKH.setText("");
           rdLayVe.setSelected(false);
           rdTT.setSelected(false);
-          }
-          catch(Exception ex)
-          {
-              
-          }
       }
 }

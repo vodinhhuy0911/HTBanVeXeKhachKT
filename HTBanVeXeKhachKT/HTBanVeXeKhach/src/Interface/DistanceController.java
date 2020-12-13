@@ -314,10 +314,10 @@ public class DistanceController implements Initializable {
     }
     public void huy()
     {
-        txtMaLoTrinh.setText(null);
-        txtTuyenDen.setText(null);
-        txtTuyenDi.setText(null);
-        txtGioKhoiHanh.setText(null);
+        txtMaLoTrinh.setText("");
+        txtTuyenDen.setText("");
+        txtTuyenDi.setText("");
+        txtGioKhoiHanh.setText("");
         cbXe.getSelectionModel().select(null);
         dpNgayKhoiHanh.setValue(null);
     }

@@ -129,18 +129,21 @@ public class QuanLyNhanVien {
    }
    public static boolean xoaNhanVien(String taiKhoan) 
    {
-       String sql = "DELETE FROM nhanvien WHERE idNV = N'" + taiKhoan +"'";
-      
-        Connection cnt = JDBC.getConn();
-        try {
-            cnt.setAutoCommit(false);
-             PreparedStatement pStm = cnt.prepareStatement(sql);
-         pStm.executeUpdate();
-         cnt.commit();
-         return true;
-        } catch (SQLException ex) {
-            return false;
-        }
+       if(taiKhoan != null)
+       {
+            String sql = "DELETE FROM nhanvien WHERE idNV = N'" + taiKhoan +"'";
+             Connection cnt = JDBC.getConn();
+             try {
+                 cnt.setAutoCommit(false);
+                  PreparedStatement pStm = cnt.prepareStatement(sql);
+              pStm.executeUpdate();
+              cnt.commit();
+              return true;
+             } catch (SQLException ex) {
+                 return false;
+             }
+       }
+       return false;
        
          //ok
    }

@@ -111,6 +111,8 @@ public class QuanLyTuyenDi {
    public static boolean xoaTuyenDuong(String maTuyenDuong)
    {
        //xoa tren bang vexe
+       if(maTuyenDuong != null)
+       {
        String sql = "DELETE FROM vexe WHERE MaLoTrinh = '" + maTuyenDuong+"'";
         Connection cnt = JDBC.getConn();
        try {
@@ -131,6 +133,8 @@ public class QuanLyTuyenDi {
        } catch (SQLException ex) {
            return false;
        }
+       }
+       return false;
         
    }
    
