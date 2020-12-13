@@ -2,6 +2,10 @@ package BVXK;
 
 
 import BanVeXeKhach.NhanVien;
+import BVXK.KiemTra;
+import static BVXK.KiemTra.kiemTraEmail;
+import static BVXK.KiemTra.kiemTraNgaySinh;
+import static BVXK.KiemTra.kiemTraSdt;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -203,39 +207,4 @@ public class QuanLyNhanVien {
         }
         return null;
    }
-
-   
-   
-   public static boolean kiemTraEmail(String email)
-    {
-         if(email.indexOf("@")== -1)
-                {
-                    return false;
-                }
-                else if (email.indexOf("@")!= -1 && (email.indexOf("@") + 1) == email.length())
-                {
-                    return false;
-                }
-         return true;
-    }
-   
-    public  static boolean kiemTraNgaySinh(String ngaySinh) {
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
-        for (int i = 0; i < ngaySinh.length(); i++) {
-            if (Character.isLetter(ngaySinh.charAt(i))) {
-                return false;
-            }
-        }
-        return true;
-    }
-    
-    public static boolean kiemTraSdt(String sdt)
-    {
-        for (int i = 0; i < sdt.length(); i++) {
-                        if ((!Character.isDigit(sdt.charAt(i))) || (sdt.length() < 10 || sdt.length() > 11)) {
-                            return false;
-                        }
-        }
-                    return true;    
-    }
 }

@@ -7,6 +7,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -48,9 +50,15 @@ public class QuanLyTuyenDi {
     {
         if(td.getGioKhoiHanh() != null && td.getMaTuyenDuong() != null&&td.getMaXe() != null&&td.getThoiGianKhoiHanh() != null&&td.getTuyenDen() != null&&td.getTuyenDi() != null)
         {
+            
+       try {
+           DateFormat sfm = new SimpleDateFormat("yyyy/MM/dd");
+               
+           if(soLuongMa(td.getMaTuyenDuong() )==0 &&(getSoLuongChuyenDi(td.getTuyenDi(), td.getTuyenDen(), td.getMaXe(), sfm.format(td.getThoiGianKhoiHanh()), td.getGioKhoiHanh())==0))
+           {
+               
          String sql = "INSERT INTO lotrinh (MaLoTrinh, TuyenDi,TuyenDen,MaXe,NgayKhoiHanh,GioKhoiHanh) VALUES (?,?,?,?,?,?)";
          Connection cnt = JDBC.getConn();
-       try {
            cnt.setAutoCommit(false);
            PreparedStatement pStm = cnt.prepareStatement(sql);
         pStm.setString(1, td.getMaTuyenDuong());
@@ -68,6 +76,7 @@ public class QuanLyTuyenDi {
         
         cnt.commit();
         return true;
+           }
        } catch (SQLException ex) {
            return false;
        }
@@ -80,9 +89,12 @@ public class QuanLyTuyenDi {
        //cap nhat bang vexe
        if(tuyenDi != null && tuyenDen != null && maLoTrinh != null && maXe != null && thoiGianKhoiHanh != null && GioKhoiHanh != null)
        {
-       String sql = "UPDATE lotrinh SET MaXe = ?, NgayKhoiHanh = ?, GioKhoiHanh = ? WHERE MaLoTrinh = ?";
-        Connection cnt = JDBC.getConn();
+           DateFormat sfm = new SimpleDateFormat("yyyy/MM/dd");
        try {
+           if((getSoLuongChuyenDi(tuyenDi, tuyenDen, maXe, sfm.format(thoiGianKhoiHanh), GioKhoiHanh)==0))
+           {
+                String sql = "UPDATE lotrinh SET MaXe = ?, NgayKhoiHanh = ?, GioKhoiHanh = ? WHERE MaLoTrinh = ?";
+        Connection cnt = JDBC.getConn();
            cnt.setAutoCommit(false);
            PreparedStatement pStm = cnt.prepareStatement(sql);
        pStm.setString(1, maXe);
@@ -109,6 +121,7 @@ public class QuanLyTuyenDi {
         pStm.executeUpdate();
         cnt.commit();
         return true;
+           }
        } catch (SQLException ex) {
            return false;
        }
@@ -245,11 +258,25 @@ public class QuanLyTuyenDi {
        return kq;
    }
    
-   public static int soLuongMa(int maLoTrinh) throws SQLException
+   public static int soLuongMa(String maLoTrinh) throws SQLException
    {
        Connection conn = JDBC.getConn();
        Statement stm = conn.createStatement();
        ResultSet rs = stm.executeQuery("SELECT count(*) FROM lotrinh WHERE MaLoTrinh = '"+maLoTrinh+"'");
+       int i = 0;
+       while(rs.next())
+       {
+           i = rs.getInt(1);
+       }
+       return i;
+   }
+   
+   public static int getSoLuongChuyenDi(String tuyenDi, String tuyenDen, String maXe, String ngayKhoiHanh, String gioKhoiHanh) throws SQLException
+   {
+       Connection conn = JDBC.getConn();
+       Statement stm = conn.createStatement();
+       SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
+       ResultSet rs = stm.executeQuery("SELECT count(*) FROM lotrinh WHERE TuyenDi = N'"+tuyenDi+"' AND TuyenDen = N'"+tuyenDen+"' AND MaXe = '"+maXe+"' AND NgayKhoiHanh = '"+ngayKhoiHanh+"' AND GioKhoiHanh = '"+gioKhoiHanh+"'");
        int i = 0;
        while(rs.next())
        {

@@ -54,45 +54,45 @@ public class DistanceController implements Initializable {
 
     @FXML
     private TextField txtMaLoTrinh;
-            
+
     @FXML
     private TextField txtTuyenDi;
-    
+
     @FXML
     private TextField txtTuyenDen;
-    
+
     @FXML
-    private TableView <TuyenDuong> tvNoiDung;
-    
+    private TableView<TuyenDuong> tvNoiDung;
+
     @FXML
     private TableColumn tcMaLoTrinh;
-    
-    
+
     @FXML
     private TableColumn tcTuyenDi;
-    
+
     @FXML
     private ComboBox cbXe;
-    
+
     @FXML
     private TableColumn tcTuyenDen;
-    
+
     @FXML
     private TableColumn tcXe;
-    
+
     @FXML
     private DatePicker dpNgayKhoiHanh;
-    
+
     @FXML
     private TextField txtGioKhoiHanh;
-    
+
     @FXML
     private TableColumn tcNgayKhoiHanh;
-    
+
     @FXML
     private TableColumn tcGioKhoiHanh;
     @FXML
     private TextField txtFind;
+
     /**
      * Initializes the controller class.
      */
@@ -105,210 +105,214 @@ public class DistanceController implements Initializable {
         } catch (SQLException ex) {
             Logger.getLogger(DistanceController.class.getName()).log(Level.SEVERE, null, ex);
         }
-         this.tvNoiDung.setRowFactory((TableView<TuyenDuong> td) ->{
+        this.tvNoiDung.setRowFactory((TableView<TuyenDuong> td) -> {
             TableRow row = new TableRow();
             row.setOnMouseClicked((MouseEvent r) -> {
                 TuyenDuong t = tvNoiDung.getSelectionModel().getSelectedItem();
                 this.txtMaLoTrinh.setText(t.getMaTuyenDuong());
                 this.txtTuyenDi.setText(t.getTuyenDi());
-               this.txtTuyenDen.setText(t.getTuyenDen());
-               this.cbXe.getSelectionModel().select(t.getMaXe());
-               
-               DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                this.txtTuyenDen.setText(t.getTuyenDen());
+                this.cbXe.getSelectionModel().select(t.getMaXe());
 
-  //convert String to LocalDate
-  String date = String.valueOf(t.getThoiGianKhoiHanh());
-  String s[] = date.split("-");
-  
-  //mdy
-  date = s[2] + "/" + s[1] + "/" + s[0];
-  LocalDate localDate = LocalDate.parse(date, formatter);
-               
-               this.dpNgayKhoiHanh.setValue(localDate);
-               this.txtGioKhoiHanh.setText(t.getGioKhoiHanh());
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+                //convert String to LocalDate
+                String date = String.valueOf(t.getThoiGianKhoiHanh());
+                String s[] = date.split("-");
+
+                //mdy
+                date = s[2] + "/" + s[1] + "/" + s[0];
+                LocalDate localDate = LocalDate.parse(date, formatter);
+
+                this.dpNgayKhoiHanh.setValue(localDate);
+                this.txtGioKhoiHanh.setText(t.getGioKhoiHanh());
             });
             return row;
         });
-         List<String> str = new ArrayList<>();
+        List<String> str = new ArrayList<>();
         try {
             List<Xe> xe = QuanLyXe.getXe();
-            for(Xe x : xe)
-            {
+            for (Xe x : xe) {
                 str.add(x.getBienSoXe());
-                ObservableList <String> list = FXCollections.observableArrayList(str);
-                    cbXe.setItems(list);
+                ObservableList<String> list = FXCollections.observableArrayList(str);
+                cbXe.setItems(list);
             }
         } catch (SQLException ex) {
             Logger.getLogger(DistanceController.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }    
-    
-    
-    public void loadData() throws SQLException
-    {
+    }
+
+    public void loadData() throws SQLException {
         tcMaLoTrinh.setCellValueFactory(new PropertyValueFactory("maTuyenDuong"));
-        
+
         tcTuyenDi.setCellValueFactory(new PropertyValueFactory("tuyenDi"));
-        
+
         tcTuyenDen.setCellValueFactory(new PropertyValueFactory("tuyenDen"));
         tcXe.setCellValueFactory(new PropertyValueFactory("maXe"));
         tcNgayKhoiHanh.setCellValueFactory(new PropertyValueFactory("thoiGianKhoiHanh"));
-         tcGioKhoiHanh.setCellValueFactory(new PropertyValueFactory("gioKhoiHanh"));
-         this.tvNoiDung.setItems(FXCollections.observableArrayList(QuanLyTuyenDi.getDsTuyenDuong()));
+        tcGioKhoiHanh.setCellValueFactory(new PropertyValueFactory("gioKhoiHanh"));
+        this.tvNoiDung.setItems(FXCollections.observableArrayList(QuanLyTuyenDi.getDsTuyenDuong()));
     }
-    
+
     @FXML
-    public void themLoTring() throws SQLException, ParseException
-    {
-        if(!txtMaLoTrinh.getText().isEmpty() && !txtTuyenDi.getText().isEmpty() && !txtTuyenDen.getText().isEmpty() && !txtGioKhoiHanh.getText().isEmpty() && !cbXe.getSelectionModel().isEmpty() && dpNgayKhoiHanh.getValue()!=null)
-        {
-        if(QuanLyTuyenDi.soLuongMa(Integer.parseInt(txtMaLoTrinh.getText())) == 0)
-           {
-        LocalDate ngayKhoiHanh = dpNgayKhoiHanh.getValue();
-        String date = String.valueOf(ngayKhoiHanh);
-         String s[] = date.split("-");
-        date = s[2] + "/" + s[1] + "/" + s[0];
-        DateFormat sfm = new SimpleDateFormat("dd/MM/yyyy");
-        Date d = sfm.parse(date);
-        
-        TuyenDuong td = new TuyenDuong(txtMaLoTrinh.getText(), txtTuyenDi.getText(), txtTuyenDen.getText(),cbXe.getSelectionModel().getSelectedItem().toString(),d,txtGioKhoiHanh.getText());
-        if(QuanLyTuyenDi.themTuyenDuong(td))
-        {
-        this.loadData();
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                                  alert.setTitle("Information Login");
-                                  alert.setHeaderText(null);
-                                  alert.setContentText("Thêm thành công");
-                                  alert.showAndWait();
-        }
-        else
-        {
+    public void themLoTring() throws SQLException, ParseException {
+        if (!txtMaLoTrinh.getText().isEmpty() && !txtTuyenDi.getText().isEmpty() && !txtTuyenDen.getText().isEmpty() && !txtGioKhoiHanh.getText().isEmpty() && !cbXe.getSelectionModel().isEmpty() && dpNgayKhoiHanh.getValue() != null) {
+            if (true) {
+
+                LocalDate ngayKhoiHanh = dpNgayKhoiHanh.getValue();
+                String date = String.valueOf(ngayKhoiHanh);
+                String date1 = date.replace("-", "/");
+                String s[] = date.split("-");
+                date = s[2] + "/" + s[1] + "/" + s[0];
+                
+                DateFormat sfm = new SimpleDateFormat("dd/MM/yyyy");
+                Date d = sfm.parse(date);
+
+                TuyenDuong td = new TuyenDuong(txtMaLoTrinh.getText(), txtTuyenDi.getText(), txtTuyenDen.getText(), cbXe.getSelectionModel().getSelectedItem().toString(), d, txtGioKhoiHanh.getText());
+
+                if (true) {
+                    if (QuanLyTuyenDi.themTuyenDuong(td)) {
+                        this.loadData();
+                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                        alert.setTitle("Information Login");
+                        alert.setHeaderText(null);
+                        alert.setContentText("Thêm thành công");
+                        alert.showAndWait();
+                    } else {
+                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                        alert.setTitle("Information Login");
+                        alert.setHeaderText(null);
+                        alert.setContentText("Thêm thất bại. Vui lòng kiểm tra lại thông tin.");
+                        alert.showAndWait();
+                    }
+                } else {
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Information Login");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Tuyến này đã tồn tại.");
+                    alert.showAndWait();
+                }
+            } else {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Information Login");
+                alert.setHeaderText(null);
+                alert.setContentText("Thêm thất bại. Vui lòng kiểm tra lại thông tin.");
+                alert.showAndWait();
+            }
+        } else {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                                  alert.setTitle("Information Login");
-                                  alert.setHeaderText(null);
-                                  alert.setContentText("Thêm thất bại. Vui lòng kiểm tra lại thông tin.");
-                                  alert.showAndWait();
-        }
-        }
-        else
-        {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                                  alert.setTitle("Information Login");
-                                  alert.setHeaderText(null);
-                                  alert.setContentText("Thêm thất bại. Vui lòng kiểm tra lại thông tin.");
-                                  alert.showAndWait();
-        }
-        }
-        else{
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                                  alert.setTitle("Information Login");
-                                  alert.setHeaderText(null);
-                                  alert.setContentText("Vui lòng nhập đầy đủ thông tin.");
-                                  alert.showAndWait();
+            alert.setTitle("Information Login");
+            alert.setHeaderText(null);
+            alert.setContentText("Vui lòng nhập đầy đủ thông tin.");
+            alert.showAndWait();
         }
     }
+
     @FXML
-    public void capNhatTuyenDuong() throws SQLException, ParseException
-    {
-         if(!txtMaLoTrinh.getText().isEmpty() && !txtTuyenDi.getText().isEmpty() && !txtTuyenDen.getText().isEmpty() && !txtGioKhoiHanh.getText().isEmpty() && !cbXe.getSelectionModel().isEmpty() && dpNgayKhoiHanh.getValue()!=null)
-         {
-        LocalDate ngayKhoiHanh = dpNgayKhoiHanh.getValue();
-        String date = String.valueOf(ngayKhoiHanh);
-  String s[] = date.split("-");
-  date = s[2] + "/" + s[1] + "/" + s[0];
-        DateFormat sfm = new SimpleDateFormat("dd/MM/yyyy");
-        Date d = sfm.parse(date);
-        
-        
-        if(QuanLyTuyenDi.capNhatTuyenDuong(txtTuyenDi.getText(), txtTuyenDen.getText(),txtMaLoTrinh.getText(),cbXe.getSelectionModel().getSelectedItem().toString(),
-                d,txtGioKhoiHanh.getText()))
-        {
-             this.loadData();
-             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                                  alert.setTitle("Information Login");
-                                  alert.setHeaderText(null);
-                                  alert.setContentText("Cập nhật thành công.");
-                                  alert.showAndWait();
-        }
-        else
-        {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                                  alert.setTitle("Information Login");
-                                  alert.setHeaderText(null);
-                                  alert.setContentText("Cập nhật thất bại. Vui lòng kiểm tra lại thông tin");
-                                  alert.showAndWait();
-        }
-         }
-         else
-         {
-             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                                  alert.setTitle("Information Login");
-                                  alert.setHeaderText(null);
-                                  alert.setContentText("Vui lòng nhập đầy đủ thông tin!");
-                                  alert.showAndWait();
-         }
-    }
-    
-    @FXML
-    public void xoaTuyenDuong() throws SQLException
-    {
-        if(!txtMaLoTrinh.getText().isEmpty())
-        {
-            if(QuanLyTuyenDi.xoaTuyenDuong(txtMaLoTrinh.getText()))
-            {
+    public void capNhatTuyenDuong() throws SQLException, ParseException {
+        if (!txtMaLoTrinh.getText().isEmpty() && !txtTuyenDi.getText().isEmpty() && !txtTuyenDen.getText().isEmpty() && !txtGioKhoiHanh.getText().isEmpty() && !cbXe.getSelectionModel().isEmpty() && dpNgayKhoiHanh.getValue() != null) {
+            LocalDate ngayKhoiHanh = dpNgayKhoiHanh.getValue();
+            String date = String.valueOf(ngayKhoiHanh);
+            String date1 = date.replace("-", "/");
+            String s[] = date.split("-");
+            date = s[2] + "/" + s[1] + "/" + s[0];
+            
+            DateFormat sfm = new SimpleDateFormat("dd/MM/yyyy");
+            Date d = sfm.parse(date);
+               if (QuanLyTuyenDi.soLuongMa((txtMaLoTrinh.getText())) == 0)
+                   {
+                       if (QuanLyTuyenDi.getSoLuongChuyenDi(txtTuyenDi.getText(),txtTuyenDen.getText(),cbXe.getSelectionModel().getSelectedItem().toString(),date1,txtGioKhoiHanh.getText())==0)
+                       {
+            if (QuanLyTuyenDi.capNhatTuyenDuong(txtTuyenDi.getText(), txtTuyenDen.getText(), txtMaLoTrinh.getText(), cbXe.getSelectionModel().getSelectedItem().toString(),
+                    d, txtGioKhoiHanh.getText())) {
                 this.loadData();
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                                  alert.setTitle("Information Login");
-                                  alert.setHeaderText(null);
-                                  alert.setContentText("Xóa thành công.");
-                                  alert.showAndWait();
-            }
-            else 
-            {
+                alert.setTitle("Information Login");
+                alert.setHeaderText(null);
+                alert.setContentText("Cập nhật thành công.");
+                alert.showAndWait();
+            } else {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                                  alert.setTitle("Information Login");
-                                  alert.setHeaderText(null);
-                                  alert.setContentText("Vui lòng nhập đầy đủ thông tin!");
-                                  alert.showAndWait();
+                alert.setTitle("Information Login");
+                alert.setHeaderText(null);
+                alert.setContentText("Cập nhật thất bại. Vui lòng kiểm tra lại thông tin");
+                alert.showAndWait();
             }
-        }
-        else
-        {
+                       }else{
+                            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Information Login");
+                alert.setHeaderText(null);
+                alert.setContentText("Tuyến đường đã tồn tại.");
+                alert.showAndWait();
+                       }
+                   }else {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                                  alert.setTitle("Information Login");
-                                  alert.setHeaderText(null);
-                                  alert.setContentText("Xóa không thành công");
-                                  alert.showAndWait();
+            alert.setTitle("Information Login");
+            alert.setHeaderText(null);
+            alert.setContentText("ID đã tồn tại");
+            alert.showAndWait();
+        }
+        } else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Information Login");
+            alert.setHeaderText(null);
+            alert.setContentText("Vui lòng nhập đầy đủ thông tin!");
+            alert.showAndWait();
         }
     }
+
+    @FXML
+    public void xoaTuyenDuong() throws SQLException {
+        if (!txtMaLoTrinh.getText().isEmpty()) {
+            if (QuanLyTuyenDi.xoaTuyenDuong(txtMaLoTrinh.getText())) {
+                this.loadData();
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Information Login");
+                alert.setHeaderText(null);
+                alert.setContentText("Xóa thành công.");
+                alert.showAndWait();
+            } else {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Information Login");
+                alert.setHeaderText(null);
+                alert.setContentText("Vui lòng nhập đầy đủ thông tin!");
+                alert.showAndWait();
+            }
+        } else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Information Login");
+            alert.setHeaderText(null);
+            alert.setContentText("Xóa không thành công");
+            alert.showAndWait();
+        }
+    }
+
     @FXML
     public void btExitOnAction(ActionEvent event) throws IOException {
-         if(chucVu.compareTo("Quản Trị Viên") == 0)
-        {
+        if (chucVu.compareTo("Quản Trị Viên") == 0) {
             Parent root = FXMLLoader.load(getClass().getResource("Main.fxml"));
-        Scene scene = new Scene(root);
-        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        stage.setResizable(false);
-        stage.setScene(scene);
-        stage.centerOnScreen();
-        stage.show();
-        }
-        else
-        {
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setResizable(false);
+            stage.setScene(scene);
+            stage.centerOnScreen();
+            stage.show();
+        } else {
             Parent root = FXMLLoader.load(getClass().getResource("Employee2.fxml"));
-        Scene scene = new Scene(root);
-        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        stage.setResizable(false);
-        stage.setScene(scene);
-        stage.centerOnScreen();
-        stage.show();
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setResizable(false);
+            stage.setScene(scene);
+            stage.centerOnScreen();
+            stage.show();
         }
     }
-     //Tim kiem
+    //Tim kiem
+
     @FXML
-    public void search(ActionEvent event) throws SQLException{
-        if(!txtFind.getText().isEmpty()){
-            List<TuyenDuong>dsTuyenDuong = new ArrayList<>();
+    public void search(ActionEvent event) throws SQLException {
+        if (!txtFind.getText().isEmpty()) {
+            List<TuyenDuong> dsTuyenDuong = new ArrayList<>();
             dsTuyenDuong = QuanLyTuyenDi.timKiemTuyenDuong(txtFind.getText());
             tcMaLoTrinh.setCellValueFactory(new PropertyValueFactory("maTuyenDuong"));
             tcTuyenDi.setCellValueFactory(new PropertyValueFactory("tuyenDi"));
@@ -317,13 +321,12 @@ public class DistanceController implements Initializable {
             tcNgayKhoiHanh.setCellValueFactory(new PropertyValueFactory("thoiGianKhoiHanh"));
             tcGioKhoiHanh.setCellValueFactory(new PropertyValueFactory("gioKhoiHanh"));
             this.tvNoiDung.setItems(FXCollections.observableArrayList(dsTuyenDuong));
-        }
-        else{
+        } else {
             this.loadData();
         }
     }
-    public void huy()
-    {
+
+    public void huy() {
         txtMaLoTrinh.setText("");
         txtTuyenDen.setText("");
         txtTuyenDi.setText("");
