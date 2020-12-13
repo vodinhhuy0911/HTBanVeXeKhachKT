@@ -5,14 +5,13 @@
  */
 package Interface;
 
+import BVXK.JDBC;
 import BVXK.QuanLyTuyenDi;
 import BVXK.QuanLyVeXe;
-import BVXK.QuanLyXe;
 import BanVeXeKhach.TuyenDuong;
 import BanVeXeKhach.VeXe;
 import static Interface.LoginController.chucVu;
-import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
+import com.mysql.jdbc.Connection;
 import java.net.URL;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
@@ -43,6 +42,25 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.HashMap;
+import java.util.Hashtable;
+import java.util.Map;
+import javax.swing.table.DefaultTableModel;
+ 
+import net.sf.jasperreports.engine.JRDataSource;
+import net.sf.jasperreports.engine.JREmptyDataSource;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JRField;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  * FXML Controller class
@@ -542,11 +560,12 @@ public class TicketListController implements Initializable {
           this.loadData();
         }
       
-      public void timKiem() throws SQLException
+      public void timKiem() throws SQLException, JRException, IOException
       {
+          
           if(txtKey.getText() != null ||txtKey.getText() != "" )
           {
-           clMaVe.setCellValueFactory(new PropertyValueFactory("maVe"));
+        clMaVe.setCellValueFactory(new PropertyValueFactory("maVe"));
         clMaNV.setCellValueFactory(new PropertyValueFactory("maNV"));
         clMaLT.setCellValueFactory(new PropertyValueFactory("maLoTrinh"));
         clMaXe.setCellValueFactory(new PropertyValueFactory("bienSoXe"));
@@ -559,13 +578,31 @@ public class TicketListController implements Initializable {
         clNgayKH.setCellValueFactory(new PropertyValueFactory("ngayKhoiHanh"));
         clTT.setCellValueFactory(new PropertyValueFactory("isThanhToan"));
         clLayVe.setCellValueFactory(new PropertyValueFactory("isLayVe"));
-             this.tvThongTin.setItems(FXCollections.observableArrayList(QuanLyVeXe.timKiemLoTrinh(txtKey.getText())));
+        this.tvThongTin.setItems(FXCollections.observableArrayList(QuanLyVeXe.timKiemLoTrinh(txtKey.getText())));
+     
+          
           }
           else
               this.loadData();
+        
       }
-      //Xuat ra report
-      public void xuatVe(){}
       
+      
+      //Tạo ve tren jasper
 
-}
+   private static JasperReport jasperReport;
+   private static JasperViewer jasperViewer;
+   private static JasperPrint jasperPrint;
+   public void XuatVe() throws JRException, IOException {
+       if(!txtKey.getText().isEmpty()){
+        Hashtable map = new Hashtable();
+        JasperReport jasperReport = JasperCompileManager.compileReport("src/Interface/VeXe.jrxml");
+        map.put("HoTenKH",txtKey.getText());
+        jasperPrint = JasperFillManager.fillReport(jasperReport,
+               map, JDBC.getConn());
+        jasperViewer = new JasperViewer(jasperPrint);
+        jasperViewer.setVisible(true);
+
+       }}}
+
+
