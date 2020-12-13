@@ -157,7 +157,7 @@ public class DistanceController implements Initializable {
     @FXML
     public void themLoTring() throws SQLException, ParseException {
         if (!txtMaLoTrinh.getText().isEmpty() && !txtTuyenDi.getText().isEmpty() && !txtTuyenDen.getText().isEmpty() && !txtGioKhoiHanh.getText().isEmpty() && !cbXe.getSelectionModel().isEmpty() && dpNgayKhoiHanh.getValue() != null) {
-            if (true) {
+            if (QuanLyTuyenDi.soLuongMa((txtMaLoTrinh.getText())) == 0) {
 
                 LocalDate ngayKhoiHanh = dpNgayKhoiHanh.getValue();
                 String date = String.valueOf(ngayKhoiHanh);
@@ -170,7 +170,7 @@ public class DistanceController implements Initializable {
 
                 TuyenDuong td = new TuyenDuong(txtMaLoTrinh.getText(), txtTuyenDi.getText(), txtTuyenDen.getText(), cbXe.getSelectionModel().getSelectedItem().toString(), d, txtGioKhoiHanh.getText());
 
-                if (true) {
+                if (QuanLyTuyenDi.getSoLuongChuyenDi(txtTuyenDi.getText(),txtTuyenDen.getText(),cbXe.getSelectionModel().getSelectedItem().toString(),date1,txtGioKhoiHanh.getText())==0) {
                     if (QuanLyTuyenDi.themTuyenDuong(td)) {
                         this.loadData();
                         Alert alert = new Alert(Alert.AlertType.INFORMATION);
