@@ -100,8 +100,14 @@ String dateInString = ngay + " " + gio;
             kq = rs.getInt(1);
             break;
         }
-        
-        if(kq == 0)
+        rs = stm.executeQuery("SELECT count(*) FROM vexe WHERE BienSoXe = '"+ve.getBienSoXe()+"' AND NgayKhoiHanh = '"+ ve.getNgayKhoiHanh()+"' AND GioKhoiHanh = '"+ve.getGioKhoiHanh()+"' AND MaLoTrinh ='"+ve.getMaLoTrinh()+"' AND MaGhe = '" +ve.getMaGheNgoi()+"'");
+        int kq1 = 0;
+        while(rs.next())
+        {
+            kq1 = rs.getInt(1);
+            break;
+        }
+        if(kq == 0 && kq1 == 0)
         {
                     String sql = "INSERT INTO vexe (MaVe,BienSoXe,MaNV,HoTenKH,SDTKH,MaGhe,ThoiGianDat,ThanhToan,NgayKhoiHanh,GioKhoiHanh,GiaVe,MaLoTrinh,LayVe) VALUES (?,?,?,?,?,?,now(),?,?,?,?,?,?)";
             Connection cnt = JDBC.getConn();
@@ -144,10 +150,27 @@ String dateInString = ngay + " " + gio;
         
     }
     
-    public static boolean capNhatVeXe(String bienSoXe, String maNV, String hoTenKH, String sdtKH, String maGhe,String thoiGianDat,boolean isThanhToan,String ngayKhoiHanh,String gioKhoiHanh,double giaVe, String maLoTrinh,String maVe, boolean isLayVe)
+    public static boolean capNhatVeXe(String bienSoXe, String maNV, String hoTenKH, String sdtKH, String maGhe,String thoiGianDat,boolean isThanhToan,String ngayKhoiHanh,String gioKhoiHanh,double giaVe, String maLoTrinh,String maVe, boolean isLayVe) throws SQLException
     {
          if(bienSoXe != null && maNV != null && hoTenKH != null &&sdtKH != null &&maGhe != null &&thoiGianDat != null &&ngayKhoiHanh != null &&gioKhoiHanh != null &&giaVe >= 0 && maLoTrinh != null &&maVe != null)
          {
+             Connection conn = JDBC.getConn();
+
+       Statement stm = conn.createStatement();
+        ResultSet rs;
+        rs = stm.executeQuery("SELECT count(*) FROM vexe WHERE  BienSoXe = '"+bienSoXe+"' AND NgayKhoiHanh = '"+ ngayKhoiHanh+"' AND GioKhoiHanh = '"+gioKhoiHanh+"' AND MaLoTrinh ='"+maLoTrinh+"' AND MaGhe = '" +maGhe+"'");
+        int kq1 = 0;
+        while(rs.next())
+        {
+            kq1 = rs.getInt(1);
+            break;
+        }
+             
+             
+             ///////////////
+           
+             if(kq1 ==0)
+             {
         String sql = "UPDATE vexe SET BienSoXe = ?, MaNV = ?, HoTenKH = ?, SDTKH = ?, MaGhe = ?, ThoiGianDat = now(), ThanhToan = ?, NgayKhoiHanh = ?, GioKhoiHanh = ?, GiaVe = ?, MaLoTrinh = ?, LayVe = ? WHERE MaVe = ?";
         Connection cnt = JDBC.getConn();
         try {
@@ -172,6 +195,7 @@ String dateInString = ngay + " " + gio;
         } catch (SQLException ex) {
             return false;
         }
+         }
          }
          return false;
        
@@ -200,6 +224,7 @@ String dateInString = ngay + " " + gio;
     
     public static List<VeXe> timKiemLoTrinh(String key) throws SQLException
     {
+        
         Connection conn = JDBC.getConn();
        Statement stm = conn.createStatement();
        ResultSet rs = stm.executeQuery("SELECT v.MaVe, v.BienSoXe, v.MaNV, v.HoTenKH, v.SDTKH, v.MaGhe, v.ThoiGianDat, v.ThanhToan, v.NgayKhoiHanh, v.GioKhoiHanh, v.GiaVe, v.MaLoTrinh, v.LayVe FROM lotrinh l join vexe v on l.MaLoTrinh = v.MaLoTrinh WHERE TuyenDi like N'%"+key+"%' OR TuyenDen LIKE N'%" +key+"%'");
@@ -214,7 +239,7 @@ String dateInString = ngay + " " + gio;
             String maGheNgoi = rs.getString("MaGhe");
             
             SimpleDateFormat ft = new SimpleDateFormat ("yyyy-MM-dd hh:mm:ss ");
-SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+     SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 //        String dateInString = "2017-06-07 22:22:22";
 String ngay = String.valueOf(rs.getDate("ThoiGianDat"));
 String gio = String.valueOf(rs.getTime("ThoiGianDat"));

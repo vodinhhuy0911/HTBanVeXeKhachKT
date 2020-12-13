@@ -35,7 +35,6 @@
       <Label layoutX="579.0" layoutY="175.0" styleClass="infoLabel" stylesheets="@styleTickList.css" text="SĐT" />
       <TextField fx:id="txtSDT" layoutX="697.0" layoutY="171.0" prefHeight="25.0" prefWidth="300.0" />
       <Label layoutX="1010.0" layoutY="125.0" styleClass="infoLabel" stylesheets="@styleTickList.css" text="Vị trí ghế" />
-      <TextField fx:id="txtViTriGhe" layoutX="1114.0" layoutY="121.0" prefHeight="25.0" prefWidth="149.0" />
       <Label layoutX="1010.0" layoutY="175.0" styleClass="infoLabel" stylesheets="@styleTickList.css" text="Giá vé" />
       <TextField fx:id="txtGiaVe" layoutX="1114.0" layoutY="171.0" prefHeight="25.0" prefWidth="149.0" />
       <Label layoutX="580.0" layoutY="229.0" styleClass="infoLabel" stylesheets="@styleTickList.css" text="Ngày đặt" />
@@ -115,5 +114,6 @@
       <ComboBox fx:id="cbGioKH" layoutX="347.0" layoutY="224.0" prefHeight="31.0" prefWidth="149.0" />
       <ComboBox fx:id="cbIDXe" layoutX="347.0" layoutY="120.0" onAction="#chonXe" prefHeight="31.0" prefWidth="202.0" />
       <RadioButton fx:id="rdLayVe" layoutX="1087.0" layoutY="240.0" mnemonicParsing="false" styleClass="infoLabel" stylesheets="@styleTickList.css" text="Lấy vé" />
+      <TextField fx:id="txtViTriGhe" layoutX="1114.0" layoutY="121.0" prefHeight="31.0" prefWidth="149.0" />
    </children>
 </AnchorPane>

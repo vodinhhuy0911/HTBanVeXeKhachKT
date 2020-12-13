@@ -580,5 +580,5 @@ public class TicketListController implements Initializable {
       }
       //Xuat ra report
       
-
+      
 }
