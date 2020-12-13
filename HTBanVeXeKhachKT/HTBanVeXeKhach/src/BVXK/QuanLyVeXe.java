@@ -86,6 +86,8 @@ String dateInString = ngay + " " + gio;
     }
     public static boolean themVe(VeXe ve)
     {
+        if(ve.getBienSoXe() != null && ve.getGiaVe() >= 0 && ve.getGioKhoiHanh()!= null && ve.getHoTenKH()!= null && ve.getMaGheNgoi()!= null && ve.getMaLoTrinh()!= null && ve.getMaNV()!= null && ve.getMaVe()!= null && ve.getNgayKhoiHanh()!= null && ve.getSdtKH()!= null && ve.getThoiGianDatVe()!= null)
+        {
      Connection conn = JDBC.getConn();
         try {
             
@@ -137,11 +139,15 @@ String dateInString = ngay + " " + gio;
         } catch (SQLException ex) {
            return false;
         }
+        }
+        return false;
         
     }
     
     public static boolean capNhatVeXe(String bienSoXe, String maNV, String hoTenKH, String sdtKH, String maGhe,String thoiGianDat,boolean isThanhToan,String ngayKhoiHanh,String gioKhoiHanh,double giaVe, String maLoTrinh,String maVe, boolean isLayVe)
     {
+         if(bienSoXe != null && maNV != null && hoTenKH != null &&sdtKH != null &&maGhe != null &&thoiGianDat != null &&ngayKhoiHanh != null &&gioKhoiHanh != null &&giaVe >= 0 && maLoTrinh != null &&maVe != null)
+         {
         String sql = "UPDATE vexe SET BienSoXe = ?, MaNV = ?, HoTenKH = ?, SDTKH = ?, MaGhe = ?, ThoiGianDat = now(), ThanhToan = ?, NgayKhoiHanh = ?, GioKhoiHanh = ?, GiaVe = ?, MaLoTrinh = ?, LayVe = ? WHERE MaVe = ?";
         Connection cnt = JDBC.getConn();
         try {
@@ -166,6 +172,8 @@ String dateInString = ngay + " " + gio;
         } catch (SQLException ex) {
             return false;
         }
+         }
+         return false;
        
     }
     
@@ -206,14 +214,6 @@ String dateInString = ngay + " " + gio;
             String maGheNgoi = rs.getString("MaGhe");
             
             SimpleDateFormat ft = new SimpleDateFormat ("yyyy-MM-dd hh:mm:ss ");
-            
-//            java.util.Date date = rs.getDate("ThoiGianDat");
-//      java.sql.Date sqlDate = new java.sql.Date(date.getTime()); 
-//            System.out.println(rs.getDate("ThoiGianDat") + " " + rs.getTime("ThoiGianDat"));
-//            Date thoiGianDat = sqlDate;
-            
-//             SimpleDateFormat ft = new SimpleDateFormat ("yyyy/MM/dd hh:mm:ss ");
-
 SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 //        String dateInString = "2017-06-07 22:22:22";
 String ngay = String.valueOf(rs.getDate("ThoiGianDat"));
@@ -221,8 +221,6 @@ String gio = String.valueOf(rs.getTime("ThoiGianDat"));
 String dateInString = ngay + " " + gio;
         try {
             Date date = formatter.parse(dateInString);
-//            System.out.println(date);
-//            System.out.println(formatter.format(date));
              Date thoiGianDat;
              thoiGianDat = date; // System.out.println(formatter.format(date));
              Boolean isThanhToan = rs.getBoolean("ThanhToan");

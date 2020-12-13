@@ -139,9 +139,35 @@ public class Employee2Controller implements Initializable {
                                       alert.showAndWait();
                                       return;
                     }
+                   
+                   if(!kiemTraEmail(txtEmail.getText()))
+                   {
+                       Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                                  alert.setTitle("Information Login");
+                                  alert.setHeaderText(null);
+                                  alert.setContentText("Lỗi định dạng email.");
+                                  alert.showAndWait();
+                                  return;
+                   }
+             
                   NhanVien nv = new NhanVien(txtID.getText(), txtHoTen.getText(), ngaySinh, txtDiaChi.getText(), txtChucVu.getText(),txtSDT.getText(), txtEmail.getText(),txtMatKhau.getText());
-         QuanLyNhanVien.capNhatNhanVien(nv);
-         this.loadData();
+         if(QuanLyNhanVien.capNhatNhanVien(nv))
+         {
+                this.loadData();
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                          alert.setTitle("Information Login");
+                          alert.setHeaderText(null);
+                          alert.setContentText("Cập nhật thành công.");
+                          alert.showAndWait();
+         }
+         else
+         {
+             Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                          alert.setTitle("Information Login");
+                          alert.setHeaderText(null);
+                          alert.setContentText("Cập nhật không thành công. Vui lòng kiểm tra lại thông tin.");
+                          alert.showAndWait();
+         }
               } catch (ParseException ex) {
                   Alert alert = new Alert(Alert.AlertType.INFORMATION);
                           alert.setTitle("Information Login");
@@ -205,6 +231,18 @@ public class Employee2Controller implements Initializable {
         stage.setScene(scene);
         stage.centerOnScreen();
         stage.show();
+    }
+    private boolean kiemTraEmail(String email)
+    {
+         if(email.indexOf("@")== -1)
+                {
+                    return false;
+                }
+                else if (email.indexOf("@")!= -1 && (email.indexOf("@") + 1) == email.length())
+                {
+                    return false;
+                }
+         return true;
     }
 }
 

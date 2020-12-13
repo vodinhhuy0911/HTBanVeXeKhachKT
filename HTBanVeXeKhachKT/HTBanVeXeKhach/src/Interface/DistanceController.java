@@ -162,10 +162,12 @@ public class DistanceController implements Initializable {
     {
         if(!txtMaLoTrinh.getText().isEmpty() && !txtTuyenDi.getText().isEmpty() && !txtTuyenDen.getText().isEmpty() && !txtGioKhoiHanh.getText().isEmpty() && !cbXe.getSelectionModel().isEmpty() && dpNgayKhoiHanh.getValue()!=null)
         {
+        if(QuanLyTuyenDi.soLuongMa(Integer.parseInt(txtMaLoTrinh.getText())) == 0)
+           {
         LocalDate ngayKhoiHanh = dpNgayKhoiHanh.getValue();
         String date = String.valueOf(ngayKhoiHanh);
-  String s[] = date.split("-");
-  date = s[2] + "/" + s[1] + "/" + s[0];
+         String s[] = date.split("-");
+        date = s[2] + "/" + s[1] + "/" + s[0];
         DateFormat sfm = new SimpleDateFormat("dd/MM/yyyy");
         Date d = sfm.parse(date);
         
@@ -193,7 +195,15 @@ public class DistanceController implements Initializable {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
                                   alert.setTitle("Information Login");
                                   alert.setHeaderText(null);
-                                  alert.setContentText("Vui lòng nhập đầy đủ thông tin!");
+                                  alert.setContentText("Thêm thất bại. Vui lòng kiểm tra lại thông tin.");
+                                  alert.showAndWait();
+        }
+        }
+        else{
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                                  alert.setTitle("Information Login");
+                                  alert.setHeaderText(null);
+                                  alert.setContentText("Vui lòng nhập đầy đủ thông tin.");
                                   alert.showAndWait();
         }
     }

@@ -5,6 +5,7 @@
  */
 package Interface;
 
+import BVXK.JDBC;
 import BVXK.QuanLyTuyenDi;
 import BVXK.QuanLyVeXe;
 import BVXK.QuanLyXe;
@@ -14,12 +15,16 @@ import static Interface.LoginController.chucVu;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -34,6 +39,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
@@ -488,6 +494,13 @@ public class TicketListController implements Initializable {
       {
           if(!rdTT.isSelected())// Chú ý các vé đã bán thì không được hoàn lại.
           {   
+              Alert alertt = new Alert(Alert.AlertType.CONFIRMATION);
+                                  alertt.setTitle("Information Login");
+                                  alertt.setHeaderText(null);
+                                  alertt.setContentText("Bạn có muốn xóa hay không");
+                                  Optional<ButtonType> result =  alertt.showAndWait();
+              if(result.get() == ButtonType.OK)
+              {
                 if(QuanLyVeXe.xoaVeXe(txtIDVe.getText()))
                 {
                     this.loadData();
@@ -508,6 +521,7 @@ public class TicketListController implements Initializable {
               alert.showAndWait();
               return;
                 }
+              }
           }
           else
           {
@@ -565,7 +579,6 @@ public class TicketListController implements Initializable {
               this.loadData();
       }
       //Xuat ra report
-      public void xuatVe(){}
       
 
 }

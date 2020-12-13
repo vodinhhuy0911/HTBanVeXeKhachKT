@@ -53,6 +53,8 @@ public class QuanLyNhanVien {
 
     public static boolean themNhanVien(NhanVien nv) throws ParseException
     {
+        if(nv.getChucVu() != null && nv.getDiaChi() != null && nv.getEmail() != null && nv.getHoTen() != null &&nv.getMatKhau() != null &&nv.getNgaySinh() != null &&nv.getSdt() != null &&nv.getTaiKhoan() != null)
+        {
         String sql = "INSERT INTO nhanvien (idNV,tenNV, ngaySinh, diaChi, chucVu, sdt, email,matKhau) VALUES (?,?,?,?,?,?,?,?)";
         Connection cnt = JDBC.getConn();
         try {
@@ -79,11 +81,14 @@ public class QuanLyNhanVien {
         } catch (SQLException ex) {
             return false;
         }
+        }
+        return false;
         
     }
     
     public static List<NhanVien> timKiemNv(String key) throws SQLException
     {
+        
         Connection conn = JDBC.getConn();
         Statement stm = conn.createStatement();
         ResultSet rs = stm.executeQuery("SELECT * FROM nhanvien WHERE idNV like '" + key + "' OR tenNV like N'" + key
@@ -104,12 +109,15 @@ public class QuanLyNhanVien {
         return dsnv;
     }
 
-   public static void capNhatNhanVien(NhanVien nv) throws SQLException
+   public static boolean capNhatNhanVien(NhanVien nv)
    {
+//       if(nv.getChucVu() != null && nv.getDiaChi() != null && nv.getEmail() != null && nv.getHoTen() != null &&nv.getMatKhau() != null &&nv.getNgaySinh() != null &&nv.getSdt() != null &&nv.getTaiKhoan() != null)
+       {
        String sql = "UPDATE nhanvien SET idNV = ?, tenNV = ?, ngaySinh = ?, diaChi = ?, chucVu = ?, sdt = ?, email = ?, matKhau = ? WHERE idNV = ?";
         Connection cnt = JDBC.getConn();
-        cnt.setAutoCommit(false);
-        PreparedStatement pStm = cnt.prepareStatement(sql);
+        try {
+            cnt.setAutoCommit(false);
+             PreparedStatement pStm = cnt.prepareStatement(sql);
         pStm.setString(1,nv.getTaiKhoan());
         pStm.setString(2, nv.getHoTen());
         
@@ -126,6 +134,14 @@ public class QuanLyNhanVien {
         pStm.setString(9, nv.getTaiKhoan());
         pStm.executeUpdate();
         cnt.commit();
+        return true;
+        } catch (SQLException ex) {
+            return false;
+        }
+       }
+//        return false;
+       
+       
    }
    public static boolean xoaNhanVien(String taiKhoan) 
    {

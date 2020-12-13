@@ -114,15 +114,6 @@
       <ComboBox fx:id="cbNgayKH" layoutX="109.0" layoutY="221.0" onAction="#chonNgay" prefHeight="31.0" prefWidth="149.0" />
       <ComboBox fx:id="cbGioKH" layoutX="347.0" layoutY="224.0" prefHeight="31.0" prefWidth="149.0" />
       <ComboBox fx:id="cbIDXe" layoutX="347.0" layoutY="120.0" onAction="#chonXe" prefHeight="31.0" prefWidth="202.0" />
-      <Button fx:id="btXuatVe" layoutX="1009.0" layoutY="269.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="125.0" style="-fx-background-color: lightgreen;" styleClass="btFind" stylesheets="@styleTickList.css" text="Xuất vé">
-         <graphic>
-            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@picture/ticket-icon.png" />
-               </image>
-            </ImageView>
-         </graphic>
-      </Button>
       <RadioButton fx:id="rdLayVe" layoutX="1087.0" layoutY="240.0" mnemonicParsing="false" styleClass="infoLabel" stylesheets="@styleTickList.css" text="Lấy vé" />
    </children>
 </AnchorPane>
