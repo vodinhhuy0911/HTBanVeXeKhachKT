@@ -259,6 +259,7 @@ public class TicketController implements Initializable {
                 VeXe ve = new VeXe(id,cbXe.getSelectionModel().getSelectedItem().toString(),"1",txtTenKH.getText(),txtSdtKH.getText(),
                 cbGheNgoi.getSelectionModel().getSelectedItem().toString(),date,tt,ngayKhoiHanh,
                 cbGioKhoiHanh.getSelectionModel().getSelectedItem().toString(),gia,maLT,layVe);
+              
                 if(QuanLyVeXe.themVe(ve))
                 {
                                                Alert alert = new Alert(Alert.AlertType.INFORMATION);

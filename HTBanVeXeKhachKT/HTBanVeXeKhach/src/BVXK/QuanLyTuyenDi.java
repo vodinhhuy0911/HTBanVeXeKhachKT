@@ -46,6 +46,8 @@ public class QuanLyTuyenDi {
    
     public static boolean themTuyenDuong(TuyenDuong td)
     {
+        if(td.getGioKhoiHanh() != null && td.getMaTuyenDuong() != null&&td.getMaXe() != null&&td.getThoiGianKhoiHanh() != null&&td.getTuyenDen() != null&&td.getTuyenDi() != null)
+        {
          String sql = "INSERT INTO lotrinh (MaLoTrinh, TuyenDi,TuyenDen,MaXe,NgayKhoiHanh,GioKhoiHanh) VALUES (?,?,?,?,?,?)";
          Connection cnt = JDBC.getConn();
        try {
@@ -69,11 +71,15 @@ public class QuanLyTuyenDi {
        } catch (SQLException ex) {
            return false;
        }
+        }
+        return false;
         
     }
     public static boolean capNhatTuyenDuong(String tuyenDi, String tuyenDen,String maLoTrinh, String maXe, Date thoiGianKhoiHanh, String GioKhoiHanh)
    {
        //cap nhat bang vexe
+       if(tuyenDi != null && tuyenDen != null && maLoTrinh != null && maXe != null && thoiGianKhoiHanh != null && GioKhoiHanh != null)
+       {
        String sql = "UPDATE lotrinh SET MaXe = ?, NgayKhoiHanh = ?, GioKhoiHanh = ? WHERE MaLoTrinh = ?";
         Connection cnt = JDBC.getConn();
        try {
@@ -106,6 +112,9 @@ public class QuanLyTuyenDi {
        } catch (SQLException ex) {
            return false;
        }
+       }
+       return false;
+       
         
    }
    public static boolean xoaTuyenDuong(String maTuyenDuong)
@@ -234,5 +243,18 @@ public class QuanLyTuyenDi {
            kq.add(rs.getString("MaLoTrinh"));
        }
        return kq;
+   }
+   
+   public static int soLuongMa(int maLoTrinh) throws SQLException
+   {
+       Connection conn = JDBC.getConn();
+       Statement stm = conn.createStatement();
+       ResultSet rs = stm.executeQuery("SELECT count(*) FROM lotrinh WHERE MaLoTrinh = '"+maLoTrinh+"'");
+       int i = 0;
+       while(rs.next())
+       {
+           i = rs.getInt(1);
+       }
+       return i;
    }
 }

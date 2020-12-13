@@ -40,6 +40,8 @@ public class QuanLyXe {
     
     public static boolean themXe(Xe xe) 
     {
+        if(xe.getBienSoXe() != null &&xe.getLoaiXe()!= null)
+        {
          String sql = "INSERT INTO xe (MaXe, LoaiXe) VALUES (?,?)";
          Connection cnt = JDBC.getConn();
         try {
@@ -54,11 +56,15 @@ public class QuanLyXe {
         } catch (SQLException ex) {
             return false;
         }
+        }
+        return false;
         
     }
     public static boolean capNhatXe(Xe xe, String maXeCu)
    {
        //capnhat lotrinh
+       if(xe.getBienSoXe() != null &&xe.getLoaiXe() != null &&maXeCu != null)
+       {
        String sql = "UPDATE lotrinh SET MaXe = ? WHERE MaXe = ?";
        Connection cnt = JDBC.getConn();
         try {
@@ -92,6 +98,8 @@ public class QuanLyXe {
         } catch (SQLException ex) {
             return false;
         }
+       }
+       return false;
         
    }
    public static boolean xoaXe(String bienSoXe)
@@ -102,6 +110,21 @@ public class QuanLyXe {
        String sql = "DELETE FROM vexe WHERE BienSoXe = '" + bienSoXe+"'";
       
         Connection cnt = JDBC.getConn();
+        
+          int kq = 0;
+             Statement stm;
+           try {
+               stm = cnt.createStatement();
+               ResultSet rs = stm.executeQuery("SELECT count(*) FROM xe WHERE MaXe  = N'" + bienSoXe+"'");
+               while(rs.next())
+               {
+                   kq = rs.getInt(1);
+               }
+           } catch (SQLException ex) {
+               Logger.getLogger(QuanLyNhanVien.class.getName()).log(Level.SEVERE, null, ex);
+           }
+        if(kq == 1)
+        {
         try {
             cnt.setAutoCommit(false);
             PreparedStatement pStm = cnt.prepareStatement(sql);
@@ -130,7 +153,7 @@ public class QuanLyXe {
         }
        }
        else
-           return false;
+           return false;}return false;
    }
 
    public static String getLoaiXe(String id) throws SQLException

@@ -93,7 +93,7 @@ public class EmployeeController implements Initializable {
     private Button btThem;
     
     ObservableList<NhanVien> nvList = FXCollections.observableArrayList ();
-    
+    private String maNhanVien;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         ObservableList <String> list = FXCollections.observableArrayList("Quản Trị Viên","Nhân Viên");
@@ -108,6 +108,7 @@ public class EmployeeController implements Initializable {
             TableRow row = new TableRow();
             row.setOnMouseClicked((MouseEvent r) -> {
                 NhanVien n = tvNV.getSelectionModel().getSelectedItem();
+                maNhanVien = (n.getTaiKhoan());
                 this.txtID.setText(n.getTaiKhoan());
                 this.txtHoTen.setText(n.getHoTen());
                 this.txtNgaySinh.setText(n.getNgaySinh().toString());
@@ -164,6 +165,7 @@ public class EmployeeController implements Initializable {
             
                 java.util.Date ngaySinh;
                 ngaySinh = formatter.parse(d);
+                //kiểm tra sdt
                 for(int i = 0; i < txtSDT.getText().length(); i++)
                     if((!Character.isDigit(txtSDT.getText().charAt(i))) || (txtSDT.getText().length() < 10 || txtSDT.getText().length() > 11))
                     {
@@ -174,7 +176,17 @@ public class EmployeeController implements Initializable {
                                       alert.showAndWait();
                                       return;
                     }
-                
+                //kiểm tra email
+                if(!kiemTraEmail(txtEmail.getText()))
+                   {
+                       Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                                  alert.setTitle("Information Login");
+                                  alert.setHeaderText(null);
+                                  alert.setContentText("Lỗi định dạng email.");
+                                  alert.showAndWait();
+                                  return;
+                   }
+    
                 NhanVien nv = new NhanVien(txtID.getText(), txtHoTen.getText(), ngaySinh, txtDiaChi.getText(), cbChucVu.getSelectionModel().getSelectedItem().toString(),txtSDT.getText(), txtEmail.getText(),txtMatKhau.getText());
                     if(QuanLyNhanVien.themNhanVien(nv))
                     {
@@ -219,8 +231,11 @@ public class EmployeeController implements Initializable {
     }
      public void update() throws SQLException
      {
+         
           if(!txtID.getText().isEmpty() && !txtHoTen.getText().isEmpty() && !txtNgaySinh.getText().isEmpty() && !txtDiaChi.getText().isEmpty() && !cbChucVu.getSelectionModel().isEmpty() && !txtSDT.getText().isEmpty() && !txtEmail.getText().isEmpty()&& !txtMatKhau.getText().isEmpty())
           {
+              if(txtID.getText().equals(maNhanVien))
+              { 
           SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
           String d = txtNgaySinh.getText();
           for(int i = 0; i < d.length(); i++)
@@ -252,9 +267,33 @@ public class EmployeeController implements Initializable {
                                       alert.showAndWait();
                                       return;
                     }
+                   if(!kiemTraEmail(txtEmail.getText()))
+                   {
+                       Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                                  alert.setTitle("Information Login");
+                                  alert.setHeaderText(null);
+                                  alert.setContentText("Lỗi định dạng email.");
+                                  alert.showAndWait();
+                                  return;
+                   }
                   NhanVien nv = new NhanVien(txtID.getText(), txtHoTen.getText(), ngaySinh, txtDiaChi.getText(), cbChucVu.getSelectionModel().getSelectedItem().toString(),txtSDT.getText(), txtEmail.getText(),txtMatKhau.getText());
-         QuanLyNhanVien.capNhatNhanVien(nv);
-         this.loadData();
+         if(QuanLyNhanVien.capNhatNhanVien(nv))
+         {
+                this.loadData();
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                          alert.setTitle("Information Login");
+                          alert.setHeaderText(null);
+                          alert.setContentText("Cập nhật thành công.");
+                          alert.showAndWait();
+         }
+         else
+         {
+             Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                          alert.setTitle("Information Login");
+                          alert.setHeaderText(null);
+                          alert.setContentText("Cập nhật không thành công. Vui lòng kiểm tra lại thông tin.");
+                          alert.showAndWait();
+         }
               } catch (ParseException ex) {
                   Alert alert = new Alert(Alert.AlertType.INFORMATION);
                           alert.setTitle("Information Login");
@@ -270,7 +309,14 @@ public class EmployeeController implements Initializable {
                           alert.setContentText("Vui lòng nhập thông tin ngày tháng hợp lệ.");
                           alert.showAndWait();
             }
-         
+              }
+              else{
+                  Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                          alert.setTitle("Information Login");
+                          alert.setHeaderText(null);
+                          alert.setContentText("Không thể cập nhật mã nhân viên.");
+                          alert.showAndWait();
+              }
           }
           else{
                Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -298,14 +344,16 @@ public class EmployeeController implements Initializable {
                                           alert.setHeaderText(null);
                                           alert.setContentText("Xóa thành công");
                                           alert.showAndWait();
+                                          huy();
                                           return;
+                                         
                 }
                 else
                 {
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                                           alert.setTitle("Information Login");
                                           alert.setHeaderText(null);
-                                          alert.setContentText("Xóa không thành công. Vui lòng kiểm tra lại!");
+                                          alert.setContentText("Xóa không thành công. Vui lòng kiểm tra lại thông tin!");
                                           alert.showAndWait();
                                           return;
                 }
@@ -343,7 +391,7 @@ public class EmployeeController implements Initializable {
         
 
    }
-   public void huy(ActionEvent e)
+   public void huy()
     {
            txtID.setText("");
           cbChucVu.getSelectionModel().select(null);
@@ -366,6 +414,18 @@ public class EmployeeController implements Initializable {
         stage.show();
         
        
+    }
+    private boolean kiemTraEmail(String email)
+    {
+         if(email.indexOf("@")== -1)
+                {
+                    return false;
+                }
+                else if (email.indexOf("@")!= -1 && (email.indexOf("@") + 1) == email.length())
+                {
+                    return false;
+                }
+         return true;
     }
 
       

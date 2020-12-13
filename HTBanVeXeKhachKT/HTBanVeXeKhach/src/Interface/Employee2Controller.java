@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package Interface;
+
 import BVXK.QuanLyNhanVien;
 import BanVeXeKhach.DangNhap;
 import BanVeXeKhach.NhanVien;
@@ -44,11 +45,8 @@ import javafx.stage.Stage;
  *
  * @author PC
  */
-
-
 public class Employee2Controller implements Initializable {
 
-    
     @FXML
     private TextField txtKey;
     @FXML
@@ -66,9 +64,6 @@ public class Employee2Controller implements Initializable {
     @FXML
     private TextField txtEmail;
 
-    
-    
-        
     private String USERNAME;
     @FXML
     private TextField txttaiKhoan;
@@ -83,16 +78,13 @@ public class Employee2Controller implements Initializable {
         } catch (SQLException ex) {
             Logger.getLogger(Employee2Controller.class.getName()).log(Level.SEVERE, null, ex);
         }
-         
-         
-         
-       
+
     }
-    
-    public void loadData() throws SQLException
-    {
+
+    public void loadData() throws SQLException {
         NhanVien nv = QuanLyNhanVien.getNV(LoginController.maNV);
 //        NhanVien nv = QuanLyNhanVien.getNV("1");
+
         txtID.setText(nv.getTaiKhoan());
         txtHoTen.setText(nv.getHoTen());
         txtChucVu.setText(nv.getChucVu());
@@ -102,109 +94,160 @@ public class Employee2Controller implements Initializable {
         txtNgaySinh.setText(nv.getNgaySinh().toString());
         txtSDT.setText(nv.getSdt());
     }
+
     @FXML
-     public void update() throws SQLException, ParseException 
-     {
-            if(!txtID.getText().isEmpty() && !txtHoTen.getText().isEmpty() && !txtNgaySinh.getText().isEmpty() && !txtDiaChi.getText().isEmpty() && !txtChucVu.getText().isEmpty() && !txtSDT.getText().isEmpty() && !txtEmail.getText().isEmpty()&& !txtMatKhau.getText().isEmpty())
-          {
-          SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
-          String d = txtNgaySinh.getText();
-          for(int i = 0; i < d.length(); i++)
-                if(Character.isLetter(d.charAt(i)))
-                {
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                                  alert.setTitle("Information Login");
-                                  alert.setHeaderText(null);
-                                  alert.setContentText("Lỗi nhập ngày tháng. Vui lòng kiểm tra lại!");
-                                  alert.showAndWait();
-                                  return;
-                }
-            d = d.replace('-', '/');
-                String str[] = d.split("/");
-             if(str[0].length() == 2)
-                d = str[2] + "/" + str[1] + "/" + str[0];
-            
-              try {
-            
-                java.util.Date ngaySinh;
-                  ngaySinh = formatter.parse(d);
-                   for(int i = 0; i < txtSDT.getText().length(); i++)
-                    if((!Character.isDigit(txtSDT.getText().charAt(i))) || (txtSDT.getText().length() < 10 || txtSDT.getText().length() > 11))
-                    {
-                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                                      alert.setTitle("Information Login");
-                                      alert.setHeaderText(null);
-                                      alert.setContentText("Nhập số điện thoại không hợp lệ. Vui lòng kiểm tra lại!");
-                                      alert.showAndWait();
-                                      return;
-                    }
-                  NhanVien nv = new NhanVien(txtID.getText(), txtHoTen.getText(), ngaySinh, txtDiaChi.getText(), txtChucVu.getText(),txtSDT.getText(), txtEmail.getText(),txtMatKhau.getText());
-         QuanLyNhanVien.capNhatNhanVien(nv);
-         this.loadData();
-              } catch (ParseException ex) {
-                  Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                          alert.setTitle("Information Login");
-                          alert.setHeaderText(null);
-                          alert.setContentText("Vui lòng nhập thông tin ngày tháng hợp lệ.");
-                          alert.showAndWait();
-              }
-              catch(ArrayIndexOutOfBoundsException a)
+    public void update() throws SQLException, ParseException {
+        if (!txtID.getText().isEmpty() && !txtHoTen.getText().isEmpty() && !txtNgaySinh.getText().isEmpty() && !txtDiaChi.getText().isEmpty() && !txtChucVu.getText().isEmpty() && !txtSDT.getText().isEmpty() && !txtEmail.getText().isEmpty() && !txtMatKhau.getText().isEmpty()) {
+            //kiem tra ngay sinh
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
+            if (!kiemTraNgaySinh(txtNgaySinh.getText())) {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Information Login");
+                alert.setHeaderText(null);
+                alert.setContentText("Lỗi nhập ngày tháng. Vui lòng kiểm tra lại!");
+                alert.showAndWait();
+                return;
+            } else 
             {
-                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                          alert.setTitle("Information Login");
-                          alert.setHeaderText(null);
-                          alert.setContentText("Vui lòng nhập thông tin ngày tháng hợp lệ.");
-                          alert.showAndWait();
+                String d = txtNgaySinh.getText();
+                d = d.replace('-', '/');
+                String str[] = d.split("/");
+                if (str[0].length() == 2) {
+                    d = str[2] + "/" + str[1] + "/" + str[0];
+                }
+
+                try {
+
+                    java.util.Date ngaySinh;
+                    ngaySinh = formatter.parse(d);
+                    //kiem tre sdt
+                    
+                        if (kiemTraSdt(txtSDT.getText())) {
+                            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                            alert.setTitle("Information Login");
+                            alert.setHeaderText(null);
+                            alert.setContentText("Nhập số điện thoại không hợp lệ. Vui lòng kiểm tra lại!");
+                            alert.showAndWait();
+                            return;
+                        }
+                    
+
+                    if (!kiemTraEmail(txtEmail.getText())) {
+                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                        alert.setTitle("Information Login");
+                        alert.setHeaderText(null);
+                        alert.setContentText("Lỗi định dạng email.");
+                        alert.showAndWait();
+                        return;
+                    }
+
+                    NhanVien nv = new NhanVien(txtID.getText(), txtHoTen.getText(), ngaySinh, txtDiaChi.getText(), txtChucVu.getText(), txtSDT.getText(), txtEmail.getText(), txtMatKhau.getText());
+                    if (QuanLyNhanVien.capNhatNhanVien(nv)) {
+                        this.loadData();
+                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                        alert.setTitle("Information Login");
+                        alert.setHeaderText(null);
+                        alert.setContentText("Cập nhật thành công.");
+                        alert.showAndWait();
+                    } else {
+                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                        alert.setTitle("Information Login");
+                        alert.setHeaderText(null);
+                        alert.setContentText("Cập nhật không thành công. Vui lòng kiểm tra lại thông tin.");
+                        alert.showAndWait();
+                    }
+                } catch (ParseException ex) {
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Information Login");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Vui lòng nhập thông tin ngày tháng hợp lệ.");
+                    alert.showAndWait();
+                } catch (ArrayIndexOutOfBoundsException a) {
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Information Login");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Vui lòng nhập thông tin ngày tháng hợp lệ.");
+                    alert.showAndWait();
+                }
+
             }
-         
-          }
-          else{
-               Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                          alert.setTitle("Information Login");
-                          alert.setHeaderText(null);
-                          alert.setContentText("Vui lòng điền đầy đủ thông tin!");
-                          alert.showAndWait();
-          }
-     }  
+        } else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Information Login");
+            alert.setHeaderText(null);
+            alert.setContentText("Vui lòng điền đầy đủ thông tin!");
+            alert.showAndWait();
+        }
+    }
+
     @FXML
-   public void delete (ActionEvent e) throws SQLException{
-       
+    public void delete(ActionEvent e) throws SQLException {
 
     }
-   //timkiem
-    @FXML
-   public void search (ActionEvent e) throws SQLException{
-        
-        
+    //timkiem
 
-   }
+    @FXML
+    public void search(ActionEvent e) throws SQLException {
+
+    }
+
     @FXML
     public void btExit(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("Login.fxml"));
         Scene scene = new Scene(root);
-        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);
         stage.centerOnScreen();
         stage.show();
     }
+
     @FXML
     private void btQuanLyVeOnAction(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("TicketList.fxml"));
         Scene scene = new Scene(root);
-        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);
         stage.centerOnScreen();
         stage.show();
     }
+
     @FXML
     private void btBanVeOnAction(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("Ticket.fxml"));
         Scene scene = new Scene(root);
-        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);
         stage.centerOnScreen();
         stage.show();
     }
+
+    private boolean kiemTraEmail(String email) {
+        if (email.indexOf("@") == -1) {
+            return false;
+        } else if (email.indexOf("@") != -1 && (email.indexOf("@") + 1) == email.length()) {
+            return false;
+        }
+        return true;
+    }
+
+    public boolean kiemTraNgaySinh(String ngaySinh) {
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
+        for (int i = 0; i < ngaySinh.length(); i++) {
+            if (Character.isLetter(ngaySinh.charAt(i))) {
+                return false;
+            }
+        }
+        return true;
+    }
+    
+    public boolean kiemTraSdt(String sdt)
+    {
+        for (int i = 0; i < sdt.length(); i++) {
+                        if ((!Character.isDigit(sdt.charAt(i))) || (sdt.length() < 10 || sdt.length() > 11)) {
+                            return false;
+                        }
+        }
+                    return true;    
+    }
+        
 }
-
-

@@ -31,7 +31,7 @@
       </ImageView>
       <Label layoutX="19.0" layoutY="149.0" styleClass="infoLabel" stylesheets="@styleDis.css" text="Mã lộ trình" />
       <Label layoutX="19.0" layoutY="206.0" styleClass="infoLabel" stylesheets="@styleDis.css" text="Tuyến đi" />
-      <TextField fx:id="txtMaLoTrinh" editable="false" layoutX="98.0" layoutY="144.0" prefHeight="26.0" prefWidth="306.0" />
+      <TextField fx:id="txtMaLoTrinh" layoutX="98.0" layoutY="144.0" prefHeight="26.0" prefWidth="306.0" />
       <TextField fx:id="txtTuyenDi" layoutX="98.0" layoutY="201.0" prefHeight="26.0" prefWidth="306.0" />
       <TableView fx:id="tvNoiDung" layoutX="11.0" layoutY="375.0" prefHeight="310.0" prefWidth="958.0" AnchorPane.leftAnchor="11.0" AnchorPane.rightAnchor="11.0">
         <columns>
@@ -87,7 +87,7 @@
       <TextField fx:id="txtTuyenDen" layoutX="98.0" layoutY="247.0" prefHeight="26.0" prefWidth="306.0" />
       <ComboBox fx:id="cbXe" layoutX="633.0" layoutY="144.0" prefHeight="25.0" prefWidth="218.0" />
       <Label layoutX="522.0" layoutY="149.0" styleClass="infoLabel" stylesheets="@styleDis.css" text="Xe" />
-      <DatePicker fx:id="dpNgayKhoiHanh" layoutX="633.0" layoutY="191.0" prefHeight="25.0" prefWidth="218.0" />
+      <DatePicker fx:id="dpNgayKhoiHanh" editable="false" layoutX="633.0" layoutY="191.0" prefHeight="25.0" prefWidth="218.0" />
       <Label layoutX="517.0" layoutY="197.0" styleClass="infoLabel" stylesheets="@styleDis.css" text="Ngày khởi hành" />
       <Label layoutX="517.0" layoutY="253.0" styleClass="infoLabel" stylesheets="@styleDis.css" text="Giờ khởi hành" />
       <TextField fx:id="txtGioKhoiHanh" layoutX="633.0" layoutY="248.0" prefHeight="31.0" prefWidth="218.0" />
