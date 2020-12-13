@@ -55,6 +55,8 @@ public class QuanLyNhanVien {
     {
         if(nv.getChucVu() != null && nv.getDiaChi() != null && nv.getEmail() != null && nv.getHoTen() != null &&nv.getMatKhau() != null &&nv.getNgaySinh() != null &&nv.getSdt() != null &&nv.getTaiKhoan() != null)
         {
+                  if(kiemTraEmail(nv.getEmail()) && kiemTraNgaySinh(nv.getNgaySinh().toString()) && kiemTraSdt(nv.getSdt()))
+                  {
         String sql = "INSERT INTO nhanvien (idNV,tenNV, ngaySinh, diaChi, chucVu, sdt, email,matKhau) VALUES (?,?,?,?,?,?,?,?)";
         Connection cnt = JDBC.getConn();
         try {
@@ -81,7 +83,7 @@ public class QuanLyNhanVien {
         } catch (SQLException ex) {
             return false;
         }
-        }
+        }}
         return false;
         
     }
@@ -111,7 +113,8 @@ public class QuanLyNhanVien {
 
    public static boolean capNhatNhanVien(NhanVien nv)
    {
-//       if(nv.getChucVu() != null && nv.getDiaChi() != null && nv.getEmail() != null && nv.getHoTen() != null &&nv.getMatKhau() != null &&nv.getNgaySinh() != null &&nv.getSdt() != null &&nv.getTaiKhoan() != null)
+       if(nv.getChucVu() != null && nv.getDiaChi() != null && nv.getEmail() != null && nv.getHoTen() != null && nv.getMatKhau() != null && nv.getNgaySinh() != null && nv.getSdt() != null && nv.getTaiKhoan()!=null){
+       if(kiemTraEmail(nv.getEmail()) && kiemTraNgaySinh(nv.getNgaySinh().toString()) && kiemTraSdt(nv.getSdt()))
        {
        String sql = "UPDATE nhanvien SET idNV = ?, tenNV = ?, ngaySinh = ?, diaChi = ?, chucVu = ?, sdt = ?, email = ?, matKhau = ? WHERE idNV = ?";
         Connection cnt = JDBC.getConn();
@@ -139,7 +142,8 @@ public class QuanLyNhanVien {
             return false;
         }
        }
-//        return false;
+   }
+        return false;
        
        
    }
@@ -199,4 +203,39 @@ public class QuanLyNhanVien {
         }
         return null;
    }
+
+   
+   
+   public static boolean kiemTraEmail(String email)
+    {
+         if(email.indexOf("@")== -1)
+                {
+                    return false;
+                }
+                else if (email.indexOf("@")!= -1 && (email.indexOf("@") + 1) == email.length())
+                {
+                    return false;
+                }
+         return true;
+    }
+   
+    public  static boolean kiemTraNgaySinh(String ngaySinh) {
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
+        for (int i = 0; i < ngaySinh.length(); i++) {
+            if (Character.isLetter(ngaySinh.charAt(i))) {
+                return false;
+            }
+        }
+        return true;
+    }
+    
+    public static boolean kiemTraSdt(String sdt)
+    {
+        for (int i = 0; i < sdt.length(); i++) {
+                        if ((!Character.isDigit(sdt.charAt(i))) || (sdt.length() < 10 || sdt.length() > 11)) {
+                            return false;
+                        }
+        }
+                    return true;    
+    }
 }

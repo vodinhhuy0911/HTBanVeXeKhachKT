@@ -13,7 +13,7 @@ import BanVeXeKhach.VeXe;
 import static Interface.LoginController.chucVu;
 import com.mysql.jdbc.Connection;
 import java.net.URL;
-import java.sql.Connection;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -599,7 +599,6 @@ public class TicketListController implements Initializable {
               this.loadData();
         
       }
-<<<<<<< HEAD
       
       
       //Tạo ve tren jasper
@@ -620,9 +619,9 @@ public class TicketListController implements Initializable {
        }}}
 
 
-=======
+
       //Xuat ra report
       
       
-}
->>>>>>> 7313a0ddc192f9ff3544569c20606073b6f3de0f
+
+
