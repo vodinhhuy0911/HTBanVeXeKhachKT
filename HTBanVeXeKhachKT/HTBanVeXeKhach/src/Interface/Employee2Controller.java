@@ -93,6 +93,7 @@ public class Employee2Controller implements Initializable {
     {
         NhanVien nv = QuanLyNhanVien.getNV(LoginController.maNV);
 //        NhanVien nv = QuanLyNhanVien.getNV("1");
+     
         txtID.setText(nv.getTaiKhoan());
         txtHoTen.setText(nv.getHoTen());
         txtChucVu.setText(nv.getChucVu());

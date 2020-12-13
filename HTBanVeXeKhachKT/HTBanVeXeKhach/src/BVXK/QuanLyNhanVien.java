@@ -87,7 +87,7 @@ public class QuanLyNhanVien {
         Connection conn = JDBC.getConn();
         Statement stm = conn.createStatement();
         ResultSet rs = stm.executeQuery("SELECT * FROM nhanvien WHERE idNV like '" + key + "' OR tenNV like N'" + key
-        + "' OR diaChi like N'" + key+ "' OR chucVu like N'" + key+ "' OR sdt like '" + key+ "' OR email like N'" + key +"' OR NgaySinh = '"+ key +"'");
+        + "' OR diaChi like N'" + key+ "' OR chucVu like N'" + key+ "' OR sdt like '" + key+ "' OR email like N'" + key +"'");
         List<NhanVien> dsnv = new ArrayList<>();
         while (rs.next()) {
             String tk = rs.getString("idNV");
@@ -130,18 +130,34 @@ public class QuanLyNhanVien {
    public static boolean xoaNhanVien(String taiKhoan) 
    {
        if(taiKhoan != null)
-       {
+       { Connection cnt = JDBC.getConn();
             String sql = "DELETE FROM nhanvien WHERE idNV = N'" + taiKhoan +"'";
-             Connection cnt = JDBC.getConn();
+           int kq = 0;
+             Statement stm;
+           try {
+               stm = cnt.createStatement();
+               ResultSet rs = stm.executeQuery("SELECT count(*) FROM nhanvien WHERE idNV  = N'" + taiKhoan +"'");
+               System.out.print(rs);
+               while(rs.next())
+               {
+                   kq = rs.getInt(1);
+               }
+           } catch (SQLException ex) {
+               Logger.getLogger(QuanLyNhanVien.class.getName()).log(Level.SEVERE, null, ex);
+           }
+             
+            if(kq ==1)
+            {
              try {
                  cnt.setAutoCommit(false);
                   PreparedStatement pStm = cnt.prepareStatement(sql);
-              pStm.executeUpdate();
-              cnt.commit();
+                 pStm.executeUpdate();
+                 cnt.commit();
               return true;
              } catch (SQLException ex) {
                  return false;
              }
+            }
        }
        return false;
        

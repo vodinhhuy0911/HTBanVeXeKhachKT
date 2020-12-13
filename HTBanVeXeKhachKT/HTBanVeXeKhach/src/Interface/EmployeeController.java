@@ -164,6 +164,7 @@ public class EmployeeController implements Initializable {
             
                 java.util.Date ngaySinh;
                 ngaySinh = formatter.parse(d);
+                //kiểm tra sdt
                 for(int i = 0; i < txtSDT.getText().length(); i++)
                     if((!Character.isDigit(txtSDT.getText().charAt(i))) || (txtSDT.getText().length() < 10 || txtSDT.getText().length() > 11))
                     {
@@ -174,7 +175,25 @@ public class EmployeeController implements Initializable {
                                       alert.showAndWait();
                                       return;
                     }
-                
+                //kiểm tra email
+                if(txtEmail.getText().indexOf("@")== -1)
+                {
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                                  alert.setTitle("Information Login");
+                                  alert.setHeaderText(null);
+                                  alert.setContentText("Lỗi định dạng email.");
+                                  alert.showAndWait();
+                                  return;
+                }
+                else if (txtEmail.getText().indexOf("@")!= -1 && (txtEmail.getText().indexOf("@") + 1) == txtEmail.getText().length())
+                {
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                                  alert.setTitle("Information Login");
+                                  alert.setHeaderText(null);
+                                  alert.setContentText("Lỗi định dạng email.");
+                                  alert.showAndWait();
+                                  return;
+                }
                 NhanVien nv = new NhanVien(txtID.getText(), txtHoTen.getText(), ngaySinh, txtDiaChi.getText(), cbChucVu.getSelectionModel().getSelectedItem().toString(),txtSDT.getText(), txtEmail.getText(),txtMatKhau.getText());
                     if(QuanLyNhanVien.themNhanVien(nv))
                     {
@@ -298,14 +317,16 @@ public class EmployeeController implements Initializable {
                                           alert.setHeaderText(null);
                                           alert.setContentText("Xóa thành công");
                                           alert.showAndWait();
+                                          huy();
                                           return;
+                                         
                 }
                 else
                 {
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                                           alert.setTitle("Information Login");
                                           alert.setHeaderText(null);
-                                          alert.setContentText("Xóa không thành công. Vui lòng kiểm tra lại!");
+                                          alert.setContentText("Xóa không thành công. Vui lòng kiểm tra lại thông tin!");
                                           alert.showAndWait();
                                           return;
                 }
@@ -343,7 +364,7 @@ public class EmployeeController implements Initializable {
         
 
    }
-   public void huy(ActionEvent e)
+   public void huy()
     {
            txtID.setText("");
           cbChucVu.getSelectionModel().select(null);

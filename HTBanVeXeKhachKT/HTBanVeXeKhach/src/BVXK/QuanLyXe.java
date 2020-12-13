@@ -102,6 +102,22 @@ public class QuanLyXe {
        String sql = "DELETE FROM vexe WHERE BienSoXe = '" + bienSoXe+"'";
       
         Connection cnt = JDBC.getConn();
+        
+          int kq = 0;
+             Statement stm;
+           try {
+               stm = cnt.createStatement();
+               ResultSet rs = stm.executeQuery("SELECT count(*) FROM xe WHERE MaXe  = N'" + bienSoXe+"'");
+               System.out.print(rs);
+               while(rs.next())
+               {
+                   kq = rs.getInt(1);
+               }
+           } catch (SQLException ex) {
+               Logger.getLogger(QuanLyNhanVien.class.getName()).log(Level.SEVERE, null, ex);
+           }
+        if(kq == 1)
+        {
         try {
             cnt.setAutoCommit(false);
             PreparedStatement pStm = cnt.prepareStatement(sql);
@@ -130,7 +146,7 @@ public class QuanLyXe {
         }
        }
        else
-           return false;
+           return false;}return false;
    }
 
    public static String getLoaiXe(String id) throws SQLException
