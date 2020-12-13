@@ -11,6 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -115,10 +116,11 @@ public class QuanLyNhanVien {
         return dsnv;
     }
 
-   public static boolean capNhatNhanVien(NhanVien nv)
+   public static boolean capNhatNhanVien(NhanVien nv) throws SQLException
    {
        if(nv.getChucVu() != null && nv.getDiaChi() != null && nv.getEmail() != null && nv.getHoTen() != null && nv.getMatKhau() != null && nv.getNgaySinh() != null && nv.getSdt() != null && nv.getTaiKhoan()!=null){
-       if(kiemTraEmail(nv.getEmail()) && kiemTraNgaySinh(nv.getNgaySinh().toString()) && kiemTraSdt(nv.getSdt()))
+           DateFormat sfm = new SimpleDateFormat("yyyy/MM/dd");
+       if(kiemTraEmail(nv.getEmail()) && kiemTraNgaySinh(sfm.format(nv.getNgaySinh())) && kiemTraSdt(nv.getSdt()) && getSoLuongNV(nv.getTaiKhoan()) == 1)
        {
        String sql = "UPDATE nhanvien SET idNV = ?, tenNV = ?, ngaySinh = ?, diaChi = ?, chucVu = ?, sdt = ?, email = ?, matKhau = ? WHERE idNV = ?";
         Connection cnt = JDBC.getConn();
@@ -206,5 +208,18 @@ public class QuanLyNhanVien {
             return nv;
         }
         return null;
+   }
+   
+   public static int getSoLuongNV(String MaNV) throws SQLException
+   {
+       Connection conn = JDBC.getConn();
+       Statement stm = conn.createStatement();
+       ResultSet rs = stm.executeQuery("SELECT count(*) FROM lotrinh WHERE MaLoTrinh = '"+MaNV+"'");
+       int i = 0;
+       while(rs.next())
+       {
+           i = rs.getInt(1);
+       }
+       return i;
    }
 }

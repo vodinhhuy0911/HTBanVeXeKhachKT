@@ -82,8 +82,8 @@ public class Employee2Controller implements Initializable {
     }
 
     public void loadData() throws SQLException {
-        NhanVien nv = QuanLyNhanVien.getNV(LoginController.maNV);
-//        NhanVien nv = QuanLyNhanVien.getNV("1");
+//        NhanVien nv = QuanLyNhanVien.getNV(LoginController.maNV);
+        NhanVien nv = QuanLyNhanVien.getNV("1");
 
         txtID.setText(nv.getTaiKhoan());
         txtHoTen.setText(nv.getHoTen());
@@ -100,6 +100,8 @@ public class Employee2Controller implements Initializable {
         if (!txtID.getText().isEmpty() && !txtHoTen.getText().isEmpty() && !txtNgaySinh.getText().isEmpty() && !txtDiaChi.getText().isEmpty() && !txtChucVu.getText().isEmpty() && !txtSDT.getText().isEmpty() && !txtEmail.getText().isEmpty() && !txtMatKhau.getText().isEmpty()) {
             //kiem tra ngay sinh
             SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
+            if(QuanLyNhanVien.getSoLuongNV(txtID.getText())==1)
+            {
             if (!kiemTraNgaySinh(txtNgaySinh.getText())) {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Information Login");
@@ -122,7 +124,7 @@ public class Employee2Controller implements Initializable {
                     ngaySinh = formatter.parse(d);
                     //kiem tre sdt
                     
-                        if (kiemTraSdt(txtSDT.getText())) {
+                        if (!kiemTraSdt(txtSDT.getText())) {
                             Alert alert = new Alert(Alert.AlertType.INFORMATION);
                             alert.setTitle("Information Login");
                             alert.setHeaderText(null);
@@ -170,6 +172,14 @@ public class Employee2Controller implements Initializable {
                     alert.showAndWait();
                 }
 
+            }
+            }
+            else{
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Information Login");
+            alert.setHeaderText(null);
+            alert.setContentText("Nhân viên không tồn tại.");
+            alert.showAndWait();
             }
         } else {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);

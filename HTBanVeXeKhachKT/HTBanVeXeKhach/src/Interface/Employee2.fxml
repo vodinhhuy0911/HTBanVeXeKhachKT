@@ -38,7 +38,7 @@
       <Label layoutX="16.0" layoutY="290.0" styleClass="infoLabel" stylesheets="@styleEmployee2.css" text="Chức vụ" AnchorPane.leftAnchor="16.0" />
       <Label layoutX="16.0" layoutY="342.0" styleClass="infoLabel" stylesheets="@styleEmployee2.css" text="SĐT" AnchorPane.leftAnchor="16.0" />
       <Label layoutX="14.0" layoutY="396.0" styleClass="infoLabel" stylesheets="@styleEmployee2.css" text="Email" AnchorPane.leftAnchor="16.0" />
-      <TextField id="txtID" fx:id="txtID" editable="false" layoutX="141.0" layoutY="86.0" prefHeight="31.0" prefWidth="502.0" stylesheets="@styleEmployee2.css" />
+      <TextField id="txtID" fx:id="txtID" layoutX="141.0" layoutY="86.0" prefHeight="31.0" prefWidth="502.0" stylesheets="@styleEmployee2.css" />
       <TextField fx:id="txtHoTen" layoutX="140.0" layoutY="133.0" prefHeight="31.0" prefWidth="502.0" />
       <TextField fx:id="txtNgaySinh" layoutX="140.0" layoutY="187.0" prefHeight="31.0" prefWidth="502.0" />
       <TextField fx:id="txtDiaChi" layoutX="140.0" layoutY="235.0" prefHeight="31.0" prefWidth="502.0" />
