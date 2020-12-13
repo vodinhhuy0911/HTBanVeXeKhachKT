@@ -188,6 +188,8 @@ public class EmployeeController implements Initializable {
                    }
     
                 NhanVien nv = new NhanVien(txtID.getText(), txtHoTen.getText(), ngaySinh, txtDiaChi.getText(), cbChucVu.getSelectionModel().getSelectedItem().toString(),txtSDT.getText(), txtEmail.getText(),txtMatKhau.getText());
+                if(QuanLyNhanVien.getSoLuongNV(txtID.getText())==0)
+                {
                     if(QuanLyNhanVien.themNhanVien(nv))
                     {
                      Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -204,6 +206,16 @@ public class EmployeeController implements Initializable {
                                      alert.setContentText("Thêm thất bại. Vui lòng kiểm tra lại thông tin!");
                                      alert.showAndWait();
                        }
+                }
+                else
+                {
+                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                                     alert.setTitle("Information Login");
+                                     alert.setHeaderText(null);
+                                     alert.setContentText("Id đã tồn tại. Vui lòng chọn id khác");
+                                     alert.showAndWait();
+                                     return;
+                }
             } catch (ParseException ex) {
                  Alert alert = new Alert(Alert.AlertType.INFORMATION);
                           alert.setTitle("Information Login");

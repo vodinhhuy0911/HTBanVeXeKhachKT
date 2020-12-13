@@ -56,11 +56,12 @@ public class QuanLyNhanVien {
         return kq;
     }
 
-    public static boolean themNhanVien(NhanVien nv) throws ParseException
+    public static boolean themNhanVien(NhanVien nv) throws ParseException, SQLException
     {
         if(nv.getChucVu() != null && nv.getDiaChi() != null && nv.getEmail() != null && nv.getHoTen() != null &&nv.getMatKhau() != null &&nv.getNgaySinh() != null &&nv.getSdt() != null &&nv.getTaiKhoan() != null)
         {
-                  if(kiemTraEmail(nv.getEmail()) && kiemTraNgaySinh(nv.getNgaySinh().toString()) && kiemTraSdt(nv.getSdt()))
+            DateFormat sfm = new SimpleDateFormat("yyyy/MM/dd");
+                  if(kiemTraEmail(nv.getEmail()) && kiemTraNgaySinh(sfm.format(nv.getNgaySinh())) && kiemTraSdt(nv.getSdt()) && getSoLuongNV(nv.getTaiKhoan())==0)
                   {
         String sql = "INSERT INTO nhanvien (idNV,tenNV, ngaySinh, diaChi, chucVu, sdt, email,matKhau) VALUES (?,?,?,?,?,?,?,?)";
         Connection cnt = JDBC.getConn();
