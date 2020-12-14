@@ -515,7 +515,7 @@ public class EmployeeManagementFunctionality {
         System.out.println("TC54: Check the results on clicking the Find button when entering an employee DOB that exists in the database.");
         
         try {
-            List<NhanVien> ds = QuanLyNhanVien.timKiemNv("18/04/2000");
+            List<NhanVien> ds = QuanLyNhanVien.timKiemNv("2000/04/18");
             List<NhanVien> kq = new ArrayList<>();
             assertNotEquals(ds, kq);
 
