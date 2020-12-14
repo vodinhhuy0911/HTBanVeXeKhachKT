@@ -205,7 +205,6 @@ public class QuanLyNhanVien {
             String email = rs.getString("email");
             String matKhau = rs.getString("matKhau");
             NhanVien nv = new NhanVien(tk,name,ngaySinh,diaChi,chucVu,sdt,email,matKhau);
-            
             return nv;
         }
         return null;

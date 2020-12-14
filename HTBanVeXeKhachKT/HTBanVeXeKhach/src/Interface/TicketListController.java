@@ -476,7 +476,7 @@ public class TicketListController implements Initializable {
                            QuanLyTuyenDi.getMaLoTrinh(tuyenDi, tuyenDen, 
                                    cbIDXe.getSelectionModel().getSelectedItem().toString(), cbNgayKH.getSelectionModel().getSelectedItem().toString(),
                            cbGioKH.getSelectionModel().getSelectedItem().toString())
-                           , txtIDVe.getText(),flag1))
+                           , txtIDVe.getText(),flag1,txtNgayBook.getText()))
                     {
                          this.loadData();
                          Alert alert = new Alert(Alert.AlertType.INFORMATION);

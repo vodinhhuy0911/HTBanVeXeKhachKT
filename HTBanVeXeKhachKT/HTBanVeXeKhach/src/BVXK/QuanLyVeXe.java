@@ -9,6 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -86,6 +87,7 @@ String dateInString = ngay + " " + gio;
     }
     public static boolean themVe(VeXe ve)
     {
+        
         if(ve.getBienSoXe() != null && ve.getGiaVe() >= 0 && ve.getGioKhoiHanh()!= null && ve.getHoTenKH()!= null && ve.getMaGheNgoi()!= null && ve.getMaLoTrinh()!= null && ve.getMaNV()!= null && ve.getMaVe()!= null && ve.getNgayKhoiHanh()!= null && ve.getSdtKH()!= null && ve.getThoiGianDatVe()!= null)
         {
      Connection conn = JDBC.getConn();
@@ -100,13 +102,15 @@ String dateInString = ngay + " " + gio;
             kq = rs.getInt(1);
             break;
         }
-        rs = stm.executeQuery("SELECT count(*) FROM vexe WHERE BienSoXe = '"+ve.getBienSoXe()+"' AND NgayKhoiHanh = '"+ ve.getNgayKhoiHanh()+"' AND GioKhoiHanh = '"+ve.getGioKhoiHanh()+"' AND MaLoTrinh ='"+ve.getMaLoTrinh()+"' AND MaGhe = '" +ve.getMaGheNgoi()+"'");
+DateFormat sfm = new SimpleDateFormat("yyyy/MM/dd");
+        rs = stm.executeQuery("SELECT count(*) FROM vexe WHERE BienSoXe = '"+ve.getBienSoXe()+"' AND NgayKhoiHanh = '"+ sfm.format(ve.getNgayKhoiHanh())+"' AND GioKhoiHanh = '"+ve.getGioKhoiHanh()+"' AND MaLoTrinh ='"+ve.getMaLoTrinh()+"' AND MaGhe = '" +ve.getMaGheNgoi()+"'");
         int kq1 = 0;
         while(rs.next())
         {
             kq1 = rs.getInt(1);
             break;
         }
+            
         if(kq == 0 && kq1 == 0)
         {
                     String sql = "INSERT INTO vexe (MaVe,BienSoXe,MaNV,HoTenKH,SDTKH,MaGhe,ThoiGianDat,ThanhToan,NgayKhoiHanh,GioKhoiHanh,GiaVe,MaLoTrinh,LayVe) VALUES (?,?,?,?,?,?,now(),?,?,?,?,?,?)";
@@ -139,9 +143,9 @@ String dateInString = ngay + " " + gio;
              pStm.setBoolean(12, ve.isIsLayVe());
              pStm.executeUpdate();
             cnt.commit();
-           
+           return true;
         }
-         return true;
+         
         } catch (SQLException ex) {
            return false;
         }
@@ -150,32 +154,60 @@ String dateInString = ngay + " " + gio;
         
     }
     
-    public static boolean capNhatVeXe(String bienSoXe, String maNV, String hoTenKH, String sdtKH, String maGhe,String thoiGianDat,boolean isThanhToan,String ngayKhoiHanh,String gioKhoiHanh,double giaVe, String maLoTrinh,String maVe, boolean isLayVe) throws SQLException
+    public static boolean capNhatVeXe(String bienSoXe, String maNV, String hoTenKH, String sdtKH, String maGhe,String thoiGianDat,boolean isThanhToan,String ngayKhoiHanh,String gioKhoiHanh,double giaVe, String maLoTrinh,String maVe, boolean isLayVe,String ngayDat) throws SQLException
     {
          if(bienSoXe != null && maNV != null && hoTenKH != null &&sdtKH != null &&maGhe != null &&thoiGianDat != null &&ngayKhoiHanh != null &&gioKhoiHanh != null &&giaVe >= 0 && maLoTrinh != null &&maVe != null)
          {
              Connection conn = JDBC.getConn();
+              Connection cnt = JDBC.getConn();
+        ResultSet rs;
+        
 
        Statement stm = conn.createStatement();
-        ResultSet rs;
-        rs = stm.executeQuery("SELECT count(*) FROM vexe WHERE  BienSoXe = '"+bienSoXe+"' AND NgayKhoiHanh = '"+ ngayKhoiHanh+"' AND GioKhoiHanh = '"+gioKhoiHanh+"' AND MaLoTrinh ='"+maLoTrinh+"' AND MaGhe = '" +maGhe+"'");
+       rs = stm.executeQuery("SELECT count(*) FROM vexe WHERE  MaNV = '"+maNV+"' AND HoTenKH = N'"+hoTenKH+"' AND SDTKH = '"+sdtKH+"' AND GiaVe = '"+giaVe+"' AND ThanhToan = '"+isThanhToan+"' AND LayVe = '"+isLayVe+"' AND ThoiGianDat = '"+ngayDat+"'");
         int kq1 = 0;
         while(rs.next())
         {
             kq1 = rs.getInt(1);
             break;
         }
+       
+       
+        //cap nhat ten.....
+        String sql = "UPDATE vexe SET  MaNV = ?, HoTenKH = ?, SDTKH = ?, ThanhToan = ?, GiaVe = ?, LayVe = ? WHERE MaVe = ?";
+            cnt.setAutoCommit(false);
+             PreparedStatement pStm = cnt.prepareStatement(sql);
+
+        pStm.setString(1, maNV);
+        pStm.setString(2, hoTenKH);
+        pStm.setString(3, sdtKH);
+
+//        pStm.setString(6, thoiGianDat);
+        pStm.setBoolean(4, isThanhToan);
+
+        pStm.setDouble(5, giaVe);
+        pStm.setBoolean(6, isLayVe);
+        pStm.setString(7, maVe);
+        pStm.executeUpdate();
+        cnt.commit();
+        
+        rs = stm.executeQuery("SELECT count(*) FROM vexe WHERE  BienSoXe = '"+bienSoXe+"' AND NgayKhoiHanh = '"+ ngayKhoiHanh+"' AND GioKhoiHanh = '"+gioKhoiHanh+"' AND MaLoTrinh ='"+maLoTrinh+"' AND MaGhe = '" +maGhe+"'");
+        int kq= 0;
+        while(rs.next())
+        {
+            kq = rs.getInt(1);
+            break;
+        }
              
              
              ///////////////
            
-             if(kq1 ==0)
+             if((( kq == 0 )))
              {
-        String sql = "UPDATE vexe SET BienSoXe = ?, MaNV = ?, HoTenKH = ?, SDTKH = ?, MaGhe = ?, ThoiGianDat = now(), ThanhToan = ?, NgayKhoiHanh = ?, GioKhoiHanh = ?, GiaVe = ?, MaLoTrinh = ?, LayVe = ? WHERE MaVe = ?";
-        Connection cnt = JDBC.getConn();
+        sql = "UPDATE vexe SET BienSoXe = ?, MaNV = ?, HoTenKH = ?, SDTKH = ?, MaGhe = ?, ThoiGianDat = now(), ThanhToan = ?, NgayKhoiHanh = ?, GioKhoiHanh = ?, GiaVe = ?, MaLoTrinh = ?, LayVe = ? WHERE MaVe = ?";
         try {
             cnt.setAutoCommit(false);
-             PreparedStatement pStm = cnt.prepareStatement(sql);
+             pStm = cnt.prepareStatement(sql);
         pStm.setString(1, bienSoXe);
         pStm.setString(2, maNV);
         pStm.setString(3, hoTenKH);
@@ -196,7 +228,10 @@ String dateInString = ngay + " " + gio;
             return false;
         }
          }
+             else if(kq1 == 0)
+             return true;
          }
+         
          return false;
        
     }
