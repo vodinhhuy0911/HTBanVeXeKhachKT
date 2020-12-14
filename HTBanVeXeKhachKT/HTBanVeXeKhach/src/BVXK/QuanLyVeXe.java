@@ -179,6 +179,10 @@ String dateInString = ngay + " " + gio;
         } catch (SQLException ex) {
            return false;
         }
+        catch (Exception e)
+        {
+            return false;
+        }
         }}}}
         return false;
         
