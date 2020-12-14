@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
@@ -12,7 +17,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="750.0" prefWidth="1300.0" styleClass="main" stylesheets="@styleTickList.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Interface.TicketListController">
+<AnchorPane id="AnchorPane" prefHeight="750.0" prefWidth="1300.0" styleClass="main" stylesheets="@styleTickList.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Interface.TicketListController">
    <children>
       <Label layoutX="535.0" layoutY="18.0" prefHeight="69.0" prefWidth="229.0" styleClass="mainLabel" stylesheets="@styleTickList.css" text="DANH SÁCH VÉ" textAlignment="CENTER" AnchorPane.leftAnchor="535.0" AnchorPane.rightAnchor="536.0">
          <font>
@@ -33,7 +38,7 @@
       <Label layoutX="1010.0" layoutY="175.0" styleClass="infoLabel" stylesheets="@styleTickList.css" text="Giá vé" />
       <TextField fx:id="txtGiaVe" layoutX="1114.0" layoutY="171.0" prefHeight="25.0" prefWidth="149.0" />
       <Label layoutX="580.0" layoutY="229.0" styleClass="infoLabel" stylesheets="@styleTickList.css" text="Ngày đặt" />
-      <TextField fx:id="txtNgayBook" layoutX="697.0" layoutY="221.0" prefHeight="25.0" prefWidth="300.0" />
+      <TextField fx:id="txtNgayBook" editable="false" layoutX="697.0" layoutY="221.0" prefHeight="25.0" prefWidth="300.0" />
       <Label layoutX="275.0" layoutY="229.0" styleClass="infoLabel" stylesheets="@styleTickList.css" text="Giờ KH" />
       <Label layoutX="16.0" layoutY="225.0" prefHeight="25.0" prefWidth="64.0" styleClass="infoLabel" stylesheets="@styleTickList.css" text="Ngày KH" />
       <Button fx:id="btCapNhat" layoutX="160.0" layoutY="269.0" mnemonicParsing="false" onAction="#capNhat" prefHeight="40.0" prefWidth="115.0" styleClass="btEdit" stylesheets="@styleTickList.css" text="Cập nhật" AnchorPane.leftAnchor="160.0">

@@ -5,6 +5,7 @@
  */
 package Interface;
 
+import BVXK.KiemTra;
 import BVXK.QuanLyTuyenDi;
 import BVXK.QuanLyXe;
 import BanVeXeKhach.TuyenDuong;
@@ -159,9 +160,11 @@ private String id;
     public void themLoTring() throws SQLException, ParseException {
         if (!txtMaLoTrinh.getText().isEmpty() && !txtTuyenDi.getText().isEmpty() && !txtTuyenDen.getText().isEmpty() && !txtGioKhoiHanh.getText().isEmpty() && !cbXe.getSelectionModel().isEmpty() && dpNgayKhoiHanh.getValue() != null) {
             if (QuanLyTuyenDi.soLuongMa((txtMaLoTrinh.getText())) == 0) {
-
+                   
                 LocalDate ngayKhoiHanh = dpNgayKhoiHanh.getValue();
                 String date = String.valueOf(ngayKhoiHanh);
+                if(KiemTra.kiemTraNgaySinh(date))
+                {
                 String date1 = date.replace("-", "/");
                 String s[] = date.split("-");
                 date = s[2] + "/" + s[1] + "/" + s[0];
@@ -202,6 +205,15 @@ private String id;
                     alert.setContentText("Tuyến này đã tồn tại.");
                     alert.showAndWait();
                 }
+                
+                }
+                else {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Information Login");
+                alert.setHeaderText(null);
+                alert.setContentText("Sai định dạng ngày.");
+                alert.showAndWait();
+            }
             } else {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Information Login");

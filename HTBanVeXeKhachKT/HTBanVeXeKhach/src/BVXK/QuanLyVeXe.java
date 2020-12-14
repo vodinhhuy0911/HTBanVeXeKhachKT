@@ -407,7 +407,7 @@ String dateInString = ngay + " " + gio;
             try {
                 cnt.setAutoCommit(false);
                 PreparedStatement pStm = cnt.prepareStatement(sql);
-//                pStm.executeUpdate();
+                pStm.executeUpdate();
                 cnt.commit();
                 return true;
             } catch (SQLException ex) {

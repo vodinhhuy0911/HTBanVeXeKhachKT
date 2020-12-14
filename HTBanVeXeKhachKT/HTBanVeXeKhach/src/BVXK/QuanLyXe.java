@@ -63,7 +63,7 @@ public class QuanLyXe {
     public static boolean capNhatXe(Xe xe, String maXeCu)
    {
        //capnhat lotrinh
-       if(xe.getBienSoXe() != null &&xe.getLoaiXe() != null &&maXeCu != null)
+       if(xe.getBienSoXe() != null &&xe.getLoaiXe() != null &&maXeCu != null && xe.getBienSoXe() != "")
        {
        String sql = "UPDATE lotrinh SET MaXe = ? WHERE MaXe = ?";
        Connection cnt = JDBC.getConn();

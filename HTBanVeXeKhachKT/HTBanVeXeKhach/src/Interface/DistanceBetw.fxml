@@ -87,7 +87,7 @@
       <TextField fx:id="txtTuyenDen" layoutX="98.0" layoutY="247.0" prefHeight="26.0" prefWidth="306.0" />
       <ComboBox fx:id="cbXe" layoutX="633.0" layoutY="144.0" prefHeight="25.0" prefWidth="218.0" />
       <Label layoutX="522.0" layoutY="149.0" styleClass="infoLabel" stylesheets="@styleDis.css" text="Xe" />
-      <DatePicker fx:id="dpNgayKhoiHanh" editable="false" layoutX="633.0" layoutY="191.0" prefHeight="25.0" prefWidth="218.0" />
+      <DatePicker fx:id="dpNgayKhoiHanh" layoutX="633.0" layoutY="191.0" prefHeight="25.0" prefWidth="218.0" />
       <Label layoutX="517.0" layoutY="197.0" styleClass="infoLabel" stylesheets="@styleDis.css" text="Ngày khởi hành" />
       <Label layoutX="517.0" layoutY="253.0" styleClass="infoLabel" stylesheets="@styleDis.css" text="Giờ khởi hành" />
       <TextField fx:id="txtGioKhoiHanh" layoutX="633.0" layoutY="248.0" prefHeight="31.0" prefWidth="218.0" />

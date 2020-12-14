@@ -469,7 +469,7 @@ public class TicketListController implements Initializable {
         s1 += (now.getHour() +1)+ ":" + now.getMinute() + ":" + now.getSecond();
         String str = QuanLyVeXe.getGio(txtIDVe.getText());
           String ngayGio = ngay + " " + str;   
-          System.out.print(ngayGio + " - " + s1);
+        
           
               if(QuanLyVeXe.ktraThoiGianDatVe(ngayGio, s1) && !rdLayVe.isSelected())
               {
