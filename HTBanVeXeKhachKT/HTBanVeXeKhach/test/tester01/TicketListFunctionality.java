@@ -5,11 +5,20 @@
  */
 package tester01;
 
+import BVXK.QuanLyTuyenDi;
 import BVXK.QuanLyVeXe;
+import BVXK.QuanLyXe;
+import BanVeXeKhach.TuyenDuong;
 import BanVeXeKhach.VeXe;
+import BanVeXeKhach.Xe;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Random;
+import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.junit.AfterClass;
@@ -28,6 +37,17 @@ public class TicketListFunctionality {
     @BeforeClass
     public static void setUp() {
         conn = BVXK.JDBC.getConn();
+        
+        UUID uuid = UUID.randomUUID();
+        Date d = new java.util.Date("12/18/2020");
+        String id = uuid.toString().substring(0, 5);
+        String id1 = uuid.toString().substring(0, 15);
+        String id2 = uuid.toString().substring(0, 15);
+        Xe xe = new Xe("35HA-0909", "Xe giường nằm");
+        QuanLyXe.themXe(xe);
+        TuyenDuong t = new TuyenDuong("4", id1, id2, xe.getBienSoXe(), d, "6");
+
+        QuanLyTuyenDi.themTuyenDuong(t);
     }
     
      @AfterClass
@@ -141,6 +161,85 @@ public class TicketListFunctionality {
         @Test
     public void TC126() {    
         System.out.println("TC126: Check the results on clicking the Update button when a ticket is collected exactly 30 minutes before the departure time.");
+        
+       
+    }
+    
+    // delete
+            @Test
+    public void TC127() {    
+        System.out.println("TC127: Check the results on clicking the Delete button when selecting the ticket that has already been sold .");
+        
+       
+    }
+            @Test
+    public void TC128() {    
+        System.out.println("TC128: Check the results on clicking the Delete button without selecting any ticket in the ticket table");
+        
+       
+    }
+            @Test
+    public void TC129() {    
+        System.out.println("TC129: Check the results on clicking the Delete button when selecting a ticket that has not been sold and deleting it earlier than departure time at least 30 minutes 01 second.");
+        
+       
+    }
+            @Test
+    public void TC130() {    
+        System.out.println("TC130: Check the results on clicking the Delete button when selecting a ticket that has not been sold and deleting it exactly 30 minutes before departure time.");
+        
+       
+    }
+            @Test
+    public void TC131() {    
+        System.out.println("TC131: Check the results on clicking the Delete button when selecting a ticket that has not been sold and deleting it exactly 5 minutes before departure time .");
+        
+       
+    }
+            @Test
+    public void TC132() {    
+        System.out.println("TC132: Check the results on clicking the Delete button when selecting a ticket that has not been sold and deleting it earlier than departure time no more than 4 minutes 59 seconds.");
+        
+       
+    }
+    
+    // test find 
+                @Test
+    public void TC133() {    
+        try {
+            System.out.println("TC133: Check the results on clicking the Find button when entering a route destination that exists in the database.");
+                                          
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+            String ngaygio = "2020-12-14 23:30:00";          
+            Date d = formatter.parse(ngaygio);
+            Date d1 = new java.util.Date("2020/12/21");
+            java.sql.Date sqlDate = new java.sql.Date(d1.getTime());
+            Random rand = new Random();
+            
+            VeXe vx = new VeXe(String.valueOf(rand.nextInt(99999)), "35HA-0909", "1", "csd", "0123456789", "B1", d, false, sqlDate, "6", 8000, "4", false); 
+            BVXK.QuanLyVeXe.themVe(vx);    
+            
+            
+            
+        } catch (ParseException ex) {
+            Logger.getLogger(TicketListFunctionality.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+                @Test
+    public void TC134() {    
+        System.out.println("TC134: Check the results on clicking the Find button when entering a route departure point that exists in the database.");
+        
+       
+    }
+                @Test
+    public void TC135() {    
+        System.out.println("TC135: Check the results on clicking the Find button when entering a route departure point does not exist in the database.");
+        
+       
+    }
+                @Test
+    public void TC136() {    
+        System.out.println("TC136: Check the results on clicking the Find button when entering a customer's information exist in the ticket table.");
         
        
     }
