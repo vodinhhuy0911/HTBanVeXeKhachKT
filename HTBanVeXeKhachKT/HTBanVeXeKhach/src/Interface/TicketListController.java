@@ -325,7 +325,7 @@ public class TicketListController implements Initializable {
             Logger.getLogger(TicketListController.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        
+        huyVe30p();
     } 
      public void btExitOnAction(ActionEvent event) throws IOException {
          if(chucVu.compareTo("Quản Trị Viên") == 0)
@@ -521,6 +521,7 @@ public class TicketListController implements Initializable {
       
       public void xoaVe() throws SQLException
       {
+          
           boolean flag1 = false;
           if(rdTT.isSelected())
               flag1=true;
@@ -618,14 +619,26 @@ public class TicketListController implements Initializable {
       {
           if(!rdLayVe.isSelected())
           {
-              String s = new String();
+              String temp = "";
+              String s = "";
               String date = new String();
               SimpleDateFormat ft = new SimpleDateFormat ("yyyy-MM-dd hh:mm:ss ");
               for(int i = 0; i < tvThongTin.getItems().size(); i++){
                   date = ft.format(tvThongTin.getItems().get(i).getNgayKhoiHanh()) + tvThongTin.getItems().get(i).getGioKhoiHanh();
+                  temp = tvThongTin.getItems().get(i).getMaVe();
                   if(QuanLyVeXe.xoaVe30p(tvThongTin.getItems().get(i).getMaVe(),date)){
-                      s+= tvThongTin.getItems().get(i).getMaVe() + " ";
+                      s+= temp + " ";
                       }
+              }
+              if(s != "")
+              {
+                  s+= "\nĐã bị xóa do không lấy vé.";
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+              alert.setTitle("Information Login");
+              alert.setHeaderText(null);
+              alert.setContentText(s);
+              alert.showAndWait();
+              return;
               }
           }
       }

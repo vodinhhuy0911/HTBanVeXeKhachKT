@@ -380,9 +380,10 @@ String dateInString = ngay + " " + gio;
            LocalDateTime now = LocalDateTime.now(); 
             String s1 = now.getYear() + "-" + now.getMonthValue()+ "-" + now.getDayOfMonth() +" ";
         s1 += (now.getHour())+ ":" + (now.getMinute()+30) + ":" + now.getSecond();
+        System.out.println(maVe + " - " +thoiGianKhoiHanh.compareTo(s1));
         if(ktraThoiGianDatVe(thoiGianKhoiHanh, s1))
         {
-            String sql = "DELETE FROM vexe WHERE MaLoTrinh = '" + maVe+"'";
+            String sql = "DELETE FROM vexe WHERE MaVe = '" + maVe+"'";
             Connection cnt = JDBC.getConn();
             try {
                 cnt.setAutoCommit(false);
