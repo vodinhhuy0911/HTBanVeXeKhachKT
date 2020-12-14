@@ -240,10 +240,12 @@ DateFormat sfm = new SimpleDateFormat("yyyy/MM/dd");
        
     }
     
-    public static boolean xoaVeXe(String maVe)
+    public static boolean xoaVeXe(String maVe, boolean isThanhToan)
     {
         if(maVe != null)
         {
+            if(!(isThanhToan))
+            {
         String sql = "DELETE FROM vexe WHERE MaLoTrinh = '" + maVe+"'";
       
         Connection cnt = JDBC.getConn();
@@ -256,7 +258,7 @@ DateFormat sfm = new SimpleDateFormat("yyyy/MM/dd");
             } catch (SQLException ex) {
                 return false;
             }
-        
+            }
         }
         return false;
     }
@@ -298,10 +300,6 @@ String dateInString = ngay + " " + gio;
         } catch (ParseException e) {
             e.printStackTrace();
         }
-
-//            String ngay = rs.getDate("ThoiGianDat").toString();
-//            String gio = rs.getTime("ThoiGianDat").toString();
-//            String date = ngay + " " + gio;
        }
        return kq;
     }
@@ -338,4 +336,6 @@ String dateInString = ngay + " " + gio;
          PreparedStatement pStm = cnt.prepareStatement(sql);  
          cnt.commit();
     }
+    
+   
 }

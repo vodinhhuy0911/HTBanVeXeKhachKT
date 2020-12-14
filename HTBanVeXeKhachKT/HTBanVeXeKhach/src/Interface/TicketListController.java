@@ -521,7 +521,10 @@ public class TicketListController implements Initializable {
       
       public void xoaVe() throws SQLException
       {
-          if(!rdTT.isSelected())// Chú ý các vé đã bán thì không được hoàn lại.
+          boolean flag1 = false;
+          if(rdTT.isSelected())
+              flag1=true;
+          if(!flag1)// Chú ý các vé đã bán thì không được hoàn lại.
           {   
               Alert alertt = new Alert(Alert.AlertType.CONFIRMATION);
                                   alertt.setTitle("Information Login");
@@ -530,7 +533,7 @@ public class TicketListController implements Initializable {
                                   Optional<ButtonType> result =  alertt.showAndWait();
               if(result.get() == ButtonType.OK)
               {
-                if(QuanLyVeXe.xoaVeXe(txtIDVe.getText()))
+                if(QuanLyVeXe.xoaVeXe(txtIDVe.getText(),flag1))
                 {
                     this.loadData();
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -611,7 +614,14 @@ public class TicketListController implements Initializable {
               this.loadData();
         
       }
-      
+//      public void huyVe30p()
+//      {
+//          this.tvThongTin.setRowFactory((TableView<VeXe> vx) ->{
+//            TableRow row = new TableRow();
+//          }
+//              return row;
+//          
+//      }
       
       //Tạo ve tren jasper
 
