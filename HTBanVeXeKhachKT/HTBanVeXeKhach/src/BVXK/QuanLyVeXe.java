@@ -19,6 +19,7 @@ import java.util.Date;
 import java.util.List; 
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.text.DateFormatter;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -191,6 +192,18 @@ String dateInString = ngay + " " + gio;
          {
              if(KiemTra.kiemTraSdt(sdtKH))
              {
+                 DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");  
+           LocalDateTime now = LocalDateTime.now();  
+          String ngay = ngayKhoiHanh;
+          String s1 = now.getYear() + "-" + now.getMonthValue()+ "-" + now.getDayOfMonth() +" ";
+        s1 += (now.getHour() +1)+ ":" + now.getMinute() + ":" + now.getSecond();
+        String str = QuanLyVeXe.getGio(maVe);
+          String ngayGio = ngay + " " + str;   
+          if(QuanLyVeXe.ktraThoiGianDatVe(ngayGio, s1) && isLayVe == false)
+              return false;
+          else
+          {
+          
              Connection conn = JDBC.getConn();
               Connection cnt = JDBC.getConn();
         ResultSet rs;
@@ -264,6 +277,7 @@ String dateInString = ngay + " " + gio;
              else if(kq1 == 0)
              return true;
          }
+             }
          }
          return false;
        
@@ -379,11 +393,11 @@ String dateInString = ngay + " " + gio;
     {
         if(maVe != null)
         {  
-            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");  
+            SimpleDateFormat dtf = new SimpleDateFormat("yyyy-MM-dd");  
            LocalDateTime now = LocalDateTime.now(); 
             String s1 = now.getYear() + "-" + now.getMonthValue()+ "-" + now.getDayOfMonth() +" ";
         s1 += (now.getHour())+ ":" + (now.getMinute()+30) + ":" + now.getSecond();
-        System.out.println(maVe + " - " +thoiGianKhoiHanh.compareTo(s1));
+        
         if(ktraThoiGianDatVe(thoiGianKhoiHanh, s1))
         {
             String sql = "DELETE FROM vexe WHERE MaVe = '" + maVe+"'";
@@ -391,7 +405,7 @@ String dateInString = ngay + " " + gio;
             try {
                 cnt.setAutoCommit(false);
                 PreparedStatement pStm = cnt.prepareStatement(sql);
-                pStm.executeUpdate();
+//                pStm.executeUpdate();
                 cnt.commit();
                 return true;
             } catch (SQLException ex) {
@@ -401,5 +415,17 @@ String dateInString = ngay + " " + gio;
         }
         
         return false;
+    }
+    public static String getGio(String maVe) throws SQLException
+    {
+         Connection conn = JDBC.getConn();
+        Statement stm = conn.createStatement();
+        ResultSet rs = stm.executeQuery("SELECT GioKhoiHanh FROM vexe WHERE MaVe = '" + maVe+ "'");
+        String kq = "";
+        while(rs.next())
+        {
+            kq = rs.getString("GioKhoiHanh");
+        }
+        return kq;
     }
 }

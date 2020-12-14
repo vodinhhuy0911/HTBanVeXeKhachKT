@@ -185,12 +185,12 @@ public class TicketController implements Initializable {
         s1 += (now.getHour() +1)+ ":" + now.getMinute() + ":" + now.getSecond();
           String ngayGio = ngay + " " + gio;   
           String s2 = now.getYear() + "-" + now.getMonthValue()+ "-" + now.getDayOfMonth() +" " + (now.getHour())+ ":" + (now.getMinute()+5) + ":" + now.getSecond();
-          String s3 = now.getYear() + "-" + now.getMonthValue()+ "-" + now.getDayOfMonth() +" " + (now.getHour())+ ":" + (now.getMinute()+5) + ":" + now.getSecond();
+          String s3 = now.getYear() + "-" + now.getMonthValue()+ "-" + now.getDayOfMonth() +" " + (now.getHour())+ ":" + (now.getMinute()) + ":" + now.getSecond();
           System.out.println(ngayGio + " - " + s3 +" - "+ s2 + " - " + s1);
          
-          if(true)
+          if(QuanLyVeXe.ktraThoiGianDatVe(ngayGio, s3))
           {
-          if(false)// nhỏ hơn 5p và mua vé
+          if(QuanLyVeXe.ktraThoiGianDatVe(ngayGio, s2) &&rdTT.isSelected())// nhỏ hơn 5p và mua vé
           {
               Alert alert = new Alert(Alert.AlertType.INFORMATION);
               alert.setTitle("Information Login");
@@ -199,7 +199,7 @@ public class TicketController implements Initializable {
               alert.showAndWait();
               return;
           }
-          else if(false)// nhỏ hơn 60p và chưa lấy vé(đặt)
+          else if(QuanLyVeXe.ktraThoiGianDatVe(ngayGio, s1)&&!rdLayVe.isSelected() && !rdTT.isSelected())// nhỏ hơn 60p và chưa lấy vé(đặt)
           {
               Alert alert = new Alert(Alert.AlertType.INFORMATION);
               alert.setTitle("Information Login");

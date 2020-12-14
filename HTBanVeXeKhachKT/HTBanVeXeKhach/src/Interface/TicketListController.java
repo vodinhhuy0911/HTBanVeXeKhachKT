@@ -166,7 +166,6 @@ public class TicketListController implements Initializable {
     private Button btXoa;
     @FXML
     private Button btHuy;
-
     /**
      * Initializes the controller class.
      */
@@ -204,6 +203,7 @@ public class TicketListController implements Initializable {
                 list = FXCollections.observableArrayList(x.getGioKhoiHanh());
                 cbGioKH.setItems(list);
               cbGioKH.getSelectionModel().select(x.getGioKhoiHanh());
+              
                 //thêm vào combobox mã lộ trình
                 
                 List<String> str = new ArrayList<>();
@@ -237,78 +237,83 @@ public class TicketListController implements Initializable {
           String s2 = now.getYear() + "-" + now.getMonthValue()+ "-" + now.getDayOfMonth() +" " + (now.getHour())+ ":" + (now.getMinute()+5) + ":" + now.getSecond();
           if(rdLayVe.isSelected() && rdTT.isSelected())
           {
-            txtGiaVe.setDisable(true);
-              txtIDNV.setDisable(true);
-              txtIDVe.setDisable(true);
-              txtKH.setDisable(true);
-              txtNgayBook.setDisable(true);
-              txtSDT.setDisable(true);
-              txtViTriGhe.setDisable(true);
-              cbGioKH.setDisable(true);
-              cbIDLT.setDisable(true);
-              cbIDXe.setDisable(true);
-              cbNgayKH.setDisable(true);
-              btHuy.setDisable(true);
-              btXoa.setDisable(true);  
-          }
-          else
-          {
-          if(QuanLyVeXe.ktraThoiGianDatVe(ngayGio, s1))// nhỏ hơn 5p và mua vé
-          {
-              //&&((!rdLayVe.isSelected() &&!rdTT.isSelected()) ||(rdLayVe.isSelected() &&!rdTT.isSelected()) || (!rdLayVe.isSelected() &&rdTT.isSelected()) )
-              txtGiaVe.setDisable(true);
-              txtIDNV.setDisable(true);
-              txtIDVe.setDisable(true);
-              txtKH.setDisable(true);
-              txtNgayBook.setDisable(true);
-              txtSDT.setDisable(true);
-              txtViTriGhe.setDisable(true);
-              cbGioKH.setDisable(true);
-              cbIDLT.setDisable(true);
-              cbIDXe.setDisable(true);
-              cbNgayKH.setDisable(true);
-              btHuy.setDisable(true);
-              btXoa.setDisable(true);
-          }
-          else if(QuanLyVeXe.ktraThoiGianDatVe(ngayGio, s2))//nho hon 60p
-          {
-               txtGiaVe.setDisable(true);
-              txtIDNV.setDisable(true);
-              txtIDVe.setDisable(true);
-              txtKH.setDisable(true);
-              txtNgayBook.setDisable(true);
-              txtSDT.setDisable(true);
-              txtViTriGhe.setDisable(true);
-              cbGioKH.setDisable(true);
-              cbIDLT.setDisable(true);
-              cbIDXe.setDisable(true);
-              cbNgayKH.setDisable(true);
-              rdLayVe.setDisable(true);
-              rdTT.setDisable(true);
+//            txtGiaVe.setDisable(true);
+//              txtIDNV.setDisable(true);
+//              txtIDVe.setDisable(true);
+//              txtKH.setDisable(true);
+//              txtNgayBook.setDisable(true);
+//              txtSDT.setDisable(true);
+//              txtViTriGhe.setDisable(true);
+//              cbGioKH.setDisable(true);
+//              cbIDLT.setDisable(true);
+//              cbIDXe.setDisable(true);
+//              cbNgayKH.setDisable(true);
+//              btHuy.setDisable(true);
+//              btXoa.setDisable(true);  
               btCapNhat.setDisable(true);
-              btXoa.setDisable(true);
           }
           else
           {
-              
-            txtGiaVe.setDisable(false);
-              txtIDNV.setDisable(false);
-              txtIDVe.setDisable(false);
-              txtKH.setDisable(false);
-              txtNgayBook.setDisable(false);
-              txtSDT.setDisable(false);
-              txtViTriGhe.setDisable(false);
-              cbGioKH.setDisable(false);
-              cbIDLT.setDisable(false);
-              cbIDXe.setDisable(false);
-              cbNgayKH.setDisable(false);
-              rdLayVe.setDisable(false);
-              rdTT.setDisable(false);
               btCapNhat.setDisable(false);
-              btHuy.setDisable(false);
-              btXoa.setDisable(false);
-          }}
-      
+          }
+//          else
+//          {
+//          if(QuanLyVeXe.ktraThoiGianDatVe(ngayGio, s1))// nhỏ hơn 5p và mua vé
+//          {
+//              //&&((!rdLayVe.isSelected() &&!rdTT.isSelected()) ||(rdLayVe.isSelected() &&!rdTT.isSelected()) || (!rdLayVe.isSelected() &&rdTT.isSelected()) )
+//              txtGiaVe.setDisable(true);
+//              txtIDNV.setDisable(true);
+//              txtIDVe.setDisable(true);
+//              txtKH.setDisable(true);
+//              txtNgayBook.setDisable(true);
+//              txtSDT.setDisable(true);
+//              txtViTriGhe.setDisable(true);
+//              cbGioKH.setDisable(true);
+//              cbIDLT.setDisable(true);
+//              cbIDXe.setDisable(true);
+//              cbNgayKH.setDisable(true);
+//              btHuy.setDisable(true);
+//              btXoa.setDisable(true);
+//          }
+//          else if(QuanLyVeXe.ktraThoiGianDatVe(ngayGio, s2))//nho hon 60p
+//          {
+//               txtGiaVe.setDisable(true);
+//              txtIDNV.setDisable(true);
+//              txtIDVe.setDisable(true);
+//              txtKH.setDisable(true);
+//              txtNgayBook.setDisable(true);
+//              txtSDT.setDisable(true);
+//              txtViTriGhe.setDisable(true);
+//              cbGioKH.setDisable(true);
+//              cbIDLT.setDisable(true);
+//              cbIDXe.setDisable(true);
+//              cbNgayKH.setDisable(true);
+//              rdLayVe.setDisable(true);
+//              rdTT.setDisable(true);
+//              btCapNhat.setDisable(true);
+//              btXoa.setDisable(true);
+//          }
+//          else
+//          {
+//              
+//            txtGiaVe.setDisable(false);
+//              txtIDNV.setDisable(false);
+//              txtIDVe.setDisable(false);
+//              txtKH.setDisable(false);
+//              txtNgayBook.setDisable(false);
+//              txtSDT.setDisable(false);
+//              txtViTriGhe.setDisable(false);
+//              cbGioKH.setDisable(false);
+//              cbIDLT.setDisable(false);
+//              cbIDXe.setDisable(false);
+//              cbNgayKH.setDisable(false);
+//              rdLayVe.setDisable(false);
+//              rdTT.setDisable(false);
+//              btCapNhat.setDisable(false);
+//              btHuy.setDisable(false);
+//              btXoa.setDisable(false);
+//          }}
+//      
             });
         
             return row;
@@ -456,6 +461,26 @@ public class TicketListController implements Initializable {
         
           if(!txtIDVe.getText().isEmpty() &&!txtIDNV.getText().isEmpty() &&!txtGiaVe.getText().isEmpty() &&!txtKH.getText().isEmpty() &&!txtNgayBook.getText().isEmpty() &&!txtSDT.getText().isEmpty() &&!txtViTriGhe.getText().isEmpty()&&!cbGioKH.getSelectionModel().isEmpty()&&!cbIDLT.getSelectionModel().isEmpty()&&!cbIDXe.getSelectionModel().isEmpty())
           {
+              DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");  
+           LocalDateTime now = LocalDateTime.now();  
+          String ngay = cbNgayKH.getSelectionModel().getSelectedItem().toString();
+          String gio = cbGioKH.getSelectionModel().getSelectedItem().toString();
+          String s1 = now.getYear() + "-" + now.getMonthValue()+ "-" + now.getDayOfMonth() +" ";
+        s1 += (now.getHour() +1)+ ":" + now.getMinute() + ":" + now.getSecond();
+        String str = QuanLyVeXe.getGio(txtIDVe.getText());
+          String ngayGio = ngay + " " + str;   
+          System.out.print(ngayGio + " - " + s1);
+          
+              if(QuanLyVeXe.ktraThoiGianDatVe(ngayGio, s1) && !rdLayVe.isSelected())
+              {
+                   this.loadData();
+                         Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                        alert.setTitle("Information Login");
+                        alert.setHeaderText(null);
+                        alert.setContentText("Cập nhật chỉ áp dụng với vé đặt và thời gian trước khởi hành là 60p");
+                        alert.showAndWait();
+                        return;
+              }
               if(KiemTra.kiemTraSdt(txtSDT.getText()))
               {
                     boolean flag = false;
@@ -622,7 +647,7 @@ public class TicketListController implements Initializable {
               String temp = "";
               String s = "";
               String date = new String();
-              SimpleDateFormat ft = new SimpleDateFormat ("yyyy-MM-dd hh:mm:ss ");
+              SimpleDateFormat ft = new SimpleDateFormat ("yyyy-MM-dd");
               for(int i = 0; i < tvThongTin.getItems().size(); i++){
                   date = ft.format(tvThongTin.getItems().get(i).getNgayKhoiHanh()) + " " +tvThongTin.getItems().get(i).getGioKhoiHanh();
                   temp = tvThongTin.getItems().get(i).getMaVe();
