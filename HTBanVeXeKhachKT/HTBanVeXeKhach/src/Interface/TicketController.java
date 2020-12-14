@@ -138,6 +138,7 @@ public class TicketController implements Initializable {
         ObservableList <String> list = FXCollections.observableArrayList(s);
                     cbXe.setItems(list);
                     cbXe.getSelectionModel().select(0);
+                    
         }
     }
     public void chonXe()
@@ -447,6 +448,7 @@ public class TicketController implements Initializable {
       {
           if(!cbGioKhoiHanh.getSelectionModel().isEmpty())
           {
+             
         String tuyenDuong = cbLoTrinh.getSelectionModel().getSelectedItem().toString();
         String td[] = tuyenDuong.split(" - ");
         String tuyenDi = td[0];
@@ -495,6 +497,13 @@ public class TicketController implements Initializable {
            ObservableList <String> list = FXCollections.observableArrayList(initMaGhe);
                     cbGheNgoi.setItems(list);
           }
+           LocalDateTime now = LocalDateTime.now();
+              String time = cbNgayKhoiHanh.getSelectionModel().getSelectedItem().toString()+ " " + cbGioKhoiHanh.getSelectionModel().getSelectedItem().toString();
+              String s2 = now.getYear() + "-" + now.getMonthValue()+ "-" + now.getDayOfMonth() +" " + (now.getHour())+ ":" + (now.getMinute()+5) + ":" + now.getSecond();
+              if(QuanLyVeXe.ktraThoiGianDatVe(time, s2))
+                        btThem.setDisable(true);
+              else
+                  btThem.setDisable(false);
       }
       public void huy()
       {

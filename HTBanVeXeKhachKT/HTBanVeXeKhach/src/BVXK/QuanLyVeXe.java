@@ -107,9 +107,7 @@ String dateInString = ngay + " " + gio;
           ngayGio = ngayGio.replace("/", "-");
           String s2 = now.getYear() + "-" + now.getMonthValue()+ "-" + now.getDayOfMonth() +" " + (now.getHour())+ ":" + (now.getMinute()+5) + ":" + now.getSecond();
           String s3 = now.getYear() + "-" + now.getMonthValue()+ "-" + now.getDayOfMonth() +" " + (now.getHour())+ ":" + (now.getMinute()+5) + ":" + now.getSecond();
-     Connection conn = JDBC.getConn();
-     System.out.print(ngayGio + " - " + s3 +" - "+ s2 + " - " + s1);
-         
+     Connection conn = JDBC.getConn(); 
      if(!QuanLyVeXe.ktraThoiGianDatVe(ngayGio, s3))
           {
               if(QuanLyVeXe.ktraThoiGianDatVe(ngayGio, s2) && ve.isIsThanhToan()==true)// nhỏ hơn 5p và mua vé
