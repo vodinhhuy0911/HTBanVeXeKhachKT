@@ -121,6 +121,7 @@ public class QuanLyNhanVien {
    {
        if(nv.getChucVu() != null && nv.getDiaChi() != null && nv.getEmail() != null && nv.getHoTen() != null && nv.getMatKhau() != null && nv.getNgaySinh() != null && nv.getSdt() != null && nv.getTaiKhoan()!=null){
            DateFormat sfm = new SimpleDateFormat("yyyy/MM/dd");
+          
        if(kiemTraEmail(nv.getEmail()) && kiemTraNgaySinh(sfm.format(nv.getNgaySinh())) && kiemTraSdt(nv.getSdt()) && getSoLuongNV(nv.getTaiKhoan()) == 1)
        {
        String sql = "UPDATE nhanvien SET idNV = ?, tenNV = ?, ngaySinh = ?, diaChi = ?, chucVu = ?, sdt = ?, email = ?, matKhau = ? WHERE idNV = ?";
@@ -214,7 +215,7 @@ public class QuanLyNhanVien {
    {
        Connection conn = JDBC.getConn();
        Statement stm = conn.createStatement();
-       ResultSet rs = stm.executeQuery("SELECT count(*) FROM lotrinh WHERE MaLoTrinh = '"+MaNV+"'");
+       ResultSet rs = stm.executeQuery("SELECT count(*) FROM nhanvien WHERE idNV = '"+MaNV+"'");
        int i = 0;
        while(rs.next())
        {
