@@ -92,7 +92,7 @@ public class DistanceController implements Initializable {
     private TableColumn tcGioKhoiHanh;
     @FXML
     private TextField txtFind;
-
+private String id;
     /**
      * Initializes the controller class.
      */
@@ -113,7 +113,7 @@ public class DistanceController implements Initializable {
                 this.txtTuyenDi.setText(t.getTuyenDi());
                 this.txtTuyenDen.setText(t.getTuyenDen());
                 this.cbXe.getSelectionModel().select(t.getMaXe());
-
+                  id = t.getMaTuyenDuong();
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
                 //convert String to LocalDate
@@ -126,6 +126,7 @@ public class DistanceController implements Initializable {
 
                 this.dpNgayKhoiHanh.setValue(localDate);
                 this.txtGioKhoiHanh.setText(t.getGioKhoiHanh());
+              
             });
             return row;
         });
@@ -220,6 +221,8 @@ public class DistanceController implements Initializable {
     @FXML
     public void capNhatTuyenDuong() throws SQLException, ParseException {
         if (!txtMaLoTrinh.getText().isEmpty() && !txtTuyenDi.getText().isEmpty() && !txtTuyenDen.getText().isEmpty() && !txtGioKhoiHanh.getText().isEmpty() && !cbXe.getSelectionModel().isEmpty() && dpNgayKhoiHanh.getValue() != null) {
+            if(id.equals(txtMaLoTrinh.getText()))
+            {
             LocalDate ngayKhoiHanh = dpNgayKhoiHanh.getValue();
             String date = String.valueOf(ngayKhoiHanh);
             String date1 = date.replace("-", "/");
@@ -235,7 +238,7 @@ public class DistanceController implements Initializable {
                            if(QuanLyTuyenDi.soLuongMa(txtMaLoTrinh.getText())== 1)
                            {
             if (QuanLyTuyenDi.capNhatTuyenDuong(txtTuyenDi.getText(), txtTuyenDen.getText(), txtMaLoTrinh.getText(), cbXe.getSelectionModel().getSelectedItem().toString(),
-                    d, txtGioKhoiHanh.getText())) {
+                    d, txtGioKhoiHanh.getText(),id)) {
                 this.loadData();
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Information Login");
@@ -265,7 +268,15 @@ public class DistanceController implements Initializable {
                 alert.showAndWait();
                        }
                    }
-        } else {
+        }
+            else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Information Login");
+            alert.setHeaderText(null);
+            alert.setContentText("Không thể thay đổi mã lộ trình.");
+            alert.showAndWait();
+        }
+        }else {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Information Login");
             alert.setHeaderText(null);

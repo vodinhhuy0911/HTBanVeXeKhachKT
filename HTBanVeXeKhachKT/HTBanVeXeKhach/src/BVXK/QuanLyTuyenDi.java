@@ -84,14 +84,14 @@ public class QuanLyTuyenDi {
         return false;
         
     }
-    public static boolean capNhatTuyenDuong(String tuyenDi, String tuyenDen,String maLoTrinh, String maXe, Date thoiGianKhoiHanh, String GioKhoiHanh)
+    public static boolean capNhatTuyenDuong(String tuyenDi, String tuyenDen,String maLoTrinh, String maXe, Date thoiGianKhoiHanh, String GioKhoiHanh,String maLoTrinhCu)
    {
        //cap nhat bang vexe
        if(tuyenDi != null && tuyenDen != null && maLoTrinh != null && maXe != null && thoiGianKhoiHanh != null && GioKhoiHanh != null)
        {
            DateFormat sfm = new SimpleDateFormat("yyyy/MM/dd");
        try {
-           if((getSoLuongChuyenDi(tuyenDi, tuyenDen, maXe, sfm.format(thoiGianKhoiHanh), GioKhoiHanh)==0) && soLuongMa(maLoTrinh)==1)
+           if((getSoLuongChuyenDi(tuyenDi, tuyenDen, maXe, sfm.format(thoiGianKhoiHanh), GioKhoiHanh)==0) && soLuongMa(maLoTrinh)==1 && maLoTrinhCu.equals(maLoTrinh))
            {
                 String sql = "UPDATE lotrinh SET MaXe = ?, NgayKhoiHanh = ?, GioKhoiHanh = ? WHERE MaLoTrinh = ?";
         Connection cnt = JDBC.getConn();
