@@ -61,11 +61,15 @@ public class EmployeeManagementFunctionality {
             Date d = new java.util.Date("04/18/2000");
             java.sql.Date sqlDate = new java.sql.Date(d.getTime());
 
-            NhanVien nv = new NhanVien("4", "dk1",sqlDate , "abc", "NV", "01234567894", "asdf@gh","123");
+             UUID uuid = UUID.randomUUID();
+            String id = uuid.toString().substring(0, 5);
+            NhanVien nv = new NhanVien(id, "dk1",sqlDate , "abc", "NV", "01234567894", "asdf@gh","123");
             
             assertTrue(QuanLyNhanVien.themNhanVien(nv));
     
         } catch (ParseException ex) {
+            Logger.getLogger(EmployeeManagementFunctionality.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
             Logger.getLogger(EmployeeManagementFunctionality.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -86,6 +90,8 @@ public class EmployeeManagementFunctionality {
             assertFalse(QuanLyNhanVien.themNhanVien(nv1));
         } catch (ParseException ex) {
             Logger.getLogger(EmployeeManagementFunctionality.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(EmployeeManagementFunctionality.class.getName()).log(Level.SEVERE, null, ex);
         }     
     }
     
@@ -100,6 +106,8 @@ public class EmployeeManagementFunctionality {
             
             assertFalse(QuanLyNhanVien.themNhanVien(nv));
         } catch (ParseException ex) {
+            Logger.getLogger(EmployeeManagementFunctionality.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
             Logger.getLogger(EmployeeManagementFunctionality.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -118,6 +126,8 @@ public class EmployeeManagementFunctionality {
             assertFalse(QuanLyNhanVien.themNhanVien(nv));
         } catch (ParseException ex) {
             Logger.getLogger(EmployeeManagementFunctionality.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(EmployeeManagementFunctionality.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -134,6 +144,8 @@ public class EmployeeManagementFunctionality {
             
             QuanLyNhanVien.themNhanVien(nv);
         } catch (ParseException ex) {
+            Logger.getLogger(EmployeeManagementFunctionality.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
             Logger.getLogger(EmployeeManagementFunctionality.class.getName()).log(Level.SEVERE, null, ex);
         }
         
@@ -153,6 +165,8 @@ public class EmployeeManagementFunctionality {
             assertFalse(QuanLyNhanVien.themNhanVien(nv));
         } catch (ParseException ex) {
             Logger.getLogger(EmployeeManagementFunctionality.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(EmployeeManagementFunctionality.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
@@ -169,6 +183,8 @@ public class EmployeeManagementFunctionality {
             
             assertFalse(QuanLyNhanVien.themNhanVien(nv));
         } catch (ParseException ex) {
+            Logger.getLogger(EmployeeManagementFunctionality.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
             Logger.getLogger(EmployeeManagementFunctionality.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -188,6 +204,8 @@ public class EmployeeManagementFunctionality {
              
         } catch (ParseException ex) {
             Logger.getLogger(EmployeeManagementFunctionality.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(EmployeeManagementFunctionality.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
@@ -205,20 +223,26 @@ public class EmployeeManagementFunctionality {
             assertFalse(QuanLyNhanVien.themNhanVien(nv));
         } catch (ParseException ex) {
             Logger.getLogger(EmployeeManagementFunctionality.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(EmployeeManagementFunctionality.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
 //    test edit button
     @Test
     public void TC37(){
-        System.out.println("* Check Edit employee button:");        
-        System.out.println("TC37: Check the results on clicking Edit button without selecting any employee in the employee table.");
-
-        Date d = new java.util.Date("04/18/2000");
-        java.sql.Date sqlDate = new java.sql.Date(d.getTime());
-        NhanVien nv = new NhanVien(null, "dk1",sqlDate , "abc", "NV", "01234567894", "asdfgh","123");
-       
-        assertFalse(QuanLyNhanVien.capNhatNhanVien(nv));
+        try {
+            System.out.println("* Check Edit employee button:");
+            System.out.println("TC37: Check the results on clicking Edit button without selecting any employee in the employee table.");
+            
+            Date d = new java.util.Date("04/18/2000");
+            java.sql.Date sqlDate = new java.sql.Date(d.getTime());
+            NhanVien nv = new NhanVien(null, "dk1",sqlDate , "abc", "NV", "01234567894", "asdfgh","123");
+            
+            assertFalse(QuanLyNhanVien.capNhatNhanVien(nv));
+        } catch (SQLException ex) {
+            Logger.getLogger(EmployeeManagementFunctionality.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
        @Test
@@ -245,6 +269,8 @@ public class EmployeeManagementFunctionality {
             assertTrue(QuanLyNhanVien.capNhatNhanVien(nv));
         } catch (ParseException ex) {
             Logger.getLogger(EmployeeManagementFunctionality.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(EmployeeManagementFunctionality.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
@@ -270,6 +296,8 @@ public class EmployeeManagementFunctionality {
             assertFalse(QuanLyNhanVien.capNhatNhanVien(nv));
         } catch (ParseException ex) {
             Logger.getLogger(EmployeeManagementFunctionality.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(EmployeeManagementFunctionality.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
@@ -289,8 +317,10 @@ public class EmployeeManagementFunctionality {
             java.sql.Date sqlDate1 = new java.sql.Date(d1.getTime());
             nv.setNgaySinh(sqlDate1);
             
-            assertFalse(QuanLyNhanVien.capNhatNhanVien(nv));
+            assertTrue(QuanLyNhanVien.capNhatNhanVien(nv));
         } catch (ParseException ex) {
+            Logger.getLogger(EmployeeManagementFunctionality.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
             Logger.getLogger(EmployeeManagementFunctionality.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -312,6 +342,8 @@ public class EmployeeManagementFunctionality {
             QuanLyNhanVien.capNhatNhanVien(nv);
         } catch (ParseException ex) {
             Logger.getLogger(EmployeeManagementFunctionality.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(EmployeeManagementFunctionality.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     }
@@ -332,6 +364,8 @@ public class EmployeeManagementFunctionality {
             assertFalse(QuanLyNhanVien.capNhatNhanVien(nv));
         } catch (ParseException ex) {
             Logger.getLogger(EmployeeManagementFunctionality.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(EmployeeManagementFunctionality.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
@@ -350,6 +384,8 @@ public class EmployeeManagementFunctionality {
             nv.setSdt("012345as789");
             assertFalse(QuanLyNhanVien.capNhatNhanVien(nv));
         } catch (ParseException ex) {
+            Logger.getLogger(EmployeeManagementFunctionality.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
             Logger.getLogger(EmployeeManagementFunctionality.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -370,6 +406,8 @@ public class EmployeeManagementFunctionality {
             assertFalse(QuanLyNhanVien.capNhatNhanVien(nv));
         } catch (ParseException ex) {
             Logger.getLogger(EmployeeManagementFunctionality.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(EmployeeManagementFunctionality.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
@@ -389,6 +427,8 @@ public class EmployeeManagementFunctionality {
             assertFalse(QuanLyNhanVien.capNhatNhanVien(nv));
         } catch (ParseException ex) {
             Logger.getLogger(EmployeeManagementFunctionality.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(EmployeeManagementFunctionality.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
@@ -397,12 +437,24 @@ public class EmployeeManagementFunctionality {
        // test delete button
       @Test
     public void TC48(){
-        System.out.println("* Check Delete employee button:");        
-        System.out.println("TC48: Check the results on clicking the Delete button after selecting an employee in the employee table.");
-        
-        String eId = "4";     
-        boolean kq = QuanLyNhanVien.xoaNhanVien(eId);
-        assertTrue(kq);
+        try {
+            System.out.println("* Check Delete employee button:");
+            System.out.println("TC48: Check the results on clicking the Delete button after selecting an employee in the employee table.");
+            
+            Date d = new java.util.Date("04/18/2000");
+            java.sql.Date sqlDate = new java.sql.Date(d.getTime());
+
+            NhanVien nv = new NhanVien("4", "dk1",sqlDate , "abc", "NV", "01234567894", "asdf@gh","123");
+            
+            QuanLyNhanVien.themNhanVien(nv);
+            String eId = "4";
+            boolean kq = QuanLyNhanVien.xoaNhanVien(eId);
+            assertTrue(kq);
+        } catch (ParseException ex) {
+            Logger.getLogger(EmployeeManagementFunctionality.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(EmployeeManagementFunctionality.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     @Test

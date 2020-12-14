@@ -56,10 +56,11 @@ public class DistanceFunctionality {
         Date d = new java.util.Date("12/18/2020");
         UUID uuid = UUID.randomUUID();
         String id = uuid.toString().substring(0, 5);
-            
+        String id1 = uuid.toString().substring(0, 15);
+        String id2 = uuid.toString().substring(0, 15);
         Xe xe = new Xe("1412", "Xe giường nằm");
         QuanLyXe.themXe(xe);
-        TuyenDuong t = new TuyenDuong(id, "a", "b", xe.getBienSoXe(), d, "8");
+        TuyenDuong t = new TuyenDuong(id, id1, id2, xe.getBienSoXe(), d, "8");
 
         assertTrue(QuanLyTuyenDi.themTuyenDuong(t));
     }
@@ -71,8 +72,9 @@ public class DistanceFunctionality {
         Date d = new java.util.Date("12/18/2020");
         UUID uuid = UUID.randomUUID();
         String id = uuid.toString().substring(0, 5);
-            
-        TuyenDuong t = new TuyenDuong(id, "a", "b", "1412", d, "8");
+         String id1 = uuid.toString().substring(0, 15);
+            String id2 = uuid.toString().substring(0, 15);
+        TuyenDuong t = new TuyenDuong(id, id1, id2, "1412", d, "8");
         QuanLyTuyenDi.themTuyenDuong(t);       
         assertFalse(QuanLyTuyenDi.themTuyenDuong(t));
     }
@@ -106,8 +108,9 @@ public class DistanceFunctionality {
         Date d = new java.util.Date("12/18/2020");
         UUID uuid = UUID.randomUUID();
         String id = uuid.toString().substring(0, 5);
-            
-        TuyenDuong t = new TuyenDuong(id, "a", "b", "1412", d, "as84");     
+             String id1 = uuid.toString().substring(0, 15);
+            String id2 = uuid.toString().substring(0, 15);
+        TuyenDuong t = new TuyenDuong(id, id1, id2, "1412", d, "as84");     
         assertFalse(QuanLyTuyenDi.themTuyenDuong(t));
     }
         @Test
@@ -115,8 +118,10 @@ public class DistanceFunctionality {
         System.out.println("TC65: Check the results on clicking the Add button without entering route id, but entering departure point and destination.");
         
        Date d = new java.util.Date("12/18/2020");
-            
-        TuyenDuong t = new TuyenDuong(null, "a", "b", "1412", d, "8");     
+       UUID uuid = UUID.randomUUID();
+             String id1 = uuid.toString().substring(0, 15);
+            String id2 = uuid.toString().substring(0, 15);
+        TuyenDuong t = new TuyenDuong(null, id1, id2, "1412", d, "8");     
         assertFalse(QuanLyTuyenDi.themTuyenDuong(t));
     }
         @Test
@@ -126,8 +131,8 @@ public class DistanceFunctionality {
         Date d = new java.util.Date("12/18/2020");
         UUID uuid = UUID.randomUUID();
         String id = uuid.toString().substring(0, 5);
-            
-        TuyenDuong t = new TuyenDuong(id, "asdfghjklaasdfghjklaasdfghjklaasdfghjklaasdfghjkla", "b", "1412", d, "8");     
+            String id2 = uuid.toString().substring(0, 15);
+        TuyenDuong t = new TuyenDuong(id, "asdfghjklaasdfghjklaasdfghjklaasdfghjklaasdfghjkla", id2, "1412", d, "8");     
         assertFalse(QuanLyTuyenDi.themTuyenDuong(t));
     }
        // test Update button
@@ -139,12 +144,15 @@ public class DistanceFunctionality {
         Date d = new java.util.Date("12/18/2020");
         UUID uuid = UUID.randomUUID();
         String id = uuid.toString().substring(0, 5);
-            
-        TuyenDuong t = new TuyenDuong(id, "a", "b", "1412", d, "8");       
-        assertTrue(QuanLyTuyenDi.themTuyenDuong(t));
-        Date d1 = new java.util.Date("12/18/2020");
-
-        assertTrue(QuanLyTuyenDi.capNhatTuyenDuong(id, "d", "e", "1412", d1, "7"));
+        String id1 = uuid.toString().substring(0, 15);
+        String id2 = uuid.toString().substring(0, 15);
+        TuyenDuong t = new TuyenDuong(id, id1, id2, "1412", d, "8");       
+        QuanLyTuyenDi.themTuyenDuong(t);
+        
+        Date d1 = new java.util.Date("2020/12/21");
+        String id3 = uuid.toString().substring(0, 15);
+        String id4 = uuid.toString().substring(0, 15);
+        assertTrue(QuanLyTuyenDi.capNhatTuyenDuong(id, id3, id4, "1412", d1, "8"));
     }
         @Test
     public void TC68(){    
@@ -153,11 +161,12 @@ public class DistanceFunctionality {
             Date d = new java.util.Date("12/18/2020");
         UUID uuid = UUID.randomUUID();
         String id = uuid.toString().substring(0, 5);
-            
-        TuyenDuong t = new TuyenDuong(id, "a", "b", "1412", d, "8");       
+             String id1 = uuid.toString().substring(0, 15);
+            String id2 = uuid.toString().substring(0, 15);
+        TuyenDuong t = new TuyenDuong(id, id1, id2, "1412", d, "8");       
         QuanLyTuyenDi.themTuyenDuong(t);
 
-        assertFalse(QuanLyTuyenDi.capNhatTuyenDuong("ad1548497", "a", "b", "1412", d, "8"));
+        assertFalse(QuanLyTuyenDi.capNhatTuyenDuong("ad1548497", "g", "b", "1412", d, "8"));
     }
         @Test
     public void TC69(){      
@@ -172,11 +181,12 @@ public class DistanceFunctionality {
                 Date d = new java.util.Date("12/18/2020");
         UUID uuid = UUID.randomUUID();
         String id = uuid.toString().substring(0, 5);
-            
-        TuyenDuong t = new TuyenDuong(id, "a", "b", "1412", d, "8");       
+             String id1 = uuid.toString().substring(0, 15);
+            String id2 = uuid.toString().substring(0, 15);
+        TuyenDuong t = new TuyenDuong(id, id1, id2, "1412", d, "8");       
         QuanLyTuyenDi.themTuyenDuong(t);
 
-         assertFalse(QuanLyTuyenDi.capNhatTuyenDuong(id, "a", null, "1412", d, "8"));
+         assertFalse(QuanLyTuyenDi.capNhatTuyenDuong(id, "h", null, "1412", d, "8"));
     }
         @Test
     public void TC71(){     
@@ -185,8 +195,9 @@ public class DistanceFunctionality {
         Date d = new java.util.Date("12/18/2020");
         UUID uuid = UUID.randomUUID();
         String id = uuid.toString().substring(0, 5);
-            
-        TuyenDuong t = new TuyenDuong(id, "a", "b", "1412", d, "8");       
+             String id1 = uuid.toString().substring(0, 15);
+            String id2 = uuid.toString().substring(0, 15);
+        TuyenDuong t = new TuyenDuong(id, id1, id2, "1412", d, "8");       
         QuanLyTuyenDi.themTuyenDuong(t);
 
          assertFalse(QuanLyTuyenDi.capNhatTuyenDuong("", "", "", "", null,""));
@@ -198,8 +209,9 @@ public class DistanceFunctionality {
         Date d = new java.util.Date("12/18/2020");
         UUID uuid = UUID.randomUUID();
         String id = uuid.toString().substring(0, 5);
-            
-        TuyenDuong t = new TuyenDuong(id, "a", "b", "1412", d, "8");       
+             String id1 = uuid.toString().substring(0, 15);
+            String id2 = uuid.toString().substring(0, 15);
+        TuyenDuong t = new TuyenDuong(id, id1, id2, "1412", d, "8");       
         QuanLyTuyenDi.themTuyenDuong(t);
 
         assertFalse(QuanLyTuyenDi.capNhatTuyenDuong(id, "", "", "", null,""));
@@ -211,11 +223,12 @@ public class DistanceFunctionality {
         Date d = new java.util.Date("12/11/2020");
         UUID uuid = UUID.randomUUID();
         String id = uuid.toString().substring(0, 5);
-            
-        TuyenDuong t = new TuyenDuong(id, "q", "w", "1412", d, "8");       
+             String id1 = uuid.toString().substring(0, 15);
+            String id2 = uuid.toString().substring(0, 15);
+        TuyenDuong t = new TuyenDuong(id, id1, id2, "1412", d, "8");       
         QuanLyTuyenDi.themTuyenDuong(t);
 
-         assertFalse(QuanLyTuyenDi.capNhatTuyenDuong(id, "asdfghjklaasdfghjklaasdfghjklaasdfghjklaasdfghjkla", "w", "1412", d, "8"));
+        QuanLyTuyenDi.capNhatTuyenDuong(id, "asdfghjklaasdfghjklaasdfghjklaasdfghjklaasdfghjkla", "w", "1412", d, "8");
     }
     // test delete button
       @Test
@@ -243,8 +256,14 @@ public class DistanceFunctionality {
         try {
             System.out.println("* Check Find button:");
             System.out.println("TC80: Check the results on clicking the Find button when entering a route id that exists in the database.");
-            
-            List<TuyenDuong> ds = QuanLyTuyenDi.timKiemTuyenDuong("1");
+            UUID uuid = UUID.randomUUID();
+            String id = uuid.toString().substring(0, 5);
+            Date d = new java.util.Date("12/18/2020");
+             String id1 = uuid.toString().substring(0, 15);
+            String id2 = uuid.toString().substring(0, 15);
+            TuyenDuong t = new TuyenDuong(id, id1, id2, "1412", d, "8");
+            QuanLyTuyenDi.themTuyenDuong(t);       
+            List<TuyenDuong> ds = QuanLyTuyenDi.timKiemTuyenDuong(id);
             List<TuyenDuong> kq = new ArrayList<>();
             assertNotEquals(ds, kq);
         } catch (SQLException ex) {
@@ -260,8 +279,9 @@ public class DistanceFunctionality {
             Date d = new java.util.Date("12/18/2020");
             UUID uuid = UUID.randomUUID();
             String id = uuid.toString().substring(0, 5);
-
-            TuyenDuong t = new TuyenDuong(id, "a", "Nha Trang", "1412", d, "8");
+ String id1 = uuid.toString().substring(0, 15);
+            
+            TuyenDuong t = new TuyenDuong(id, id1, "Nha Trang", "1412", d, "8");
             QuanLyTuyenDi.themTuyenDuong(t);       
             List<TuyenDuong> ds = QuanLyTuyenDi.timKiemTuyenDuong("Nha Trang");
             List<TuyenDuong> kq = new ArrayList<>();
@@ -278,8 +298,9 @@ public class DistanceFunctionality {
             Date d = new java.util.Date("12/19/2020");
             UUID uuid = UUID.randomUUID();
             String id = uuid.toString().substring(0, 5);
-
-            TuyenDuong t = new TuyenDuong(id, "a", "b", "1412", d, "8");
+ String id1 = uuid.toString().substring(0, 15);
+            String id2 = uuid.toString().substring(0, 15);
+            TuyenDuong t = new TuyenDuong(id, id1, id2, "1412", d, "8");
             QuanLyTuyenDi.themTuyenDuong(t);       
             List<TuyenDuong> ds = QuanLyTuyenDi.timKiemTuyenDuong("2020-12-19");
             List<TuyenDuong> kq = new ArrayList<>();
@@ -296,8 +317,9 @@ public class DistanceFunctionality {
             Date d = new java.util.Date("12/18/2020");
             UUID uuid = UUID.randomUUID();
             String id = uuid.toString().substring(0, 5);
-
-            TuyenDuong t = new TuyenDuong(id, "TP.HCM", "b", "1412", d, "8");
+ String id1 = uuid.toString().substring(0, 15);
+            
+            TuyenDuong t = new TuyenDuong(id, "TP.HCM", id1, "1412", d, "8");
             QuanLyTuyenDi.themTuyenDuong(t);       
             List<TuyenDuong> ds = QuanLyTuyenDi.timKiemTuyenDuong("TP.HCM");
             List<TuyenDuong> kq = new ArrayList<>();
@@ -328,7 +350,7 @@ public class DistanceFunctionality {
         
         try {
             List<TuyenDuong> ds = QuanLyTuyenDi.getDsTuyenDuong();
-            assertTrue(ds.size() >= 3);
+            assertTrue(ds.size() >= 1);
 
         } catch (SQLException ex) {
             Logger.getLogger(EmployeeManagementFunctionality.class.getName()).log(Level.SEVERE, null, ex);

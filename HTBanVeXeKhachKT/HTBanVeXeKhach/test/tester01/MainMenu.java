@@ -60,6 +60,8 @@ public class MainMenu {
             
         } catch (ParseException ex) {
             Logger.getLogger(MainMenu.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(MainMenu.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
@@ -85,6 +87,8 @@ public class MainMenu {
             assertFalse(QuanLyNhanVien.capNhatNhanVien(nv));
         } catch (ParseException ex) {
             Logger.getLogger(MainMenu.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(MainMenu.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
@@ -104,8 +108,10 @@ public class MainMenu {
             java.sql.Date sqlDate1 = new java.sql.Date(d1.getTime());
             nv.setNgaySinh(sqlDate1);
             
-            assertFalse(QuanLyNhanVien.capNhatNhanVien(nv));
+            assertTrue(QuanLyNhanVien.capNhatNhanVien(nv));
         } catch (ParseException ex) {
+            Logger.getLogger(MainMenu.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
             Logger.getLogger(MainMenu.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -129,6 +135,8 @@ public class MainMenu {
             QuanLyNhanVien.capNhatNhanVien(nv);
         } catch (ParseException ex) {
             Logger.getLogger(MainMenu.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(MainMenu.class.getName()).log(Level.SEVERE, null, ex);
         }      
     }
     
@@ -147,6 +155,8 @@ public class MainMenu {
            nv.setSdt("-0123456789");
             assertFalse(QuanLyNhanVien.capNhatNhanVien(nv));
         } catch (ParseException ex) {
+            Logger.getLogger(MainMenu.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
             Logger.getLogger(MainMenu.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -167,6 +177,8 @@ public class MainMenu {
             assertFalse(QuanLyNhanVien.capNhatNhanVien(nv));
         } catch (ParseException ex) {
             Logger.getLogger(MainMenu.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(MainMenu.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
@@ -186,6 +198,8 @@ public class MainMenu {
             assertFalse(QuanLyNhanVien.capNhatNhanVien(nv));
         } catch (ParseException ex) {
             Logger.getLogger(MainMenu.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(MainMenu.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
@@ -204,6 +218,8 @@ public class MainMenu {
             nv.setHoTen("asdfghjklaasdfghjklaasdfghjklaasdfghjklaasdfghjklaklaasdfghjk");
             assertFalse(QuanLyNhanVien.capNhatNhanVien(nv));
         } catch (ParseException ex) {
+            Logger.getLogger(MainMenu.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
             Logger.getLogger(MainMenu.class.getName()).log(Level.SEVERE, null, ex);
         }
         
