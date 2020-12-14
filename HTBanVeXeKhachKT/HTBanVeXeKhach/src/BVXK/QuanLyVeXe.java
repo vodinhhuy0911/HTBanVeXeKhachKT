@@ -160,7 +160,8 @@ DateFormat sfm = new SimpleDateFormat("yyyy/MM/dd");
     {
          if(bienSoXe != null && maNV != null && hoTenKH != null &&sdtKH != null &&maGhe != null &&thoiGianDat != null &&ngayKhoiHanh != null &&gioKhoiHanh != null &&giaVe >= 0 && maLoTrinh != null &&maVe != null)
          {
-             
+             if(KiemTra.kiemTraSdt(sdtKH))
+             {
              Connection conn = JDBC.getConn();
               Connection cnt = JDBC.getConn();
         ResultSet rs;
@@ -234,7 +235,7 @@ DateFormat sfm = new SimpleDateFormat("yyyy/MM/dd");
              else if(kq1 == 0)
              return true;
          }
-         
+         }
          return false;
        
     }

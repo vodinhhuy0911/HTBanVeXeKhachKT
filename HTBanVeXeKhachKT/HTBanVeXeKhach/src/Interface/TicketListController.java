@@ -6,6 +6,7 @@
 package Interface;
 
 import BVXK.JDBC;
+import BVXK.KiemTra;
 import BVXK.QuanLyTuyenDi;
 import BVXK.QuanLyVeXe;
 import BanVeXeKhach.TuyenDuong;
@@ -455,6 +456,8 @@ public class TicketListController implements Initializable {
         
           if(!txtIDVe.getText().isEmpty() &&!txtIDNV.getText().isEmpty() &&!txtGiaVe.getText().isEmpty() &&!txtKH.getText().isEmpty() &&!txtNgayBook.getText().isEmpty() &&!txtSDT.getText().isEmpty() &&!txtViTriGhe.getText().isEmpty()&&!cbGioKH.getSelectionModel().isEmpty()&&!cbIDLT.getSelectionModel().isEmpty()&&!cbIDXe.getSelectionModel().isEmpty())
           {
+              if(KiemTra.kiemTraSdt(txtSDT.getText()))
+              {
                     boolean flag = false;
                     boolean flag1 = false;
                     if(rdTT.isSelected())
@@ -495,7 +498,16 @@ public class TicketListController implements Initializable {
                         alert.showAndWait();
                         return;
                     }
-                  }
+                  } else
+          {
+              Alert alert = new Alert(Alert.AlertType.INFORMATION);
+              alert.setTitle("Information Login");
+              alert.setHeaderText(null);
+              alert.setContentText("Số điện thoại không hợp lệ.");
+              alert.showAndWait();
+              return;
+          }
+          }
           else
           {
               Alert alert = new Alert(Alert.AlertType.INFORMATION);
