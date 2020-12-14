@@ -1,4 +1,4 @@
-/*
+    /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -171,6 +171,8 @@ public class DistanceController implements Initializable {
                 TuyenDuong td = new TuyenDuong(txtMaLoTrinh.getText(), txtTuyenDi.getText(), txtTuyenDen.getText(), cbXe.getSelectionModel().getSelectedItem().toString(), d, txtGioKhoiHanh.getText());
 
                 if (QuanLyTuyenDi.getSoLuongChuyenDi(txtTuyenDi.getText(),txtTuyenDen.getText(),cbXe.getSelectionModel().getSelectedItem().toString(),date1,txtGioKhoiHanh.getText())==0) {
+                    if(QuanLyTuyenDi.soLuongMa(txtMaLoTrinh.getText())== 0)
+                    {
                     if (QuanLyTuyenDi.themTuyenDuong(td)) {
                         this.loadData();
                         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -184,7 +186,14 @@ public class DistanceController implements Initializable {
                         alert.setHeaderText(null);
                         alert.setContentText("Thêm thất bại. Vui lòng kiểm tra lại thông tin.");
                         alert.showAndWait();
-                    }
+                    }}
+                    else {
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Information Login");
+                    alert.setHeaderText(null);
+                    alert.setContentText("ID đã tồn tại.");
+                    alert.showAndWait();
+                }
                 } else {
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("Information Login");
@@ -219,10 +228,12 @@ public class DistanceController implements Initializable {
             
             DateFormat sfm = new SimpleDateFormat("dd/MM/yyyy");
             Date d = sfm.parse(date);
-               if (QuanLyTuyenDi.soLuongMa((txtMaLoTrinh.getText())) == 0)
+              
                    {
                        if (QuanLyTuyenDi.getSoLuongChuyenDi(txtTuyenDi.getText(),txtTuyenDen.getText(),cbXe.getSelectionModel().getSelectedItem().toString(),date1,txtGioKhoiHanh.getText())==0)
                        {
+                           if(QuanLyTuyenDi.soLuongMa(txtMaLoTrinh.getText())== 1)
+                           {
             if (QuanLyTuyenDi.capNhatTuyenDuong(txtTuyenDi.getText(), txtTuyenDen.getText(), txtMaLoTrinh.getText(), cbXe.getSelectionModel().getSelectedItem().toString(),
                     d, txtGioKhoiHanh.getText())) {
                 this.loadData();
@@ -238,6 +249,14 @@ public class DistanceController implements Initializable {
                 alert.setContentText("Cập nhật thất bại. Vui lòng kiểm tra lại thông tin");
                 alert.showAndWait();
             }
+                       }
+                           else{
+                            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Information Login");
+                alert.setHeaderText(null);
+                alert.setContentText("id không đã tồn tại.");
+                alert.showAndWait();
+                           }
                        }else{
                             Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Information Login");
@@ -245,13 +264,7 @@ public class DistanceController implements Initializable {
                 alert.setContentText("Tuyến đường đã tồn tại.");
                 alert.showAndWait();
                        }
-                   }else {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Information Login");
-            alert.setHeaderText(null);
-            alert.setContentText("ID đã tồn tại");
-            alert.showAndWait();
-        }
+                   }
         } else {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Information Login");

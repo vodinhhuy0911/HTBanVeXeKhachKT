@@ -91,7 +91,7 @@ public class QuanLyTuyenDi {
        {
            DateFormat sfm = new SimpleDateFormat("yyyy/MM/dd");
        try {
-           if((getSoLuongChuyenDi(tuyenDi, tuyenDen, maXe, sfm.format(thoiGianKhoiHanh), GioKhoiHanh)==0))
+           if((getSoLuongChuyenDi(tuyenDi, tuyenDen, maXe, sfm.format(thoiGianKhoiHanh), GioKhoiHanh)==0) && soLuongMa(maLoTrinh)==1)
            {
                 String sql = "UPDATE lotrinh SET MaXe = ?, NgayKhoiHanh = ?, GioKhoiHanh = ? WHERE MaLoTrinh = ?";
         Connection cnt = JDBC.getConn();
@@ -284,4 +284,6 @@ public class QuanLyTuyenDi {
        }
        return i;
    }
+   
+   
 }
