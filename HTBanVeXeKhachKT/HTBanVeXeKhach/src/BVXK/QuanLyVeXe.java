@@ -364,6 +364,9 @@ String dateInString = ngay + " " + gio;
        Connection cnt = JDBC.getConn();
         cnt.setAutoCommit(false);
          PreparedStatement pStm = cnt.prepareStatement(sql);  
+         pStm.setString(1, str);
+         pStm.setString(2, maVe);
+         pStm.executeUpdate();
          cnt.commit();
     }
     public static boolean ktraThoiGianDatVe(String thoiGianKhoiHanh, String thoiGianCanTest)

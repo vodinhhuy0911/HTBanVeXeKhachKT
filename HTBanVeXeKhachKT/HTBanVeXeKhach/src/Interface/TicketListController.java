@@ -624,7 +624,7 @@ public class TicketListController implements Initializable {
               String date = new String();
               SimpleDateFormat ft = new SimpleDateFormat ("yyyy-MM-dd hh:mm:ss ");
               for(int i = 0; i < tvThongTin.getItems().size(); i++){
-                  date = ft.format(tvThongTin.getItems().get(i).getNgayKhoiHanh()) + tvThongTin.getItems().get(i).getGioKhoiHanh();
+                  date = ft.format(tvThongTin.getItems().get(i).getNgayKhoiHanh()) + " " +tvThongTin.getItems().get(i).getGioKhoiHanh();
                   temp = tvThongTin.getItems().get(i).getMaVe();
                   if(QuanLyVeXe.xoaVe30p(tvThongTin.getItems().get(i).getMaVe(),date)){
                       s+= temp + " ";
