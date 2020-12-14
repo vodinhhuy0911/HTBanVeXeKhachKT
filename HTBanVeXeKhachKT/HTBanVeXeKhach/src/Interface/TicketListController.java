@@ -253,7 +253,7 @@ public class TicketListController implements Initializable {
           }
           else
           {
-          if(ngayGio.compareTo(s2) < 0)// nhỏ hơn 5p và mua vé
+          if(QuanLyVeXe.ktraThoiGianDatVe(ngayGio, s1))// nhỏ hơn 5p và mua vé
           {
               //&&((!rdLayVe.isSelected() &&!rdTT.isSelected()) ||(rdLayVe.isSelected() &&!rdTT.isSelected()) || (!rdLayVe.isSelected() &&rdTT.isSelected()) )
               txtGiaVe.setDisable(true);
@@ -270,7 +270,7 @@ public class TicketListController implements Initializable {
               btHuy.setDisable(true);
               btXoa.setDisable(true);
           }
-          else if(ngayGio.compareTo(s1) < 0)//nho hon 60p
+          else if(QuanLyVeXe.ktraThoiGianDatVe(ngayGio, s2))//nho hon 60p
           {
                txtGiaVe.setDisable(true);
               txtIDNV.setDisable(true);
@@ -614,14 +614,21 @@ public class TicketListController implements Initializable {
               this.loadData();
         
       }
-//      public void huyVe30p()
-//      {
-//          this.tvThongTin.setRowFactory((TableView<VeXe> vx) ->{
-//            TableRow row = new TableRow();
-//          }
-//              return row;
-//          
-//      }
+      public void huyVe30p()
+      {
+          if(!rdLayVe.isSelected())
+          {
+              String s = new String();
+              String date = new String();
+              SimpleDateFormat ft = new SimpleDateFormat ("yyyy-MM-dd hh:mm:ss ");
+              for(int i = 0; i < tvThongTin.getItems().size(); i++){
+                  date = ft.format(tvThongTin.getItems().get(i).getNgayKhoiHanh()) + tvThongTin.getItems().get(i).getGioKhoiHanh();
+                  if(QuanLyVeXe.xoaVe30p(tvThongTin.getItems().get(i).getMaVe(),date)){
+                      s+= tvThongTin.getItems().get(i).getMaVe() + " ";
+                      }
+              }
+          }
+      }
       
       //Tạo ve tren jasper
 

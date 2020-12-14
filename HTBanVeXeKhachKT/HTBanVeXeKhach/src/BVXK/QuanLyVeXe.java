@@ -12,6 +12,8 @@ import java.sql.Statement;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List; 
@@ -92,7 +94,34 @@ String dateInString = ngay + " " + gio;
         {
             if(KiemTra.kiemTraSdt(ve.getSdtKH()))
             {
+                DateFormat sfm = new SimpleDateFormat("yyyy/MM/dd");
+                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");  
+           LocalDateTime now = LocalDateTime.now();  
+          String ngay = sfm.format(ve.getNgayKhoiHanh());
+          String gio = ve.getGioKhoiHanh();
+          String s1 = now.getYear() + "-" + now.getMonthValue()+ "-" + now.getDayOfMonth() +" ";
+        s1 += (now.getHour() +1)+ ":" + now.getMinute() + ":" + now.getSecond();
+        
+          String ngayGio = ngay + " " + gio;   
+          ngayGio = ngayGio.replace("/", "-");
+          String s2 = now.getYear() + "-" + now.getMonthValue()+ "-" + now.getDayOfMonth() +" " + (now.getHour())+ ":" + (now.getMinute()+5) + ":" + now.getSecond();
+          String s3 = now.getYear() + "-" + now.getMonthValue()+ "-" + now.getDayOfMonth() +" " + (now.getHour())+ ":" + (now.getMinute()+5) + ":" + now.getSecond();
      Connection conn = JDBC.getConn();
+     System.out.print(ngayGio + " - " + s3 +" - "+ s2 + " - " + s1);
+         
+     if(!QuanLyVeXe.ktraThoiGianDatVe(ngayGio, s3))
+          {
+              if(QuanLyVeXe.ktraThoiGianDatVe(ngayGio, s2) && ve.isIsThanhToan()==true)// nhỏ hơn 5p và mua vé
+          {
+              
+              return false;
+          }
+          else if(QuanLyVeXe.ktraThoiGianDatVe(ngayGio, s1) &&ve.isIsLayVe()== false && ve.isIsThanhToan() == false)// nhỏ hơn 60p và chưa lấy vé(đặt)
+          {
+              
+              return false;
+          }
+          else{
         try {
             
         Statement stm = conn.createStatement();
@@ -104,7 +133,7 @@ String dateInString = ngay + " " + gio;
             kq = rs.getInt(1);
             break;
         }
-DateFormat sfm = new SimpleDateFormat("yyyy/MM/dd");
+ sfm = new SimpleDateFormat("yyyy/MM/dd");
         rs = stm.executeQuery("SELECT count(*) FROM vexe WHERE BienSoXe = '"+ve.getBienSoXe()+"' AND NgayKhoiHanh = '"+ sfm.format(ve.getNgayKhoiHanh())+"' AND GioKhoiHanh = '"+ve.getGioKhoiHanh()+"' AND MaLoTrinh ='"+ve.getMaLoTrinh()+"' AND MaGhe = '" +ve.getMaGheNgoi()+"'");
         int kq1 = 0;
         while(rs.next())
@@ -151,7 +180,7 @@ DateFormat sfm = new SimpleDateFormat("yyyy/MM/dd");
         } catch (SQLException ex) {
            return false;
         }
-        }}
+        }}}}
         return false;
         
     }
@@ -260,6 +289,7 @@ DateFormat sfm = new SimpleDateFormat("yyyy/MM/dd");
             }
             }
         }
+        
         return false;
     }
     
@@ -336,6 +366,36 @@ String dateInString = ngay + " " + gio;
          PreparedStatement pStm = cnt.prepareStatement(sql);  
          cnt.commit();
     }
-    
-   
+    public static boolean ktraThoiGianDatVe(String thoiGianKhoiHanh, String thoiGianCanTest)
+    {
+        if(thoiGianKhoiHanh.compareTo(thoiGianCanTest)<0)
+            return true;
+        return false;
+    }
+    public static boolean xoaVe30p(String maVe, String thoiGianKhoiHanh)
+    {
+        if(maVe != null)
+        {  
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");  
+           LocalDateTime now = LocalDateTime.now(); 
+            String s1 = now.getYear() + "-" + now.getMonthValue()+ "-" + now.getDayOfMonth() +" ";
+        s1 += (now.getHour())+ ":" + (now.getMinute()+30) + ":" + now.getSecond();
+        if(ktraThoiGianDatVe(thoiGianKhoiHanh, s1))
+        {
+            String sql = "DELETE FROM vexe WHERE MaLoTrinh = '" + maVe+"'";
+            Connection cnt = JDBC.getConn();
+            try {
+                cnt.setAutoCommit(false);
+                PreparedStatement pStm = cnt.prepareStatement(sql);
+                pStm.executeUpdate();
+                cnt.commit();
+                return true;
+            } catch (SQLException ex) {
+                return false;
+            }
+        }
+        }
+        
+        return false;
+    }
 }

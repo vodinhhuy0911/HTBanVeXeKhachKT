@@ -24,8 +24,12 @@ public class Main {
    System.out.println(dtf.format(now));  
    String s =  now.getDayOfMonth() + "-" + now.getMonthValue()+ "-" + now.getYear() +" "+   now.getHour() + ":" + now.getMinute() + ":" + now.getSecond();
    String s1 = now.getDayOfMonth() + "-" + now.getMonthValue()+ "-" + now.getYear() +" ";
+   String s2 = "2020/12/14 16";
+   String s3 = "2020/12/14 17:00";
         s1 += (now.getHour() +0)+ ":" + now.getMinute() + ":" + now.getSecond();
-   System.out.println(s1);
+        System.out.print(s);
+        System.out.println(s.compareTo(s2));
+   System.out.println(s.compareTo(s3));
     }
     
 }

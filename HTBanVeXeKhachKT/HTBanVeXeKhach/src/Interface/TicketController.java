@@ -185,7 +185,12 @@ public class TicketController implements Initializable {
         s1 += (now.getHour() +1)+ ":" + now.getMinute() + ":" + now.getSecond();
           String ngayGio = ngay + " " + gio;   
           String s2 = now.getYear() + "-" + now.getMonthValue()+ "-" + now.getDayOfMonth() +" " + (now.getHour())+ ":" + (now.getMinute()+5) + ":" + now.getSecond();
-          if(ngayGio.compareTo(s2) < 0 && rdTT.isSelected())// nhỏ hơn 5p và mua vé
+          String s3 = now.getYear() + "-" + now.getMonthValue()+ "-" + now.getDayOfMonth() +" " + (now.getHour())+ ":" + (now.getMinute()+5) + ":" + now.getSecond();
+          System.out.println(ngayGio + " - " + s3 +" - "+ s2 + " - " + s1);
+         
+          if(true)
+          {
+          if(false)// nhỏ hơn 5p và mua vé
           {
               Alert alert = new Alert(Alert.AlertType.INFORMATION);
               alert.setTitle("Information Login");
@@ -194,7 +199,7 @@ public class TicketController implements Initializable {
               alert.showAndWait();
               return;
           }
-          else if(ngayGio.compareTo(s1) < 0 && !rdLayVe.isSelected() && !rdTT.isSelected())// nhỏ hơn 60p và chưa lấy vé(đặt)
+          else if(false)// nhỏ hơn 60p và chưa lấy vé(đặt)
           {
               Alert alert = new Alert(Alert.AlertType.INFORMATION);
               alert.setTitle("Information Login");
@@ -300,6 +305,14 @@ public class TicketController implements Initializable {
 
 
                   }
+          }
+          else{
+              Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                          alert.setTitle("Information Login");
+                          alert.setHeaderText(null);
+                          alert.setContentText("Lộ trình quá hạn. Không thể thêm.");
+                          alert.showAndWait();
+          }
         }
             else
         {
