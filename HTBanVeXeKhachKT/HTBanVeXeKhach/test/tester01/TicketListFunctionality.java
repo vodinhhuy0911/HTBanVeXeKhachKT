@@ -15,6 +15,8 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
@@ -22,6 +24,9 @@ import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.junit.AfterClass;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -38,21 +43,20 @@ public class TicketListFunctionality {
     public static void setUp() {
         conn = BVXK.JDBC.getConn();
         
-        UUID uuid = UUID.randomUUID();
         Date d = new java.util.Date("12/18/2020");
-        String id = uuid.toString().substring(0, 5);
-        String id1 = uuid.toString().substring(0, 15);
-        String id2 = uuid.toString().substring(0, 15);
+        LocalDateTime now = LocalDateTime.now();
+        String gioKH = String.valueOf(now.getHour() + 4) + ":00";
+            
         Xe xe = new Xe("35HA-0909", "Xe giường nằm");
         QuanLyXe.themXe(xe);
-        TuyenDuong t = new TuyenDuong("4", id1, id2, xe.getBienSoXe(), d, "6");
-
+        TuyenDuong t = new TuyenDuong("4", "SaPa", "Lào Cai", xe.getBienSoXe(), d, gioKH);
         QuanLyTuyenDi.themTuyenDuong(t);
     }
     
      @AfterClass
     public static void tearDown() {
         try {
+            QuanLyXe.xoaXe("35HA-0909");
             BVXK.JDBC.getConn().close();
         } catch (SQLException ex) {
             Logger.getLogger(LoginFunctionality.class.getName()).log(Level.SEVERE, null, ex);
@@ -165,24 +169,56 @@ public class TicketListFunctionality {
        
     }
     
-    // delete
-            @Test
-    public void TC127() {    
-        System.out.println("TC127: Check the results on clicking the Delete button when selecting the ticket that has already been sold .");
-        
-       
-    }
-            @Test
-    public void TC128() {    
-        System.out.println("TC128: Check the results on clicking the Delete button without selecting any ticket in the ticket table");
-        
-       
-    }
+//    // delete
+//            @Test
+//    public void TC127() {    
+//        try {
+//            System.out.println("TC127: Check the results on clicking the Delete button when selecting the ticket that has already been sold .");
+//            
+//            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+//            String ngaygio = "2020-12-14 23:30:00";
+//            Date d = formatter.parse(ngaygio);
+//            Date d1 = new java.util.Date("2020/12/21");
+//            java.sql.Date sqlDate = new java.sql.Date(d1.getTime());
+//            Random rand = new Random();
+//            
+//            VeXe vx = new VeXe(String.valueOf(rand.nextInt(99999)), "35HA-0909", "1", "csd", "0123456789", "B5", d, true, sqlDate, "6", 8000, "4", true);
+//            BVXK.QuanLyVeXe.themVe(vx);
+//            
+//            assertFalse(QuanLyVeXe.xoaVeXe(vx.getMaVe()));
+//        } catch (ParseException ex) {
+//            Logger.getLogger(TicketListFunctionality.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//    }
+//            @Test
+//    public void TC128() {    
+//            System.out.println("TC128: Check the results on clicking the Delete button without selecting any ticket in the ticket table");
+//            
+//            assertFalse(QuanLyVeXe.xoaVeXe(null));        
+//    }
             @Test
     public void TC129() {    
-        System.out.println("TC129: Check the results on clicking the Delete button when selecting a ticket that has not been sold and deleting it earlier than departure time at least 30 minutes 01 second.");
-        
-       
+        try {
+            System.out.println("TC129: Check the results on clicking the Delete button when selecting a ticket that has not been sold and deleting it earlier than departure time at least 30 minutes 01 second.");
+            
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");          
+            String ngaygio = "2020-12-14 23:30:00";
+            Date d = formatter.parse(ngaygio);
+            Date d1 = new java.util.Date("2020/12/21");
+            java.sql.Date sqlDate = new java.sql.Date(d1.getTime());
+            Random rand = new Random();
+            String id = String.valueOf(rand.nextInt(99999));
+            VeXe vx = new VeXe(id, "35HA-0909", "1", "csd", "0123456789", "B1", d, false, sqlDate, "6", 8000, "4", false);
+            BVXK.QuanLyVeXe.themVe(vx);      
+            LocalDateTime now = LocalDateTime.now();
+            String dt = now.getDayOfMonth() + "-" + now.getMonthValue()+ "-" + now.getYear() +" "+   String.valueOf(now.getHour() + 3) + ":" + String.valueOf(29) + ":00";
+            assertTrue(QuanLyVeXe.xoaVeXe(vx.getMaVe()));
+            QuanLyVeXe.doiGioDatVe(dt, id);
+        } catch (ParseException ex) {
+            Logger.getLogger(TicketListFunctionality.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(TicketListFunctionality.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
             @Test
     public void TC130() {    
@@ -203,46 +239,103 @@ public class TicketListFunctionality {
        
     }
     
-    // test find 
-                @Test
-    public void TC133() {    
-        try {
-            System.out.println("TC133: Check the results on clicking the Find button when entering a route destination that exists in the database.");
-                                          
-            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-            String ngaygio = "2020-12-14 23:30:00";          
-            Date d = formatter.parse(ngaygio);
-            Date d1 = new java.util.Date("2020/12/21");
-            java.sql.Date sqlDate = new java.sql.Date(d1.getTime());
-            Random rand = new Random();
-            
-            VeXe vx = new VeXe(String.valueOf(rand.nextInt(99999)), "35HA-0909", "1", "csd", "0123456789", "B1", d, false, sqlDate, "6", 8000, "4", false); 
-            BVXK.QuanLyVeXe.themVe(vx);    
-            
-            
-            
-        } catch (ParseException ex) {
-            Logger.getLogger(TicketListFunctionality.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-                @Test
-    public void TC134() {    
-        System.out.println("TC134: Check the results on clicking the Find button when entering a route departure point that exists in the database.");
-        
-       
-    }
-                @Test
-    public void TC135() {    
-        System.out.println("TC135: Check the results on clicking the Find button when entering a route departure point does not exist in the database.");
-        
-       
-    }
-                @Test
-    public void TC136() {    
-        System.out.println("TC136: Check the results on clicking the Find button when entering a customer's information exist in the ticket table.");
-        
-       
-    }
+//    // test find 
+//                @Test
+//    public void TC133() {    
+//        try {
+//            System.out.println("TC133: Check the results on clicking the Find button when entering a route destination that exists in the database.");
+//                                          
+//            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+//            String ngaygio = "2020-12-14 23:30:00";          
+//            Date d = formatter.parse(ngaygio);
+//            Date d1 = new java.util.Date("2020/12/21");
+//            java.sql.Date sqlDate = new java.sql.Date(d1.getTime());
+//            Random rand = new Random();
+//            
+//            VeXe vx = new VeXe(String.valueOf(rand.nextInt(99999)), "35HA-0909", "1", "csd", "0123456789", "B1", d, false, sqlDate, "6", 8000, "4", false); 
+//            BVXK.QuanLyVeXe.themVe(vx);    
+//            
+//             List<VeXe> ds = QuanLyVeXe.timKiemLoTrinh("Lào Cai");
+//            List<VeXe> kq = new ArrayList<>();
+//            assertNotEquals(ds, kq);
+//            
+//        } catch (ParseException ex) {
+//            Logger.getLogger(TicketListFunctionality.class.getName()).log(Level.SEVERE, null, ex);
+//        } catch (SQLException ex) {
+//            Logger.getLogger(TicketListFunctionality.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//    }
+//                @Test
+//    public void TC134() {    
+//        try {
+//            System.out.println("TC134: Check the results on clicking the Find button when entering a route departure point that exists in the database.");
+//            
+//            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");          
+//            String ngaygio = "2020-12-14 23:30:00";
+//            Date d = formatter.parse(ngaygio);
+//            Date d1 = new java.util.Date("2020/12/21");
+//            java.sql.Date sqlDate = new java.sql.Date(d1.getTime());
+//            Random rand = new Random();
+//            
+//            VeXe vx = new VeXe(String.valueOf(rand.nextInt(99999)), "35HA-0909", "1", "csd", "0123456789", "B2", d, false, sqlDate, "6", 8000, "4", false);
+//            BVXK.QuanLyVeXe.themVe(vx);    
+//            
+//            List<VeXe> ds = QuanLyVeXe.timKiemLoTrinh("SaPa");
+//            List<VeXe> kq = new ArrayList<>();
+//            assertNotEquals(ds, kq);
+//        } catch (ParseException ex) {
+//            Logger.getLogger(TicketListFunctionality.class.getName()).log(Level.SEVERE, null, ex);
+//        } catch (SQLException ex) {
+//            Logger.getLogger(TicketListFunctionality.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//    }
+//                @Test
+//    public void TC135() {    
+//        try {
+//            System.out.println("TC135: Check the results on clicking the Find button when entering a route departure point does not exist in the database.");
+//            
+//            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+//            String ngaygio = "2020-12-14 23:30:00";
+//            Date d = formatter.parse(ngaygio);
+//            Date d1 = new java.util.Date("2020/12/21");
+//            java.sql.Date sqlDate = new java.sql.Date(d1.getTime());
+//            Random rand = new Random();
+//            
+//            VeXe vx = new VeXe(String.valueOf(rand.nextInt(99999)), "35HA-0909", "1", "csd", "0123456789", "B3", d, false, sqlDate, "6", 8000, "4", false);
+//            BVXK.QuanLyVeXe.themVe(vx);
+//            
+//            List<VeXe> ds = QuanLyVeXe.timKiemLoTrinh("Hihihihihi");
+//            List<VeXe> kq = new ArrayList<>();
+//            assertEquals(ds, kq);
+//        } catch (ParseException ex) {
+//            Logger.getLogger(TicketListFunctionality.class.getName()).log(Level.SEVERE, null, ex);
+//        } catch (SQLException ex) {
+//            Logger.getLogger(TicketListFunctionality.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//    }
+//                @Test
+//    public void TC136() {    
+//        try {
+//            System.out.println("TC136: Check the results on clicking the Find button when entering a customer's information exist in the ticket table.");
+//            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");          
+//            String ngaygio = "2020-12-14 23:30:00";
+//            Date d = formatter.parse(ngaygio);
+//            Date d1 = new java.util.Date("2020/12/21");
+//            java.sql.Date sqlDate = new java.sql.Date(d1.getTime());
+//            Random rand = new Random();
+//            
+//            VeXe vx = new VeXe(String.valueOf(rand.nextInt(99999)), "35HA-0909", "1", "csd", "0123456789", "B4", d, false, sqlDate, "6", 8000, "4", false);
+//            BVXK.QuanLyVeXe.themVe(vx);    
+//            
+//            List<VeXe> ds = QuanLyVeXe.timKiemLoTrinh("csd");
+//            List<VeXe> kq = new ArrayList<>();
+//            assertEquals(ds, kq);
+//        } catch (ParseException ex) {
+//            Logger.getLogger(TicketListFunctionality.class.getName()).log(Level.SEVERE, null, ex);
+//        } catch (SQLException ex) {
+//            Logger.getLogger(TicketListFunctionality.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//    }
 //    // 
 //    @Test
 //    public void TCx() {
