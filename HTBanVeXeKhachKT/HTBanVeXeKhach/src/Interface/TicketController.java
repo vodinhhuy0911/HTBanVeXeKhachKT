@@ -5,6 +5,7 @@
  */
 package Interface;
 
+import BVXK.KiemTra;
 import BVXK.QuanLyTuyenDi;
 import BVXK.QuanLyVeXe;
 import BVXK.QuanLyXe;
@@ -174,6 +175,8 @@ public class TicketController implements Initializable {
     {
         if(!txtTenKH.getText().isEmpty()&& !txtSdtKH.getText().isEmpty() && !txtGiaVe.getText().isEmpty())
         {
+            if(KiemTra.kiemTraSdt(txtSdtKH.getText()))
+            {
          DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");  
            LocalDateTime now = LocalDateTime.now();  
           String ngay = cbNgayKhoiHanh.getSelectionModel().getSelectedItem().toString();
@@ -297,6 +300,15 @@ public class TicketController implements Initializable {
 
 
                   }
+        }
+            else
+        {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                          alert.setTitle("Information Login");
+                          alert.setHeaderText(null);
+                          alert.setContentText("Số điện thoại không hợp lệ");
+                          alert.showAndWait();
+        }
         }
         else
         {

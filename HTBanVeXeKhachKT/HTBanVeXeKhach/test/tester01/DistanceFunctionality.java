@@ -141,7 +141,7 @@ public class DistanceFunctionality {
         System.out.println("* Check Update button:");        
         System.out.println("TC67: Check the results on clicking the Update button after entering departure point, destination, date and time fields with valid data.");
 
-        Date d = new java.util.Date("12/18/2020");
+        Date d = new java.util.Date("2020/12/20");
         UUID uuid = UUID.randomUUID();
         String id = uuid.toString().substring(0, 5);
         String id1 = uuid.toString().substring(0, 15);
@@ -152,7 +152,8 @@ public class DistanceFunctionality {
         Date d1 = new java.util.Date("2020/12/21");
         String id3 = uuid.toString().substring(0, 15);
         String id4 = uuid.toString().substring(0, 15);
-        assertTrue(QuanLyTuyenDi.capNhatTuyenDuong(id, id3, id4, "1412", d1, "8"));
+        
+        assertTrue(QuanLyTuyenDi.capNhatTuyenDuong(id, id3, id4, "1412", d1, "8",id));
     }
         @Test
     public void TC68(){    
@@ -166,13 +167,13 @@ public class DistanceFunctionality {
         TuyenDuong t = new TuyenDuong(id, id1, id2, "1412", d, "8");       
         QuanLyTuyenDi.themTuyenDuong(t);
 
-        assertFalse(QuanLyTuyenDi.capNhatTuyenDuong("ad1548497", "g", "b", "1412", d, "8"));
+        assertFalse(QuanLyTuyenDi.capNhatTuyenDuong("ad1548497", "g", "b", "1412", d, "8","ad1548497"));
     }
         @Test
     public void TC69(){      
         System.out.println("TC69: Check the results on clicking the Update button without choosing any route in the route table.");
 
-        assertFalse(QuanLyTuyenDi.capNhatTuyenDuong(null, null, null, null, null,null));
+        assertFalse(QuanLyTuyenDi.capNhatTuyenDuong(null, null, null, null, null,null,null));
     }
         @Test
     public void TC70(){       
@@ -186,7 +187,7 @@ public class DistanceFunctionality {
         TuyenDuong t = new TuyenDuong(id, id1, id2, "1412", d, "8");       
         QuanLyTuyenDi.themTuyenDuong(t);
 
-         assertFalse(QuanLyTuyenDi.capNhatTuyenDuong(id, "h", null, "1412", d, "8"));
+         assertFalse(QuanLyTuyenDi.capNhatTuyenDuong(id, "h", null, "1412", d, "8",id));
     }
         @Test
     public void TC71(){     
@@ -200,7 +201,7 @@ public class DistanceFunctionality {
         TuyenDuong t = new TuyenDuong(id, id1, id2, "1412", d, "8");       
         QuanLyTuyenDi.themTuyenDuong(t);
 
-         assertFalse(QuanLyTuyenDi.capNhatTuyenDuong("", "", "", "", null,""));
+         assertFalse(QuanLyTuyenDi.capNhatTuyenDuong("", "", "", "", null,"",""));
     }
         @Test
     public void TC72(){      
@@ -214,7 +215,7 @@ public class DistanceFunctionality {
         TuyenDuong t = new TuyenDuong(id, id1, id2, "1412", d, "8");       
         QuanLyTuyenDi.themTuyenDuong(t);
 
-        assertFalse(QuanLyTuyenDi.capNhatTuyenDuong(id, "", "", "", null,""));
+        assertFalse(QuanLyTuyenDi.capNhatTuyenDuong(id, "", "", "", null,"",""));
     }
         @Test
     public void TC73(){    
@@ -228,7 +229,7 @@ public class DistanceFunctionality {
         TuyenDuong t = new TuyenDuong(id, id1, id2, "1412", d, "8");       
         QuanLyTuyenDi.themTuyenDuong(t);
 
-        QuanLyTuyenDi.capNhatTuyenDuong(id, "asdfghjklaasdfghjklaasdfghjklaasdfghjklaasdfghjkla", "w", "1412", d, "8");
+        QuanLyTuyenDi.capNhatTuyenDuong(id, "asdfghjklaasdfghjklaasdfghjklaasdfghjklaasdfghjkla", "w", "1412", d, "8",id);
     }
     // test delete button
       @Test

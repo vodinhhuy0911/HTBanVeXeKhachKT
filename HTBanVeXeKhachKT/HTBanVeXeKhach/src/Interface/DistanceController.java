@@ -225,13 +225,14 @@ private String id;
             {
             LocalDate ngayKhoiHanh = dpNgayKhoiHanh.getValue();
             String date = String.valueOf(ngayKhoiHanh);
+            
             String date1 = date.replace("-", "/");
             String s[] = date.split("-");
             date = s[2] + "/" + s[1] + "/" + s[0];
             
             DateFormat sfm = new SimpleDateFormat("dd/MM/yyyy");
             Date d = sfm.parse(date);
-              
+             
                    {
                        if (QuanLyTuyenDi.getSoLuongChuyenDi(txtTuyenDi.getText(),txtTuyenDen.getText(),cbXe.getSelectionModel().getSelectedItem().toString(),date1,txtGioKhoiHanh.getText())==0)
                        {

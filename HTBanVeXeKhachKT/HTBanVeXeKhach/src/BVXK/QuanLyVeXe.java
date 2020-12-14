@@ -90,6 +90,8 @@ String dateInString = ngay + " " + gio;
         
         if(ve.getBienSoXe() != null && ve.getGiaVe() >= 0 && ve.getGioKhoiHanh()!= null && ve.getHoTenKH()!= null && ve.getMaGheNgoi()!= null && ve.getMaLoTrinh()!= null && ve.getMaNV()!= null && ve.getMaVe()!= null && ve.getNgayKhoiHanh()!= null && ve.getSdtKH()!= null && ve.getThoiGianDatVe()!= null)
         {
+            if(KiemTra.kiemTraSdt(ve.getSdtKH()))
+            {
      Connection conn = JDBC.getConn();
         try {
             
@@ -149,7 +151,7 @@ DateFormat sfm = new SimpleDateFormat("yyyy/MM/dd");
         } catch (SQLException ex) {
            return false;
         }
-        }
+        }}
         return false;
         
     }
@@ -158,6 +160,7 @@ DateFormat sfm = new SimpleDateFormat("yyyy/MM/dd");
     {
          if(bienSoXe != null && maNV != null && hoTenKH != null &&sdtKH != null &&maGhe != null &&thoiGianDat != null &&ngayKhoiHanh != null &&gioKhoiHanh != null &&giaVe >= 0 && maLoTrinh != null &&maVe != null)
          {
+             
              Connection conn = JDBC.getConn();
               Connection cnt = JDBC.getConn();
         ResultSet rs;
@@ -314,5 +317,24 @@ String dateInString = ngay + " " + gio;
         }
         return kq;
     }
-    
+    public static int getSoLuongVeXe(String maLoTrinh) throws SQLException
+    {
+        Connection conn = JDBC.getConn();
+        Statement stm = conn.createStatement();
+        ResultSet rs = stm.executeQuery("SELECT count(*) FROM vexe WHERE MaLoTrinh = '"+maLoTrinh+"'");
+       int kq = 0;
+        while(rs.next())
+        {
+            kq = rs.getInt(1);
+        }
+        return kq;
+    }
+    public static void doiGioDatVe(String str, String maVe) throws SQLException
+    {
+       String sql = "UPDATE vexe SET ThoiGianDat = ? WHERE MaVe = ?";
+       Connection cnt = JDBC.getConn();
+        cnt.setAutoCommit(false);
+         PreparedStatement pStm = cnt.prepareStatement(sql);  
+         cnt.commit();
+    }
 }

@@ -93,8 +93,11 @@ public class QuanLyTuyenDi {
        try {
            if((getSoLuongChuyenDi(tuyenDi, tuyenDen, maXe, sfm.format(thoiGianKhoiHanh), GioKhoiHanh)==0) && soLuongMa(maLoTrinh)==1 && maLoTrinhCu.equals(maLoTrinh))
            {
-                String sql = "UPDATE lotrinh SET MaXe = ?, NgayKhoiHanh = ?, GioKhoiHanh = ? WHERE MaLoTrinh = ?";
-        Connection cnt = JDBC.getConn();
+               
+               if(QuanLyVeXe.getSoLuongVeXe(maLoTrinh) > 0)
+                   {
+                  String sql = "UPDATE vexe SET MaXe = ?, NgayKhoiHanh = ?, GioKhoiHanh = ? WHERE MaLoTrinh = ?";
+                 Connection cnt = JDBC.getConn();
            cnt.setAutoCommit(false);
            PreparedStatement pStm = cnt.prepareStatement(sql);
        pStm.setString(1, maXe);
@@ -106,15 +109,18 @@ public class QuanLyTuyenDi {
        pStm.setString(4, maLoTrinh);
              pStm.executeUpdate();
         cnt.commit();
-        pStm.close();
+        pStm.close();}
        //cap nhat bang lo trinh
-       sql = "UPDATE lotrinh SET TuyenDi = ?, TuyenDen = ?, MaXe = ?, NgayKhoiHanh = ?, GioKhoiHanh = ? WHERE MaLoTrinh = ?";
+       String sql = "UPDATE lotrinh SET TuyenDi = ?, TuyenDen = ?, MaXe = ?, NgayKhoiHanh = ?, GioKhoiHanh = ? WHERE MaLoTrinh = ?";
         
-        cnt.setAutoCommit(false);
-        pStm = cnt.prepareStatement(sql);
+       Connection cnt = JDBC.getConn();
+           cnt.setAutoCommit(false);
+        PreparedStatement pStm = cnt.prepareStatement(sql);
         pStm.setString(1, tuyenDi);
         pStm.setString(2, tuyenDen);
         pStm.setString(3, maXe);
+     java.util.Date date = thoiGianKhoiHanh;
+      java.sql.Date sqlDate = new java.sql.Date(date.getTime()); 
         pStm.setDate(4, sqlDate);
         pStm.setString(5, GioKhoiHanh);
        pStm.setString(6, maLoTrinh);
